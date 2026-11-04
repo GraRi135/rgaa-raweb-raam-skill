@@ -1,10 +1,13 @@
-# Explainer: ten accessibility rules, for people who do not know the rules
+# Explainer: twelve accessibility rules, for people who do not know the rules
 
 `index.html` is a single, self-contained page (no dependencies, no external fonts, no tracking) that explains
-ten web accessibility rules with invented examples from the fictional commune of Fiktivbuerg, interactive
-simulations (colour-blindness filters, "what a screen reader hears", a keyboard-only form, a zoom slider), a
-"your turn" challenge under each rule, a section on users' rights in Luxembourg, and an eight-question quiz.
-It is in French with an English toggle; the page remembers the choice in the visitor's browser.
+twelve web accessibility rules with invented examples from the fictional commune of Fiktivbuerg: interactive
+simulations (colour-blindness filters, "what a screen reader hears", a keyboard-only form, an accessible and an
+inaccessible drop-down menu, a zoom slider, a phone frame that scrolls sideways), a "your turn" challenge under
+each rule where every answer shows a visual example before the reader confirms the best one, a section on users'
+rights in Luxembourg, and an eight-question quiz built the same way. It is in French with an English toggle; the
+page remembers the choice in the visitor's browser. It says plainly that twelve rules are a very small part of the
+standard.
 
 Audience: content editors and communication staff of public-sector websites, and the general public.
 

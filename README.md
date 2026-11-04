@@ -101,7 +101,7 @@ until a person runs them.
 * [Updating the bundled data](docs/updating-data.md) when a standard changes.
 * [Contributing](docs/contributing.md).
 * [Examples](examples/README.md): fictional inputs and the reports Claude produced from them.
-* [Explainer](explainer/README.md): a single hostable page, in French and English, that teaches ten accessibility rules with simulations, challenges and a quiz, for people who do not know the rules.
+* [Explainer](explainer/README.md): a single hostable page, in French and English, that teaches twelve accessibility rules with simulations, visual challenges and a quiz, for people who do not know the rules.
 
 ## Layout
 

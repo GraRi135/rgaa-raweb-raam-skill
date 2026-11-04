@@ -105,7 +105,7 @@ restent « non testés » tant qu'une personne ne les a pas passés.
 * [Mettre à jour les données embarquées](docs/updating-data.md) quand un référentiel change.
 * [Contribuer](docs/contributing.md).
 * [Exemples](examples/README.md) : entrées fictives et rapports produits par Claude à partir d'elles.
-* [Page de sensibilisation](explainer/README.md) : une page unique, hébergeable partout, en français et en anglais, qui explique dix règles d'accessibilité avec des simulations, des exercices et un quiz, pour les personnes qui ne connaissent pas les règles.
+* [Page de sensibilisation](explainer/README.md) : une page unique, hébergeable partout, en français et en anglais, qui explique douze règles d'accessibilité avec des simulations, des exercices illustrés et un quiz, pour les personnes qui ne connaissent pas les règles.
 
 Les guides sont en anglais ; les livrables produits par la compétence (rapports, déclarations) sont rédigés dans la
 langue de la demande, en français pour les documents officiels.
