@@ -1,0 +1,15 @@
+{
+ "generated": "2026-11-04",
+ "raweb": {
+  "repo": "https://github.com/accessibility-luxembourg/ReferentielAccessibiliteWeb.git",
+  "commit": "9ebf98f4e1239ccd99dc95d52c81903562075f78",
+  "commit_date": "2026-09-16",
+  "licence": "CC-BY 3.0 LU (Service information et presse, Luxembourg)"
+ },
+ "rgaa": {
+  "repo": "https://github.com/DISIC/accessibilite.numerique.gouv.fr.git",
+  "commit": "ca4019f95073b6cbd2482a16e9f12b52d8de678d",
+  "commit_date": "2026-08-18",
+  "licence": "Licence Ouverte 2.0 (DINUM, France)"
+ }
+}

@@ -1,0 +1,16 @@
+schema_version: "1.1"
+name: compute-rate-declaration-rgaa
+expected_outcome: |
+  The answer computes the compliance rate with the RGAA rules (a criterion is compliant only if compliant on every page
+  where it applies, applicable if applicable on at least one page, rate = compliant / applicable) and therefore finds
+  67.1 % (53 compliant out of 79 applicable criteria, 26 non-compliant, 27 not applicable), states that the site is
+  "partiellement conforme", and does not present the average of page rates (about 90-93 %) or compliant / 106 (50 %) as
+  the compliance rate. It produces a French accessibility statement that follows the mandatory RGAA structure:
+  commitment sentence referring to article 47 of law 2005-102, scope (demarches.ville-exemple.fr), "État de
+  conformité", "Résultats des tests" with the percentage, "Contenus non accessibles" with the non-conformities
+  (criteria and pages), "Dérogations pour charge disproportionnée", "Contenus non soumis à l'obligation
+  d'accessibilité", "Établissement de cette déclaration d'accessibilité" (date, technologies, test environment
+  NVDA+Firefox / VoiceOver+Safari, tools, list of audited pages), "Retour d'information et contact" with the e-mail
+  and form, and "Voies de recours" naming the Défenseur des droits with the three contact routes.
+context:
+  scaffold_script: place-files.sh

@@ -1,0 +1,18 @@
+schema_version: "1.1"
+name: audit-homepage-raweb
+expected_outcome: |
+  An audit report (markdown file) of the single page against RAWeb 1.1 that lists the non-conformities grouped by
+  criterion with the correct criterion and test numbers (at least: 1.1 missing alt on the logo and the search svg,
+  1.2/1.1 svg icons, 2.1 iframe without title, 4.10 autoplay video without controls, 6.2 links without accessible
+  name, 7.1 aria-labelledby to a missing id, 7.3 div with onclick not keyboard operable, 8.2 duplicate id, 8.3 missing
+  lang on html, 8.8 invalid lang code, 9.1 skipped heading level and visual headings, 9.2 no main/nav/header/footer
+  landmarks, 9.3 li outside a list, 10.1 font/center/marquee/bgcolor, 10.4 viewport blocking zoom, 10.7 outline
+  removed, 11.1 placeholder-only fields, 11.5 ungrouped radios, 11.6 fieldset without legend, 11.9 icon-only submit
+  buttons, 12.7 no skip link, 13.1 meta refresh, 13.8 marquee), with a concrete fix for each; it distinguishes what was
+  verified in the code from what still needs a manual/assistive-technology test (contrast, keyboard, screen reader,
+  zoom, the "En savoir plus"/"cliquez ici" links in context, the table headers) and it does not announce a definitive
+  compliance rate or compliance status from one statically analysed page (a provisional figure clearly labelled as
+  such is acceptable). It uses RAWeb 1.1 numbering and vocabulary (not RGAA-only test numbers such as 8.1.3) and
+  mentions the sample / full-audit requirement for the statement.
+context:
+  scaffold_script: place-files.sh

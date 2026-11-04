@@ -1,0 +1,361 @@
+{
+ "source": "https://github.com/accessibility-luxembourg/simplA11yGenReport (Service information et presse, Luxembourg), MIT licence",
+ "purpose": "Wording used by the SIP in its published simplified audit reports: per topic a general recommendation, per case (criteria) an explanation of the problem, who is affected and how to fix it. French.",
+ "topics": [
+  {
+   "name": "Images",
+   "num": 1,
+   "desc": "Donner à chaque [image porteuse d’information](https://accessibilite.public.lu/fr/raweb1.1/glossaire.html#image-porteuse-d-information) une [alternative textuelle](https://accessibilite.public.lu/fr/raweb1.1/glossaire.html#alternative-textuelle-image) pertinente et une [description détaillée](https://accessibilite.public.lu/fr/raweb1.1/glossaire.html#description-detaillee-image) si nécessaire. Lier les [légendes](https://accessibilite.public.lu/fr/raweb1.1/glossaire.html#legende-d-image) à leurs images. Remplacer les [images textes](https://accessibilite.public.lu/fr/raweb1.1/glossaire.html#image-texte) par du [texte stylé](https://accessibilite.public.lu/fr/raweb1.1/glossaire.html#texte-style) lorsque c’est possible. Pour trouver la bonne alternative textuelle pour une image donnée, vous pouvez vous aider de l'[arbre de décision proposé par la WAI](https://www.w3.org/WAI/tutorials/images/decision-tree/)."
+  },
+  {
+   "name": "Cadres",
+   "num": 2,
+   "desc": "Donner à chaque [cadre](https://accessibilite.public.lu/fr/raweb1.1/glossaire.html#cadre) un [titre](https://accessibilite.public.lu/fr/raweb1.1/glossaire.html#titre-de-cadre) pertinent."
+  },
+  {
+   "name": "Couleurs",
+   "num": 3,
+   "desc": "Ne pas donner l’[information](https://accessibilite.public.lu/fr/raweb1.1/glossaire.html#information-donnee-par-la-couleur) uniquement par la couleur et utiliser des [contrastes](https://accessibilite.public.lu/fr/raweb1.1/glossaire.html#contraste) de couleurs suffisamment élevés pour les textes, les [composants d’interface](https://accessibilite.public.lu/fr/raweb1.1/glossaire.html#composant-d-interface) ou les éléments porteurs d’informations."
+  },
+  {
+   "name": "Multimédia",
+   "num": 4,
+   "desc": "Donner à chaque [média temporel](https://accessibilite.public.lu/fr/raweb1.1/glossaire.html#media-temporel-type-son-video-et-synchronise) audio et/ou vidéo une [transcription textuelle](https://accessibilite.public.lu/fr/raweb1.1/glossaire.html#transcription-textuelle-media-temporel), des [sous-titres](https://accessibilite.public.lu/fr/raweb1.1/glossaire.html#sous-titres-synchronises-objet-multimedia) ou une [audiodescription](https://accessibilite.public.lu/fr/raweb1.1/glossaire.html#audiodescription-synchronisee-media-temporel) pertinents lorsque cela est nécessaire. Donner à chaque contenu graphique ou interactif (ou [média non temporel](https://accessibilite.public.lu/fr/raweb1.1/glossaire.html#media-non-temporel)) une alternative textuelle pertinente. Rendre possible le [contrôle de leur consultation](https://accessibilite.public.lu/fr/raweb1.1/glossaire.html#controle-de-la-consultation-d-un-media-temporel) et leur [manipulation au clavier et avec tout dispositif de pointage](https://accessibilite.public.lu/fr/raweb1.1/glossaire.html#accessible-et-activable-par-le-clavier-et-tout-dispositif-de-pointage) comme la souris. S’assurer de leur [compatibilité avec les technologies d’assistance](https://accessibilite.public.lu/fr/raweb1.1/glossaire.html#compatible-avec-les-technologies-d-assistance)."
+  },
+  {
+   "name": "Tableaux",
+   "num": 5,
+   "desc": "Associer correctement les [tableaux de données à leur titre](https://accessibilite.public.lu/fr/raweb1.1/glossaire.html#tableau-de-donnees-ayant-un-titre), donner à chaque [tableau de données complexe](https://accessibilite.public.lu/fr/raweb1.1/glossaire.html#tableau-de-donnees-complexe) un [résumé](https://accessibilite.public.lu/fr/raweb1.1/glossaire.html#resume-de-tableau), identifier clairement les cellules d’en-tête, utiliser un mécanisme pertinent pour lier les cellules de données aux [cellules d’en-tête](https://accessibilite.public.lu/fr/raweb1.1/glossaire.html#en-tete-de-colonne-ou-de-ligne). Pour chaque [tableau de mise en forme](https://accessibilite.public.lu/fr/raweb1.1/glossaire.html#tableau-de-mise-en-forme), veiller à sa bonne linéarisation."
+  },
+  {
+   "name": "Liens",
+   "num": 6,
+   "desc": "Utiliser des [intitulés](https://accessibilite.public.lu/fr/raweb1.1/glossaire.html#intitule-ou-nom-accessible-de-lien) de [liens](https://accessibilite.public.lu/fr/raweb1.1/glossaire.html#lien) explicites, grâce à des informations de [contexte](https://accessibilite.public.lu/fr/raweb1.1/glossaire.html#contexte-du-lien) notamment."
+  },
+  {
+   "name": "Scripts",
+   "num": 7,
+   "desc": "Donner si nécessaire à chaque [script](https://accessibilite.public.lu/fr/raweb1.1/glossaire.html#script) une [alternative](https://accessibilite.public.lu/fr/raweb1.1/glossaire.html#alternative-a-script) pertinente. Avertir ou permettre le contrôle des scripts qui initient un [changement de contexte](https://accessibilite.public.lu/fr/raweb1.1/glossaire.html#changement-de-contexte). Rendre possible le contrôle de chaque code [script](https://accessibilite.public.lu/fr/raweb1.1/glossaire.html#script) [par le clavier et par tout dispositif de pointage](https://accessibilite.public.lu/fr/raweb1.1/glossaire.html#accessible-et-activable-par-le-clavier-et-tout-dispositif-de-pointage) et s’assurer de leur [compatibilité avec les technologies d’assistance](https://accessibilite.public.lu/fr/raweb1.1/glossaire.html#compatible-avec-les-technologies-d-assistance) notamment pour les [messages de statut](https://accessibilite.public.lu/fr/raweb1.1/glossaire.html#message-de-statut)."
+  },
+  {
+   "name": "Éléments obligatoires",
+   "num": 8,
+   "desc": "Vérifier que dans chaque page Web, le [titre](https://accessibilite.public.lu/fr/raweb1.1/glossaire.html#titre-de-page) est pertinent et la [langue par défaut](https://accessibilite.public.lu/fr/raweb1.1/glossaire.html#langue-par-defaut) est indiquée. Vérifier que les balises ne sont pas utilisées [uniquement à des fins de présentation](https://accessibilite.public.lu/fr/raweb1.1/glossaire.html#uniquement-a-des-fins-de-presentation), que les [changements de langues](https://accessibilite.public.lu/fr/raweb1.1/glossaire.html#changement-de-langue) et de direction de [sens de lecture](https://accessibilite.public.lu/fr/raweb1.1/glossaire.html#sens-de-lecture) sont indiqués."
+  },
+  {
+   "name": "Structuration de l'information",
+   "num": 9,
+   "desc": "Utiliser des [titres](https://accessibilite.public.lu/fr/raweb1.1/glossaire.html#titre), des [listes](https://accessibilite.public.lu/fr/raweb1.1/glossaire.html#listes), et des citations pour structurer l’information. S’assurer que la structure du document est cohérente."
+  },
+  {
+   "name": "Présentation de l'information",
+   "num": 10,
+   "desc": "Utiliser des [feuilles de styles](https://accessibilite.public.lu/fr/raweb1.1/glossaire.html#feuille-de-style) pour [présenter de l’information](https://accessibilite.public.lu/fr/raweb1.1/glossaire.html#presentation-de-l-information). S’assurer que le contenu visible porteur d’information est accessible aux technologies d’assistance et que l’information reste [compréhensible](https://accessibilite.public.lu/fr/raweb1.1/glossaire.html#comprehensible-ordre-de-lecture) lorsque les feuilles de styles sont désactivées. Vérifier l’effet de l’agrandissement à 200 % de la [taille des caractères](https://accessibilite.public.lu/fr/raweb1.1/glossaire.html#taille-des-caracteres) et de la redéfinition des propriétés d’espacement sur la lisibilité. S’assurer que les liens sont correctement identifiables, que la [prise de focus](https://accessibilite.public.lu/fr/raweb1.1/glossaire.html#prise-de-focus) est signalée et que l’utilisateur a le contrôle des contenus additionnels qui deviennent visibles au survol ou au focus. S’assurer que les [contenus cachés](https://accessibilite.public.lu/fr/raweb1.1/glossaire.html#contenu-cache) sont ignorés par les technologies d’assistance et que l’information n’est pas donnée uniquement par la [forme, taille ou position](https://accessibilite.public.lu/fr/raweb1.1/glossaire.html#indication-donnee-par-la-forme-la-taille-ou-la-position) d’un élément."
+  },
+  {
+   "name": "Formulaires",
+   "num": 11,
+   "desc": "Pour chaque formulaire, associer chacun de ses [champs](https://accessibilite.public.lu/fr/raweb1.1/glossaire.html#champ-de-saisie-de-formulaire) à son [étiquette](https://accessibilite.public.lu/fr/raweb1.1/glossaire.html#etiquette-de-champ-de-formulaire), grouper les [champs de même nature](https://accessibilite.public.lu/fr/raweb1.1/glossaire.html#champs-de-meme-nature) et leur donner une [légende](https://accessibilite.public.lu/fr/raweb1.1/glossaire.html#legende), structurer les listes de choix de manière pertinente, donner à chaque [bouton](https://accessibilite.public.lu/fr/raweb1.1/glossaire.html#bouton-formulaire) un intitulé explicite. Vérifier la présence de suggestions lors des erreurs de saisie, s’assurer que le [contrôle de saisie](https://accessibilite.public.lu/fr/raweb1.1/glossaire.html#controle-de-saisie-formulaire) est accessible, que la finalité des champs peut être déduite et que l’utilisateur peut garder le contrôle sur ses données à caractère financier, juridique ou personnel."
+  },
+  {
+   "name": "Navigation",
+   "num": 12,
+   "desc": "Proposer au moins deux [systèmes de navigation](https://accessibilite.public.lu/fr/raweb1.1/glossaire.html#systeme-de-navigation) différents dans un [ensemble de pages](https://accessibilite.public.lu/fr/raweb1.1/glossaire.html#ensemble-de-pages) ([menu de navigation](https://accessibilite.public.lu/fr/raweb1.1/glossaire.html#menu-et-barre-de-navigation), [plan du site](https://accessibilite.public.lu/fr/raweb1.1/glossaire.html#page-plan-du-site) ou [moteur de recherche](https://accessibilite.public.lu/fr/raweb1.1/glossaire.html#moteur-de-recherche-interne-a-un-site-web)). Donner la possibilité d’éviter ou d’atteindre les principaux regroupements de contenus en particulier la zone de contenu principal via un [lien d’évitement ou d’accès rapide](https://accessibilite.public.lu/fr/raweb1.1/glossaire.html#liens-d-evitement-ou-d-acces-rapide). S’assurer que l’[ordre de tabulation](https://accessibilite.public.lu/fr/raweb1.1/glossaire.html#ordre-de-tabulation) est cohérent et que la page ne comporte pas de piège au clavier. S’assurer que les [raccourcis clavier](https://accessibilite.public.lu/fr/raweb1.1/glossaire.html#raccourci-clavier) n’utilisant qu’une seule touche sont contrôlables par l’utilisateur."
+  },
+  {
+   "name": "Consultation",
+   "num": 13,
+   "desc": "S’assurer que l’utilisateur a le contrôle des actions imposées après un certain délai notamment les [procédés de rafraîchissement](https://accessibilite.public.lu/fr/raweb1.1/glossaire.html#procede-de-rafraichissement). Donner la possibilité de contrôler les [changements brusques de luminosité](https://accessibilite.public.lu/fr/raweb1.1/glossaire.html#changement-brusque-de-luminosite-ou-effet-de-flash), les ouvertures de nouvelles fenêtres et les [contenus en mouvement ou clignotants](https://accessibilite.public.lu/fr/raweb1.1/glossaire.html#controle-contenu-en-mouvement-ou-clignotant). Proposer des [versions accessibles](https://accessibilite.public.lu/fr/raweb1.1/glossaire.html#version-accessible-pour-un-document-en-telechargement) des documents en téléchargement ou les rendre accessibles. S’assurer que le contenu puisse être consulté quelle que soit l’orientation de l’écran et au moyen de [gestes simples](https://accessibilite.public.lu/fr/raweb1.1/glossaire.html#gestes-complexes-et-gestes-simples). Permettre d’annuler les actions déclenchées par un mouvement et d’accéder aux mêmes fonctionnalités par une alternative, sans mouvement."
+  }
+ ],
+ "solutions": {
+  "1": [
+   {
+    "criterias": [
+     "1.1",
+     "1.3"
+    ],
+    "title": "images porteuses d'information",
+    "desc": "Les images porteuses d'information doivent avoir une alternative textuelle qui sera restituée aux personnes utilisant un lecteur d'écran, aveugles et grands malvoyants. Cette alternative textuelle doit fournir l'information véhiculée par l'image, il ne s'agit pas d'une description de l'image. Pour une image matricielle, son attribut `alt` doit contenir cette alternative textuelle. Pour une image vectorielle SVG, celle-ci doit avoir l'attribut `role=\"img\"` et son alternative textuelle pourra être fournie via les attributs `aria-label` ou `aria-labelledby`."
+   },
+   {
+    "criterias": [
+     "1.2"
+    ],
+    "title": "images de décoration",
+    "desc": "Les [images de décoration](https://accessibilite.public.lu/fr/raweb1.1/glossaire.html#image-de-decoration) sans légende ne doivent pas avoir d'alternative textuelle et doivent être ignorées correctement par les technologies d'assistance. Dans le cas contraire, elles peuvent causer des problèmes de compréhension aux utilisateurs de lecteurs d'écran (aveugles et grands malvoyants). Pour une image matricielle, son attribut `alt` doit être vide. Si elle possède un attribut `role=\"presentation\"` ou `role=\"none\"`, elle ne doit pas posséder d'attribut `title`, `aria-label` ou `aria-labelledby`. Pour une image vectorielle SVG de décoration, celle-ci doit avoir l'attribut `aria-hidden=\"true\"`."
+   },
+   {
+    "criterias": [
+     "1.4",
+     "1.5"
+    ],
+    "title": "CAPTCHA",
+    "desc": "Tout [CAPTCHA](https://accessibilite.public.lu/fr/raweb1.1/glossaire.html#captcha) visuel qui ne fournit pas d'alternative permettant d'identifier sa nature et qui n'est pas accompagné d'un moyen alternatif pour passer le test (ex&nbsp;: CAPTCHA sonore) constitue un problème insurmontable pour les aveugles et les déficients visuels. Différentes alternatives aux CAPTCHA visuels sont décrites dans le document [\"Inaccessibility of CAPTCHA - Alternatives to Visual Turing Tests on the Web\"](https://www.w3.org/TR/turingtest/){lang=en} publié par le W3C."
+   },
+   {
+    "criterias": [
+     "1.6",
+     "1.7"
+    ],
+    "title": "images porteuses d'informations complexes",
+    "desc": "Certaines images porteuses d'informations sont particulièrement complexes, par exemple lorsqu'elles présentent des graphiques, schémas, cartes, etc. Dans ce cas, ces images nécessitent une description détaillée adjacente à l'image afin de permettre aux personnes aveugles et dyslexiques d'accéder à toutes les informations véhiculées par l'image. Pour mettre à disposition cette description détaillée, plusieurs solutions sont possibles. Le texte peut être adjacent à l'image dans la même page, on peut également placer un lien adjacent à l'image qui mène à une page où se trouve la description. Le texte peut aussi être inclus dans un composant permettant de le masquer et de l'afficher sur demande, au clic d'un bouton \"afficher la description de l'image\" (via le motif de conception ARIA [\"disclosure\"](https://www.w3.org/WAI/ARIA/apg/patterns/disclosure/){lang=en})."
+   }
+  ],
+  "2": [
+   {
+    "criterias": [
+     "2.1"
+    ],
+    "title": "titres de cadres",
+    "desc": "Les titres de cadres sont utiles à la compréhension de la structure de la page et des contenus pour les personnes aveugles. Tout cadre (élément `<iframe>` ou `<frame>`) doit avoir un titre fourni via son attribut `title`. Ce titre doit être pertinent, il doit représenter le contenu du cadre."
+   }
+  ],
+  "3": [
+   {
+    "criterias": [
+     "3.1"
+    ],
+    "title": "informations données uniquement par la couleur",
+    "desc": "Ce type d'information est un problème pour les personnes déficientes visuelles, aveugles ou par exemple les personnes qui ne voient pas certaines couleurs ou ne perçoivent simplement pas les couleurs. Pour chaque information véhiculée par la couleur, il est nécessaire de mettre en place un complément au niveau du code (par exemple `title`, `aria-label`, texte visuellement masqué, `aria-current`) et une information visuelle complémentaire à la couleur, comme par exemple un changement de style (graisse du texte, taille du texte, soulignement, etc.), une icône ou un effet graphique de forme ou de position."
+   },
+   {
+    "criterias": [
+     "3.2"
+    ],
+    "title": "contrastes des textes",
+    "desc": "Les contrastes de couleurs sont importants pour plusieurs types de déficiences visuelles comme celles des grands malvoyants ou des personnes ayant des problèmes de perception des couleurs.\nLes contrastes minimaux d'un texte sur le fond de page sont définis par le RAWeb comme suit&nbsp;:\n\n- Pour un texte sans effet de graisse\n    - De taille inférieure à 24 px&nbsp;: le contraste minimum est de 4.5:1&nbsp;;\n    - De taille supérieure ou égale à 24 px&nbsp;: le contraste minimum est de 3:1.\n- Pour un texte en gras\n    - De taille inférieure à 18.5 px&nbsp;: le contraste minimum est de 4.5:1&nbsp;;\n    - De taille supérieure à 18.5 px&nbsp;: le contraste minimum est de 3:1.\n\nPour vérifier les contrastes, on peut utiliser un outil tel que [\"Colour Contrast Analyser\"](https://www.tpgi.com/color-contrast-checker/){lang=en}.\nSi les problèmes de contraste ne peuvent être résolus simplement, il est aussi possible d'utiliser un sélecteur de styles. C'est une fonctionnalité proposée par le site qui permet de renforcer les contrastes pour les personnes qui ont des problèmes avec les couleurs. Un exemple de sélecteur de styles est disponible sur le site [guichet.lu](https://guichet.public.lu/), dans son menu \"Accessibilité\"."
+   }
+  ],
+  "4": [
+   {
+    "criterias": [
+     "4.1",
+     "4.2"
+    ],
+    "title": "transcription textuelle et audiodescription",
+    "desc": "Si une vidéo possède des textes incrustés ou des informations sonores (ex&nbsp;: personnes qui parlent sur la piste sonore) alors il est nécessaire de fournir une transcription textuelle. De même pour un média audio seulement qui est porteur d'information (ex&nbsp;: podcast), une transcription textuelle est nécessaire.\nL'absence de transcription textuelle sur de tels médias va empêcher l'accès à l'information à de nombreux utilisateurs comme les aveugles, les malvoyants, les sourds, les malentendants, les handicapés moteurs et cognitifs.\nUne transcription textuelle présente de manière structurée toutes les informations visuelles et sonores de la vidéo dans l'ordre chronologique de leur apparition. Celle-ci peut-être présente sur la même page que la vidéo en question ou derrière un lien adjacent à la vidéo.\n\nPar ailleurs, si une vidéo possède des informations importantes véhiculées uniquement par l'image (ex&nbsp;: textes incrustés), il est nécessaire de fournir une audiodescription synchronisée. Il s'agit d'une piste sonore supplémentaire qui s'ajoute à la piste sonore principale et décrit les éléments visuels importants qui ne peuvent être compris à partir de la poste sonore principale. Ces descriptions sont réalisées dans les blancs de la piste sonore principale."
+   },
+   {
+    "criterias": [
+     "4.3",
+     "4.4"
+    ],
+    "title": "sous-titres",
+    "desc": "Les vidéos sur ce site doivent avoir des sous-titres. Il existe deux types de sous-titres&nbsp;: les sous-titres de traduction et les sous-titres pour sourds et malentendants. Il est nécessaire de fournir ici des sous-titres pour sourds et malentendants. Ceux-ci doivent notamment fournir en plus des dialogues toutes les informations sur les éléments sonores nécessaires pour comprendre l'action. Les sous-titres doivent être correctement synchronisés avec la vidéo."
+   },
+   {
+    "criterias": [
+     "4.8",
+     "4.9"
+    ],
+    "title": "médias non-temporels",
+    "desc": "Un média non-temporel est une application interactive insérée dans une page web. Exemples&nbsp;: carte interactive, diaporama, jeu vidéo. Chaque média non-temporel doit avoir une alternative accessible. Cette alternative doit permettre d'accéder au même contenu et à des fonctionnalités similaires. Elle peut être disponible directement dans la page ou dans une autre page par l'intermédiaire d'un lien adjacent au média non-temporel."
+   },
+   {
+    "criterias": [
+     "4.10"
+    ],
+    "title": "son déclenché automatiquement",
+    "desc": "Tout son déclenché automatiquement (sans action de l'utilisateur) est autorisé si l'une de ces conditions est remplie&nbsp;:\n\n- la durée est inférieure ou égale à 3 secondes&nbsp;;\n- le son peut être stoppé par l'utilisateur&nbsp;; \n- le volume du son peut être contrôlé indépendamment du volume système.\n\nLes sons déclenchés automatiquement posent problème aux aveugles et grands malvoyants, dans la mesure où ils peuvent recouvrir le son de la synthèse vocale qu'ils utilisent pour naviguer."
+   },
+   {
+    "criterias": [
+     "4.11"
+    ],
+    "title": "contrôle des lecteurs vidéo au clavier",
+    "desc": "La consultation de chaque vidéo doit être contrôlable par le clavier et tout dispositif de pointage. Cela permet aux personnes ayant un handicap moteur d'accéder à ces contenus. Si les vidéos présentes sur le site sont dérogées car publiées avant le 23 septembre 2020, cette dérogation ne s'applique pas au lecteur vidéo lui-même. Celui-ci se doit d'être accessible quelle que soit la date de publication de la vidéo."
+   }
+  ],
+  "5": [
+   {
+    "criterias": [
+     "5.6",
+     "5.7"
+    ],
+    "title": "déclaration des entêtes et liaison des cellules d'entêtes et de données",
+    "desc": "Les utilisateurs de lecteurs d'écran ou de loupe d'écran vocalisée ne peuvent percevoir un tableau dans son ensemble. Il est donc important de leur communiquer des informations de contexte sur chaque cellule, notamment à quelles entêtes chaque cellule est reliée. Ces informations peuvent être données via des structures HTML dédiées. Les entêtes de colonnes et de lignes doivent notamment être déclarées via la balise `<th>`.\n\nDans un tableau de données simple, où chaque entête est valable pour l'ensemble de la ligne ou de la colonne, la relation entre les cellules et les entêtes doit être définie en appliquant un attribut `scope=\"col\"` à toutes les entêtes de colonnes et `scope=\"row\"` à toutes les entêtes de lignes.\n\nDans un [tableau de données complexe](https://accessibilite.public.lu/fr/raweb1.1/glossaire.html#tableau-de-donnees-complexe), chaque entête doit avoir un identifiant déclaré via l'attribut `id` et chaque cellule doit faire référence à ces entêtes via l'attribut `headers` (liste d'identifiants séparés par des espaces)."
+   }
+  ],
+  "6": [
+   {
+    "criterias": [
+     "6.1"
+    ],
+    "title": "pertinence des intitulés",
+    "desc": "Chacun doit pouvoir comprendre aisément la fonction et la destination de chaque lien. Les problèmes rencontrés ici le sont pour les aveugles, les malvoyants, les handicapés moteurs qui naviguent à la voix et les handicapés cognitifs."
+   },
+   {
+    "criterias": [
+     "6.2"
+    ],
+    "title": "présence d'intitulés",
+    "desc": "Un lien doit toujours avoir un intitulé. Celui-ci permet aux utilisateurs de comprendre la destination du lien. La présence d'intitulés sur tous les liens est particulièrement importante pour les aveugles et malvoyants. Si un lien n'a pas d'intitulé, les lecteurs d'écran vont lire simplement \"lien\" sans annoncer sa destination.\n\n- Pour un lien qui ne contient qu'une image, l'intitulé du lien est l'alternative de l'image. Pour une image matricielle, son attribut `alt` doit contenir l'intitulé du lien (ex&nbsp;: `<a href=\"https://facebook.com\"><img src=\"...\" alt=\"facebook\" /></a>`). Pour une image vectorielle SVG, celle-ci doit avoir l'attribut `role=\"img\"` et l'intitulé du lien pourra être fourni via les attributs `aria-label` ou `aria-labelledby` (ex&nbsp;: `<a href=\"https://facebook.com\"><svg role=\"img\" aria-label=\"facebook\">...</svg></a>`).\n- Lorsqu'un lien contient du texte et des images, l'intitulé du lien correspond à la concaténation des intitulés de ces différents éléments contenus dans le lien (ex&nbsp;: pour `<a href=\"https://facebook.com\"><img src=\"...\" alt=\"logo Facebook\" /> Facebook</a>` l'intitulé du lien est \"logo facebook facebook\". Dans cet exemple, cet intitulé n'est pas pertinent et l'alternative de l'image doit être vide.)"
+   }
+  ],
+  "7": [
+   {
+    "criterias": [
+     "7.3"
+    ],
+    "title": "éléments interactifs inaccessibles au clavier",
+    "desc": "Les composants riches développés en JavaScript doivent respecter des modèles de conception spécifiques pour pouvoir être considérés comme accessibles (modèles de conception décrits dans le document [\"WAI-ARIA Authoring practices guide\"](https://www.w3.org/WAI/ARIA/apg/patterns/){lang=en}). Sans cela le composant ne sera pas correctement restitué aux utilisateurs de lecteurs d'écran qui ne sauront pas comment l'utiliser. Ces composants doivent notamment utiliser des interactions au clavier spécifiques, sans lesquelles ils seront inutilisables pour les utilisateurs de la navigation au clavier."
+   }
+  ],
+  "8": [
+   {
+    "criterias": [
+     "8.1",
+     "8.2"
+    ],
+    "title": "validité du code source de la page",
+    "desc": "Les lecteurs d'écran s'appuient sur la sémantique des balises HTML pour restituer le contenu et naviguer. Si la syntaxe HTML n'est pas respectée ou si les balises sont détournées, cela peut avoir un impact sur la navigation, qui peut devenir inopérante, comme sur la restitution, qui peut devenir incompréhensible. Pour vérifier la validité de la syntaxe HTML, on peut utiliser le [validateur HTML du W3C](https://validator.w3.org/nu/) avec le *bookmarklet*{lang=en} [\"WCAG 2.1 parsing error\"](https://www.tpgi.com/wcag-2-0-parsing-error-bookmarklet/){lang=en}. Ce *bookmarklet*{lang=en} filtre les résultats et ne montre que les erreurs ayant un impact sur l'accessibilité."
+   },
+   {
+    "criterias": [
+     "8.3",
+     "8.4",
+     "8.7",
+     "8.8"
+    ],
+    "title": "indication de langue",
+    "desc": "Les lecteurs d'écran utilisent les indications de langue pour vocaliser correctement le contenu. La langue principale de la page est spécifiée via l'attribut `lang` sur l'élément `<html>`. Lorsqu'un mot d'origine étrangère est inséré dans du contenu écrit dans la langue principale de la page, il doit posséder si nécessaire une indication de langue. L'indication de langue se fait par l'intermédiaire de l'attribut `lang`.\nIl existe néanmoins des exceptions&nbsp;:\n- Lorsqu'il s'agit d'un nom, l'indication de langue doit être faite uniquement quand le nom doit se prononcer dans sa langue d'origine&nbsp;;\n- Lorsqu'il s'agit d'un mot d'origine étrangère, présent dans le dictionnaire de la langue principale de la page, l'indication de langue n'est pas nécessaire&nbsp;;\n- Lorsqu'il s'agit d'un mot d'origine étrangère d'usage courant, mais absent du dictionnaire, l'indication de langue doit être faite uniquement si la prononciation dans la langue principale de la page est problématique.\n\nPlus d’information sur le sujet dans notre article&nbsp;: [L’attribut lang, pour rendre la page audible... et compréhensible](https://accessibilite.public.lu/fr/news/2023-10-05-langues.html)"
+   },
+   {
+    "criterias": [
+     "8.5",
+     "8.6"
+    ],
+    "title": "titre de page",
+    "desc": "Le titre de page est la première information restituée aux aveugles et grands malvoyants, elle leur permet de confirmer que le lien sur lequel ils viennent de cliquer les a bien menés au bon endroit. Il permet aussi de retrouver une page dans l'historique, les favoris ou les onglets ouverts. Tout changement significatif de l'état de la page doit être repris dans le titre de la page (pagination, erreur, étape d'un workflow, etc.). "
+   }
+  ],
+  "9": [
+   {
+    "criterias": [
+     "9.1"
+    ],
+    "title": "titres",
+    "desc": "Les [titres](https://accessibilite.public.lu/fr/raweb1.1/glossaire.html#titre) permettent aux utilisateurs de comprendre la structure du document. Ils permettent aussi aux utilisateurs aveugles, malvoyants et handicapés moteurs de naviguer de titre en titre dans la page. Il est donc important d'avoir une bonne hiérarchie de titres dans une page. Cette hiérarchie est similaire à un sommaire de document. La vérification de la hiérarchie de titres peut se faire via l'extension de navigateur [HeadingsMap](https://addons.mozilla.org/fr/firefox/addon/headingsmap/){lang=en}."
+   },
+   {
+    "criterias": [
+     "9.2"
+    ],
+    "title": "structure du document HTML5",
+    "desc": "La structuration du document HTML5 permet aux aveugles, grands malvoyants et handicapés moteurs de naviguer très rapidement entre les zones principales de la page (entête, pied de page, zone de contenu principal, navigation, moteur de recherche, ...). Ces zones doivent être correctement structurées afin d'obtenir, selon leur fonction, les rôles calculés `banner`, `navigation`, `main`, `contentinfo` ou `search`. Ces rôles peuvent notamment être obtenus au moyen des éléments HTML5 appropriés (`<header>`, `<nav>`, `<main>`, `<footer>`, `<search>`) ou de rôles WAI-ARIA équivalents."
+   }
+  ],
+  "10": [
+   {
+    "criterias": [
+     "10.7"
+    ],
+    "title": "visibilité du focus",
+    "desc": "Les handicapés moteurs qui naviguent au clavier utilisent l'[indicateur de focus](https://accessibilite.public.lu/fr/raweb1.1/glossaire.html#prise-de-focus) fourni par le site sur les éléments interactifs pour savoir où ils se situent dans la page. L'indicateur de focus se déplace via les touches <kbd>tab</kbd> et <kbd>shift-tab</kbd>. L'indicateur de focus par défaut peut être désactivé via CSS, dans ce cas il est nécessaire de changer le style de l'élément interactif pour rendre l'indicateur de focus visible (sa couleur devra avoir un contraste minimum de 3:1 avec l'arrière-plan contigu)."
+   },
+   {
+    "criterias": [
+     "10.8"
+    ],
+    "title": "contenus cachés",
+    "desc": "Tout contenu dans la page peut être ignoré par les technologies d'assistance (notamment en utilisant l'attribut `aria-hidden=\"true\"`). Si un contenu est visible mais ignoré par les technologies d'assistance, les utilisateurs de ces technologies d'assistance ne pourront pas prendre connaissance du contenu ni interagir avec les éventuels éléments interactifs qu'ils pourraient contenir. La visibilité d'un contenu doit donc être cohérente pour tous les utilisateurs du site, qu'ils se servent ou non d'une technologie d'assistance."
+   },
+   {
+    "criterias": [
+     "10.9",
+     "10.10"
+    ],
+    "title": "information donnée par la forme, la taille ou la position",
+    "desc": "Ce type d'information est un problème pour les personnes aveugles et grands malvoyants. Pour chaque information véhiculée par la forme, la taille ou la position, il est nécessaire de mettre en place une alternative."
+   },
+   {
+    "criterias": [
+     "10.14"
+    ],
+    "title": "contenus additionnels au survol et au focus",
+    "desc": "Les utilisateurs doivent pouvoir garder le contrôle des contenus additionnels qui apparaissent au survol et au focus (ex&nbsp;: infobulles, menus déroulants). Tout élément qui apparaît au survol doit aussi pouvoir apparaître au clavier, lorsque l'élément prend le focus."
+   }
+  ],
+  "11": [
+   {
+    "criterias": [
+     "11.1",
+     "11.2",
+     "11.5",
+     "11.6",
+     "11.7"
+    ],
+    "title": "identification des champs, des contrôles et des regroupements de formulaires",
+    "desc": "L'identification de ces éléments fournit aux aveugles et grands malvoyants les informations nécessaires pour pouvoir remplir un formulaire. Les handicapés moteurs utilisant un système de reconnaissance vocale s'appuient aussi sur ces éléments pour se déplacer dans les différents [champs](https://accessibilite.public.lu/fr/raweb1.1/glossaire.html#champ-de-saisie-de-formulaire) et actionner les boutons. Pour associer une [étiquette](https://accessibilite.public.lu/fr/raweb1.1/glossaire.html#etiquette-de-champ-de-formulaire) (`<label>`) à un champ de formulaire, on peut utiliser l'attribut `for` de l'étiquette dont la valeur doit être identique à celle de l'attribut `id` du champ. Les [champs de même nature](https://accessibilite.public.lu/fr/raweb1.1/glossaire.html#champs-de-meme-nature) doivent être regroupés, cela peut être réalisé via l'élément `<fieldset>` auquel on doit fournir une [légende](https://accessibilite.public.lu/fr/raweb1.1/glossaire.html#legende) via l'élément `<legend>`. "
+   },
+   {
+    "criterias": [
+     "11.9"
+    ],
+    "title": "intitulés de boutons pertinents",
+    "desc": "Les boutons doivent avoir des intitulés pertinents, qui communiquent l'action réalisée à l'activation. Ces informations sont particulièrement importantes pour les déficients visuels et cognitifs."
+   },
+   {
+    "criterias": [
+     "11.10"
+    ],
+    "title": "contrôle et aide à la saisie",
+    "desc": "Que ce soit pour les handicapés cognitifs ou pour les aveugles et déficients visuels, il est nécessaire d'indiquer de manière visible et accessible le caractère obligatoire ou facultatif des champs. Lorsque le format de saisie est contrôlé, les formats de données attendus doivent être explicités dans les consignes et les messages d'erreur. Les indications nécessaires à la saisie doivent être disponibles avant la saisie des données."
+   }
+  ],
+  "12": [
+   {
+    "criterias": [
+     "12.6"
+    ],
+    "title": "*landmarks*{lang=en}",
+    "desc": "Les utilisateurs aveugles utilisent pour naviguer rapidement dans une page des repères de navigation ou [landmarks](https://accessibilite.public.lu/fr/raweb1.1/glossaire.html#landmarks){lang=en}. Le critère concerne les zones de regroupement de contenus répétées sur plusieurs pages, autres que les zones principales qui structurent le document. Lorsqu'une telle zone peut être atteinte ou évitée à l'aide d'un *landmark*{lang=en}, celui-ci doit être correctement implémenté afin de faciliter la navigation des utilisateurs aveugles."
+   },
+   {
+    "criterias": [
+     "12.7"
+    ],
+    "title": "liens d'accès rapide",
+    "desc": "Les [liens d'accès rapide](https://accessibilite.public.lu/fr/raweb1.1/glossaire.html#liens-d-evitement-ou-d-acces-rapide) sont des liens présents en début de page et permettent aux utilisateurs qui naviguent au clavier et aux utilisateurs malvoyants qui utilisent une loupe d'écran d'éviter des zones de contenus redondants comme l'entête et la navigation. Il est indispensable d'avoir au moins un lien d'accès rapide vers la zone de contenu principale (`<main>`). Ces liens peuvent être positionnés hors écran et apparaître à la prise de focus."
+   },
+   {
+    "criterias": [
+     "12.8"
+    ],
+    "title": "ordre de tabulation",
+    "desc": "L'[ordre de tabulation](https://accessibilite.public.lu/fr/raweb1.1/glossaire.html#ordre-de-tabulation), c'est-à-dire l'ordre dans lequel le focus se déplace lorsqu'on utilise les touches <kbd>tab</kbd> et <kbd>shift-tab</kbd>, doit être cohérent. Si l'ordre de tabulation est incohérent, les aveugles, les déficients visuels, les handicapés moteurs et handicapés cognitifs auront de grandes difficultés à naviguer dans la page."
+   },
+   {
+    "criterias": [
+     "12.11"
+    ],
+    "title": "contenus additionnels",
+    "desc": "Un exemple de contenu additionnel apparaissant au survol ou à la prise de focus est une infobulle personnalisée proposant dans son contenu un élément interactif (ex&nbsp;: un lien). Les utilisateurs aveugles et les personnes avec un handicap moteur doivent pouvoir accéder à ces contenus en navigant au clavier."
+   }
+  ],
+  "13": [
+   {
+    "criterias": [
+     "13.1"
+    ],
+    "title": "contrôle des limites de temps",
+    "desc": "L'utilisation de technologies d'assistance impacte directement la rapidité de lecture et d'utilisation d'un site. Dans ces conditions, l'absence de contrôle des limites de temps peut rendre impossible la lecture ou la réalisation de tâches. Les utilisateurs impactés sont les aveugles et déficients visuels, les handicapés moteurs et les handicapés cognitifs."
+   },
+   {
+    "criterias": [
+     "13.7"
+    ],
+    "title": "effets de flash",
+    "desc": "Les effets de flash sont susceptibles de causer des crises d'épilepsie."
+   },
+   {
+    "criterias": [
+     "13.8"
+    ],
+    "title": "contenus en mouvement ou clignotants",
+    "desc": "Ces contenus posent problème aux utilisateurs avec des difficultés de lecture ou des troubles de l'attention. Les utilisateurs doivent avoir la possibilité de mettre le mouvement en pause, ou de masquer le contenu en mouvement."
+   }
+  ]
+ }
+}

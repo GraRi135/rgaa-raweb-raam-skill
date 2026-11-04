@@ -1,0 +1,12 @@
+{
+  "name": "rgaa-raweb-claude",
+  "description": "RGAA 4.1.2 and RAWeb 1.1 accessibility audit skill for Claude Code",
+  "owner": { "name": "GraRi135" },
+  "plugins": [
+    {
+      "name": "rgaa-raweb-audit",
+      "source": "./",
+      "description": "Audit websites, pages and components against RGAA 4.1.2 (France) and RAWeb 1.1 (Luxembourg): criteria lookup, static pre-checks, audit grid and compliance rate, audit reports and accessibility statements."
+    }
+  ]
+}
