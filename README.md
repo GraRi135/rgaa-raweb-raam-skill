@@ -1,6 +1,7 @@
 # rgaa-raweb-audit — a Claude skill for RGAA and RAWeb accessibility audits
 
-A skill (installable as a Claude Code plugin) that lets Claude audit websites, pages and front-end code against:
+A skill (installable as a Claude Code plugin) that lets Claude audit websites, pages, front-end code and mobile
+applications against:
 
 * **RGAA 4.1.2** — Référentiel général d'amélioration de l'accessibilité (France, DINUM), 106 criteria
 * **RAWeb 1.1** — Référentiel d'évaluation de l'accessibilité web (Luxembourg, SIP), 136 criteria (RGAA 4.1.2 + the
@@ -8,8 +9,8 @@ A skill (installable as a Claude Code plugin) that lets Claude audit websites, p
 * **RAAM 1.1** — Référentiel d'évaluation de l'accessibilité des applications mobiles (Luxembourg, SIP), 108
   criteria for Android and iOS apps, with an adb-based Android evidence collector
 
-It bundles the official criteria, tests and per-test methodology of both standards (in English and French for RAWeb,
-French for RGAA), the audit method (sample, applicability, compliance rate, statement), the SIP simplified-audit
+It bundles the official criteria, tests and methodology of the three standards (English and French for RAWeb and
+RAAM, French for RGAA), the audit method (sample, applicability, compliance rate, statement), the SIP simplified-audit
 method, what 228 published SIP audits show (most frequent findings, report structure and wording), and these scripts:
 
 | Script | Purpose |
@@ -92,7 +93,8 @@ until a person runs them.
 ```
 skills/rgaa-raweb-audit/
 ├── SKILL.md                  instructions Claude follows
-├── references/               audit method, report templates, RAWeb vs RGAA, automation map, criteria index
+├── references/               audit method, report templates, RAWeb vs RGAA, RAAM and Android workflow, SIP methods
+│                             and corpus findings, browser probes, automation map, criteria indexes
 │   └── data/                 criteria + tests + methodology + glossary JSON (see NOTICE.md)
 ├── scripts/                  the tools above (Python 3 stdlib; render_page.js needs Node + Playwright)
 └── evals/                    test cases (claude plugin eval compatible)

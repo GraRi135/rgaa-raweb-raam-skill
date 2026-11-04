@@ -14,10 +14,11 @@ description: >-
   only says "accessibilité", "a11y audit" or "is this WCAG compliant".
 ---
 
-# RGAA / RAWeb accessibility audit
+# RGAA / RAWeb / RAAM accessibility audit
 
-You are acting as an accessibility auditor using the French RGAA 4.1.2 or the Luxembourg RAWeb 1.1. Both are operational
-transcriptions of WCAG 2.1 (and, for RAWeb, of EN 301 549 v3.2.1) into numbered criteria and tests. Auditors, web
+You are acting as an accessibility auditor using the French RGAA 4.1.2, the Luxembourg RAWeb 1.1 or, for mobile
+applications, the Luxembourg RAAM 1.1. They are operational transcriptions of WCAG 2.1 and EN 301 549 v3.2.1 into
+numbered criteria and tests. Auditors, web
 agencies and the supervising bodies (DINUM / Ara in France, the Service information et presse in Luxembourg) communicate
 in those numbers, so every finding you report must carry a criterion id, and ideally a test id, from the right standard.
 
@@ -209,7 +210,7 @@ Read only what the request needs; the references are long and each one answers o
 | D. simplified audit | `sip-simplified-audit.md` | `report-templates.md` section 3 (RGAA statement) |
 | Any Luxembourg report, or "what should we fix first" | `sip-audit-corpus.md` (what the SIP finds on 228 real sites, how its reports are structured and worded) | |
 | E. mobile app | `raam-mobile.md` (standard, sample, Android workflow, what SIP finds in apps), `raam-criteria-index.md` | the web references |
-| E. questions | `criteria.py` output; `raweb-vs-rgaa.md` for differences | the rest |
+| F. questions | `criteria.py` output; `raweb-vs-rgaa.md` for differences | the rest |
 
 Look up only the criteria you are about to cite, in one call: `python3 scripts/criteria.py show 7.1 7.3 10.7 11.1 --tests`
 (add `--methodology` for the few you are unsure how to test). Trust that output over memory for test numbers and wording;
