@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta http-equiv="refresh" content="300">
+<title>Accueil</title>
+<style>
+  body { font-family: Arial, sans-serif; margin: 0; }
+  a:focus, button:focus { outline: none; }
+  .topbar { background: #1d3f73; color: #fff; padding: 8px 16px; }
+  .menu { list-style: none; display: flex; gap: 16px; margin: 0; padding: 0; }
+  .menu a { color: #fff; text-decoration: none; }
+  .titre { font-size: 1.6em; font-weight: bold; margin-top: 2em; }
+  .alerte { color: #c00; }
+  .btn { display: inline-block; padding: 8px 14px; background: #2a7f62; color: #fff; }
+  .hidden { display: none; }
+  .vhide { position: absolute; left: -9999px; }
+</style>
+</head>
+<body>
+<div class="topbar">
+  <a href="/"><img src="/img/logo-commune.png" width="120"></a>
+  <div class="menu-wrapper">
+    <ul class="menu">
+      <li><a href="/">Accueil</a></li>
+      <li><a href="/commune/">La commune</a></li>
+      <li><a href="/demarches/">Démarches</a></li>
+      <li><a href="/actualites/">Actualités</a></li>
+      <li><a href="/contact/">Contact</a></li>
+      <li><a href="/en/" title="English version"><img src="/img/flag-en.svg" alt=""></a></li>
+    </ul>
+  </div>
+  <form action="/recherche" method="get">
+    <input type="search" name="q" placeholder="Rechercher sur le site">
+    <button type="submit"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M6 1a5 5 0 1 0 3.2 8.9l4 4 1.4-1.4-4-4A5 5 0 0 0 6 1z"/></svg></button>
+  </form>
+</div>
+
+<div id="contenu">
+  <img src="/img/hero_banner_final_v2.jpg" alt="hero_banner_final_v2.jpg" width="1200" height="400">
+  <h1>Bienvenue à Fiktivbuerg</h1>
+  <p>La commune de Fiktivbuerg vous souhaite la bienvenue sur son site officiel. Retrouvez ici toutes les informations utiles sur la vie communale, les services et les démarches administratives.</p>
+
+  <h3>Actualités</h3>
+  <marquee>Fermeture exceptionnelle de la mairie le 15 août.</marquee>
+  <table bgcolor="#eeeeee" cellpadding="6">
+    <tr>
+      <td><img src="/img/actu-1.jpg" alt="image"> <b>Nouveau parc de jeux</b><br>Le nouveau parc de jeux du quartier Nord est ouvert. <a href="/actualites/parc-de-jeux">En savoir plus</a></td>
+      <td><img src="/img/actu-2.jpg" alt="image"> <b>Collecte des déchets</b><br>Le calendrier 2025 est disponible. <a href="/actualites/dechets">En savoir plus</a></td>
+    </tr>
+  </table>
+  <p>Pour consulter l'ensemble des actualités, <a href="/actualites/">cliquez ici</a>.</p>
+
+  <p class="titre">Horaires d'ouverture</p>
+  <table id="horaires">
+    <tr><td>Jour</td><td>Matin</td><td>Après-midi</td></tr>
+    <tr><td>Lundi - Vendredi</td><td>8h00 - 12h00</td><td>13h00 - 17h00</td></tr>
+    <tr><td>Samedi</td><td>9h00 - 11h30</td><td>Fermé</td></tr>
+  </table>
+  <p>Les jours marqués <span class="alerte">en rouge</span> dans le calendrier sont des jours de fermeture.</p>
+
+  <div class="titre">Vidéo de présentation</div>
+  <iframe src="https://www.youtube.com/embed/abc123" width="560" height="315" allowfullscreen></iframe>
+  <video src="/media/jingle.mp4" autoplay loop width="320"></video>
+
+  <h2>Démarches en ligne</h2>
+  <li><a href="/demarches/certificat-residence">Certificat de résidence</a></li>
+  <li><a href="/demarches/declaration-arrivee">Déclaration d'arrivée</a></li>
+  <li><a href="/demarches/reservation-salle">Réservation de salle</a></li>
+  <p><a href="/docs/reglement-communal-2024.pdf">Règlement communal</a> (PDF)</p>
+  <div class="btn" onclick="location.href='/demarches/'">Toutes les démarches</div>
+
+  <h2>Newsletter</h2>
+  <form action="/newsletter" method="post">
+    <p>Les champs marqués d'un * sont obligatoires.</p>
+    <input type="text" name="nom" id="nom" placeholder="Votre nom" required>
+    <input type="email" name="email" id="email" placeholder="Votre adresse e-mail" required>
+    <input type="date" name="naissance" id="nom" aria-label="Date de naissance">
+    <p>Langue de la newsletter :</p>
+    <input type="radio" name="langue" id="lang-fr" value="fr"> <label for="lang-fr">Français</label>
+    <input type="radio" name="langue" id="lang-de" value="de"> <label for="lang-de">Deutsch</label>
+    <input type="radio" name="langue" id="lang-lb" value="lb"> <label for="lang-lb"><span lang="letzebuergesch">Lëtzebuergesch</span></label>
+    <fieldset>
+      <input type="checkbox" name="themes" id="t1" value="culture"> <label for="t1">Culture</label>
+      <input type="checkbox" name="themes" id="t2" value="sport"> <label for="t2">Sport</label>
+    </fieldset>
+    <select name="frequence" onchange="this.form.submit()" aria-labelledby="freq-label">
+      <option>Hebdomadaire</option>
+      <option>Mensuelle</option>
+    </select>
+    <button type="submit"><img src="/img/send.svg" alt=""></button>
+  </form>
+
+  <font color="#555"><center>Mis à jour le 12 mai 2025</center></font>
+</div>
+
+<div class="footer" tabindex="3">
+  <p>&copy; Commune de Fiktivbuerg - <a href="/mentions-legales/">Mentions légales</a> - <a href="/accessibilite/">Accessibilité</a> - <a href="/contact/">Contact</a></p>
+  <p>Suivez-nous : <a href="https://facebook.example/fiktivbuerg"><img src="/img/facebook.png" alt=""></a> <a href="https://instagram.example/fiktivbuerg"><img src="/img/instagram.png" alt="Instagram"></a></p>
+</div>
+</body>
+</html>

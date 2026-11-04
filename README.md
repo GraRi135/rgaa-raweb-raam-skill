@@ -1,4 +1,6 @@
-# rgaa-raweb-audit — a Claude skill for RGAA and RAWeb accessibility audits
+# rgaa-raweb-audit — a Claude skill for RGAA, RAWeb and RAAM accessibility audits
+
+*Version française : [README.fr.md](README.fr.md)*
 
 A skill (installable as a Claude Code plugin) that lets Claude audit websites, pages, front-end code and mobile
 applications against:
@@ -88,9 +90,22 @@ Python 3 only; `render_page.js` additionally needs Node.js and Playwright, and `
 No environment gives Claude a screen reader: criteria that need NVDA, JAWS, VoiceOver or TalkBack stay "not tested"
 until a person runs them.
 
+## Documentation
+
+* [Quick start](docs/quick-start.md) for developers and Claude Code users: install, first commands, what you get.
+* [Web audit walkthrough](docs/web-audit-walkthrough.md) for auditors: the method, what Claude does, what you must do, how to read and check a finding.
+* [Android app audit walkthrough](docs/android-audit-walkthrough.md): RAAM 1.1 with the adb collector, TalkBack and keyboard passes.
+* [Accessibility statements](docs/statements.md): France and Luxembourg obligations, computing the rate from a grid.
+* [How the skill was evaluated](docs/evaluation.md): test cases, results with and without the skill, calibration on 228 real SIP audits, known weaknesses.
+* [Updating the bundled data](docs/updating-data.md) when a standard changes.
+* [Contributing](docs/contributing.md).
+* [Examples](examples/README.md): fictional inputs and the reports Claude produced from them.
+
 ## Layout
 
 ```
+docs/                         guides (quick start, walkthroughs, statements, evaluation, updating, contributing)
+examples/                     fictional inputs and example outputs
 skills/rgaa-raweb-audit/
 ├── SKILL.md                  instructions Claude follows
 ├── references/               audit method, report templates, RAWeb vs RGAA, RAAM and Android workflow, SIP methods

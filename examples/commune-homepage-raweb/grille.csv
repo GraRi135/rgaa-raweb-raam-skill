@@ -1,0 +1,137 @@
+criterion,level,topic,title,Accueil
+1.1,A,1 Images,Does each image conveying information have a text alternative?,NC
+1.2,A,1 Images,"Is every decorative image, without a caption, correctly ignored by assistive technologies?",C
+1.3,A,1 Images,"For each image conveying information with a text alternative, is this alternative relevant (excluding special cases)?",NC
+1.4,A,1 Images,"For each image used as a CAPTCHA or test image, with a text alternative, does this alternative make it possible to identify the nature and function of the image?",NA
+1.5,A,1 Images,"For each image used as a CAPTCHA, is there an alternative access solution to the content or to the CAPTCHA function?",NA
+1.6,A,1 Images,"Does each image conveying information have, if necessary, a detailed description?",NT
+1.7,A,1 Images,"For each image conveying information with a detailed description, is this description relevant?",NA
+1.8,AA,1 Images,"In the absence of a replacement mechanism, each image of text conveying information must, if possible, be replaced by styled text. Is this rule respected (excluding special cases)?",NT
+1.9,A,1 Images,"Is each image caption, if necessary, correctly linked to the corresponding image?",NA
+2.1,A,2 Frames,Does each frame have a frame title?,NC
+2.2,A,2 Frames,"For each frame with a frame title, is this frame title relevant?",NA
+3.1,A,3 Colours,"On each web page, the information must not be provided by colour alone. Is this rule respected?",NT
+3.2,AA,3 Colours,"On each web page, is the contrast between the colour of the text and the colour of its background sufficiently high (excluding special cases)?",NT
+3.3,AA,3 Colours,"On each web page, are the colours used in the user interface components or graphic element conveying information sufficiently contrasting (excluding special cases)?",NT
+4.1,A,4 Multimedia,"Does each pre-recorded time-based media have, if necessary, a transcript or an audio description (excluding special cases)?",NT
+4.2,A,4 Multimedia,"For each pre-recorded time-based media with a synchronised transcript or audio description, are these relevant (excluding special cases)?",NT
+4.3,A,4 Multimedia,"Does each synchronised time-based media have, if necessary, synchronised captions (excluding special cases)?",NT
+4.4,A,4 Multimedia,"For each synchronised time-based media with synchronised captions, are these captions relevant (excluding special cases)?",NT
+4.5,AA,4 Multimedia,"Does each pre-recorded time-based media have, if necessary, a synchronised audio description (excluding special cases)?",NT
+4.6,AA,4 Multimedia,"For each pre-recorded time-based media with a synchronised audio description, is this audio description relevant?",NT
+4.7,A,4 Multimedia,Is each time-based media clearly identifiable (excluding special cases)?,NC
+4.8,A,4 Multimedia,"Does each non-time-based media have, if necessary, an alternative (excluding special cases)?",NA
+4.9,A,4 Multimedia,"For each non-time-based media having an alternative, is this alternative relevant?",NA
+4.10,A,4 Multimedia,Is each automatically triggered sound controllable by the user?,NC
+4.11,A,4 Multimedia,"Is the viewing of each time-based media, if required, accessible and operable by keyboard and any pointing device?",NC
+4.12,A,4 Multimedia,Is the viewing of each non-time-based media accessible and operable by keyboard and any pointing device?,NA
+4.13,A,4 Multimedia,Is each time-based media and non-time-based media compatible with assistive technologies (excluding special cases)?,NT
+4.14,AA,4 Multimedia,"For each time-based media that has a synchronised caption or audio description track, are the control features for these alternatives presented at the same level as the main features?",NT
+4.15,AA,4 Multimedia,"For each feature that transmits, converts or records pre-recorded synchronised time-based media that has a captions track, are the captions correctly preserved at the end of the process?",NA
+4.16,AA,4 Multimedia,"For each feature that transmits, converts or records a pre-recorded time-based media with an audio description, is at the end of the process the audio description correctly preserved?",NA
+4.17,AA,4 Multimedia,"For each pre-recorded time-based media, is the presentation of captions controllable by the user (excluding special cases)?",NT
+4.18,AA,4 Multimedia,"For each pre-recorded synchronised time-based media that has subtitles, can these be vocalised (excluding special cases)?",NT
+5.1,A,5 Tables,Does each complex data table have a summary?,NA
+5.2,A,5 Tables,"For each complex data table with a summary, is the summary relevant?",NA
+5.3,A,5 Tables,"For each layout table, is the linearized content still comprehensible?",NC
+5.4,A,5 Tables,"For each data table with a title, is the title correctly associated with the data table?",NC
+5.5,A,5 Tables,"For each data table with a title, is the title relevant?",NA
+5.6,A,5 Tables,"For each data table, are each column header and each row header correctly declared?",NC
+5.7,A,5 Tables,"For each data table, is the appropriate technique used to associate each cell with its headers (excluding special cases)?",NA
+5.8,A,5 Tables,Each layout table must not use elements specific to data tables. Is this rule respected?,C
+6.1,A,6 Links,Is every link explicit (except in special cases)?,C
+6.2,A,6 Links,"On each web page, does each link have an accessible name?",NC
+7.1,A,7 Scripts,"Is each script, if necessary, compatible with assistive technologies?",NC
+7.2,A,7 Scripts,"For each script with an alternative, is this alternative relevant?",NA
+7.3,A,7 Scripts,Is each script accessible and operable by keyboard and any pointing device (excluding special cases)?,NC
+7.4,A,7 Scripts,"For each script that initiates a change of context, is the user warned or does the user have control?",NC
+7.5,AA,7 Scripts,"On each web page, are status messages correctly rendered (by assistive technologies)?",NA
+8.1,A,8 Mandatory elements,Has each web page a defined document type?,C
+8.2,A,8 Mandatory elements,"For each web page, is the generated source code valid for the specified document type?",NC
+8.3,A,8 Mandatory elements,"On each web page, is the default language present?",NC
+8.4,A,8 Mandatory elements,"For each web page with a default language, is the language code relevant?",NA
+8.5,A,8 Mandatory elements,Does every web page have a page title?,C
+8.6,A,8 Mandatory elements,"For each web page with a page title, is this title relevant?",NC
+8.7,AA,8 Mandatory elements,"On each web page, is each language change indicated in the source code (excluding special cases)?",NC
+8.8,AA,8 Mandatory elements,"On each web page, is the language code for each language change valid and relevant?",NC
+8.9,A,8 Mandatory elements,"On each web page, tags must not be used only for layout purposes. Is this rule respected?",C
+8.10,A,8 Mandatory elements,"On each web page, are changes in reading direction indicated?",NA
+9.1,A,9 Information structure,"On each web page, is the information structured by the appropriate use of headings?",NC
+9.2,A,9 Information structure,"On each web page, is the document structure consistent (excluding special cases)?",NC
+9.3,A,9 Information structure,"On each web page, is each list correctly structured?",NC
+9.4,A,9 Information structure,"On each web page, is each quotation correctly indicated?",NA
+10.1,A,10 Presentation of information,"In the website, are style sheets used to control the presentation of information?",NC
+10.2,A,10 Presentation of information,"On each web page, is the visible content conveying information accessible to assistive technologies?",NT
+10.3,A,10 Presentation of information,"On each web page, does the information remain understandable when the style sheets are deactivated?",NT
+10.4,AA,10 Presentation of information,"On each web page, is the text still readable when the font size is increased by at least 200% (excluding special cases)?",NC
+10.5,AA,10 Presentation of information,"On each web page, are the CSS declarations for element background and font colours used correctly?",NC
+10.6,A,10 Presentation of information,"On each web page, is each link whose nature is not obvious visible in relation to the surrounding text?",NT
+10.7,A,10 Presentation of information,"On each web page, for each element receiving keyboard focus, is the focus visible?",NC
+10.8,A,10 Presentation of information,"For each web page, should hidden content be ignored by assistive technologies?",NA
+10.9,A,10 Presentation of information,"On each web page, information must not be conveyed solely by shape, size or location. Is this rule respected?",NA
+10.10,A,10 Presentation of information,"On each web page, information must not be conveyed by shape, size or location only. Is this rule implemented appropriately?",NA
+10.11,AA,10 Presentation of information,"For each web page, can the content be presented without any loss of information or functionality and without having to scroll vertically for a window with a height of 256 px or horizontally for a window with a width of 320 px (excluding special cases)?",NT
+10.12,AA,10 Presentation of information,"On each web page, can the text spacing properties be redefined by the user without loss of content or functionality (except in special cases)?",NT
+10.13,AA,10 Presentation of information,"On each web page, is the additional content appearing when focused or when hovering over a user interface component controllable by the user (excluding special cases)?",NA
+10.14,A,10 Presentation of information,"On each web page, can additional content that appears using CSS styles only be made visible using the keyboard and any pointing device?",NA
+11.1,A,11 Forms,Does each form input field have a label?,NC
+11.2,A,11 Forms,Is each label associated with a form input field relevant (excluding special cases)?,C
+11.3,AA,11 Forms,"In each form, is each label associated with a form input field having the same function and repeated several times in the same page or in a set of web pages consistent?",NT
+11.4,A,11 Forms,"In each form, are each field label and its associated field located next to each other (excluding special cases)?",C
+11.5,A,11 Forms,"In each form, are the related form controls grouped together, if necessary?",NC
+11.6,A,11 Forms,"In each form, does each group of related form controls have a legend?",NC
+11.7,A,11 Forms,"In each form, is each legend associated with a group of related form controls relevant?",NA
+11.8,A,11 Forms,"In each form, are the items of the same type in a combobox grouped together in a relevant way?",NA
+11.9,A,11 Forms,"In each form, is the label of each button relevant (excluding special cases)?",NC
+11.10,A,11 Forms,"In each form, is the error management used appropriately (excluding special cases)?",NC
+11.11,AA,11 Forms,"In each form, is the error management accompanied, if necessary, by suggestions to help correct input errors?",NT
+11.12,AA,11 Forms,"For each form that modifies or deletes data, or transmits answers to a test or examination, or whose validation has financial or legal consequences, can the data entered be modified, updated or recovered by the user?",NA
+11.13,AA,11 Forms,Can the purpose of an input field be identified to facilitate the automatic filling of fields with user data?,NC
+12.1,AA,12 Navigation,Does each set of web pages have at least two different navigation systems (excluding special cases)?,NT
+12.2,AA,12 Navigation,"In each set of web pages, are the menu and navigation bars always at the same place (except in special cases)?",NT
+12.3,AA,12 Navigation,Is the site map page relevant?,NT
+12.4,AA,12 Navigation,"In each set of web pages, is the site map page accessible from an identical functionality?",NT
+12.5,AA,12 Navigation,"In each set of web pages, is the search engine reachable in the same way?",NT
+12.6,A,12 Navigation,"Can content grouping blocks present on several web pages (with the exception of the main regions composing the document structure) be reached or avoided, if necessary?",NT
+12.7,A,12 Navigation,"On each web page, is there a bypass or skip link to the main content region (excluding special cases)?",NC
+12.8,A,12 Navigation,"On each web page, is the navigation sequence consistent?",NC
+12.9,A,12 Navigation,"On each web page, navigation must not contain any keyboard traps. Is this rule respected?",NT
+12.10,A,12 Navigation,"On each web page, are keyboard shortcuts using only one key (lowercase or uppercase letter, punctuation, number or symbol) controllable by the user?",NA
+12.11,A,12 Navigation,"On each web page, is the additional content that appears when hovering, focusing or activating a user interface component accessible by keyboard if necessary?",NA
+13.1,A,13 Consultation,"For each web page, does the user have control over each time limit modifying the content (excluding special cases)?",NC
+13.2,A,13 Consultation,"On each web page, the opening of a new window must not be triggered without user action. Is this rule respected?",NA
+13.3,A,13 Consultation,"On each web page, does each downloadable office document have an accessible version (excluding special cases)?",NT
+13.4,A,13 Consultation,"For each office document with an accessible version, does this version offer the same information?",NT
+13.5,A,13 Consultation,"On each web page, is each cryptic content correctly identified?",NA
+13.6,A,13 Consultation,"On each web page, for each cryptic content having an alternative, is this alternative relevant?",NA
+13.7,A,13 Consultation,"On each web page, are sudden changes in brightness or blinking used correctly?",NT
+13.8,A,13 Consultation,"On each web page, is every moving or blinking content controllable by the user (excluding special cases)?",NC
+13.9,AA,13 Consultation,"On each web page, can the content be viewed in any screen orientation (portrait or landscape) (excluding special cases)?",NT
+13.10,A,13 Consultation,"On each web page, can the features usable or available by means of a complex gesture also be available by means of a simple gesture (excluding special cases)?",NA
+13.11,A,13 Consultation,"On each web page, can actions triggered by a pointing device on a single point on the screen be cancelled (except in special cases)?",C
+13.12,A,13 Consultation,"On each web page, can the features that involve movement to or from the device be satisfied in an alternative way (excluding special cases)?",NA
+13.13,AA,13 Consultation,"For each document conversion feature, is the accessibility information available in the source document kept in the destination document (excluding special cases)?",NA
+13.14,A,13 Consultation,Does each identification or control feature that relies on the use of biological characteristics of the user have an alternative method?,NA
+14.1,AA,14 Documentation and accessibility features,Does the website's documentation describe the accessibility features available and information relating to compatibility with accessibility?,NT
+14.2,A,14 Documentation and accessibility features,"For each accessibility feature described in the documentation, the mechanism for enabling an accessibility feature meets the accessibility needs of the users concerned. Is this rule respected (excluding special cases)?",NT
+14.3,AA,14 Documentation and accessibility features,Does the website documentation comply with the digital accessibility rules?,NT
+15.1,AA,15 Editing tools,Does each editing tool allow you to define the accessibility information needed to create content that complies with the digital accessibility rules?,NA
+15.2,A,15 Editing tools,Does each editing tool provide help with creating accessible content that complies with the digital accessibility rules?,NA
+15.3,AA,15 Editing tools,Does the content generated by each transformation comply with the digital accessibility rules (excluding special cases)?,NA
+15.4,AA,15 Editing tools,"For each accessibility issue identified by an automatic or semi-automatic accessibility test, does the editing tool provide suggestions for repair?",NA
+15.5,A,15 Editing tools,"For each set of templates, at least one template complies with the digital accessibility rules. Is this rule respected?",NA
+15.6,A,15 Editing tools,Is each template that makes it possible to comply with the digital accessibility rules clearly identifiable?,NA
+16.1,AA,16 Support services,Does each support service provide information about the accessibility features and accessibility compatibility described in the documentation of the website?,NT
+16.2,A,16 Support services,Each support service meets the communication needs of people with disabilities directly or through a relay service. Is this rule respected?,NT
+16.3,AA,16 Support services,Does the documentation provided by the support service comply with the digital accessibility rules?,NT
+17.1,A,17 Real-time communication,"For each two-way voice communication web application, is the application capable of encoding and decoding this communication with a frequency range whose upper limit is at least 7,000 Hz?",NA
+17.2,A,17 Real-time communication,Does every web application that enables two-way voice communication have real-time text communication functionality?,NA
+17.3,A,17 Real-time communication,"For each web application that enables two-way voice communication and real-time text, can both modes be used simultaneously?",NA
+17.4,A,17 Real-time communication,"For each real-time text (RTT) functionality, can the messages be identified (excluding special cases)?",NA
+17.5,A,17 Real-time communication,"For each two-way voice communication web application, is there a visual indicator of oral activity?",NA
+17.6,A,17 Real-time communication,Does each real-time text communication web application that can interact with other real-time text communication applications comply with the interoperability rules in force?,NA
+17.7,AA,17 Real-time communication,"For each real-time text communication (RTT) web application, the transmission time for each input unit is 500ms or less. Is this rule respected?",NA
+17.8,A,17 Real-time communication,"For each telecommunication web application, is it possible to identify the person initiating a call?",NA
+17.9,A,17 Real-time communication,"For each two-way voice communication web application which makes it possible to identify the activity of a speaker, it is possible to identify the activity of a signer. Is this rule respected?",NA
+17.10,A,17 Real-time communication,"For each two-way voice communication web application that has voice-based services, can these be used without the need to listen or speak?",NA
+17.11,AA,17 Real-time communication,"For each two-way voice communication web application that has real-time video, is the quality of the video sufficient?",NA
