@@ -71,16 +71,20 @@ def header(std):
     return f"{std['standard']} {std['version']} ({std['lang']})"
 
 
+def join_ref(v, sep="; "):
+    return v if isinstance(v, str) else sep.join(v)
+
+
 def print_criterion(std, t, c, tests=False, methodology=False, only_test=None):
     print(f"## Criterion {c['id']} [{c['level']}] — topic {t['number']} {t['title']}" + ("  (RAWeb only)" if c.get("raweb_only") else ""))
     print(plain(c["title"]))
     refs = c.get("references", {})
     if refs.get("wcag"):
-        print("WCAG: " + "; ".join(refs["wcag"]))
+        print("WCAG: " + join_ref(refs["wcag"]))
     if refs.get("norm"):
-        print("EN 301 549: " + "; ".join(refs["norm"]))
+        print("EN 301 549: " + join_ref(refs["norm"]))
     if refs.get("techniques"):
-        print("Techniques: " + ", ".join(refs["techniques"]))
+        print("Techniques: " + join_ref(refs["techniques"], ", "))
     if (tests or methodology or only_test) and not c["tests"] and c.get("methodology"):
         print("\nMethodology (the criterion is its own test):")
         print(plain(c["methodology"]))

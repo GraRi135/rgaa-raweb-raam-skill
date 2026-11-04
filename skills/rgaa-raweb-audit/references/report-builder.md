@@ -52,7 +52,9 @@ added by hand with a selector so they can be illustrated too.
      "badge": "optional text for the markup badge (defaults to element)",
      "caption": "optional figure caption (also the figure's aria-label)", "screenshot_alt": "optional short alt (default: 'Capture d'écran du constat F001')",
      "click": "optional selector (or list) clicked before the screenshot, to open a menu, tab or accordion panel",
-     "margin": 120}
+     "hover": "optional selector (or list) hovered first, for hover-driven menus",
+     "focus": "optional selector focused, then \"press\" keys (default Enter) for keyboard-only triggers",
+     "wait": 400, "margin": 120}
   ],
   "not_tested": [{"criteria": "7.1.2, 4.13, 10.2", "how": "Lecteur d'écran NVDA + Firefox, VoiceOver + Safari sur chaque page"}]
 }

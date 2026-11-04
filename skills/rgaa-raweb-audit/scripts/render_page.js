@@ -64,10 +64,14 @@ async function annotate(pw) {
       if (current !== f.url) { await page.goto(f.url, {waitUntil: 'networkidle', timeout: 60000}).catch(() => {}); await page.waitForTimeout(+opt('--wait', 800)); current = f.url; }
       // Optional per-finding preparation: "click" (a selector, or a list of them) opens a menu, tab or accordion panel
       // before the element is outlined; the page is reloaded for the next finding so the click does not leak.
-      if (f.click) {
-        for (const c of (Array.isArray(f.click) ? f.click : [f.click])) { await page.click(c, {timeout: 5000}).catch(e => { f.screenshot_note = 'click failed on ' + c + ': ' + e.message.split('\n')[0]; }); await page.waitForTimeout(400); }
-        current = null;
-      }
+      // "hover" moves the pointer over selectors (hover-driven menus); "focus" + "press" (default "Enter") drive a
+      // keyboard-only trigger; "wait" (ms, default 400) lets transitions finish. A failed step is noted in
+      // screenshot_note and the screenshot is attempted anyway.
+      const list = v => (Array.isArray(v) ? v : [v]); const pause = f.wait != null ? +f.wait : 400; const notes = [];
+      if (f.hover) { for (const c of list(f.hover)) { await page.hover(c, {timeout: 5000}).catch(e => notes.push('hover failed on ' + c + ': ' + e.message.split('\n')[0])); await page.waitForTimeout(pause); } current = null; }
+      if (f.click) { for (const c of list(f.click)) { await page.click(c, {timeout: 5000}).catch(e => notes.push('click failed on ' + c + ': ' + e.message.split('\n')[0])); await page.waitForTimeout(pause); } current = null; }
+      if (f.focus) { await page.focus(f.focus, {timeout: 5000}).catch(e => notes.push('focus failed on ' + f.focus + ': ' + e.message.split('\n')[0])); for (const k of list(f.press || 'Enter')) { await page.keyboard.press(k); await page.waitForTimeout(pause); } current = null; }
+      if (notes.length) f.screenshot_note = notes.join('; ');
       const m = f.margin != null ? +f.margin : margin;
       const badge = f.badge || (f.element ? String(f.element).slice(0, 160) : f.selector);
       const box = await page.evaluate(OVERLAY, {sel: f.selector, badgeText: badge});
@@ -77,7 +81,7 @@ async function annotate(pw) {
       const name = (f.id || ('finding-' + (done + 1))).replace(/[^A-Za-z0-9_-]+/g, '-') + '.png';
       const target = path.resolve(outDir, name);
       await page.screenshot({path: target, fullPage: true, clip: {x, y, width: Math.max(w, 40), height: Math.max(h, 40)}});
-      f.screenshot = path.relative(path.dirname(path.resolve(file)), target); delete f.screenshot_note; done++;
+      f.screenshot = path.relative(path.dirname(path.resolve(file)), target); if (!notes.length) delete f.screenshot_note; done++;
       await page.evaluate(() => document.querySelectorAll('.__a11y_overlay').forEach(n => n.remove()));
     } catch (e) { f.screenshot_note = 'screenshot failed: ' + e.message.split('\n')[0]; skipped++; }
   }

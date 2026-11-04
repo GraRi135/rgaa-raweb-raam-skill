@@ -40,6 +40,14 @@ def strip_links(s):
     return re.sub(r"\[([^\]]+)\]\(#[^)]*\)", r"\1", s)
 
 
+def ref_list(v):
+    """Upstream stores most references as lists but a few (RAWeb 13.3, 13.4 'norm') as a sentence: keep one shape."""
+    if isinstance(v, str):
+        v = re.sub(r"<[^>]+>", "", v).strip()
+        return [v] if v else []
+    return v
+
+
 def norm_lines(lines):
     """Normalise test wording so that only substantive differences are reported
     (glossary anchors, trailing punctuation, spacing and typographic quotes are ignored)."""
@@ -67,6 +75,7 @@ def build_standard(criteres_path, methodo_path, levels, meta, raweb_only_ids):
             refs = {}
             for r in cr.get("references", []):
                 refs.update(r)
+            refs = {k: ref_list(v) for k, v in refs.items()}
             tests = {}
             for k, lines in cr["tests"].items():
                 tid = f"{cid}.{k}"
@@ -112,6 +121,7 @@ def build_raam(criteres_path, methodo_path, levels, meta):
                 for r in refs:
                     merged.update(r)
                 refs = merged
+            refs = {k: ref_list(v) for k, v in refs.items()}
             tests = {}
             for k, lines in (cr.get("tests") or {}).items():
                 tests[k] = {"id": f"{cid}.{k}", "text": lines, "methodology": ""}

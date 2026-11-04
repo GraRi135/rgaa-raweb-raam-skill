@@ -4713,7 +4713,9 @@
        "G10",
        "G135"
       ],
-      "norm": "tous les critères de la section 10 Non-web documents."
+      "norm": [
+       "tous les critères de la section 10 Non-web documents."
+      ]
      }
     },
     {
@@ -4748,7 +4750,9 @@
        "G10",
        "G135"
       ],
-      "norm": "tous les critères de la section 10 <span lang=\"en\">Non-web documents</span>."
+      "norm": [
+       "tous les critères de la section 10 Non-web documents."
+      ]
      }
     },
     {
