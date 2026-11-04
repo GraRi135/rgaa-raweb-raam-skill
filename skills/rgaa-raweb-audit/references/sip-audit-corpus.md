@@ -1,7 +1,7 @@
 # What the SIP's published audits teach (corpus of 228 reports, 2023-2025)
 
 The Service information et presse publishes every monitoring report on data.public.lu (licence CC0). This file
-distils 228 of them: 42 full audits ("audits complets", 2023 and 2024: 25 websites under RGAA 4.1.2 / RAWeb 1,
+distils 228 of them: 42 full audits ("audits complets", 2023 and 2024: 30 websites under RGAA 4.1 / 4.1.2 / RAWeb 1,
 12 mobile apps under RAAM 1) and 186 simplified audits ("audits simplifiés", 2024 and 2025, RAWeb). Use it to
 prioritise an audit, to write a Luxembourg report that reads like the SIP's, and to predict what the SIP will find.
 Datasets: data.public.lu/fr/datasets/audits-complets-de-laccessibilite-numerique-2023 (and -2024-1),
@@ -10,13 +10,13 @@ under accessibilite.public.lu/fr/rapports/.
 
 ## Headline numbers
 
-| Full audits (websites, n = 38 with a rate) | |
+| Full audits (websites, n = 30; 26 state a rate) | |
 |---|---|
-| Compliance rate | min 26 %, median 49 %, max 89 % |
-| Status | partially compliant 15, non-compliant 14 (none fully compliant) |
-| Overall level ("niveau général d'accessibilité") | faible 20, moyen 11, bon 7 |
-| Sample size | median 15 pages |
-| Accessibility statement | missing on 17 of 42 sites at audit time |
+| Compliance rate | min 27 %, median 61 %, max 89 % |
+| Status | partially compliant 15, non-compliant 14, not stated 1 (none fully compliant) |
+| Overall level ("niveau général d'accessibilité") | faible 11, moyen 10, bon 6, not stated 3 |
+| Sample size | median 14 pages |
+| Accessibility statement | missing on 14 of the 30 websites at audit time (17 of the 42 reports, apps included) |
 
 | Simplified audits (n = 186) | |
 |---|---|

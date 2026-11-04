@@ -9,7 +9,8 @@ The criteria, tests, methodology and glossaries come from the official GitHub re
 | RAAM 1.1 | accessibility-luxembourg/ReferentielAccessibiliteMobile | 1.1, 24 February 2025 |
 | SIP report wording | accessibility-luxembourg/simplA11yGenReport | snapshot of November 2026 |
 
-`skills/rgaa-raweb-audit/references/data/SOURCES.json` records the exact upstream commits.
+`skills/rgaa-raweb-audit/references/data/SOURCES.json` records the exact upstream commits (and, for the SIP
+wording, the snapshot date: that file is copied by hand, see below).
 
 ## Rebuild
 
@@ -33,6 +34,7 @@ glossaries, and regenerates `references/criteria-index.md` and `references/raam-
    test ids.
 5. Bump `version` in `.claude-plugin/plugin.json`.
 
-The SIP wording file (`sip-report-wording-fr.json`) is refreshed separately from the simplA11yGenReport repository;
+The SIP wording file (`sip-report-wording-fr.json`) is not rebuilt by `refresh_data.py`: copy `topics.json` and
+`solutions.json` from the simplA11yGenReport repository by hand, keep the MIT notice, and update `SOURCES.json`;
 the corpus statistics in `sip-audit-corpus.md` are a dated snapshot and can be recomputed from the data.public.lu
 datasets with their API (`/api/1/datasets/<slug>/`, field `resources[].url`).

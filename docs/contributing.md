@@ -31,5 +31,5 @@ skill folder runs every case with and without the skill.
 ## Licensing of contributions
 
 Code and documentation are MIT. Do not add content from the standards or from SIP/DINUM publications outside the
-mechanisms in `scripts/refresh_data.py`, so that `NOTICE.md` stays accurate. No real audit reports of identified
+mechanisms in `scripts/refresh_data.py` (or the documented hand copy of the SIP wording), so that `NOTICE.md` stays accurate. No real audit reports of identified
 third-party sites in the repository.

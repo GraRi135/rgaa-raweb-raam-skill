@@ -1,6 +1,6 @@
 {
   "name": "rgaa-raweb-claude",
-  "description": "RGAA 4.1.2 and RAWeb 1.1 accessibility audit skill for Claude Code",
+  "description": "RGAA 4.1.2, RAWeb 1.1 and RAAM 1.1 accessibility audit skill for Claude Code",
   "owner": { "name": "GraRi135" },
   "plugins": [
     {

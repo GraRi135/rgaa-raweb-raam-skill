@@ -1,7 +1,7 @@
 # Examples
 
 Fictional inputs from the evaluation cases and the outputs Claude produced from them with the skill, unedited apart
-from removing session paths. They show what to expect; they are not models of correctness, and each report carries
+from removing session paths and renaming the grids to `grille.csv` (the `compute` outputs are not included). They show what to expect; they are not models of correctness, and each report carries
 the aid-not-audit notice for that reason.
 
 | Folder | Input | Output |

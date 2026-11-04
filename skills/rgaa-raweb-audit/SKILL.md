@@ -1,6 +1,6 @@
 ---
 name: rgaa-raweb-audit
-license: MIT for scripts and instructions; bundled reference data under CC-BY 3.0 LU (RAWeb, RAAM, SIP) and Licence Ouverte 2.0 (RGAA), see references/data/NOTICE.md
+license: MIT for scripts and instructions; bundled reference data under CC-BY 3.0 LU (RAWeb, RAAM), Licence Ouverte 2.0 (RGAA) and MIT (SIP report wording), see references/data/NOTICE.md
 description: >-
   Audit websites, pages, HTML and front-end code against RGAA 4.1.2 (France) and RAWeb 1.1 (Luxembourg), the
   public-sector web accessibility standards built on WCAG 2.1 and EN 301 549, and mobile apps against RAAM 1.1
@@ -128,8 +128,8 @@ RGAA: accessibilite.numerique.gouv.fr/methode/criteres-et-tests/).
   Report the first group as non-conformities with the element quoted, the second as "to test" with the test procedure.
   A page with no findings is not compliant: it is untested. Never present a provisional figure as the compliance rate.
 * **Right standard, right test numbers.** RAWeb 9.2 has four tests on computed roles; RGAA 9.2 has one. RGAA 8.1 has
-  three tests; RAWeb 8.1 has one. RAWeb 1.2 forbids `role="presentation"` with a `title`. RAWeb 13.5 no longer accepts
-  `<abbr title>`. RAWeb-only criteria (14.x, 16.x) apply to nearly every Luxembourg site: documentation and support.
+  three tests; RAWeb 8.1 has one. RAWeb 13.5 no longer accepts a `title` attribute as the
+  explanation of cryptic content. RAWeb-only criteria (14.x, 16.x) apply to nearly every Luxembourg site: documentation and support.
 * **Findings point at elements.** Criterion, test, page, element snippet or selector, what is wrong, who is affected,
   the fix. "Images lack alternatives" is a theme; "`<img src="/img/logo.png">` in the header has no alt (1.1.1), on every
   page" is a finding. The fix is code or content the developer can paste.

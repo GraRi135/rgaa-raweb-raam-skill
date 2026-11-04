@@ -126,7 +126,7 @@ def build_raam(criteres_path, methodo_path, levels, meta):
             for k, lines in (cr.get("tests") or {}).items():
                 tests[k] = {"id": f"{cid}.{k}", "text": lines, "methodology": ""}
             topic["criteria"].append({
-                "id": cid, "number": cr["number"], "level": levels.get(cid, "?"), "title": cr["title"],
+                "id": cid, "number": cr["number"], "level": levels.get(cid, "?"), "title": strip_links(cr["title"]),
                 "tests": tests, "methodology": methodo.get(cid, ""), "references": refs,
             })
         out["topics"].append(topic)

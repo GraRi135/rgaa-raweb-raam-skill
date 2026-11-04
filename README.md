@@ -103,6 +103,9 @@ until a person runs them.
 * [Examples](examples/README.md): fictional inputs and the reports Claude produced from them.
 * [Explainer](explainer/README.md): a single hostable page, in French and English, that teaches twelve accessibility rules with simulations, visual challenges and a quiz, for people who do not know the rules.
 
+The guides are in English; the deliverables the skill produces (reports, statements) are written in the language of
+the request, French for official documents.
+
 ## Layout
 
 ```

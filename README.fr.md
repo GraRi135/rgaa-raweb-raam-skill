@@ -97,7 +97,7 @@ restent « non testés » tant qu'une personne ne les a pas passés.
 
 ## Documentation
 
-* [Démarrage rapide](docs/quick-start.md) pour les développeurs et utilisateurs de Claude Code (en anglais).
+* [Démarrage rapide](docs/quick-start.md) pour les développeurs et utilisateurs de Claude Code : installation, premières commandes, ce que vous obtenez (en anglais).
 * [Déroulé d'un audit web](docs/web-audit-walkthrough.md) pour les auditeurs : la méthode, ce que fait Claude, ce que vous devez faire, comment lire et vérifier un constat.
 * [Déroulé d'un audit d'application Android](docs/android-audit-walkthrough.md) : RAAM 1.1 avec le collecteur adb, passes TalkBack et clavier.
 * [Déclarations d'accessibilité](docs/statements.md) : obligations en France et au Luxembourg, calcul du taux à partir d'une grille.
@@ -113,13 +113,13 @@ langue de la demande, en français pour les documents officiels.
 ## Organisation du dépôt
 
 ```
-docs/                         guides
+docs/                         guides (démarrage rapide, déroulés, déclarations, évaluation, mise à jour, contribution)
 examples/                     entrées fictives et exemples de sorties
 explainer/                    la page de sensibilisation hébergeable (index.html) et ses notes
 skills/rgaa-raweb-audit/
 ├── SKILL.md                  instructions suivies par Claude
 ├── references/               méthode d'audit, modèles de rapport, RAWeb vs RGAA, RAAM et flux Android, méthodes
-│   │                         et corpus du SIP, sondes navigateur, carte de l'automatisation, index des critères
+│                             et corpus du SIP, sondes navigateur, carte de l'automatisation, index des critères
 │   └── data/                 critères + tests + méthodologie + glossaires en JSON (voir NOTICE.md)
 ├── scripts/                  les outils ci-dessus (Python 3 standard ; render_page.js demande Node + Playwright)
 └── evals/                    cas de test (compatibles `claude plugin eval`)

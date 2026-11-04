@@ -1,7 +1,8 @@
 # Third-party content and licences
 
 The scripts, skill instructions and documentation of this repository are released under the MIT licence
-(see `LICENSE`). The reference material bundled under `skills/rgaa-raweb-audit/references/data/` is third-party
+(see `LICENSE`). The skill is a working aid, not an audit: its output can be wrong or incomplete and does not replace
+a conformity audit by a trained auditor with assistive technologies, nor tests with disabled users. The reference material bundled under `skills/rgaa-raweb-audit/references/data/` is third-party
 content redistributed under its own terms, listed below, which apply to any copy of this repository and to the
 packaged skill. The full statement with per-file details is in
 `skills/rgaa-raweb-audit/references/data/NOTICE.md`.

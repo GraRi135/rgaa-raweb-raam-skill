@@ -20,8 +20,9 @@ Copy `index.html` anywhere a web server (or a USB stick, or an intranet share) c
 ## Edit or translate it
 
 The French text lives in the HTML (every translatable element carries a `data-t` key); the English text is the
-`EN` dictionary at the top of the script, keyed the same way. To add a language, copy the `EN` dictionary and
-add a button in the language switcher. Colours are CSS tokens on `:root` (light and dark themes).
+`EN` dictionary at the top of the script, keyed the same way, and the `FR` dictionary just below holds the French
+strings the script generates itself. To add a language, copy the `EN` dictionary (and the generated strings of `FR`)
+and add a button in the language switcher. Colours are CSS tokens on `:root` (light and dark themes).
 
 ## What the page deliberately contains
 

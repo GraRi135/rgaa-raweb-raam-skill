@@ -7,7 +7,7 @@ with the French term auditors use.
 ## Before you start
 
 * **Standard**: RGAA 4.1.2 for France, RAWeb 1.1 for Luxembourg. They share criteria 1.1 to 13.12; RAWeb adds 30
-  criteria (topics 14 to 17 and a few multimedia/consultation criteria) and rewrote about 30 tests. Claude cites test
+  criteria (topics 14 to 17 and a few multimedia/consultation criteria) and changed the tests of 29 shared criteria. Claude cites test
   numbers from the bundled data of the standard you name; check which one appears in the report header.
 * **Sample** ("échantillon"): home, contact, legal notice, accessibility page, site map, help, authentication, one page
   per service, one downloadable document, every page of each process, pages with distinct layouts, plus 10 % random

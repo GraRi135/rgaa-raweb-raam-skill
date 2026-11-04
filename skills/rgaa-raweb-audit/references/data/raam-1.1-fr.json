@@ -17,7 +17,7 @@
      "id": "1.1",
      "number": 1,
      "level": "A",
-     "title": "Chaque [élément graphique de décoration](glossaire.md#element-graphique-de-decoration) est-il [ignoré par les technologies d’assistance](glossaire.md#ignore-par-les-technologies-d-assistance) ?",
+     "title": "Chaque élément graphique de décoration est-il ignoré par les technologies d’assistance ?",
      "tests": {},
      "methodology": "###### iOS et Android\n1.  Activer le **lecteur d’écran**.\n2.  Repérer dans l’écran les éléments graphiques décoratifs ([voir la note de glossaire concernant les particularités de restitution](glossaire.md#element-graphique)).\n3.  Vérifier :\n    *   qu’ils ne peuvent pas être atteints avec le lecteur d’écran ;\n    *   que leur contenu n’est pas restitué par ailleurs depuis un autre élément dans l’écran.\n4.  Si c’est le cas, le critère est validé.",
      "references": {
@@ -33,7 +33,7 @@
      "id": "1.2",
      "number": 2,
      "level": "A",
-     "title": "Chaque [élément graphique porteur d’information](glossaire.md#element-graphique-porteur-d-information) possède-t-il une alternative [accessible aux technologies d’assistance](glossaire.md#accessible-aux-technologies-d-assistance) ?",
+     "title": "Chaque élément graphique porteur d’information possède-t-il une alternative accessible aux technologies d’assistance ?",
      "tests": {},
      "methodology": "###### iOS et Android\n1.  Activer le **lecteur d’écran**.\n2.  Repérer dans l’écran les éléments graphiques porteurs d’informations ([voir la note de glossaire concernant les particularités de restitution](glossaire.md#element-graphique)), par exemple, une image ou une icône.\n3.  Vérifier :\n    *   qu’ils peuvent être atteints avec le lecteur d’écran ;\n    *   ou que l’information qu’ils véhiculent est restituée depuis un autre élément dans l’écran.\n4.  Si c’est le cas, le critère est validé.",
      "references": {
@@ -49,7 +49,7 @@
      "id": "1.3",
      "number": 3,
      "level": "A",
-     "title": "Pour chaque [élément graphique porteur d’information](glossaire.md#element-graphique-porteur-d-information), l’alternative [accessible aux technologies d’assistance](glossaire.md#accessible-aux-technologies-d-assistance) est-elle pertinente (hors cas particuliers) ?",
+     "title": "Pour chaque élément graphique porteur d’information, l’alternative accessible aux technologies d’assistance est-elle pertinente (hors cas particuliers) ?",
      "tests": {},
      "methodology": "###### iOS et Android\n1.  Activer le **lecteur d’écran**.\n2.  Repérer dans l’écran les éléments graphiques porteurs d’information ([voir la note de glossaire concernant les particularités de restitution](glossaire.md#element-graphique)).\n3.  Vérifier :\n    *   que l’alternative restituée par le lecteur d’écran est pertinente ;\n    *   ou que l’information restituée depuis un autre élément dans l’écran est pertinente.\n4.  Si c’est le cas, le critère est validé.",
      "references": {
@@ -65,7 +65,7 @@
      "id": "1.4",
      "number": 4,
      "level": "A",
-     "title": "Pour chaque [élément graphique](glossaire.md#element-graphique) utilisé comme [CAPTCHA](glossaire.md#captcha) ou comme [élément graphique de test](glossaire.md#element-graphique-de-test), l’alternative restituée par les technologies d’assistance permet-elle d’identifier la nature et la fonction de l’élément graphique ?",
+     "title": "Pour chaque élément graphique utilisé comme CAPTCHA ou comme élément graphique de test, l’alternative restituée par les technologies d’assistance permet-elle d’identifier la nature et la fonction de l’élément graphique ?",
      "tests": {},
      "methodology": "###### iOS et Android\n1.  Activer le **lecteur d’écran**.\n2.  Repérer dans l’écran les éléments graphiques utilisés comme CAPTCHA ([voir la note de glossaire concernant les particularités de restitution](glossaire.md#element-graphique)).\n3.  Vérifier que l’alternative restituée par le lecteur d’écran permet de comprendre la fonction de l’élément graphique (par exemple « Code secret à saisir », « Code de sécurité »).\n4.  Si c’est le cas, le critère est validé.",
      "references": {
@@ -81,7 +81,7 @@
      "id": "1.5",
      "number": 5,
      "level": "A",
-     "title": "Chaque [élément graphique](glossaire.md#element-graphique) utilisé comme [CAPTCHA](glossaire.md#captcha) possède-t-il une alternative ?",
+     "title": "Chaque élément graphique utilisé comme CAPTCHA possède-t-il une alternative ?",
      "tests": {
       "1": {
        "id": "1.5.1",
@@ -107,7 +107,7 @@
      "id": "1.6",
      "number": 6,
      "level": "A",
-     "title": "Chaque [élément graphique porteur d’information](glossaire.md#element-graphique-porteur-d-information) a-t-il, si nécessaire, une [description détaillée](glossaire.md#description-detaillee) ?",
+     "title": "Chaque élément graphique porteur d’information a-t-il, si nécessaire, une description détaillée ?",
      "tests": {
       "1": {
        "id": "1.6.1",
@@ -134,7 +134,7 @@
      "id": "1.7",
      "number": 7,
      "level": "A",
-     "title": "Pour chaque [élément graphique porteur d’information](glossaire.md#element-graphique-porteur-d-information) ayant une [description détaillée](glossaire.md#description-detaillee), celle-ci est-elle pertinente ?",
+     "title": "Pour chaque élément graphique porteur d’information ayant une description détaillée, celle-ci est-elle pertinente ?",
      "tests": {},
      "methodology": "###### iOS et Android\n1.  Repérer dans l’écran les éléments graphiques qui possèdent une description détaillée.\n2.  Vérifier que chaque description détaillée est pertinente. On doit y trouver toutes les informations présentes dans l’élément graphique et nécessaires à la compréhension du contenu.\n3.  Si c’est le cas, le critère est validé.",
      "references": {
@@ -150,7 +150,7 @@
      "id": "1.8",
      "number": 8,
      "level": "AA",
-     "title": "Chaque [élément graphique texte](glossaire.md#element-graphique-texte) porteur d’information, en l’absence d’un [mécanisme de remplacement](glossaire.md#mecanisme-de-remplacement), doit, si possible être remplacé par du [texte stylé](glossaire.md#texte-style). Cette règle est-elle respectée (hors cas particuliers) ?",
+     "title": "Chaque élément graphique texte porteur d’information, en l’absence d’un mécanisme de remplacement, doit, si possible être remplacé par du texte stylé. Cette règle est-elle respectée (hors cas particuliers) ?",
      "tests": {},
      "methodology": "###### iOS et Android\n1.  Repérer dans l’écran les éléments graphiques texte porteurs d’information ([voir la note de glossaire concernant les particularités de restitution](glossaire.md#element-graphique)) :\n    *   Activer le **lecteur d’écran**, parcourir le contenu et repérer si les éléments restitués « élément graphique » ou « image » contiennent du texte porteur d’information.\n2.  Vérifier :\n    *   qu’il existe un mécanisme de remplacement des éléments graphiques texte par du texte modifiable selon les préférences d’affichage de l’utilisateur (taille, couleur, graisse…) ;\n    *   ou que les styles et effets ne peuvent pas être reproduits via du [texte stylé](glossaire.md#texte-style).\n3.  Si c’est le cas, le critère est validé.",
      "references": {
@@ -166,7 +166,7 @@
      "id": "1.9",
      "number": 9,
      "level": "AA",
-     "title": "Chaque [élément graphique légendé](glossaire.md#element-graphique-legende) est-il correctement restitué par les technologies d’assistance ?",
+     "title": "Chaque élément graphique légendé est-il correctement restitué par les technologies d’assistance ?",
      "tests": {},
      "methodology": "###### iOS et Android\n1.  Activer le **lecteur d’écran**.\n2.  Naviguer jusqu’aux éléments graphiques légendés.\n3.  Vérifier que la légende de l’élément graphique est restituée lorsque le focus atteint l’élément graphique (l’élément graphique et la légende sont contenus dans un seul élément atteignable par le lecteur d’écran).\n4.  Si c’est le cas, le critère est validé.",
      "references": {
@@ -188,7 +188,7 @@
      "id": "2.1",
      "number": 1,
      "level": "A",
-     "title": "Dans chaque écran, l’[information ne doit pas être donnée uniquement par la couleur](glossaire.md#information-donnee-par-la-couleur). Cette règle est-elle respectée ?",
+     "title": "Dans chaque écran, l’information ne doit pas être donnée uniquement par la couleur. Cette règle est-elle respectée ?",
      "tests": {
       "1": {
        "id": "2.1.1",
@@ -216,7 +216,7 @@
      "id": "2.2",
      "number": 2,
      "level": "AA",
-     "title": "Dans chaque écran, le [contraste](glossaire.md#contraste) entre la couleur du texte et la couleur de son arrière-plan est-il suffisamment élevé (hors cas particuliers) ?",
+     "title": "Dans chaque écran, le contraste entre la couleur du texte et la couleur de son arrière-plan est-il suffisamment élevé (hors cas particuliers) ?",
      "tests": {
       "1": {
        "id": "2.2.1",
@@ -243,7 +243,7 @@
      "id": "2.3",
      "number": 3,
      "level": "AA",
-     "title": "Dans chaque écran, les couleurs utilisées dans les [composants d’interface](glossaire.md#composant-d-interface) et les éléments graphiques porteurs d’informations sont-elles suffisamment contrastées (hors cas particuliers) ?",
+     "title": "Dans chaque écran, les couleurs utilisées dans les composants d’interface et les éléments graphiques porteurs d’informations sont-elles suffisamment contrastées (hors cas particuliers) ?",
      "tests": {
       "1": {
        "id": "2.3.1",
@@ -279,7 +279,7 @@
      "id": "2.4",
      "number": 4,
      "level": "AA",
-     "title": "Le rapport de contraste de chaque [mécanisme de remplacement qui permet d’afficher l’écran avec un rapport de contraste conforme](glossaire.md#mecanisme-qui-permet-d-afficher-un-rapport-de-contraste-conforme) est-il suffisamment élevé ?",
+     "title": "Le rapport de contraste de chaque mécanisme de remplacement qui permet d’afficher l’écran avec un rapport de contraste conforme est-il suffisamment élevé ?",
      "tests": {},
      "methodology": "###### iOS\n1.  Vérifier que l’option **Augmenter le contraste** (_Réglages > Accessibilité > Affichage et taille du texte > Augmenter le contraste_) est désactivée.\n2.  Repérer la présence d’un [mécanisme de remplacement permettant d’afficher l’application avec un rapport de contraste suffisant](glossaire.md#mecanisme-qui-permet-d-afficher-un-rapport-de-contraste-conforme).\n3.  Vérifier qu’il n’est pas activé (c’est-à-dire que l’écran est diffusé avec les contrastes par défaut).\n4.  Activer le logiciel **Colour Contrast Analyser**{lang=en} sur l’ordinateur et capturer les couleurs d’avant-plan et d’arrière-plan sur le terminal mobile soit :\n    *   En [diffusant l’écran du terminal mobile sur l’ordinateur](methodologie.md#diffuser-l-ecran-du-terminal-mobile) ;\n    *   En réalisant des [captures d’écran](methodologie.md#realiser-des-captures-d-ecran) des éléments à évaluer (et en les important sur l’ordinateur).\n5.  Si le mécanisme de remplacement est identifié par un texte, capturer les couleurs d’avant-plan et d’arrière-plan et vérifier :\n    *   Pour les textes en taille normale, que la valeur de contraste est de 4.5:1, au moins ;\n    *   Pour les textes en taille agrandie, que la valeur de contraste est de 3:1 au moins.\n6.  Si le mécanisme de remplacement est identifié par un élément non textuel uniquement (une icône par exemple) :\n    1.  Identifier quelle(s) couleur(s) du composant sont nécessaires à l’identification de la localisation et/ou de l’information (cela peut être la bordure, la couleur d’une icône, la couleur de fond) ;\n    2.  Identifier les couleurs adjacentes qui ont un impact sur la visibilité de la couleur ;\n    3.  Vérifier que le rapport de contraste entre les couleurs identifiées est de 3:1 au moins.\n7.  Si c’est le cas, le critère est validé.\n###### Android\n1.  Repérer la présence d’un [mécanisme de remplacement permettant d’afficher l’application avec un rapport de contraste suffisant](glossaire.md#mecanisme-qui-permet-d-afficher-un-rapport-de-contraste-conforme).\n2.  Vérifier qu’il n’est pas activé (c’est-à-dire que l’écran est diffusé avec les contrastes par défaut).\n3.  Activer le logiciel **Colour Contrast Analyser**{lang=en} sur l’ordinateur et capturer les couleurs d’avant-plan et d’arrière-plan sur le terminal mobile soit :\n    *   En [diffusant l’écran du terminal mobile sur l’ordinateur](methodologie.md#diffuser-l-ecran-du-terminal-mobile) ;\n    *   En réalisant des [captures d’écran](methodologie.md#realiser-des-captures-d-ecran) des éléments à évaluer (et en les important sur l’ordinateur).\n4.  Si le mécanisme de remplacement est identifié par un texte, capturer les couleurs d’avant-plan et d’arrière-plan et vérifier :\n    *   Pour les textes en taille normale, que la valeur de contraste est de 4.5:1, au moins ;\n    *   Pour les textes en taille agrandie, que la valeur de contraste est de 3:1 au moins.\n5.  Si le mécanisme de remplacement est identifié par un élément non textuel uniquement (une icône par exemple) :\n    1.  Identifier quelle(s) couleur(s) du composant sont nécessaires à l’identification de la localisation et/ou de l’information (cela peut être la bordure, la couleur d’une icône, la couleur de fond) ;\n    2.  Identifier les couleurs adjacentes qui ont un impact sur la visibilité de la couleur ;\n    3.  Vérifier que le rapport de contraste entre les couleurs identifiées est de 3:1 au moins.\n6.  Si c’est le cas, le critère est validé.",
      "references": {
@@ -304,7 +304,7 @@
      "id": "3.1",
      "number": 1,
      "level": "A",
-     "title": "Chaque [média temporel](glossaire.md#media-temporel-type-son-video-et-synchronise) pré-enregistré seulement audio a-t-il, si nécessaire, une [transcription textuelle](glossaire.md#transcription-textuelle-media-temporel) [adjacente clairement identifiable](glossaire.md#adjacente-clairement-identifiable) (hors cas particuliers) ?",
+     "title": "Chaque média temporel pré-enregistré seulement audio a-t-il, si nécessaire, une transcription textuelle adjacente clairement identifiable (hors cas particuliers) ?",
      "tests": {},
      "methodology": "###### iOS et Android\n1.  Repérer dans l’écran les médias temporels seulement audio qui nécessitent une transcription textuelle.\n2.  Vérifier :\n    *   La présence d’une transcription textuelle accessible via un composant adjacent (un bouton ou un lien) ;\n    *   Ou la présence d’une transcription textuelle adjacente clairement identifiable.\n3.  Si c’est le cas, le critère est validé.",
      "references": {
@@ -322,7 +322,7 @@
      "id": "3.2",
      "number": 2,
      "level": "A",
-     "title": "Pour chaque [média temporel](glossaire.md#media-temporel-type-son-video-et-synchronise) pré-enregistré seulement audio ayant une [transcription textuelle](glossaire.md#transcription-textuelle-media-temporel), celle-ci est-elle pertinente (hors cas particuliers) ?",
+     "title": "Pour chaque média temporel pré-enregistré seulement audio ayant une transcription textuelle, celle-ci est-elle pertinente (hors cas particuliers) ?",
      "tests": {},
      "methodology": "###### iOS et Android\n1.  Repérer dans l’écran les transcriptions textuelles des médias temporels seulement audio.\n2.  Vérifier que chaque transcription textuelle est pertinente (toutes les informations sonores importantes sont présentes, les dialogues notamment).\n3.  Si c’est le cas, le critère est validé.",
      "references": {
@@ -338,7 +338,7 @@
      "id": "3.3",
      "number": 3,
      "level": "A",
-     "title": "Chaque [média temporel](glossaire.md#media-temporel-type-son-video-et-synchronise) pré-enregistré seulement vidéo a-t-il, si nécessaire, une alternative (hors cas particuliers) ?",
+     "title": "Chaque média temporel pré-enregistré seulement vidéo a-t-il, si nécessaire, une alternative (hors cas particuliers) ?",
      "tests": {
       "1": {
        "id": "3.3.1",
@@ -368,7 +368,7 @@
      "id": "3.4",
      "number": 4,
      "level": "A",
-     "title": "Pour chaque [média temporel](glossaire.md#media-temporel-type-son-video-et-synchronise) pré-enregistré seulement vidéo ayant une alternative, celle-ci est-elle pertinente (hors cas particuliers) ?",
+     "title": "Pour chaque média temporel pré-enregistré seulement vidéo ayant une alternative, celle-ci est-elle pertinente (hors cas particuliers) ?",
      "tests": {
       "1": {
        "id": "3.4.1",
@@ -397,7 +397,7 @@
      "id": "3.5",
      "number": 5,
      "level": "A",
-     "title": "Chaque [média temporel](glossaire.md#media-temporel-type-son-video-et-synchronise) synchronisé pré-enregistré a-t-il, si nécessaire, une alternative (hors cas particuliers) ?",
+     "title": "Chaque média temporel synchronisé pré-enregistré a-t-il, si nécessaire, une alternative (hors cas particuliers) ?",
      "tests": {
       "1": {
        "id": "3.5.1",
@@ -424,7 +424,7 @@
      "id": "3.6",
      "number": 6,
      "level": "A",
-     "title": "Pour chaque [média temporel](glossaire.md#media-temporel-type-son-video-et-synchronise) synchronisé pré-enregistré ayant une alternative, celle-ci est-elle pertinente (hors cas particuliers) ?",
+     "title": "Pour chaque média temporel synchronisé pré-enregistré ayant une alternative, celle-ci est-elle pertinente (hors cas particuliers) ?",
      "tests": {
       "1": {
        "id": "3.6.1",
@@ -451,7 +451,7 @@
      "id": "3.7",
      "number": 7,
      "level": "A",
-     "title": "Chaque [média temporel](glossaire.md#media-temporel-type-son-video-et-synchronise) synchronisé a-t-il, si nécessaire, des [sous-titres synchronisés](glossaire.md#sous-titres-synchronises-objet-multimedia) (hors cas particuliers) ?",
+     "title": "Chaque média temporel synchronisé a-t-il, si nécessaire, des sous-titres synchronisés (hors cas particuliers) ?",
      "tests": {
       "1": {
        "id": "3.7.1",
@@ -484,7 +484,7 @@
      "id": "3.8",
      "number": 8,
      "level": "A",
-     "title": "Pour chaque [média temporel](glossaire.md#media-temporel-type-son-video-et-synchronise) synchronisé ayant des [sous-titres synchronisés](glossaire.md#sous-titres-synchronises-objet-multimedia), ceux-ci sont-ils pertinents (hors cas particuliers) ?",
+     "title": "Pour chaque média temporel synchronisé ayant des sous-titres synchronisés, ceux-ci sont-ils pertinents (hors cas particuliers) ?",
      "tests": {
       "1": {
        "id": "3.8.1",
@@ -524,7 +524,7 @@
      "id": "3.9",
      "number": 9,
      "level": "AA",
-     "title": "Chaque [média temporel](glossaire.md#media-temporel-type-son-video-et-synchronise) pré-enregistré (seulement vidéo ou synchronisé) a-t-il, si nécessaire, une [audiodescription synchronisée](glossaire.md#audiodescription-synchronisee-media-temporel) (hors cas particuliers) ?",
+     "title": "Chaque média temporel pré-enregistré (seulement vidéo ou synchronisé) a-t-il, si nécessaire, une audiodescription synchronisée (hors cas particuliers) ?",
      "tests": {},
      "methodology": "###### iOS et Android\n1.  Repérer dans l’écran les médias temporels pré-enregistrés seulement vidéo et synchronisés qui nécessitent une audiodescription.\n2.  Vérifier :\n    *   la présence d’une audiodescription synchronisée ;\n    *   ou la présence d’une version alternative avec une audiodescription synchronisée adjacente ou accessible via un composant adjacent (un bouton ou un lien).\n3.  Si c’est le cas, le critère est validé.",
      "references": {
@@ -540,7 +540,7 @@
      "id": "3.10",
      "number": 10,
      "level": "AA",
-     "title": "Pour chaque [média temporel](glossaire.md#media-temporel-type-son-video-et-synchronise) pré-enregistré (seulement vidéo ou synchronisé) ayant une [audiodescription synchronisée](glossaire.md#audiodescription-synchronisee-media-temporel), celle-ci est-elle pertinente ?",
+     "title": "Pour chaque média temporel pré-enregistré (seulement vidéo ou synchronisé) ayant une audiodescription synchronisée, celle-ci est-elle pertinente ?",
      "tests": {
       "1": {
        "id": "3.10.1",
@@ -567,7 +567,7 @@
      "id": "3.11",
      "number": 11,
      "level": "A",
-     "title": "Pour chaque [média temporel](glossaire.md#media-temporel-type-son-video-et-synchronise) pré-enregistré, le contenu textuel adjacent permet-il d’identifier clairement le média temporel (hors cas particuliers) ?",
+     "title": "Pour chaque média temporel pré-enregistré, le contenu textuel adjacent permet-il d’identifier clairement le média temporel (hors cas particuliers) ?",
      "tests": {},
      "methodology": "###### iOS et Android\n1.  Repérer dans l’écran les médias temporels seulement vidéo, audio ou synchronisés pré-enregistrés.\n2.  Vérifier :\n    *   qu’un passage de texte (un titre ou un paragraphe par exemple), permettant d’identifier le média temporel, le précède ou le suit immédiatement ;\n    *   que le passage de texte est situé à l’extérieur du lecteur de contenu multimédia.\n3.  Si c’est le cas, le critère est validé.",
      "references": {
@@ -583,7 +583,7 @@
      "id": "3.12",
      "number": 12,
      "level": "A",
-     "title": "Chaque séquence sonore déclenchée automatiquement est-elle [contrôlable](glossaire.md#controle-son-declenche-automatiquement) par l’utilisateur ?",
+     "title": "Chaque séquence sonore déclenchée automatiquement est-elle contrôlable par l’utilisateur ?",
      "tests": {
       "1": {
        "id": "3.12.1",
@@ -610,7 +610,7 @@
      "id": "3.13",
      "number": 13,
      "level": "A",
-     "title": "Chaque [média temporel](glossaire.md#media-temporel-type-son-video-et-synchronise) a-t-il, si nécessaire, les [fonctionnalités de contrôle de sa consultation](glossaire.md#controle-de-la-consultation-d-un-media-temporel) ?",
+     "title": "Chaque média temporel a-t-il, si nécessaire, les fonctionnalités de contrôle de sa consultation ?",
      "tests": {},
      "methodology": "###### iOS et Android\n1.  Repérer dans l’écran les médias temporels pré-enregistrés.\n2.  Vérifier que les fonctionnalités suivantes au moins sont présentes :\n    *   une fonctionnalité de lecture ;\n    *   une fonctionnalité de mise en pause ou d’arrêt ;\n    *   si le média possède une piste sonore, une fonctionnalité qui permet d’activer et désactiver le son ;\n3.  Si le média possède une audiodescription, vérifier qu’il existe une fonctionnalité qui permet d’activer et désactiver l’audiodescription.\n4.  Si le média possède des sous-titres synchronisés :\n    *   s’il s’agit de sous-titres incrustés (_open captions_{lang=en}) en tant qu’image, vérifier qu’ils sont affichés au lancement de la lecture de la vidéo ;\n    *   s’il s’agit de sous-titres non incrustés (_closed captions_{lang=en}) , vérifier qu’il existe une fonctionnalité qui permet d’activer et désactiver ces sous-titres.\n5.  Si c’est le cas, le critère est validé.",
      "references": {
@@ -630,7 +630,7 @@
      "id": "3.14",
      "number": 14,
      "level": "AA",
-     "title": "Pour chaque [média temporel](glossaire.md#media-temporel-type-son-video-et-synchronise) synchronisé pré-enregistré qui dispose d’une piste de [sous-titres synchronisés](glossaire.md#sous-titres-synchronises-objet-multimedia) ou d’une [audiodescription](glossaire.md#audiodescription-synchronisee-media-temporel), les fonctionnalités de contrôle de ces alternatives sont-elles présentées au même niveau que les [fonctionnalités principales](glossaire.md#fonctionnalites-principales-d-un-media-temporel) ?",
+     "title": "Pour chaque média temporel synchronisé pré-enregistré qui dispose d’une piste de sous-titres synchronisés ou d’une audiodescription, les fonctionnalités de contrôle de ces alternatives sont-elles présentées au même niveau que les fonctionnalités principales ?",
      "tests": {
       "1": {
        "id": "3.14.1",
@@ -653,7 +653,7 @@
      "id": "3.15",
      "number": 15,
      "level": "AA",
-     "title": "Pour chaque fonctionnalité qui transmet, convertit ou enregistre un [média temporel](glossaire.md#media-temporel-type-son-video-et-synchronise) synchronisé pré-enregistré qui possède une piste de [sous-titres synchronisés](glossaire.md#sous-titres-synchronises-objet-multimedia), à l’issue du processus, les sous-titres sont-ils correctement conservés ?",
+     "title": "Pour chaque fonctionnalité qui transmet, convertit ou enregistre un média temporel synchronisé pré-enregistré qui possède une piste de sous-titres synchronisés, à l’issue du processus, les sous-titres sont-ils correctement conservés ?",
      "tests": {
       "1": {
        "id": "3.15.1",
@@ -679,7 +679,7 @@
      "id": "3.16",
      "number": 16,
      "level": "AA",
-     "title": "Pour chaque fonctionnalité qui transmet, convertit ou enregistre un [média temporel](glossaire.md#media-temporel-type-son-video-et-synchronise) synchronisé pré-enregistré avec une [audiodescription synchronisée](glossaire.md#audiodescription-synchronisee-media-temporel), à l’issue du processus, l’audiodescription est-elle correctement conservée ?",
+     "title": "Pour chaque fonctionnalité qui transmet, convertit ou enregistre un média temporel synchronisé pré-enregistré avec une audiodescription synchronisée, à l’issue du processus, l’audiodescription est-elle correctement conservée ?",
      "tests": {
       "1": {
        "id": "3.16.1",
@@ -704,7 +704,7 @@
      "id": "3.17",
      "number": 17,
      "level": "AA",
-     "title": "Pour chaque [média temporel](glossaire.md#media-temporel-type-son-video-et-synchronise) pré-enregistré, la présentation des [sous-titres](glossaire.md#sous-titres-synchronises-objet-multimedia) est-elle contrôlable par l’utilisateur (hors cas particuliers) ?",
+     "title": "Pour chaque média temporel pré-enregistré, la présentation des sous-titres est-elle contrôlable par l’utilisateur (hors cas particuliers) ?",
      "tests": {
       "1": {
        "id": "3.17.1",
@@ -728,7 +728,7 @@
      "id": "3.18",
      "number": 18,
      "level": "AA",
-     "title": "Pour chaque [média temporel](glossaire.md#media-temporel-type-son-video-et-synchronise) synchronisé pré-enregistré qui possède des [sous-titres de traduction](glossaire.md#sous-titres-de-traduction) synchronisés, ceux-ci peuvent-ils être vocalisés (hors cas particuliers) ?",
+     "title": "Pour chaque média temporel synchronisé pré-enregistré qui possède des sous-titres de traduction synchronisés, ceux-ci peuvent-ils être vocalisés (hors cas particuliers) ?",
      "tests": {
       "1": {
        "id": "3.18.1",
@@ -759,7 +759,7 @@
      "id": "4.1",
      "number": 1,
      "level": "A",
-     "title": "Chaque [tableau de données complexe](glossaire.md#tableau-de-donnees-complexe) a-t-il un [résumé](glossaire.md#resume-de-tableau) ?",
+     "title": "Chaque tableau de données complexe a-t-il un résumé ?",
      "tests": {},
      "methodology": "###### iOS et Android\n1.  Repérer dans l’écran les tableaux de données complexes.\n2.  Activer le **lecteur d’écran**.\n3.  Vérifier :\n    *   qu’un résumé est restitué lorsque le lecteur d’écran atteint le tableau ;\n    *   ou qu’un résumé est disponible avant le tableau, sous la forme d’un texte précédant le tableau.\n4.  Si c’est le cas, le critère est validé.",
      "references": {
@@ -776,7 +776,7 @@
      "id": "4.2",
      "number": 2,
      "level": "A",
-     "title": "Pour chaque [tableau de données complexe](glossaire.md#tableau-de-donnees-complexe) ayant un [résumé](glossaire.md#resume-de-tableau), celui-ci est-il pertinent ?",
+     "title": "Pour chaque tableau de données complexe ayant un résumé, celui-ci est-il pertinent ?",
      "tests": {},
      "methodology": "###### iOS et Android\n1.  Vérifier que chaque résumé de tableau est pertinent, c’est-à-dire qu’il permet de comprendre la nature des données et la construction du tableau.\n2.  Si c’est le cas, le critère est validé.",
      "references": {
@@ -793,7 +793,7 @@
      "id": "4.3",
      "number": 3,
      "level": "A",
-     "title": "Chaque [tableau de données](glossaire.md#tableau-de-donnees) a-t-il un [titre](glossaire.md#titre-d-un-tableau-de-donnees) ?",
+     "title": "Chaque tableau de données a-t-il un titre ?",
      "tests": {},
      "methodology": "###### iOS et Android\n1.  Repérer dans l’écran les tableaux de données.\n2.  Activer le **lecteur d’écran**.\n3.  Vérifier qu’un titre est restitué lorsque le lecteur d’écran atteint le tableau.\n4.  Si c’est le cas, le critère est validé.",
      "references": {
@@ -810,7 +810,7 @@
      "id": "4.4",
      "number": 4,
      "level": "A",
-     "title": "Pour chaque [tableau de données](glossaire.md#tableau-de-donnees) ayant un [titre](glossaire.md#titre-d-un-tableau-de-donnees), celui-ci est-il pertinent ?",
+     "title": "Pour chaque tableau de données ayant un titre, celui-ci est-il pertinent ?",
      "tests": {},
      "methodology": "###### iOS et Android\n1.  Vérifier que chaque titre de tableau de données est pertinent, c’est-à-dire qu’il permet d’identifier la nature des données présentées dans le tableau.\n2.  Si c’est le cas, le critère est validé.",
      "references": {
@@ -827,7 +827,7 @@
      "id": "4.5",
      "number": 5,
      "level": "A",
-     "title": "Pour chaque [tableau de données](glossaire.md#tableau-de-donnees), les entêtes de lignes et de colonnes sont-ils correctement reliés aux cellules de données ?",
+     "title": "Pour chaque tableau de données, les entêtes de lignes et de colonnes sont-ils correctement reliés aux cellules de données ?",
      "tests": {},
      "methodology": "###### iOS et Android\n1.  Repérer dans l’écran les tableaux de données.\n2.  Activer le **lecteur d’écran** et parcourir les cellules de données.\n3.  Vérifier que les entêtes sont correctement restitués.\n4.  Si c’est le cas, le critère est validé.",
      "references": {
@@ -851,7 +851,7 @@
      "id": "5.1",
      "number": 1,
      "level": "A",
-     "title": "Chaque [composant d’interface](glossaire.md#composant-d-interface) est-il, si nécessaire, [compatible avec les technologies d’assistance](glossaire.md#compatible-avec-les-technologies-d-assistance) (hors cas particuliers) ?",
+     "title": "Chaque composant d’interface est-il, si nécessaire, compatible avec les technologies d’assistance (hors cas particuliers) ?",
      "tests": {
       "1": {
        "id": "5.1.1",
@@ -903,7 +903,7 @@
      "id": "5.2",
      "number": 2,
      "level": "A",
-     "title": "Chaque [composant d’interface](glossaire.md#composant-d-interface) est-il [contrôlable par le clavier et tout dispositif de pointage](glossaire.md#accessible-et-activable-par-le-clavier-et-tout-dispositif-de-pointage) (hors cas particuliers) ?",
+     "title": "Chaque composant d’interface est-il contrôlable par le clavier et tout dispositif de pointage (hors cas particuliers) ?",
      "tests": {},
      "methodology": "Il s’agit ici de s’assurer que le composant peut être utilisé par le lecteur d’écran, le contrôle vocal, un clavier externe ou tout autre commutateur externe. On peut limiter les tests à quelques dispositifs de pointage puisque les caractéristiques nécessaires (sur les composants interactifs) sont semblables.\nIl est néanmoins nécessaire de tester au moins avec le lecteur d’écran et un clavier externe.\nPour le clavier externe, [certains paramétrages sont nécessaires pour que le périphérique soit pleinement fonctionnel](methodologie.md#clavier-externe).\n###### iOS et Android\n1.  Activer le **lecteur d’écran**.\n2.  Parcourir l’ensemble des composants interactifs.\n3.  Vérifier :\n    *   qu’il peut être atteint avec le lecteur d’écran ;\n    *   qu’il peut être activé avec le lecteur d’écran.\n4.  Si c’est un composant modifiable (champ de saisie, case à cocher, potentiomètre), vérifier qu’il peut être modifié avec le lecteur d’écran.\n5.  Connecter un **clavier externe** (et [paramétrer la navigation au clavier](methodologie.md#clavier-externe)).\n6.  Parcourir l’ensemble des composants interactifs.\n7.  Vérifier :\n    *   qu’il peut être atteint avec les touches du clavier ;\n    *   qu’il peut être activé avec la touche dédiée du clavier.\n8.  Si c’est un composant modifiable (champ de saisie, case à cocher, potentiomètre), vérifier qu’il peut être modifié avec les touches du clavier.\n9.  Si c’est le cas, le critère est validé.",
      "references": {
@@ -929,7 +929,7 @@
      "id": "5.3",
      "number": 3,
      "level": "A",
-     "title": "Chaque [changement de contexte](glossaire.md#changement-de-contexte) respecte-t-il une de ces conditions ?",
+     "title": "Chaque changement de contexte respecte-t-il une de ces conditions ?",
      "tests": {
       "1": {
        "id": "5.3.1",
@@ -957,7 +957,7 @@
      "id": "5.4",
      "number": 4,
      "level": "AA",
-     "title": "Dans chaque écran, les [messages de statut](glossaire.md#message-de-statut) sont-ils correctement restitués par les technologies d’assistance ?",
+     "title": "Dans chaque écran, les messages de statut sont-ils correctement restitués par les technologies d’assistance ?",
      "tests": {},
      "methodology": "###### iOS et Android\n1.  Activer le **lecteur d’écran**.\n2.  Réaliser les actions nécessaires à l’apparition d’un message de statut par exemple :\n    *   remplir correctement un formulaire et le valider pour faire apparaître un message indiquant l’envoi avec succès ;\n    *   soumettre un formulaire avec des champs obligatoires sans saisie pour faire apparaître un message indiquant la présence d’erreurs ;\n    *   afficher un écran qui nécessite un certain temps de chargement pour faire apparaître un message de progression ou un indicateur de progression de chargement.\n3.  Vérifier que lorsque le statut apparaît, le lecteur d’écran restitue l’information et que cette information est compréhensible.\n4.  Si c’est le cas, le critère est validé.",
      "references": {
@@ -975,7 +975,7 @@
      "id": "5.5",
      "number": 5,
      "level": "A",
-     "title": "Chaque état d’un [contrôle à bascule](glossaire.md#controle-a-bascule) présenté à l’utilisateur est-il perceptible ?",
+     "title": "Chaque état d’un contrôle à bascule présenté à l’utilisateur est-il perceptible ?",
      "tests": {
       "1": {
        "id": "5.5.1",
@@ -1021,7 +1021,7 @@
      "id": "6.2",
      "number": 2,
      "level": "A",
-     "title": "Dans chaque écran, les éléments de l’interface ne doivent pas être utilisés [uniquement à des fins de présentation](glossaire.md#uniquement-a-des-fins-de-presentation). Cette règle est-elle respectée ?",
+     "title": "Dans chaque écran, les éléments de l’interface ne doivent pas être utilisés uniquement à des fins de présentation. Cette règle est-elle respectée ?",
      "tests": {},
      "methodology": "Dans ce critère, on ne contrôle que les éléments qui ne doivent pas être interactifs (les éléments texte, les tableaux par exemple).\n###### iOS avec VoiceOver\n1.  Activer le **lecteur d’écran** et parcourir l’ensemble des éléments de l’écran.\n2.  Vérifier que le rôle restitué par le lecteur d’écran correspond à la nature de l’élément (par exemple, lorsque le lecteur d’écran atteint ce qui apparaît comme un paragraphe et qu’il restitue « Bouton », il s’agit d’une erreur, aucun rôle n’est restitué sur les paragraphes).\n3.  Si c’est le cas, le critère est validé.\n###### iOS Avec _Accessibility Inspector_{lang=en}\n1.  Connecter le terminal mobile iOS à l’ordinateur avec macOS.\n2.  Activer le logiciel **Accessibility Inspector**{lang=en}.\n3.  Choisir le terminal mobile comme source et rester sur l’onglet « Inspection » (boutons en haut à droite).\n4.  Avec les flèches de _Accessibility Inspector_{lang=en}, accéder à chaque élément de l’interface.\n5.  Vérifier que le rôle disponible dans le paramètre « _Traits_{lang=en} » est pertinent au regard de la nature de l’élément associé (par exemple, un simple texte qui aurait un rôle de bouton serait considéré non conforme, il devrait être identifié comme un texte statique).\n6.  Si c’est le cas, le critère est validé.\n###### Android\n1.  Activer le **lecteur d’écran** et parcourir l’ensemble des éléments de l’écran.\n2.  Vérifier que le rôle restitué par le lecteur d’écran correspond à la nature de l’élément (par exemple, lorsque le lecteur d’écran atteint ce qui apparaît comme un paragraphe et qu’il restitue « Bouton », il s’agit d’une erreur, aucun rôle n’est restitué sur les paragraphes).\n3.  Si c’est le cas, le critère est validé.",
      "references": {
@@ -1148,7 +1148,7 @@
      "id": "8.3",
      "number": 3,
      "level": "A",
-     "title": "Dans chaque écran, chaque [composant en environnement de texte dont la nature n’est pas évidente](glossaire.md#composant-dont-la-nature-n-est-pas-evidente) a-t-il un rapport de contraste supérieur ou égal à 3:1 par rapport au texte environnant ?",
+     "title": "Dans chaque écran, chaque composant en environnement de texte dont la nature n’est pas évidente a-t-il un rapport de contraste supérieur ou égal à 3:1 par rapport au texte environnant ?",
      "tests": {},
      "methodology": "###### iOS\n1.  Activer l’option **Différencier sans couleur** (_Réglages > Accessibilité > Affichage et taille du texte > Différencier sans couleur_).\n2.  Activer l’option **Augmenter le contraste** (_Réglages > Accessibilité > Affichage et taille du texte > Augmenter le contraste_) ou s’il est présent dans l’application, activer le mécanisme de remplacement permettant d’afficher l’application avec un rapport de contraste suffisant.\n3.  Repérer dans l’écran les composants d’interface (liens, boutons) avec du texte intégrés dans un environnement de texte (dans une phrase par exemple), signifiés uniquement par la couleur (sans autre mise en forme qui les distingue du reste du texte dans lequel ils sont intégrés).\n4.  Activer le logiciel **Colour Contrast Analyser**{lang=en} sur l’ordinateur et capturer les couleurs du texte environnant et du composant interactif sur le terminal mobile, soit :\n    *   en [diffusant l’écran du terminal mobile sur l’ordinateur](methodologie.md#diffuser-l-ecran-du-terminal-mobile) ;\n    *   en réalisant des [captures d’écran](methodologie.md#realiser-des-captures-d-ecran) des éléments à évaluer (et en les important sur l’ordinateur).\n5.  Vérifier que le contraste entre la couleur de police du composant et la couleur de police du texte environnant est de 3:1, au moins.\n6.  Si c’est le cas, le critère est validé.\n###### Android\n1.  S’il existe dans l’application, activer le mécanisme de remplacement permettant d’afficher l’application avec un rapport de contraste suffisant.\n2.  Repérer dans l’écran les composants d’interface (liens, boutons) avec du texte intégrés dans un environnement de texte (dans une phrase par exemple) signifiés uniquement par la couleur (sans autre mise en forme qui les distingue du reste du texte dans lequel ils sont intégrés).\n3.  Activer le logiciel **Colour Contrast Analyser**{lang=en} sur l’ordinateur et capturer les couleurs du texte environnant et du composant interactif sur le terminal mobile, soit :\n    *   en [diffusant l’écran du terminal mobile sur l’ordinateur](methodologie.md#diffuser-l-ecran-du-terminal-mobile) ;\n    *   en réalisant des [captures d’écran](methodologie.md#realiser-des-captures-d-ecran) des éléments à évaluer (et en les important sur l’ordinateur).\n4.  Vérifier que le contraste entre la couleur de police du composant et la couleur de police du texte environnant est de 3:1, au moins.\n5.  Si c’est le cas, le critère est validé.",
      "references": {
@@ -1164,7 +1164,7 @@
      "id": "8.4",
      "number": 4,
      "level": "A",
-     "title": "Dans chaque écran, pour chaque [composant en environnement de texte dont la nature n’est pas évidente](glossaire.md#composant-dont-la-nature-n-est-pas-evidente), une indication autre que la couleur permet-elle de signaler la prise de focus et le survol à la souris ?",
+     "title": "Dans chaque écran, pour chaque composant en environnement de texte dont la nature n’est pas évidente, une indication autre que la couleur permet-elle de signaler la prise de focus et le survol à la souris ?",
      "tests": {},
      "methodology": "###### iOS et Android\n1.  Repérer dans l’écran les composants d’interface (liens, boutons) avec du texte intégrés dans un environnement de texte (dans une phrase par exemple), signifiés uniquement par la couleur (sans autre mise en forme qui les distingue du reste du texte dans lequel ils sont intégrés).\n2.  Connecter un **clavier externe** (et [paramétrer la navigation au clavier](methodologie.md#clavier-externe)).\n3.  Vérifier que la visibilité du focus telle que définie au niveau du système est préservée sur ces éléments.\n4.  Connecter une **souris**.\n5.  Vérifier que le survol des composants interactifs en environnement de texte est signifié par un autre moyen que la couleur (mise en gras, soulignement par exemple).\n6.  Si c’est le cas, le critère est validé.",
      "references": {
@@ -1180,7 +1180,7 @@
      "id": "8.5",
      "number": 5,
      "level": "A",
-     "title": "Dans chaque écran, pour chaque élément recevant le focus, la [prise de focus](glossaire.md#prise-de-focus) est-elle visible ?",
+     "title": "Dans chaque écran, pour chaque élément recevant le focus, la prise de focus est-elle visible ?",
      "tests": {},
      "methodology": "###### iOS\n1.  Connecter un **clavier externe** (et [paramétrer la navigation au clavier](methodologie.md#clavier-externe)).\n2.  Activer tous les [paramètres disponibles de style de focus](methodologie.md#clavier-externe).\n3.  Naviguer au clavier dans l’application et vérifier si la visibilité du focus telle que définie au niveau du système est préservée sur l’ensemble des éléments de l’application.\n4.  Si c’est le cas, le critère est validé.\n###### Android\n1.  Connecter un **clavier externe** et [paramétrer la navigation au clavier](methodologie.md#clavier-externe).\n2.  Naviguer au clavier dans l’application et vérifier :\n    *   si le test est réalisé sans activation d’un service d’accessibilité, que le focus est visible ;\n    *   si le test est réalisé avec l’activation d’un service d’accessibilité, que le focus tel que défini dans le service est visible sur l’ensemble des éléments de l’application.\n3.  Si c’est le cas, le critère est validé.",
      "references": {
@@ -1199,7 +1199,7 @@
      "id": "8.6",
      "number": 6,
      "level": "A",
-     "title": "Dans chaque écran, l’information ne doit pas être donnée uniquement par [la forme, taille ou position](glossaire.md#indication-donnee-par-la-forme-la-taille-ou-la-position). Cette règle est-elle respectée ?",
+     "title": "Dans chaque écran, l’information ne doit pas être donnée uniquement par la forme, taille ou position. Cette règle est-elle respectée ?",
      "tests": {},
      "methodology": "###### iOS et Android\n1.  Repérer dans l’écran les informations données par la forme, la taille ou la position dans un texte, un élément graphique, un média temporel ou non temporel. Ce peut être une icône positionnée à gauche d’un composant pour signifier qu’il est actif, ou une consigne dans l’écran qui demande d’activer un composant positionné à un certain endroit dans l’écran.\n2.  Vérifier qu’il existe un autre moyen de récupérer cette information dans l’écran (par exemple, un texte lisible par tous qui donne la même information).\n3.  Si ce n’est pas le cas, activer le **lecteur d’écran** et vérifier qu’une information alternative à la forme, la taille ou la position et restituée par le lecteur d’écran.\n4.  Si c’est le cas, le critère est validé.",
      "references": {
@@ -1217,7 +1217,7 @@
      "id": "8.7",
      "number": 7,
      "level": "AA",
-     "title": "Dans chaque écran, les contenus additionnels apparaissant à la prise de focus ou au survol d’un [composant d’interface](glossaire.md#composant-d-interface) sont-ils contrôlables par l’utilisateur (hors cas particuliers) ?",
+     "title": "Dans chaque écran, les contenus additionnels apparaissant à la prise de focus ou au survol d’un composant d’interface sont-ils contrôlables par l’utilisateur (hors cas particuliers) ?",
      "tests": {
       "1": {
        "id": "8.7.1",
@@ -1334,7 +1334,7 @@
      "id": "9.4",
      "number": 4,
      "level": "A",
-     "title": "Chaque étiquette de champ et son champ associé sont-ils [accolés](glossaire.md#accoles-etiquette-et-champ-accoles) ?",
+     "title": "Chaque étiquette de champ et son champ associé sont-ils accolés ?",
      "tests": {},
      "methodology": "###### iOS et Android\n1.  Repérer dans l’écran tous les champs de formulaire.\n2.  Pour chaque champ de formulaire, vérifier que l’étiquette visible est accolée au champ auquel elle est liée.\n3.  Si c’est le cas, le critère est validé.",
      "references": {
@@ -1380,7 +1380,7 @@
      "id": "9.6",
      "number": 6,
      "level": "A",
-     "title": "Dans chaque formulaire, les [champs de même nature](glossaire.md#champs-de-meme-nature) sont-ils identifiés, si nécessaire ?",
+     "title": "Dans chaque formulaire, les champs de même nature sont-ils identifiés, si nécessaire ?",
      "tests": {
       "1": {
        "id": "9.6.1",
@@ -1434,7 +1434,7 @@
      "id": "9.8",
      "number": 8,
      "level": "A",
-     "title": "Pour chaque champ de formulaire qui attend un [type de données et/ou un format spécifique](glossaire.md#type-et-format-de-donnees), l’information correspondante est-elle disponible ?",
+     "title": "Pour chaque champ de formulaire qui attend un type de données et/ou un format spécifique, l’information correspondante est-elle disponible ?",
      "tests": {
       "1": {
        "id": "9.8.1",
@@ -1486,7 +1486,7 @@
      "id": "9.10",
      "number": 10,
      "level": "AA",
-     "title": "Dans chaque formulaire, le [contrôle de saisie](glossaire.md#controle-de-saisie-formulaire) est-il accompagné, si nécessaire, de suggestions des types, formats de données ou valeurs attendus ?",
+     "title": "Dans chaque formulaire, le contrôle de saisie est-il accompagné, si nécessaire, de suggestions des types, formats de données ou valeurs attendus ?",
      "tests": {
       "1": {
        "id": "9.10.1",
@@ -1528,7 +1528,7 @@
      "id": "9.12",
      "number": 12,
      "level": "AA",
-     "title": "Pour chaque champ qui attend une [donnée personnelle de l’utilisateur](glossaire.md#donnee-personnelle-de-l-utilisateur), la saisie est-elle facilitée ?",
+     "title": "Pour chaque champ qui attend une donnée personnelle de l’utilisateur, la saisie est-elle facilitée ?",
      "tests": {
       "1": {
        "id": "9.12.1",
@@ -1560,7 +1560,7 @@
      "id": "10.1",
      "number": 1,
      "level": "A",
-     "title": "Dans chaque écran, l’[ordre de tabulation](glossaire.md#ordre-de-tabulation) au clavier est-il [cohérent](glossaire.md#coherent-ordre-de-lecture) ?",
+     "title": "Dans chaque écran, l’ordre de tabulation au clavier est-il cohérent ?",
      "tests": {},
      "methodology": "###### iOS et Android\n1.  Connecter un **clavier externe** (et [paramétrer la navigation au clavier](methodologie.md#clavier-externe)).\n2.  Naviguer sur l’ensemble des éléments de l’écran et vérifier que l’ordre de tabulation reste cohérent. Il n’est pas obligatoire que la tabulation suive l’ordre de lecture naturel (de gauche à droite et de haut en bas par exemple) tant que les éléments sont accessibles dans un ordre cohérent.\n3.  Repérer dans l’écran les composants (bouton par exemple) qui mettent à jour un contenu (affichage d’élément masqué, mise à jour dynamique de contenus par exemple) :\n    1.  activer le composant ;\n    2.  après l’affichage du contenu mis à jour, vérifier que la tabulation reste cohérente.\n4.  Si c’est le cas, le critère est validé.",
      "references": {
@@ -1576,7 +1576,7 @@
      "id": "10.2",
      "number": 2,
      "level": "A",
-     "title": "Dans chaque écran, l’ordre de restitution par les technologies d’assistance est-il [cohérent](glossaire.md#coherent-ordre-de-lecture) ?",
+     "title": "Dans chaque écran, l’ordre de restitution par les technologies d’assistance est-il cohérent ?",
      "tests": {},
      "methodology": "###### iOS et Android\n1.  Activer le **lecteur d’écran**.\n2.  Naviguer sur l’ensemble des éléments de l’écran avec les gestes du lecteur d’écran et vérifier que l’ordre d’accès aux éléments de l’écran (composants interactifs et textes) reste cohérent. Il n’est pas obligatoire que l’ordre suive l’ordre de lecture naturel (de gauche à droite et de haut en bas par exemple) tant que les éléments sont accessibles dans un ordre cohérent qui ne pose pas de problèmes de compréhension.\n3.  Repérer dans l’écran les composants (bouton par exemple) qui mettent à jour un contenu (affichage d’élément masqué, mise à jour dynamique de contenus par exemple) :\n    1.  activer le composant ;\n    2.  après l’affichage du contenu mis à jour, vérifier que le parcours du lecteur d’écran reste cohérent.\n4.  Si c’est le cas, le critère est validé.\n**Exemple de contenu dont l’implémentation pose un problème de compréhension :** une heure d’arrivée et une heure de départ sont affichées à l’écran sous forme de deux blocs d’informations visuelles (heure d’arrivée 17h00 ; heure de départ 18h00). Le lecteur d’écran atteint séquentiellement « heure d’arrivée » puis « heure de départ » puis « 17h00 » et enfin « 18h00 ». L’ordre de lecture ne correspond pas à l’ordre visuel, et l’ordre de lecture est problématique puisqu’il ne permet pas de lier les informations entre elles.",
      "references": {
@@ -1595,7 +1595,7 @@
      "id": "10.3",
      "number": 3,
      "level": "A",
-     "title": "Dans chaque écran, la navigation ne doit pas contenir de [piège au clavier](glossaire.md#piege-au-clavier). Cette règle est-elle respectée ?",
+     "title": "Dans chaque écran, la navigation ne doit pas contenir de piège au clavier. Cette règle est-elle respectée ?",
      "tests": {
       "1": {
        "id": "10.3.1",
@@ -1623,7 +1623,7 @@
      "id": "10.4",
      "number": 4,
      "level": "A",
-     "title": "Dans chaque écran, les [raccourcis clavier](glossaire.md#raccourci-clavier) n’utilisant qu’une seule touche (lettre minuscule ou majuscule, ponctuation, chiffre ou symbole) sont-ils contrôlables par l’utilisateur ?",
+     "title": "Dans chaque écran, les raccourcis clavier n’utilisant qu’une seule touche (lettre minuscule ou majuscule, ponctuation, chiffre ou symbole) sont-ils contrôlables par l’utilisateur ?",
      "tests": {
       "1": {
        "id": "10.4.1",
@@ -1656,7 +1656,7 @@
      "id": "11.1",
      "number": 1,
      "level": "A",
-     "title": "Pour chaque écran, l’utilisateur a-t-il le contrôle de chaque [limite de temps modifiant le contenu](glossaire.md#procede-de-rafraichissement) (hors cas particuliers) ?",
+     "title": "Pour chaque écran, l’utilisateur a-t-il le contrôle de chaque limite de temps modifiant le contenu (hors cas particuliers) ?",
      "tests": {
       "1": {
        "id": "11.1.1",
@@ -1713,7 +1713,7 @@
      "id": "11.3",
      "number": 3,
      "level": "A",
-     "title": "Dans chaque écran, chaque document bureautique en téléchargement possède-t-il, si nécessaire, une [version accessible](glossaire.md#version-accessible) (hors cas particuliers) ?",
+     "title": "Dans chaque écran, chaque document bureautique en téléchargement possède-t-il, si nécessaire, une version accessible (hors cas particuliers) ?",
      "tests": {
       "1": {
        "id": "11.3.1",
@@ -1746,7 +1746,7 @@
      "id": "11.4",
      "number": 4,
      "level": "A",
-     "title": "Pour chaque document bureautique ayant une [version accessible](glossaire.md#version-accessible), cette version offre-t-elle la même information (hors cas particuliers) ?",
+     "title": "Pour chaque document bureautique ayant une version accessible, cette version offre-t-elle la même information (hors cas particuliers) ?",
      "tests": {},
      "methodology": "###### iOS et Android\n1.  Pour chaque fichier proposé au téléchargement dans un format bureautique qui possède une version alternative présentée comme accessible, vérifier que les deux documents (le document d’origine et la version accessible dans un format bureautique ou dans l’application) offrent la même information.\n2.  Si c’est le cas, le critère est validé.",
      "references": {
@@ -1800,7 +1800,7 @@
      "id": "11.7",
      "number": 7,
      "level": "A",
-     "title": "Dans chaque écran, les [changements brusques de luminosité ou les effets de flash](glossaire.md#changement-brusque-de-luminosite-ou-effet-de-flash) sont-ils correctement utilisés ?",
+     "title": "Dans chaque écran, les changements brusques de luminosité ou les effets de flash sont-ils correctement utilisés ?",
      "tests": {
       "1": {
        "id": "11.7.1",
@@ -1826,7 +1826,7 @@
      "id": "11.8",
      "number": 8,
      "level": "A",
-     "title": "Dans chaque écran, chaque contenu en mouvement ou clignotant est-il [contrôlable](glossaire.md#controle-contenu-en-mouvement-ou-clignotant) par l’utilisateur ?",
+     "title": "Dans chaque écran, chaque contenu en mouvement ou clignotant est-il contrôlable par l’utilisateur ?",
      "tests": {
       "1": {
        "id": "11.8.1",
@@ -1882,7 +1882,7 @@
      "id": "11.10",
      "number": 10,
      "level": "A",
-     "title": "Dans chaque écran, les fonctionnalités activables au moyen d’un [geste complexe](glossaire.md#gestes-complexes-et-gestes-simples) sont-elles activables au moyen d’un [geste simple](glossaire.md#gestes-complexes-et-gestes-simples) (hors cas particuliers) ?",
+     "title": "Dans chaque écran, les fonctionnalités activables au moyen d’un geste complexe sont-elles activables au moyen d’un geste simple (hors cas particuliers) ?",
      "tests": {},
      "methodology": "###### iOS et Android\n1.  Repérer dans l’écran les fonctionnalités qui nécessitent de réaliser des gestes complexes (repérer la présence de consignes dans l’interface ou dans une documentation associée à l’application), par exemple :\n    *   l’utilisation simultanée de deux doigts ou plus ;\n    *   la réalisation d’un tracé de trajectoire (comme le geste _swipe_{lang=en}).\n2.  Vérifier qu’il existe une méthode alternative pour réaliser l’action associée avec un geste simple, par exemple l’appui sur une seule touche du clavier ou un bouton.\n3.  Si c’est le cas, le critère est validé.",
      "references": {
@@ -1967,7 +1967,7 @@
      "id": "11.14",
      "number": 14,
      "level": "AA",
-     "title": "Pour chaque fonctionnalité de conversion d’un document, les [informations relatives à l’accessibilité](glossaire.md#information-d-accessibilite) disponibles dans le document source sont-elles conservées dans le document de destination (hors cas particuliers) ?",
+     "title": "Pour chaque fonctionnalité de conversion d’un document, les informations relatives à l’accessibilité disponibles dans le document source sont-elles conservées dans le document de destination (hors cas particuliers) ?",
      "tests": {},
      "methodology": "###### iOS et Android\n1.  Repérer dans l’écran les fonctionnalités de conversion de document (par exemple exportation en PDF, en .odt, HTML etc.)\n2.  Repérer dans le contenu original les informations d’accessibilité présentes (par exemple, une alternative d’un élément graphique, des niveaux de titres, une table des matières).\n3.  Vérifier que dans le document résultant de la conversion, les informations d’accessibilité sont toujours présentes (sauf si le format de conversion choisi ne possède pas de support pour les informations d’accessibilité du document source).\n4.  Si c’est le cas, le critère est validé.",
      "references": {
@@ -1980,7 +1980,7 @@
      "id": "11.15",
      "number": 15,
      "level": "A",
-     "title": "Chaque fonctionnalité d’identification ou de contrôle qui repose sur l’utilisation de [caractéristiques biologiques](glossaire.md#caracteristique-biologique) de l’utilisateur dispose-t-elle d’une méthode alternative ?",
+     "title": "Chaque fonctionnalité d’identification ou de contrôle qui repose sur l’utilisation de caractéristiques biologiques de l’utilisateur dispose-t-elle d’une méthode alternative ?",
      "tests": {
       "1": {
        "id": "11.15.1",
@@ -2003,7 +2003,7 @@
      "id": "11.16",
      "number": 16,
      "level": "A",
-     "title": "Pour chaque application qui intègre une fonctionnalité de [répétition des touches](glossaire.md#repetition-des-touches), la répétition est-elle ajustable (hors cas particuliers) ?",
+     "title": "Pour chaque application qui intègre une fonctionnalité de répétition des touches, la répétition est-elle ajustable (hors cas particuliers) ?",
      "tests": {
       "1": {
        "id": "11.16.1",
@@ -2032,7 +2032,7 @@
      "id": "12.1",
      "number": 1,
      "level": "AA",
-     "title": "La [documentation](glossaire.md#documentation) de l’application décrit-elle les [fonctionnalités d’accessibilité](glossaire.md#fonctionnalite-d-accessibilite) disponibles et les informations relatives à la compatibilité avec l’accessibilité ?",
+     "title": "La documentation de l’application décrit-elle les fonctionnalités d’accessibilité disponibles et les informations relatives à la compatibilité avec l’accessibilité ?",
      "tests": {
       "1": {
        "id": "12.1.1",
@@ -2056,7 +2056,7 @@
      "id": "12.2",
      "number": 2,
      "level": "A",
-     "title": "Pour chaque [fonctionnalité d’accessibilité](glossaire.md#fonctionnalite-d-accessibilite) décrite dans la [documentation](glossaire.md#documentation), le [mécanisme qui permet de l’activer](glossaire.md#mecanisme-qui-permet-d-activer-une-fonctionnalite-d-accessibilite) répond aux besoins d’accessibilité des utilisateurs concernés. Cette règle est-elle respectée (hors cas particuliers) ?",
+     "title": "Pour chaque fonctionnalité d’accessibilité décrite dans la documentation, le mécanisme qui permet de l’activer répond aux besoins d’accessibilité des utilisateurs concernés. Cette règle est-elle respectée (hors cas particuliers) ?",
      "tests": {},
      "methodology": "###### iOS et Android\n1.  Repérer les fonctionnalités d’accessibilité décrites dans la documentation. Par exemple :\n    *   accéder à une version du contenu en langage simplifié ;\n    *   agrandir la taille du texte.\n2.  Vérifier que les utilisateurs concernés par chaque fonctionnalité d’accessibilité sont en mesure d’y accéder. Par exemple :\n    *   Version alternative en langage simplifié : le mécanisme ou l’ensemble des mécanismes qui permettent d’activer la fonctionnalité doit être compréhensible et identifiable par une personne qui bénéficie du langage simplifié (par exemple, l’emploi du [logo « Facile à lire »](https://www.inclusion-europe.eu/easy-to-read/) pour identifier le mécanisme est une solution conforme).\n    *   Agrandissement de la taille des caractères : si le mécanisme contient du texte, alors le texte doit être affiché par défaut avec une taille de police équivalent à 200% de la taille de police initiale.\n3.  Vérifier qu’il est possible d’activer cette fonctionnalité.\n4.  Si c’est le cas, le critère est validé.",
      "references": {
@@ -2082,7 +2082,7 @@
      "id": "12.4",
      "number": 4,
      "level": "A",
-     "title": "La documentation de l’application est-elle conforme aux [règles d’accessibilité numérique](glossaire.md#regles-d-accessibilite-numerique) ?",
+     "title": "La documentation de l’application est-elle conforme aux règles d’accessibilité numérique ?",
      "tests": {
       "1": {
        "id": "12.4.1",
@@ -2131,7 +2131,7 @@
      "id": "13.1",
      "number": 1,
      "level": "A",
-     "title": "Chaque [outil d’édition](glossaire.md#outil-d-edition) permet-il de définir les [informations d’accessibilité](glossaire.md#information-d-accessibilite) nécessaires pour créer un contenu conforme aux [règles d’accessibilité numérique](glossaire.md#regles-d-accessibilite-numerique) ?",
+     "title": "Chaque outil d’édition permet-il de définir les informations d’accessibilité nécessaires pour créer un contenu conforme aux règles d’accessibilité numérique ?",
      "tests": {
       "1": {
        "id": "13.1.1",
@@ -2174,7 +2174,7 @@
      "id": "13.2",
      "number": 2,
      "level": "A",
-     "title": "Chaque [outil d’édition](glossaire.md#outil-d-edition) met-il à disposition des [aides à la création de contenus conformes](glossaire.md#aide-a-la-creation-de-contenus-accessibles) aux [règles d’accessibilité numérique](glossaire.md#regles-d-accessibilite-numerique) ?",
+     "title": "Chaque outil d’édition met-il à disposition des aides à la création de contenus conformes aux règles d’accessibilité numérique ?",
      "tests": {},
      "methodology": "###### iOS et Android\n1.  Repérer dans l’outil la présence d’aides à la création de contenus accessibles. Cela peut être :\n    *   des tests automatiques ou semi-automatiques disponibles depuis les fonctionnalités d’édition ;\n    *   d’autres outils automatiques (un _chatbot_ par exemple) ;\n    *   une documentation qui explique comment définir les propriétés d’accessibilité pour chaque élément de contenu ;\n    *   des tests manuels disponibles depuis les fonctionnalités d’édition pour guider les auteurs dans la détection d’erreurs.\n2.  Vérifier que les aides à la création de contenus accessibles sont pertinentes, c’est-à-dire que les résultats ou les indications qu’elles donnent permettent de créer un contenu conforme aux règles d’accessibilité numérique.\n3.  Si c’est le cas, le critère est validé.",
      "references": {
@@ -2188,7 +2188,7 @@
      "id": "13.3",
      "number": 3,
      "level": "A",
-     "title": "Le contenu généré par chaque [transformation](glossaire.md#transformation) des contenus est-il conforme aux [règles d’accessibilité numérique](glossaire.md#regles-d-accessibilite-numerique) (hors cas particuliers) ?",
+     "title": "Le contenu généré par chaque transformation des contenus est-il conforme aux règles d’accessibilité numérique (hors cas particuliers) ?",
      "tests": {},
      "methodology": "###### iOS et Android\n1.  Depuis les fonctionnalités d’édition (un éditeur de texte, mais cela peut être une médiathèque et toute autre interface qui permet de saisir du texte ou définir des propriétés), saisir les typologies de contenus proposées par l’éditeur (titre, liste, tableau, image, etc.). Utiliser également les différents paramètres permettant de définir des informations d’accessibilité (renseigner l’alternative textuelle d’une image, ajouter une description sur un lien, etc.)\n2.  Enregistrer les saisies.\n3.  Consulter le contenu généré :\n    *   dans la fonctionnalité d’édition (par exemple, dans l’éditeur de texte) ;\n    *   et dans l’interface de publication des contenus (par exemple, la page web de publication).\n4.  Pour chaque contenu au format web (HTML, CSS), vérifier :\n    *   que les informations nécessaires pour qu’il soit conforme au [RAWeb](../raweb1/index.html) (par exemple l’alternative d’une image, les niveaux de titres) sont préservées dans le contenu généré ;\n    *   que l’information, si elle est restructurée, reste compatible avec les technologies d’assistance (par exemple, si l’auteur saisit un tableau HTML et qu’après l’enregistrement, l’outil linéarise le tableau, l’information ainsi restructurée doit être compréhensible pour les utilisateurs de technologies d’assistance comme elle l’aurait été dans sa forme initiale).\n5.  Pour chaque contenu au format PDF, vérifier :\n    *   que les informations nécessaires pour qu’il soit conforme au [RAPDF](../rapdf1/index.html) (par exemple l’alternative d’une image, les niveaux de titres) sont préservées dans le contenu généré ;\n    *   que l’information, si elle est restructurée, reste compatible avec les technologies d’assistance (par exemple, si l’auteur saisit un tableau et qu’après l’enregistrement, l’outil linéarise le tableau, l’information ainsi restructurée doit être compréhensible pour les utilisateurs de technologies d’assistance comme elle l’aurait été dans sa forme initiale).\n6.  Pour chaque contenu au format non web qui n’est pas du PDF, vérifier :\n    *   que les informations nécessaires pour qu’il soit conforme à la [section 10 Non-web documents](https://www.etsi.org/deliver/etsi_en/301500_301599/301549/03.02.01_60/en_301549v030201p.pdf#page=52) de la norme européenne EN 301 549 v3.2.1 sont préservées dans le contenu généré ;\n    *   que l’information, si elle est restructurée, reste compatible avec les technologies d’assistance (par exemple, si l’auteur saisit un tableau et qu’après l’enregistrement, l’outil linéarise le tableau, l’information ainsi restructurée doit être compréhensible pour les utilisateurs de technologies d’assistance comme elle l’aurait été dans sa forme initiale).\n7.  Pour chaque contenu diffusé dans une application mobile, vérifier :\n    *   que les informations nécessaires pour qu’il soit conforme au RAAM (par exemple l’alternative d’une image, l’identification des titres) sont préservées dans le contenu généré ;\n    *   que l’information, si elle est restructurée, reste compatible avec les technologies d’assistance (par exemple, si l’auteur saisit un tableau HTML et qu’après l’enregistrement, l’outil linéarise le tableau, l’information ainsi restructurée doit être compréhensible pour les utilisateurs de technologies d’assistance comme elle l’aurait été dans sa forme initiale).\n8.  Si c’est le cas, le critère est validé.",
      "references": {
@@ -2202,7 +2202,7 @@
      "id": "13.4",
      "number": 4,
      "level": "AA",
-     "title": "Pour chaque erreur d’accessibilité relevée par un test d’accessibilité automatique ou semi-automatique, l’[outil d’édition](glossaire.md#outil-d-edition) fournit-il des suggestions de réparation ?",
+     "title": "Pour chaque erreur d’accessibilité relevée par un test d’accessibilité automatique ou semi-automatique, l’outil d’édition fournit-il des suggestions de réparation ?",
      "tests": {},
      "methodology": "###### iOS et Android\n1.  Repérer dans l’outil la présence de fonctionnalités de tests automatiques ou semi-automatiques.\n2.  Générer du contenu (web et non-web) avec l’outil d’édition avec des erreurs d’accessibilité.\n3.  Activer les fonctionnalités de tests.\n4.  Vérifier :\n    *   que l’outil répare automatiquement l’erreur (test automatique) ;\n    *   ou que l’outil met à disposition de l’auteur des suggestions de réparations (test semi-automatique).\n5.  Dans le cas d’un test semi-automatique, vérifier :\n    *   que l’outil met à disposition une aide à la décision et des suggestions de réparations ;\n    *   ou que l’outil met à disposition de l’auteur des explications pour effectuer la réparation.\n6.  Si c’est le cas, le critère est validé.",
      "references": {
@@ -2216,7 +2216,7 @@
      "id": "13.5",
      "number": 5,
      "level": "A",
-     "title": "Pour chaque ensemble de [gabarits](glossaire.md#gabarit), un gabarit au moins permet de répondre aux [règles d’accessibilité numérique](glossaire.md#regles-d-accessibilite-numerique). Cette règle est-elle respectée ?",
+     "title": "Pour chaque ensemble de gabarits, un gabarit au moins permet de répondre aux règles d’accessibilité numérique. Cette règle est-elle respectée ?",
      "tests": {
       "1": {
        "id": "13.5.1",
@@ -2259,7 +2259,7 @@
      "id": "13.6",
      "number": 6,
      "level": "A",
-     "title": "Chaque [gabarit](glossaire.md#gabarit) qui permet de répondre aux [règles d’accessibilité numérique](glossaire.md#regles-d-accessibilite-numerique) est-il clairement identifiable ?",
+     "title": "Chaque gabarit qui permet de répondre aux règles d’accessibilité numérique est-il clairement identifiable ?",
      "tests": {},
      "methodology": "###### iOS et Android\n1.  Repérer la présence de gabarits totalement conformes aux règles d’accessibilité numérique mis à disposition par l’outil d’édition.\n2.  Vérifier la présence d’une mention explicite permettant de les identifier. Par exemple, depuis la liste des gabarits, les gabarits conformes possèdent une étiquette « gabarit accessible ».\n3.  Si c’est le cas, le critère est validé.",
      "references": {
@@ -2279,7 +2279,7 @@
      "id": "14.1",
      "number": 1,
      "level": "AA",
-     "title": "Chaque [service d’assistance](glossaire.md#service-d-assistance) fournit-il des informations relatives aux [fonctionnalités d’accessibilité](glossaire.md#fonctionnalite-d-accessibilite) et à la compatibilité avec l’accessibilité, décrites dans la [documentation](glossaire.md#documentation) ?",
+     "title": "Chaque service d’assistance fournit-il des informations relatives aux fonctionnalités d’accessibilité et à la compatibilité avec l’accessibilité, décrites dans la documentation ?",
      "tests": {},
      "methodology": "###### iOS et Android\n1.  Repérer la mise à disposition d’un service d’assistance depuis l’application.\n2.  Si c’est le cas, repérer dans l’application la présence d’une documentation.\n3.  Repérer la présence dans la documentation :\n    *   de la description des fonctionnalités d’accessibilité proposées par l’application ;\n    *   de la description des composants complexes pour lesquels il est mis en place une gestion particulière selon les technologies d’assistance ;\n    *   d’explications sur les modalités d’utilisation de ces fonctionnalités (leur localisation, les méthodes pour les activer) ;\n    *   de la description des éléments non conformes ou non compatibles avec certaines technologies d’assistance, et de la présence d’alternatives le cas échéant.\n4.  Vérifier que le service d’assistance propose des informations concernant ces fonctionnalités.\n5.  Si c’est le cas, le critère est validé.",
      "references": {
@@ -2292,7 +2292,7 @@
      "id": "14.2",
      "number": 2,
      "level": "A",
-     "title": "Le [service d’assistance](glossaire.md#service-d-assistance) répond aux besoins de communication des personnes handicapées directement ou par [l’intermédiaire d’un service de relais](glossaire.md#service-de-relais). Cette règle est-elle respectée ?",
+     "title": "Le service d’assistance répond aux besoins de communication des personnes handicapées directement ou par l’intermédiaire d’un service de relais. Cette règle est-elle respectée ?",
      "tests": {},
      "methodology": "###### iOS et Android\n1.  Repérer la présence dans l’application d’un service d’assistance.\n2.  Si c’est le cas, vérifier que le service d’assistance peut être utilisé par toutes les personnes en situation de handicap. Il peut être utile de rechercher dans la [documentation](glossaire.md#documentation) de l’application pour trouver ces informations. Par exemple, si le service d’assistance est disponible depuis un numéro de téléphone, vérifier qu’il existe des moyens alternatifs pour les utilisateurs qui n’accèdent pas ou peu au langage oral (personnes sourdes ou malentendantes) ou qui ne peuvent pas utiliser le langage verbal (personnes aphasiques). Par exemple :\n    *   une adresse mail ou un formulaire en ligne ;\n    *   une messagerie instantanée ;\n    *   la mise à disposition d’une traduction écrite simultanée ou visuelle des informations orales ou sonores, ou la mise à disposition d’un interprète en langue des signes (utilisation d’un service de relais).\n3.  Si c’est le cas, le critère est validé.",
      "references": {
@@ -2305,7 +2305,7 @@
      "id": "14.3",
      "number": 3,
      "level": "A",
-     "title": "La [documentation](glossaire.md#documentation) fournie par le [service d’assistance](glossaire.md#service-d-assistance) est-elle conforme aux [règles d’accessibilité numérique](glossaire.md#regles-d-accessibilite-numerique) ?",
+     "title": "La documentation fournie par le service d’assistance est-elle conforme aux règles d’accessibilité numérique ?",
      "tests": {
       "1": {
        "id": "14.3.1",
@@ -2353,7 +2353,7 @@
      "id": "15.1",
      "number": 1,
      "level": "A",
-     "title": "Pour chaque [application de communication orale bidirectionnelle](glossaire.md#application-de-communication-orale-bidirectionnelle), l’application est-elle capable d’encoder et de décoder cette communication avec une gamme de fréquences dont la limite supérieure est de 7 000 Hz au moins ?",
+     "title": "Pour chaque application de communication orale bidirectionnelle, l’application est-elle capable d’encoder et de décoder cette communication avec une gamme de fréquences dont la limite supérieure est de 7 000 Hz au moins ?",
      "tests": {},
      "methodology": "###### iOS et Android\n1.  Activer l’application et lancer un appel entre les deux terminaux.\n2.  Vérifier que la qualité de l’activité orale avec l’application web est au moins équivalente à la qualité de l’activité orale lors d’un appel avec un téléphone fixe.\n3.  Si le test n’est pas satisfaisant (par exemple, mauvaise compréhension de certains mots énoncés par l’interlocuteur, présence de bruits parasites, etc.), vérifier dans la documentation de l’application :\n    *   la présence d’une référence à l’implémentation de la [recommandation UIT-T G.722](https://www.itu.int/rec/T-REC-G.722/fr) ;\n    *   ou la présence d’une référence à l’utilisation du [codec opus de l’API WebRTC](https://developer.mozilla.org/en-US/docs/Web/Media/Formats/WebRTC_codecs) ;\n    *   ou la présence d’une référence à l’utilisation d’un encodage et décodage dont la fréquence est supérieure ou égale à 7 000 Hz.\n4.  Sinon, il est recommandé de demander à l’éditeur de l’application de fournir ces détails techniques, notamment en demandant si l’application web implémente par exemple la recommandation UIT-T G.722 ou utilise le codec opus de l’API WebRTC.\n5.  Si c’est le cas, le critère est validé.\nSi l’information ne peut être trouvée dans l’interface ou sa documentation, et que l’éditeur de l’application n’est pas en mesure de répondre sur cette caractéristique technique, le critère sera considéré non conforme.",
      "references": {
@@ -2366,7 +2366,7 @@
      "id": "15.2",
      "number": 2,
      "level": "A",
-     "title": "Chaque application qui permet une [communication orale bidirectionnelle](glossaire.md#application-de-communication-orale-bidirectionnelle) dispose-t-elle d’une fonctionnalité de [communication écrite en temps réel](glossaire.md#communication-ecrite-en-temps-reel) ?",
+     "title": "Chaque application qui permet une communication orale bidirectionnelle dispose-t-elle d’une fonctionnalité de communication écrite en temps réel ?",
      "tests": {},
      "methodology": "###### iOS et Android\n1.  Vérifier que l’application permet la communication orale bidirectionnelle.\n2.  Si c’est le cas, vérifier la présence d’une fonctionnalité de communication écrite en temps réel (il peut être parfois nécessaire d’activer un paramètre dédié dans l’application pour permettre la communication écrite en temps réel).\n3.  Si c’est le cas, le critère est validé.\nSi l’information ne peut être trouvée dans l’interface ou sa documentation, et que l’éditeur de l’application n’est pas en mesure de répondre sur cette caractéristique technique, le critère sera considéré non conforme.",
      "references": {
@@ -2379,7 +2379,7 @@
      "id": "15.3",
      "number": 3,
      "level": "A",
-     "title": "Pour chaque application qui permet une [communication orale bidirectionnelle](glossaire.md#application-de-communication-orale-bidirectionnelle) et [écrite en temps réel](glossaire.md#communication-ecrite-en-temps-reel), les deux modes sont-ils utilisables simultanément ?",
+     "title": "Pour chaque application qui permet une communication orale bidirectionnelle et écrite en temps réel, les deux modes sont-ils utilisables simultanément ?",
      "tests": {},
      "methodology": "###### iOS et Android\n1.  Vérifier que l’application permet la communication orale bidirectionnelle.\n2.  Si c’est le cas, vérifier la présence d’une fonctionnalité de communication écrite en temps réel.\n3.  Si c’est le cas, vérifier qu’il est possible d’utiliser les deux modes de communications en même temps, c’est-à-dire qu’il est possible pour un même utilisateur de parler et d’utiliser simultanément le système de communication écrite en temps réel.\n4.  Si c’est le cas, le critère est validé.",
      "references": {
@@ -2392,7 +2392,7 @@
      "id": "15.4",
      "number": 4,
      "level": "A",
-     "title": "Pour chaque fonctionnalité de [communication écrite en temps réel](glossaire.md#communication-ecrite-en-temps-reel), les messages peuvent-ils être identifiés (hors cas particuliers) ?",
+     "title": "Pour chaque fonctionnalité de communication écrite en temps réel, les messages peuvent-ils être identifiés (hors cas particuliers) ?",
      "tests": {
       "1": {
        "id": "15.4.1",
@@ -2427,7 +2427,7 @@
      "id": "15.5",
      "number": 5,
      "level": "A",
-     "title": "Pour chaque application de [communication orale bidirectionnelle](glossaire.md#application-de-communication-orale-bidirectionnelle), un indicateur visuel de l’activité orale est-il présent ?",
+     "title": "Pour chaque application de communication orale bidirectionnelle, un indicateur visuel de l’activité orale est-il présent ?",
      "tests": {
       "1": {
        "id": "15.5.1",
@@ -2456,7 +2456,7 @@
      "id": "15.6",
      "number": 6,
      "level": "A",
-     "title": "Chaque application de [communication écrite en temps réel](glossaire.md#communication-ecrite-en-temps-reel) qui peut interagir avec d’autres applications de [communication écrite en temps réel](glossaire.md#communication-ecrite-en-temps-reel) respecte-t-elle les règles d’interopérabilité en vigueur ?",
+     "title": "Chaque application de communication écrite en temps réel qui peut interagir avec d’autres applications de communication écrite en temps réel respecte-t-elle les règles d’interopérabilité en vigueur ?",
      "tests": {},
      "methodology": "###### iOS et Android\nCe critère est très complexe à évaluer et demande une certaine maîtrise de l’ensemble des concepts et normes d’interopérabilité.\nIl est recommandé de demander à l’éditeur de l’application de vérifier que l’ensemble des exigences décrites dans le critère _6.2.3 Interoperability_{lang=en} de la norme EN 301 549 sont respectées.\nIl est également conseillé de rechercher dans la documentation ou de questionner directement l’éditeur de l’application.\nSi l’information ne peut être trouvée dans l’interface ou sa documentation, et que l’éditeur de l’application n’est pas en mesure de répondre sur cette caractéristique technique, le critère sera considéré non conforme.",
      "references": {
@@ -2469,7 +2469,7 @@
      "id": "15.7",
      "number": 7,
      "level": "AA",
-     "title": "Pour chaque application qui permet une [communication écrite en temps réel](glossaire.md#communication-ecrite-en-temps-reel), le délai de transmission de chaque [unité de saisie](glossaire.md#unite-de-saisie) est de 500ms ou moins. Cette règle est-elle respectée ?",
+     "title": "Pour chaque application qui permet une communication écrite en temps réel, le délai de transmission de chaque unité de saisie est de 500ms ou moins. Cette règle est-elle respectée ?",
      "tests": {},
      "methodology": "###### iOS et Android\n1.  Vérifier que l’application permet la communication écrite en temps réel.\n2.  Si c’est le cas, activer l’application et la fonctionnalité de communication écrite sur deux terminaux distincts et les connecter à une même session.\n3.  Saisir du texte sur le premier terminal et observer son apparition sur le second terminal. L’apparition sur le second terminal doit être instantanée (inférieure à une demi-seconde). Selon le paramétrage de la fonctionnalité, chaque caractère n’est pas envoyé individuellement. En effet, si la fonctionnalité de communication écrite en temps réel implémente une prédiction de mots, c’est lorsque le mot désiré sera sélectionné qu’il sera envoyé, et non pas lors de la saisie des premiers caractères servant à déclencher l’affichage de suggestion. Un test par observation simple peut être suffisant pour constater l’apparition instantanée sur le terminal qui reçoit le message écrit.\n4.  Si c’est le cas, le critère est validé.",
      "references": {
@@ -2505,7 +2505,7 @@
      "id": "15.9",
      "number": 9,
      "level": "A",
-     "title": "Pour chaque application de [communication orale bidirectionnelle](glossaire.md#application-de-communication-orale-bidirectionnelle) qui permet d’identifier l’activité d’un interlocuteur oralisant, il est possible d’identifier l’activité d’un interlocuteur signant. Cette règle est-elle respectée ?",
+     "title": "Pour chaque application de communication orale bidirectionnelle qui permet d’identifier l’activité d’un interlocuteur oralisant, il est possible d’identifier l’activité d’un interlocuteur signant. Cette règle est-elle respectée ?",
      "tests": {},
      "methodology": "###### iOS et Android\n1.  Activer l’application et lancer un appel vidéo entre les deux terminaux.\n2.  Initier une activité orale, et vérifier la présence sur le second terminal d’une information permettant d’identifier cette activité (par exemple, la présence d’un halo de couleur autour de la vignette de l’interlocuteur en activité).\n3.  Si c’est le cas :\n    *   repérer la présence d’un mécanisme manuel (par exemple, un bouton) qui permettrait à l’interlocuteur signant d’indiquer qu’il est en train de signer ;\n    *   sinon, réaliser des gestes devant la caméra (voir note) et vérifier l’affichage automatique d’une information permettant d’identifier cette activité visuelle.\n4.  Si c’est le cas, le critère est validé.\nNote : dans les applications de communication, l’identification d’une activité orale ne repose pas sur l’identification d’un message verbal intelligible (mot ou phrase par exemple), mais uniquement sur l’identification d’un son (un bruit par exemple). Ainsi, une activité visuelle, même si elle ne correspond pas à un élément compréhensible en langue des signes, pourrait être détectée automatiquement par cette application et servirait donc comme mécanisme pour identifier l’activité d’une personne signante. Il est donc possible de tester en réalisant des gestes même s’ils ne correspondent pas à un élément de sens en langue des signes.",
      "references": {
@@ -2518,7 +2518,7 @@
      "id": "15.10",
      "number": 10,
      "level": "A",
-     "title": "Pour chaque application de [communication orale bidirectionnelle](glossaire.md#application-de-communication-orale-bidirectionnelle) qui dispose de [fonctionnalités vocales](glossaire.md#fonctionnalites-vocales), celles-ci sont-elles utilisables sans la nécessité d’écouter ou parler ?",
+     "title": "Pour chaque application de communication orale bidirectionnelle qui dispose de fonctionnalités vocales, celles-ci sont-elles utilisables sans la nécessité d’écouter ou parler ?",
      "tests": {},
      "methodology": "###### iOS et Android\n1.  Repérer dans l’application les fonctionnalités disponibles (en dehors de la fonctionnalité de communication orale) qui se basent sur l’écoute d’information ou l’énonciation de commande, par exemple :\n    *   une messagerie vocale ;\n    *   un standard téléphonique automatique (par exemple, qui demande d’énoncer un chiffre entre 1 et 4 pour être redirigé vers un service) ;\n    *   ou tout autre serveur vocal interactif.\n2.  Vérifier :\n    *   que l’information est disponible sans devoir écouter ou parler (par exemple grâce à une transcription textuelle ou un système de chat) ;\n    *   que les actions peuvent être réalisées sans devoir écouter ou parler ou qu’il existe une alternative à la fonctionnalité qui peut être utilisée sans devoir écouter ou parler.\n3.  Si c’est le cas, le critère est validé.",
      "references": {
@@ -2531,7 +2531,7 @@
      "id": "15.11",
      "number": 11,
      "level": "AA",
-     "title": "Pour chaque application de [communication orale bidirectionnelle](glossaire.md#application-de-communication-orale-bidirectionnelle) qui dispose d’une vidéo en temps réel, la qualité de la vidéo est-elle suffisante ?",
+     "title": "Pour chaque application de communication orale bidirectionnelle qui dispose d’une vidéo en temps réel, la qualité de la vidéo est-elle suffisante ?",
      "tests": {
       "1": {
        "id": "15.11.1",

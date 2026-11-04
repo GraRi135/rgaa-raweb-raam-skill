@@ -1,109 +1,109 @@
 criterion,level,topic,title,Accueil
-1.1,A,1 Graphic elements,Is every [decorative graphic element](glossaire.md#decorative-graphic-element) [ignored by assistive technologies](glossaire.md#ignored-by-assistive-technologies)?,NT
-1.2,A,1 Graphic elements,Does each [graphic element conveying information](glossaire.md#graphic-element-conveying-information) have an alternative [accessible to assistive technologies](glossaire.md#accessible-to-assistive-technologies)?,NC
-1.3,A,1 Graphic elements,"For each [graphic element conveying information](glossaire.md#graphic-element-conveying-information), is the alternative [accessible to assistive technologies](glossaire.md#accessible-to-assistive-technologies) relevant (excluding special cases)?",C
-1.4,A,1 Graphic elements,"For each [graphic element](glossaire.md#graphic-element) used as a [CAPTCHA](glossaire.md#captcha) or as a [test graphic element](glossaire.md#test-graphic-element), does the alternative rendered by the assistive technologies make it possible to identify the nature and function of the graphic element?",NA
-1.5,A,1 Graphic elements,Does each [graphic element](glossaire.md#graphic-element) used as a [CAPTCHA](glossaire.md#captcha) have an alternative?,NA
-1.6,A,1 Graphic elements,"Does each [graphic element conveying information](glossaire.md#graphic-element-conveying-information) have, where necessary, a [detailed description](glossaire.md#detailed-description)?",NT
-1.7,A,1 Graphic elements,"For each [graphic element conveying information](glossaire.md#graphic-element-conveying-information) with a [detailed description](glossaire.md#detailed-description), is this description relevant?",NT
-1.8,AA,1 Graphic elements,"Each [text graphic element](glossaire.md#text-graphic-element) conveying information, in the absence of a [replacement mechanism](glossaire.md#replacement-mechanism), must, if possible, be replaced by [styled text](glossaire.md#styled-text). Is this rule respected (excluding special cases)?",NT
-1.9,AA,1 Graphic elements,Is each [graphic element with legend](glossaire.md#graphic-element-with-legend) correctly rendered by assistive technologies?,NT
-2.1,A,2 Colours,"On each screen, [information must not be provided by colour alone](glossaire.md#information-provided-by-colour). Is this rule respected?",NT
-2.2,AA,2 Colours,"On each screen, is the [contrast](glossaire.md#contrast) between the colour of the text and the colour of its background sufficiently high (excluding special cases)?",NT
-2.3,AA,2 Colours,"On each screen, are the colours used in the [user interface components](glossaire.md#user-interface-component) and the graphic elements conveying information sufficiently contrasted (excluding special cases)?",NT
-2.4,AA,2 Colours,Is the contrast ratio of each [replacement mechanism for displaying a correct contrast ratio](glossaire.md#application-mechanism-for-displaying-a-correct-contrast-ratio) sufficiently high?,NT
-3.1,A,3 Multimedia,"Does each pre-recorded audio-only [time-based media](glossaire.md#time-based-media-audio-video-and-synchronised) have, where appropriate, a [clearly identifiable adjacent](glossaire.md#clearly-identifiable-adjacent) [transcript](glossaire.md#transcript-time-based-media) (excluding special cases)?",NA
-3.2,A,3 Multimedia,"For each pre-recorded audio-only [time-based media](glossaire.md#time-based-media-audio-video-and-synchronised) with a [transcript](glossaire.md#transcript-time-based-media), is this transcript relevant (excluding special cases)?",NA
-3.3,A,3 Multimedia,"Does each pre-recorded video-only [time-based media](glossaire.md#time-based-media-audio-video-and-synchronised) have, if necessary, an alternative (excluding special cases)?",NA
-3.4,A,3 Multimedia,"For each pre-recorded video-only [time-based media](glossaire.md#time-based-media-audio-video-and-synchronised) with an alternative, is the alternative relevant (excluding special cases)?",NA
-3.5,A,3 Multimedia,"Does each pre-recorded synchronised [time-based media](glossaire.md#time-based-media-audio-video-and-synchronised) have, if necessary, an alternative (excluding special cases)?",NA
-3.6,A,3 Multimedia,"For each pre-recorded synchronised [time-based media](glossaire.md#time-based-media-audio-video-and-synchronised) with an alternative, is the alternative relevant (excluding special cases)?",NA
-3.7,A,3 Multimedia,"Does each synchronised [time-based media](glossaire.md#time-based-media-audio-video-and-synchronised) have, where appropriate, [synchronised captions](glossaire.md#synchronised-captions-media-object) (excluding special cases)?",NA
-3.8,A,3 Multimedia,"For each synchronised [time-based media](glossaire.md#time-based-media-audio-video-and-synchronised) with [synchronised captions](glossaire.md#synchronised-captions-media-object), are these relevant (excluding special cases)?",NA
-3.9,AA,3 Multimedia,"Does each pre-recorded [time-based media](glossaire.md#time-based-media-audio-video-and-synchronised) (video only or synchronised) have, where appropriate, a [synchronised audio description](glossaire.md#audio-description-time-based-media) (excluding special cases)?",NA
-3.10,AA,3 Multimedia,"For each pre-recorded video-only or synchronised [time-based media](glossaire.md#time-based-media-audio-video-and-synchronised) with a [synchronised audio description](glossaire.md#audio-description-time-based-media), is the description relevant?",NA
-3.11,A,3 Multimedia,"For each pre-recorded [time-based media](glossaire.md#time-based-media-audio-video-and-synchronised), does the adjacent text content clearly identify the time-based media (excluding special cases)?",NA
-3.12,A,3 Multimedia,Is each automatically triggered sound sequence [controllable](glossaire.md#control-automatically-triggered-sound) by the user?,NA
-3.13,A,3 Multimedia,"Does each [time-based media](glossaire.md#time-based-media-audio-video-and-synchronised) have, where necessary, the [viewing control features](glossaire.md#viewing-control-time-based-media)?",NA
-3.14,AA,3 Multimedia,"For each pre-recorded synchronised [time-based media](glossaire.md#time-based-media-audio-video-and-synchronised), that has [synchronised captions](glossaire.md#synchronised-captions-media-object) or [audio description](glossaire.md#audio-description-time-based-media), are the control features for these alternatives presented at the same level as other [primary features](glossaire.md#primary-features-of-a-time-based-media)?",NA
-3.15,AA,3 Multimedia,"For each feature that transmits, converts or records pre-recorded synchronised [time-based media](glossaire.md#time-based-media-audio-video-and-synchronised) that has a [synchronised captions track](glossaire.md#synchronised-captions-media-object), at the end of the process, are the captions correctly preserved?",NA
-3.16,AA,3 Multimedia,"For each feature that transmits, converts or records a pre-recorded synchronised [time-based media](glossaire.md#time-based-media-audio-video-and-synchronised) with a [synchronised audio description](glossaire.md#audio-description-time-based-media), at the end of the process, is the audio description correctly preserved?",NA
-3.17,AA,3 Multimedia,"For each pre-recorded [time-based media](glossaire.md#time-based-media-audio-video-and-synchronised), is the presentation of [captions](glossaire.md#synchronised-captions-media-object) controllable by the user (excluding special cases)?",NA
-3.18,AA,3 Multimedia,"For each pre-recorded synchronised [time-based media](glossaire.md#time-based-media-audio-video-and-synchronised) that has [subtitles](glossaire.md#synchronised-captions-media-object), can these be, if necessary, vocalised (excluding special cases)?",NA
-4.1,A,4 Tables,Does each [complex data table](glossaire.md#complex-data-table) have a [summary](glossaire.md#summary-of-table)?,NA
-4.2,A,4 Tables,"For each [complex data table](glossaire.md#complex-data-table) with a [summary](glossaire.md#summary-of-table), is the summary relevant?",NA
-4.3,A,4 Tables,Does each [data table](glossaire.md#data-table) have a [title](glossaire.md#data-table-title)?,NA
-4.4,A,4 Tables,"For each [data table](glossaire.md#data-table) with a [title](glossaire.md#data-table-title), is the title relevant?",NA
-4.5,A,4 Tables,"For each [data table](glossaire.md#data-table), are the row and column headings correctly linked to the data cells?",NA
-5.1,A,5 Interactive components,"Is each [user interface component](glossaire.md#user-interface-component), if necessary, [compatible with assistive technologies](glossaire.md#compatible-with-assistive-technologies) (excluding special cases)?",NC
-5.2,A,5 Interactive components,Is every [user interface component](glossaire.md#user-interface-component) [accessible and operable by keyboard and any pointing device](glossaire.md#accessible-and-operable-by-keyboard-and-any-pointing-device) (excluding special cases)?,NC
-5.3,A,5 Interactive components,Does each [change of context](glossaire.md#changes-of-context) meet one of these conditions?,NT
-5.4,AA,5 Interactive components,"On each screen, are the [status messages](glossaire.md#status-message) correctly rendered by assistive technologies?",NT
-5.5,A,5 Interactive components,Is each state of a [toggle control](glossaire.md#toggle-control) presented to the user perceptible?,NT
+1.1,A,1 Graphic elements,Is every decorative graphic element ignored by assistive technologies?,NT
+1.2,A,1 Graphic elements,Does each graphic element conveying information have an alternative accessible to assistive technologies?,NC
+1.3,A,1 Graphic elements,"For each graphic element conveying information, is the alternative accessible to assistive technologies relevant (excluding special cases)?",C
+1.4,A,1 Graphic elements,"For each graphic element used as a CAPTCHA or as a test graphic element, does the alternative rendered by the assistive technologies make it possible to identify the nature and function of the graphic element?",NA
+1.5,A,1 Graphic elements,Does each graphic element used as a CAPTCHA have an alternative?,NA
+1.6,A,1 Graphic elements,"Does each graphic element conveying information have, where necessary, a detailed description?",NT
+1.7,A,1 Graphic elements,"For each graphic element conveying information with a detailed description, is this description relevant?",NT
+1.8,AA,1 Graphic elements,"Each text graphic element conveying information, in the absence of a replacement mechanism, must, if possible, be replaced by styled text. Is this rule respected (excluding special cases)?",NT
+1.9,AA,1 Graphic elements,Is each graphic element with legend correctly rendered by assistive technologies?,NT
+2.1,A,2 Colours,"On each screen, information must not be provided by colour alone. Is this rule respected?",NT
+2.2,AA,2 Colours,"On each screen, is the contrast between the colour of the text and the colour of its background sufficiently high (excluding special cases)?",NT
+2.3,AA,2 Colours,"On each screen, are the colours used in the user interface components and the graphic elements conveying information sufficiently contrasted (excluding special cases)?",NT
+2.4,AA,2 Colours,Is the contrast ratio of each replacement mechanism for displaying a correct contrast ratio sufficiently high?,NT
+3.1,A,3 Multimedia,"Does each pre-recorded audio-only time-based media have, where appropriate, a clearly identifiable adjacent transcript (excluding special cases)?",NA
+3.2,A,3 Multimedia,"For each pre-recorded audio-only time-based media with a transcript, is this transcript relevant (excluding special cases)?",NA
+3.3,A,3 Multimedia,"Does each pre-recorded video-only time-based media have, if necessary, an alternative (excluding special cases)?",NA
+3.4,A,3 Multimedia,"For each pre-recorded video-only time-based media with an alternative, is the alternative relevant (excluding special cases)?",NA
+3.5,A,3 Multimedia,"Does each pre-recorded synchronised time-based media have, if necessary, an alternative (excluding special cases)?",NA
+3.6,A,3 Multimedia,"For each pre-recorded synchronised time-based media with an alternative, is the alternative relevant (excluding special cases)?",NA
+3.7,A,3 Multimedia,"Does each synchronised time-based media have, where appropriate, synchronised captions (excluding special cases)?",NA
+3.8,A,3 Multimedia,"For each synchronised time-based media with synchronised captions, are these relevant (excluding special cases)?",NA
+3.9,AA,3 Multimedia,"Does each pre-recorded time-based media (video only or synchronised) have, where appropriate, a synchronised audio description (excluding special cases)?",NA
+3.10,AA,3 Multimedia,"For each pre-recorded video-only or synchronised time-based media with a synchronised audio description, is the description relevant?",NA
+3.11,A,3 Multimedia,"For each pre-recorded time-based media, does the adjacent text content clearly identify the time-based media (excluding special cases)?",NA
+3.12,A,3 Multimedia,Is each automatically triggered sound sequence controllable by the user?,NA
+3.13,A,3 Multimedia,"Does each time-based media have, where necessary, the viewing control features?",NA
+3.14,AA,3 Multimedia,"For each pre-recorded synchronised time-based media, that has synchronised captions or audio description, are the control features for these alternatives presented at the same level as other primary features?",NA
+3.15,AA,3 Multimedia,"For each feature that transmits, converts or records pre-recorded synchronised time-based media that has a synchronised captions track, at the end of the process, are the captions correctly preserved?",NA
+3.16,AA,3 Multimedia,"For each feature that transmits, converts or records a pre-recorded synchronised time-based media with a synchronised audio description, at the end of the process, is the audio description correctly preserved?",NA
+3.17,AA,3 Multimedia,"For each pre-recorded time-based media, is the presentation of captions controllable by the user (excluding special cases)?",NA
+3.18,AA,3 Multimedia,"For each pre-recorded synchronised time-based media that has subtitles, can these be, if necessary, vocalised (excluding special cases)?",NA
+4.1,A,4 Tables,Does each complex data table have a summary?,NA
+4.2,A,4 Tables,"For each complex data table with a summary, is the summary relevant?",NA
+4.3,A,4 Tables,Does each data table have a title?,NA
+4.4,A,4 Tables,"For each data table with a title, is the title relevant?",NA
+4.5,A,4 Tables,"For each data table, are the row and column headings correctly linked to the data cells?",NA
+5.1,A,5 Interactive components,"Is each user interface component, if necessary, compatible with assistive technologies (excluding special cases)?",NC
+5.2,A,5 Interactive components,Is every user interface component accessible and operable by keyboard and any pointing device (excluding special cases)?,NC
+5.3,A,5 Interactive components,Does each change of context meet one of these conditions?,NT
+5.4,AA,5 Interactive components,"On each screen, are the status messages correctly rendered by assistive technologies?",NT
+5.5,A,5 Interactive components,Is each state of a toggle control presented to the user perceptible?,NT
 6.1,A,6 Mandatory elements,"On each screen, are texts rendered by assistive technologies in the main language of the screen?",NT
-6.2,A,6 Mandatory elements,"On each screen, interface elements must not be used [only for layout purposes](glossaire.md#only-for-layout-purposes). Is this rule respected?",NT
+6.2,A,6 Mandatory elements,"On each screen, interface elements must not be used only for layout purposes. Is this rule respected?",NT
 7.1,A,7 Information structure,"On each screen, is the information structured by the appropriate use of headings?",NT
 7.2,A,7 Information structure,"On each screen, is each list correctly structured?",NT
 8.1,A,8 Presentation of information,"On each screen, is the visible content carrying information accessible to assistive technologies?",NT
 8.2,AA,8 Presentation of information,"On each screen, can the user increase the font size by at least 200% (excluding special cases)?",NC
-8.3,A,8 Presentation of information,"On each screen, does each [component in a text environment whose nature is not obvious](glossaire.md#component-whose-nature-is-not-obvious) have a contrast ratio greater than or equal to 3:1 in relation to the surrounding text?",NT
-8.4,A,8 Presentation of information,"On each screen, for each [component in a text environment whose nature is not obvious](glossaire.md#component-whose-nature-is-not-obvious), is there an indication other than colour to indicate when focused and hovered with the mouse?",NT
-8.5,A,8 Presentation of information,"On each screen, for each element receiving the focus, is the [focus](glossaire.md#when-focused) visible?",NT
-8.6,A,8 Presentation of information,"On each screen, information must not be conveyed solely by [shape, size or location](glossaire.md#indication-conveyed-by-shape-size-or-location). Is this rule respected?",NT
-8.7,AA,8 Presentation of information,"On each screen, is the additional content that appears when the focus is set or when a [user interface component](glossaire.md#user-interface-component) is hovered over controllable by the user (excluding special cases)?",NT
+8.3,A,8 Presentation of information,"On each screen, does each component in a text environment whose nature is not obvious have a contrast ratio greater than or equal to 3:1 in relation to the surrounding text?",NT
+8.4,A,8 Presentation of information,"On each screen, for each component in a text environment whose nature is not obvious, is there an indication other than colour to indicate when focused and hovered with the mouse?",NT
+8.5,A,8 Presentation of information,"On each screen, for each element receiving the focus, is the focus visible?",NT
+8.6,A,8 Presentation of information,"On each screen, information must not be conveyed solely by shape, size or location. Is this rule respected?",NT
+8.7,AA,8 Presentation of information,"On each screen, is the additional content that appears when the focus is set or when a user interface component is hovered over controllable by the user (excluding special cases)?",NT
 9.1,A,9 Forms,Does each form field have a visible label?,NC
 9.2,A,9 Forms,Does each form field have a label that is accessible to assistive technologies?,NC
 9.3,A,9 Forms,Is each label associated with a form field relevant?,NT
-9.4,A,9 Forms,Are each field label and its associated field [located next to each other](glossaire.md#label-and-field-located-next-to-each-other)?,NT
+9.4,A,9 Forms,Are each field label and its associated field located next to each other?,NT
 9.5,A,9 Forms,"In each form, is the label of each button relevant?",C
-9.6,A,9 Forms,"In each form, are the [related form controls](glossaire.md#related-form-controls) identified, if necessary?",NT
+9.6,A,9 Forms,"In each form, are the related form controls identified, if necessary?",NT
 9.7,A,9 Forms,Are the mandatory form fields correctly identified (excluding special cases)?,NT
-9.8,A,9 Forms,"For each form field expecting a specific [data type and/or format](glossaire.md#data-type-and-format), is the related information available?",NC
+9.8,A,9 Forms,"For each form field expecting a specific data type and/or format, is the related information available?",NC
 9.9,A,9 Forms,"In each form, are input errors accessible?",NT
-9.10,AA,9 Forms,"In each form, is the [error management](glossaire.md#error-management-form) accompanied, if necessary, by suggestions of expected data types, formats or values?",NT
+9.10,AA,9 Forms,"In each form, is the error management accompanied, if necessary, by suggestions of expected data types, formats or values?",NT
 9.11,AA,9 Forms,"For each form that modifies or deletes data, or transmits answers to a test or examination, or whose validation has financial or legal consequences, can the data entered be modified, updated or rendered by the user?",NT
-9.12,AA,9 Forms,"For each field that expects [personal user data](glossaire.md#personal-user-data), is input facilitated?",NT
-10.1,A,10 Navigation,"On each screen, is the [navigation sequence](glossaire.md#navigation-sequence) [consistent](glossaire.md#consistent-reading-sequence)?",NT
-10.2,A,10 Navigation,"On each screen, is the reading sequence by assistive technologies [consistent](glossaire.md#consistent-reading-sequence)?",NT
-10.3,A,10 Navigation,"On each screen, the navigation must not contain any [keyboard traps](glossaire.md#keyboard-trap). Is this rule respected?",NT
-10.4,A,10 Navigation,"On each screen, are [keyboard shortcuts](glossaire.md#keyboard-shortcut) using only one key (upper or lower case letter, punctuation, number or symbol) controllable by the user?",NT
-11.1,A,11 Consultation,"For each screen, does the user have control over each [time limit modifying content](glossaire.md#refresh-process) (excluding special cases)?",NT
+9.12,AA,9 Forms,"For each field that expects personal user data, is input facilitated?",NT
+10.1,A,10 Navigation,"On each screen, is the navigation sequence consistent?",NT
+10.2,A,10 Navigation,"On each screen, is the reading sequence by assistive technologies consistent?",NT
+10.3,A,10 Navigation,"On each screen, the navigation must not contain any keyboard traps. Is this rule respected?",NT
+10.4,A,10 Navigation,"On each screen, are keyboard shortcuts using only one key (upper or lower case letter, punctuation, number or symbol) controllable by the user?",NT
+11.1,A,11 Consultation,"For each screen, does the user have control over each time limit modifying content (excluding special cases)?",NT
 11.2,A,11 Consultation,"For each screen, can each process limiting the time of a session be stopped or deleted (excluding special cases)?",NT
-11.3,A,11 Consultation,"On each screen, does each office document available for download have, if necessary, an [accessible version](glossaire.md#accessible-version) (excluding special cases)?",NA
-11.4,A,11 Consultation,"For each office document with an [accessible version](glossaire.md#accessible-version), does this version offer the same information (excluding special cases)?",NA
+11.3,A,11 Consultation,"On each screen, does each office document available for download have, if necessary, an accessible version (excluding special cases)?",NA
+11.4,A,11 Consultation,"For each office document with an accessible version, does this version offer the same information (excluding special cases)?",NA
 11.5,A,11 Consultation,"On each screen, does each cryptic content (ASCII art, emoticon, cryptic syntax) have an alternative?",NA
 11.6,A,11 Consultation,"On each screen, for each cryptic content (ASCII art, emoticon, cryptic syntax) having an alternative, is this alternative relevant?",NA
-11.7,A,11 Consultation,"On each screen, are [sudden change in brightness or blinking effects](glossaire.md#sudden-change-in-brightness-or-blinking-effect) used correctly?",NT
-11.8,A,11 Consultation,"On each screen, is each moving or blinking content [controllable](glossaire.md#control-moving-or-blinking-content) by the user?",NT
+11.7,A,11 Consultation,"On each screen, are sudden change in brightness or blinking effects used correctly?",NT
+11.8,A,11 Consultation,"On each screen, is each moving or blinking content controllable by the user?",NT
 11.9,AA,11 Consultation,"On each screen, is the content offered viewable regardless of screen orientation (portrait or landscape) (excluding special cases)?",NT
-11.10,A,11 Consultation,"On each screen, are the features that can be activated using a [complex gesture](glossaire.md#complex-and-simple-gestures) able to be activated using a [simple gesture](glossaire.md#complex-and-simple-gestures) (excluding special cases)?",NT
+11.10,A,11 Consultation,"On each screen, are the features that can be activated using a complex gesture able to be activated using a simple gesture (excluding special cases)?",NT
 11.11,A,11 Consultation,"On each screen, are the features that can be activated by performing simultaneous actions activated by means of a single action? Is this rule respected (excluding special cases)?",NT
 11.12,A,11 Consultation,"On each screen, can actions triggered by a pointing device on a single point on the screen be cancelled (excluding special cases)?",NT
 11.13,A,11 Consultation,"On each screen, can the features involving movement from or to the device be satisfied in an alternative way (excluding special cases)?",NT
-11.14,AA,11 Consultation,"For each document conversion feature, is the [accessibility information](glossaire.md#accessibility-information) available in the source document retained in the destination document (excluding special cases)?",NA
-11.15,A,11 Consultation,Is an alternative method available for each identification or control functionality that relies on the use of [biological characteristics](glossaire.md#biological-characteristics) of the user?,NT
-11.16,A,11 Consultation,"For each application that incorporates [key repeat](glossaire.md#key-repeat) functionality, is the repeat adjustable (excluding special cases)?",NT
-12.1,AA,12 Documentation and accessibility features,Does the application [documentation](glossaire.md#documentation) describe the [accessibility features](glossaire.md#accessibility-feature) available and information on accessibility compatibility?,NT
-12.2,A,12 Documentation and accessibility features,"For each [accessibility feature](glossaire.md#accessibility-feature) described in the [documentation](glossaire.md#documentation), the [mechanism used to activate it](glossaire.md#mechanism-enabling-to-activate-an-accessibility-feature) meets the accessibility needs of the users concerned. Is this rule respected (excluding special cases)?",NT
+11.14,AA,11 Consultation,"For each document conversion feature, is the accessibility information available in the source document retained in the destination document (excluding special cases)?",NA
+11.15,A,11 Consultation,Is an alternative method available for each identification or control functionality that relies on the use of biological characteristics of the user?,NT
+11.16,A,11 Consultation,"For each application that incorporates key repeat functionality, is the repeat adjustable (excluding special cases)?",NT
+12.1,AA,12 Documentation and accessibility features,Does the application documentation describe the accessibility features available and information on accessibility compatibility?,NT
+12.2,A,12 Documentation and accessibility features,"For each accessibility feature described in the documentation, the mechanism used to activate it meets the accessibility needs of the users concerned. Is this rule respected (excluding special cases)?",NT
 12.3,A,12 Documentation and accessibility features,The application does not interfere with the accessibility features of the platform. Is this rule respected?,NT
-12.4,A,12 Documentation and accessibility features,Does the application documentation comply with [digital accessibility rules](glossaire.md#digital-accessibility-rules)?,NT
-13.1,A,13 Editing tools,Can each [editing tool](glossaire.md#editing-tool) be used to define the [accessibility information](glossaire.md#accessibility-information) needed to create content that complies with [digital accessibility rules](glossaire.md#digital-accessibility-rules)?,NA
-13.2,A,13 Editing tools,Does each [editing tool](glossaire.md#editing-tool) provide [help with creating accessible content](glossaire.md#help-with-creating-accessible-content) compliant with [digital accessibility rules](glossaire.md#digital-accessibility-rules)?,NA
-13.3,A,13 Editing tools,Does the content generated by each content [transformation](glossaire.md#transformation) comply with [digital accessibility rules](glossaire.md#digital-accessibility-rules) (excluding special cases)?,NA
-13.4,AA,13 Editing tools,"For each accessibility error identified by an automatic or semi-automatic accessibility test, does the [editing tool](glossaire.md#editing-tool) provide suggestions for repair?",NA
-13.5,A,13 Editing tools,"For each set of [templates](glossaire.md#template), at least one template meets the requirements of [digital accessibility rules](glossaire.md#digital-accessibility-rules). Is this rule respected?",NA
-13.6,A,13 Editing tools,Is each [template](glossaire.md#template) that complies with [digital accessibility rules](glossaire.md#digital-accessibility-rules) clearly identifiable?,NA
-14.1,AA,14 Support services,"Does each [support service](glossaire.md#support-services) provide information relating to [accessibility features](glossaire.md#accessibility-feature) and accessibility compatibility, described in the [documentation](glossaire.md#documentation)?",NT
-14.2,A,14 Support services,The [support service](glossaire.md#support-services) meets the communication needs of people with disabilities directly or through [a relay service](glossaire.md#relay-service). Is this rule respected?,NT
-14.3,A,14 Support services,Does the [documentation](glossaire.md#documentation) provided by the [support service](glossaire.md#support-services) comply with the [digital accessibility rules](glossaire.md#digital-accessibility-rules)?,NT
-15.1,A,15 Real-time communication,"For each [two-way voice communication application](glossaire.md#two-way-voice-communication-application), is the application capable of encoding and decoding this communication with a frequency range whose upper limit is at least 7,000 Hz?",NT
-15.2,A,15 Real-time communication,Does each application that supports [two-way voice communication](glossaire.md#two-way-voice-communication-application) have [real-time text communication](glossaire.md#real-time-text-communication) functionality?,NT
-15.3,A,15 Real-time communication,"For each application that allows [two-way voice communication](glossaire.md#two-way-voice-communication-application) and [real-time text](glossaire.md#real-time-text-communication), are both modes usable simultaneously?",NT
-15.4,A,15 Real-time communication,"For each [real-time text communication](glossaire.md#real-time-text-communication) functionality, can the messages be identified (excluding special cases)?",NT
-15.5,A,15 Real-time communication,"For each [two-way voice communication application](glossaire.md#two-way-voice-communication-application), is a visual indicator of oral activity present?",NT
-15.6,A,15 Real-time communication,Does each [real-time text communication](glossaire.md#real-time-text-communication) application that can interact with other [real-time text communication](glossaire.md#real-time-text-communication) applications comply with the interoperability rules in force?,NT
-15.7,AA,15 Real-time communication,"For each application that supports [real-time text (RTT) communication](glossaire.md#real-time-text-communication), the transmission delay for each [input unit](glossaire.md#input-unit) is 500ms or less. Is this rule respected?",NT
+12.4,A,12 Documentation and accessibility features,Does the application documentation comply with digital accessibility rules?,NT
+13.1,A,13 Editing tools,Can each editing tool be used to define the accessibility information needed to create content that complies with digital accessibility rules?,NA
+13.2,A,13 Editing tools,Does each editing tool provide help with creating accessible content compliant with digital accessibility rules?,NA
+13.3,A,13 Editing tools,Does the content generated by each content transformation comply with digital accessibility rules (excluding special cases)?,NA
+13.4,AA,13 Editing tools,"For each accessibility error identified by an automatic or semi-automatic accessibility test, does the editing tool provide suggestions for repair?",NA
+13.5,A,13 Editing tools,"For each set of templates, at least one template meets the requirements of digital accessibility rules. Is this rule respected?",NA
+13.6,A,13 Editing tools,Is each template that complies with digital accessibility rules clearly identifiable?,NA
+14.1,AA,14 Support services,"Does each support service provide information relating to accessibility features and accessibility compatibility, described in the documentation?",NT
+14.2,A,14 Support services,The support service meets the communication needs of people with disabilities directly or through a relay service. Is this rule respected?,NT
+14.3,A,14 Support services,Does the documentation provided by the support service comply with the digital accessibility rules?,NT
+15.1,A,15 Real-time communication,"For each two-way voice communication application, is the application capable of encoding and decoding this communication with a frequency range whose upper limit is at least 7,000 Hz?",NT
+15.2,A,15 Real-time communication,Does each application that supports two-way voice communication have real-time text communication functionality?,NT
+15.3,A,15 Real-time communication,"For each application that allows two-way voice communication and real-time text, are both modes usable simultaneously?",NT
+15.4,A,15 Real-time communication,"For each real-time text communication functionality, can the messages be identified (excluding special cases)?",NT
+15.5,A,15 Real-time communication,"For each two-way voice communication application, is a visual indicator of oral activity present?",NT
+15.6,A,15 Real-time communication,Does each real-time text communication application that can interact with other real-time text communication applications comply with the interoperability rules in force?,NT
+15.7,AA,15 Real-time communication,"For each application that supports real-time text (RTT) communication, the transmission delay for each input unit is 500ms or less. Is this rule respected?",NT
 15.8,A,15 Real-time communication,"For each telecommunication application, is the identification of the party initiating a call accessible?",NT
-15.9,A,15 Real-time communication,"For each [two-way voice communication](glossaire.md#two-way-voice-communication-application) application that makes it possible to identify the activity of a speaking interlocutor, it is possible to identify the activity of a signing interlocutor. Is this rule respected?",NT
-15.10,A,15 Real-time communication,"For each [two-way voice communication](glossaire.md#two-way-voice-communication-application) application that has [voice-based services](glossaire.md#voice-based-services), are these services usable without the need to listen or speak?",NT
-15.11,AA,15 Real-time communication,"For each [two-way voice communication application](glossaire.md#two-way-voice-communication-application) that has real-time video, is the quality of the video sufficient?",NT
+15.9,A,15 Real-time communication,"For each two-way voice communication application that makes it possible to identify the activity of a speaking interlocutor, it is possible to identify the activity of a signing interlocutor. Is this rule respected?",NT
+15.10,A,15 Real-time communication,"For each two-way voice communication application that has voice-based services, are these services usable without the need to listen or speak?",NT
+15.11,AA,15 Real-time communication,"For each two-way voice communication application that has real-time video, is the quality of the video sufficient?",NT
