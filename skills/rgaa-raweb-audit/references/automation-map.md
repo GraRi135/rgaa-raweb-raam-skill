@@ -48,3 +48,11 @@ Status vocabulary used by the scanner:
 * Contrast: `python3 scripts/contrast.py FG BG [--size px --bold]` gives the ratio and the 3.2 / 3.3 / 10.7 verdicts;
   `--css file.css` lists the pairs a stylesheet declares (a pair with only one colour declared depends on inheritance:
   read the computed colours in the browser or through Playwright before deciding). The scanner itself does not measure contrast.
+
+## Mobile apps (`android_audit.py`, RAAM 1.1)
+
+| Fully static from the view hierarchy (FAIL) | Needs judgement (REVIEW) | Needs TalkBack / VoiceOver / keyboard |
+|---|---|---|
+| interactive element without name (5.1), clickable but not focusable (5.2), form field with no label at all (9.2) | role of clickable containers (5.1), image alternatives (1.1 to 1.3), toggle states (5.5), hint used as label (9.1), reading order heuristic (10.2), estimated text contrast from the screenshot (2.2), text truncated or lost at 200 % and orientation lock from `walk` (8.2, 11.9) | how components are announced (5.1), context changes (5.3), status messages (5.4), language (6.1), headings and lists (7.1, 7.2), hidden content (8.1), focus visibility (8.5), keyboard traps (10.3), gestures, motion, time limits (11.x) |
+
+iOS has no collector in this skill: use Accessibility Inspector on macOS and VoiceOver (see `raam-mobile.md`).

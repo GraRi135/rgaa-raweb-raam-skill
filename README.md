@@ -5,6 +5,8 @@ A skill (installable as a Claude Code plugin) that lets Claude audit websites, p
 * **RGAA 4.1.2** — Référentiel général d'amélioration de l'accessibilité (France, DINUM), 106 criteria
 * **RAWeb 1.1** — Référentiel d'évaluation de l'accessibilité web (Luxembourg, SIP), 136 criteria (RGAA 4.1.2 + the
   remaining web requirements of EN 301 549 v3.2.1)
+* **RAAM 1.1** — Référentiel d'évaluation de l'accessibilité des applications mobiles (Luxembourg, SIP), 108
+  criteria for Android and iOS apps, with an adb-based Android evidence collector
 
 It bundles the official criteria, tests and per-test methodology of both standards (in English and French for RAWeb,
 French for RGAA), the audit method (sample, applicability, compliance rate, statement), the SIP simplified-audit
@@ -16,6 +18,7 @@ method, what 228 published SIP audits show (most frequent findings, report struc
 | `scripts/scan_html.py` | static pre-check of an HTML page or URL, findings mapped to criteria and tests |
 | `scripts/audit_grid.py` | create a pages × criteria grid, fill statuses, compute the compliance rate and status with the official rules |
 | `scripts/contrast.py` | contrast ratios with the RGAA/RAWeb thresholds (text, components, focus), from colour pairs or a stylesheet |
+| `scripts/android_audit.py` | Android app screens through adb (device or emulator): view hierarchy, screenshot, 200 % text, orientation, TalkBack toggle; findings mapped to RAAM 1.1 |
 | `scripts/render_page.js` | optional: render a URL with Playwright (SPA support, tab order, zoom and mobile screenshots) |
 | `scripts/refresh_data.py` | regenerate the bundled data from the upstream GitHub repositories |
 
@@ -53,8 +56,8 @@ cp -r skills/rgaa-raweb-audit ~/.claude/skills/
 ```
 
 Then ask things like "audit this page against RAWeb 1.1", "calcule le taux de conformité RGAA de cette grille et rédige
-la déclaration d'accessibilité", or "review this React component for RGAA conformity". The skill's scripts need
-Python 3 only; `render_page.js` additionally needs Node.js and Playwright.
+la déclaration d'accessibilité", or "review this React component for RGAA conformity", or "audit our Android app against RAAM". The skill's scripts need
+Python 3 only; `render_page.js` additionally needs Node.js and Playwright, and `android_audit.py` needs adb (Android platform-tools).
 
 ## Layout
 

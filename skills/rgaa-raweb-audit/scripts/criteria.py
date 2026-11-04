@@ -7,6 +7,7 @@ Examples
   criteria.py show 1.1 --tests --methodology # + the step-by-step test procedure for each test
   criteria.py show 1.1.5                     # a single test (with its methodology)
   criteria.py show 11.10 --standard rgaa     # RGAA 4.1.2 (French)
+  criteria.py show 5.1 --standard raam --methodology   # RAAM 1.1 (mobile apps): iOS / Android procedure
   criteria.py list --topic 4                 # all criteria of a topic
   criteria.py list --level AA --raweb-only   # filters
   criteria.py search contraste --standard rgaa
@@ -15,7 +16,7 @@ Examples
   criteria.py diff                           # what RAWeb 1.1 adds or changes versus RGAA 4.1.2
   criteria.py topics
 Options
-  --standard raweb|rgaa   (default raweb)     --lang en|fr   (default: en for RAWeb, fr for RGAA; RGAA is French only)
+  --standard raweb|rgaa|raam   (default raweb)     --lang en|fr   (default: en for RAWeb/RAAM, fr for RGAA; RGAA is French only)
   --json                  machine-readable output
 """
 import argparse, json, os, re, sys
@@ -27,11 +28,15 @@ FILES = {
     ("raweb", "en"): "raweb-1.1-en.json",
     ("raweb", "fr"): "raweb-1.1-fr.json",
     ("rgaa", "fr"): "rgaa-4.1.2-fr.json",
+    ("raam", "en"): "raam-1.1-en.json",
+    ("raam", "fr"): "raam-1.1-fr.json",
 }
 GLOSSARIES = {
     ("raweb", "en"): "glossary-raweb-en.json",
     ("raweb", "fr"): "glossary-raweb-fr.json",
     ("rgaa", "fr"): "glossary-rgaa-fr.json",
+    ("raam", "en"): "glossary-raam-en.json",
+    ("raam", "fr"): "glossary-raam-fr.json",
 }
 
 
@@ -76,6 +81,12 @@ def print_criterion(std, t, c, tests=False, methodology=False, only_test=None):
         print("EN 301 549: " + "; ".join(refs["norm"]))
     if refs.get("techniques"):
         print("Techniques: " + ", ".join(refs["techniques"]))
+    if (tests or methodology or only_test) and not c["tests"] and c.get("methodology"):
+        print("\nMethodology (the criterion is its own test):")
+        print(plain(c["methodology"]))
+    elif methodology and c.get("methodology") and c["tests"]:
+        print("\nMethodology (criterion level):")
+        print(plain(c["methodology"]))
     if tests or only_test:
         for k, tst in c["tests"].items():
             if only_test and k != only_test:
@@ -151,6 +162,8 @@ def cmd_search(a):
         if a.scope == "methodology":
             for k, tst in c["tests"].items():
                 hay.append((f"methodology {tst['id']}", plain(tst.get("methodology", ""))))
+            if c.get("methodology"):
+                hay.append((f"methodology {c['id']}", plain(c["methodology"])))
         for where, text in hay:
             if q in text.lower():
                 hits.append((c["id"], c["level"], where, text))
@@ -224,7 +237,7 @@ def cmd_diff(a):
 def main():
     # The common options are accepted both before and after the sub-command.
     common = argparse.ArgumentParser(add_help=False)
-    common.add_argument("--standard", choices=["raweb", "rgaa"], default=argparse.SUPPRESS)
+    common.add_argument("--standard", choices=["raweb", "rgaa", "raam"], default=argparse.SUPPRESS)
     common.add_argument("--lang", choices=["en", "fr"], default=argparse.SUPPRESS)
     common.add_argument("--json", action="store_true", default=argparse.SUPPRESS)
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter, parents=[common])

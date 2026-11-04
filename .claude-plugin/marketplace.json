@@ -6,7 +6,7 @@
     {
       "name": "rgaa-raweb-audit",
       "source": "./",
-      "description": "Audit websites, pages and components against RGAA 4.1.2 (France) and RAWeb 1.1 (Luxembourg): criteria lookup, static pre-checks, audit grid and compliance rate, audit reports and accessibility statements."
+      "description": "Audit websites, pages and components against RGAA 4.1.2 (France) and RAWeb 1.1 (Luxembourg), and mobile apps against RAAM 1.1 (Android via adb): criteria lookup, static pre-checks, audit grid and compliance rate, audit reports and accessibility statements."
     }
   ]
 }

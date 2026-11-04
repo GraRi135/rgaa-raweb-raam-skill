@@ -1,0 +1,18 @@
+schema_version: "1.1"
+name: audit-android-screen-raam
+expected_outcome: |
+  A RAAM 1.1 (not RAWeb/RGAA) review of the captured Android home screen that reports, with RAAM criterion numbers:
+  the menu ImageButton and the second card (LinearLayout with an unlabelled icon) as interactive elements without
+  accessible name (5.1); clickable containers/TextView without a control role (5.1, to confirm with TalkBack); the
+  search icon and the "Envoyer" button clickable but not focusable (5.2); the e-mail EditText and the CheckBox without
+  any label (9.2, plus visible label 9.1); the hero image without alternative (1.1 if decorative, 1.2 if informative);
+  the low-contrast "Petit" text (2.2, estimated from the screenshot, to confirm); the text truncation and the switch
+  label lost at font scale 2.0 (8.2); the WebView whose content must be audited with the web criteria. It gives a
+  concrete Android fix for each (contentDescription, importantForAccessibility, accessibility class name / role
+  description or a real Button, focusable=true, labelFor / hint, colours, autosizing/scrolling at 200 %). It states
+  that this is one screen out of a mandatory sample, that no compliance rate or status can be given, and lists what
+  only TalkBack and a keyboard can decide (headings 7.1, lists 7.2, status messages 5.4, language 6.1, focus
+  visibility 8.5, gestures 11.10, orientation 11.9 not captured). It does not cite RAWeb numbers such as 11.1 or 7.3
+  for app findings.
+context:
+  scaffold_script: place-files.sh

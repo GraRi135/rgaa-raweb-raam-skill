@@ -7,6 +7,7 @@ NA (not applicable / non applicable) or NT (not tested / non testé).
 
   audit_grid.py new  --standard raweb --pages "Home=https://x.lu/,Contact=https://x.lu/contact" --out grille.csv
   audit_grid.py new  --standard rgaa  --pages-file pages.txt --out grille.csv     # one "Name=URL" per line
+  audit_grid.py new  --standard raam  --pages "Accueil=,Contact=,Connexion=" --out grille-app.csv   # mobile app screens (RAAM 1.1)
   audit_grid.py compute grille.csv                     # markdown summary (per page + global rate + status)
   audit_grid.py compute grille.csv --json              # machine-readable
   audit_grid.py compute grille.csv --lang fr           # French vocabulary
@@ -46,7 +47,7 @@ VOCAB = {
 
 
 def load_criteria(standard, lang):
-    name = {"raweb": f"raweb-1.1-{lang}.json", "rgaa": "rgaa-4.1.2-fr.json"}[standard]
+    name = {"raweb": f"raweb-1.1-{lang}.json", "rgaa": "rgaa-4.1.2-fr.json", "raam": f"raam-1.1-{lang}.json"}[standard]
     std = json.load(open(os.path.join(DATA, name), encoding="utf-8"))
     rows = []
     for t in std["topics"]:
@@ -160,6 +161,8 @@ def read_grid(path):
 
 def detect_standard(grid):
     ids = set(grid)
+    if any(i.startswith(("3.15", "3.16", "3.17", "3.18", "11.14", "11.15", "11.16", "15.")) for i in ids) and not any(i.startswith("17.") for i in ids) and "13.14" not in ids:
+        return "raam"
     return "raweb" if any(i.startswith(("14.", "15.", "16.", "17.")) or i in ("4.14", "13.13") for i in ids) else "rgaa"
 
 
@@ -276,9 +279,9 @@ def cmd_compute(a):
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = ap.add_subparsers(dest="cmd", required=True)
-    n = sub.add_parser("new"); n.add_argument("--standard", choices=["raweb", "rgaa"], default="raweb"); n.add_argument("--lang", choices=["en", "fr"], default=None)
+    n = sub.add_parser("new"); n.add_argument("--standard", choices=["raweb", "rgaa", "raam"], default="raweb"); n.add_argument("--lang", choices=["en", "fr"], default=None)
     n.add_argument("--pages"); n.add_argument("--pages-file"); n.add_argument("--out", default="audit-grid.csv")
-    c = sub.add_parser("compute"); c.add_argument("grid"); c.add_argument("--standard", choices=["raweb", "rgaa"]); c.add_argument("--lang", choices=["en", "fr"])
+    c = sub.add_parser("compute"); c.add_argument("grid"); c.add_argument("--standard", choices=["raweb", "rgaa", "raam"]); c.add_argument("--lang", choices=["en", "fr"])
     c.add_argument("--process", action="append", help='"Name=Page A,Page B" (repeatable)'); c.add_argument("--json", action="store_true")
     st = sub.add_parser("set", help="set statuses for one page: set grid.csv --page Home 1.1=NC 1.2=C [--default NA]")
     st.add_argument("grid"); st.add_argument("--page", required=True); st.add_argument("assignments", nargs="*")

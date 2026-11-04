@@ -11,5 +11,11 @@
   "commit": "ca4019f95073b6cbd2482a16e9f12b52d8de678d",
   "commit_date": "2026-08-18",
   "licence": "Licence Ouverte 2.0 (DINUM, France)"
+ },
+ "raam": {
+  "repo": "https://github.com/accessibility-luxembourg/ReferentielAccessibiliteMobile.git",
+  "commit": "b5c5cefab8676b0864269b062883668ff465c298",
+  "commit_date": "2025-05-05",
+  "licence": "CC-BY 3.0 LU (Service information et presse, Luxembourg)"
  }
 }

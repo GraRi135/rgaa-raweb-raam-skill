@@ -9,6 +9,7 @@ repositories. See `SOURCES.json` for the exact upstream commits.
 | `glossary-raweb-en.json`, `glossary-raweb-fr.json` | RAWeb 1.1 glossary | same | CC-BY 3.0 LU |
 | `rgaa-4.1.2-fr.json` | RGAA 4.1.2 criteria, tests, per-test methodology, WCAG references | [DISIC/accessibilite.numerique.gouv.fr](https://github.com/DISIC/accessibilite.numerique.gouv.fr) (DINUM, France) | [Licence Ouverte 2.0](https://www.etalab.gouv.fr/licence-ouverte-open-licence/) |
 | `glossary-rgaa-fr.json` | RGAA 4.1.2 glossary | same | Licence Ouverte 2.0 |
+| `raam-1.1-en.json`, `raam-1.1-fr.json`, `glossary-raam-*.json` | RAAM 1.1 criteria, per-criterion iOS/Android methodology, EN 301 549 references, A/AA level (parsed from the technical reference), glossary | [accessibility-luxembourg/ReferentielAccessibiliteMobile](https://github.com/accessibility-luxembourg/ReferentielAccessibiliteMobile) (SIP) | CC-BY 3.0 LU |
 
 The A/AA level of each criterion comes from RAWeb's `niveaux.json`; RGAA criteria 1.1 to 13.12 have the
 same numbering and the same WCAG mapping, so the same levels apply.
@@ -18,6 +19,7 @@ HTML5/ARIA framework (BrailleNet, 2013). The official, authoritative versions ar
 
 * RAWeb 1.1: https://accessibilite.public.lu/en/raweb1.1/criteres.html (FR: https://accessibilite.public.lu/fr/raweb1.1/criteres.html)
 * RGAA 4.1.2: https://accessibilite.numerique.gouv.fr/methode/criteres-et-tests/
+* RAAM 1.1: https://accessibilite.public.lu/en/raam1.1/referentiel-technique.html
 
 When a published version changes, run `python3 scripts/refresh_data.py` to regenerate these files and
 the criteria index.

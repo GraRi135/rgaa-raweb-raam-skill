@@ -2,13 +2,16 @@
 name: rgaa-raweb-audit
 description: >-
   Audit websites, web pages, HTML and front-end code (React, Vue, templates) against RGAA 4.1.2 (France) and
-  RAWeb 1.1 (Luxembourg), the public-sector web accessibility standards built on WCAG 2.1 and EN 301 549. Looks up
+  RAWeb 1.1 (Luxembourg), the public-sector web accessibility standards built on WCAG 2.1 and EN 301 549, and
+  mobile applications against RAAM 1.1 (Luxembourg's app standard), with an adb-based Android collector for
+  devices and emulators (view hierarchy, screenshots, 200 % text, orientation, TalkBack). Looks up
   criteria, tests and test procedures; runs static pre-checks mapped to criterion numbers; computes the compliance rate
   and status from an audit grid with the official rules; writes audit reports and accessibility statements
   (déclaration d'accessibilité). Use it whenever a request mentions RGAA, RAWeb, SIP, DINUM, Ara, EN 301 549,
   "audit d'accessibilité", "taux de conformité", "déclaration d'accessibilité", "non-conformité", criterion numbers like
   "critère 1.1" or "11.10", an accessibility statement or audit for a .lu / .gouv.fr / .fr public site, or asks to review
-  pages or components for accessibility in a French or Luxembourg context, even if the user only says "accessibilité",
+  pages or components for accessibility in a French or Luxembourg context, or to audit an Android or iOS app
+  (RAAM, TalkBack, VoiceOver, adb, emulator, APK, uiautomator), even if the user only says "accessibilité",
   "a11y audit" or "is this WCAG compliant" without naming the standard.
 ---
 
@@ -25,6 +28,8 @@ in those numbers, so every finding you report must carry a criterion id, and ide
 * Luxembourg public body, `.lu`, "RAWeb", "SIP", law of 28 May 2019 or 8 March 2023 → **RAWeb 1.1** (136 criteria,
   English or French; German/Luxembourgish deliverables are written from the French data).
 * EU company wanting EN 301 549 evidence without a national standard → RAWeb 1.1, presented as the EN 301 549 transcription.
+* Native or hybrid mobile app (Android, iOS, Flutter, React Native...) → **RAAM 1.1** (108 criteria, 15 topics, its
+  own numbering; `references/raam-mobile.md`). A website used on a phone stays RAWeb / RGAA with the mobile baseline.
 * Not stated and no clue → ask only if the deliverable is an official statement; otherwise use RAWeb 1.1 for a `.lu`
   context and RGAA for anything French, and say which you used.
 
@@ -32,7 +37,7 @@ Criteria 1.1 to 13.12 are shared (same numbers, same intent); RAWeb adds 30 crit
 14 to 17) and changed the tests of about 30 shared criteria. Never cite a test number without checking it in the right
 data set: `references/raweb-vs-rgaa.md` explains the differences.
 
-## The five kinds of request
+## The six kinds of request
 
 ### A. Audit a site or a set of pages (deliverable: grid + report, maybe statement)
 
@@ -78,7 +83,19 @@ criteria NA, a five-step overall assessment instead of a percentage, the mandato
 accessibility statement, and a technical annex organised by topic, case and page with impact-first explanations
 (`references/data/sip-report-wording-fr.json` holds the SIP's own French wording per criterion; reuse it).
 
-### E. Questions about criteria, tests, glossary, levels, differences
+### E. Audit a mobile application (RAAM 1.1)
+
+Android: connect a device or start an emulator, then per screen of the sample `python3 scripts/android_audit.py
+capture --screen "Accueil" --out android-audit/` and `analyse` (or `walk`, which also captures at 200 % font scale
+and in landscape and compares). The analyser maps the view hierarchy to RAAM criteria (5.1 names and roles, 5.2
+keyboard reachability, 9.x labels, 1.x images, 2.2 contrast estimate, 8.2 / 11.9 from the comparison) and lists what
+only TalkBack and a keyboard can decide: do that pass, record what is announced, then grid (`audit_grid.py new
+--standard raam`), rate and report with the SIP app outline. If the user only hands you captured files
+(window_dump.xml, screenshots), analyse those and say which screens and tests are missing. iOS: no collector;
+guide the manual VoiceOver / Accessibility Inspector pass with the per-criterion iOS methodology. Never cite RAWeb
+or RGAA numbers for app findings: RAAM topics are numbered differently (`references/raam-criteria-index.md`).
+
+### F. Questions about criteria, tests, glossary, levels, differences
 
 Answer from the data, not from memory: `criteria.py show 11.10 --tests --methodology`, `criteria.py search
 "contraste" --standard rgaa`, `criteria.py glossary "lien composite"`, `criteria.py diff`, `criteria.py list --topic
@@ -129,6 +146,8 @@ RGAA: accessibilite.numerique.gouv.fr/methode/criteres-et-tests/).
 | Fill a page's statuses | `python3 scripts/audit_grid.py set grille.csv --page Accueil 1.1=NC 1.2=C 8.3=NC --default NA` |
 | Rate and status | `python3 scripts/audit_grid.py compute grille.csv --process "Parcours=Étape 1,Étape 2"` (`--json`, `--lang fr`) |
 | Contrast ratio (3.2, 3.3, 10.7) | `python3 scripts/contrast.py "#9aa0a6" "#fff" --size 14`, `--css styles.css` to list declared pairs; thresholds applied for you |
+| Android app screen (RAAM) | `python3 scripts/android_audit.py capture --screen "Accueil" --out android-audit/`, then `analyse android-audit/accueil/`; `walk` for 200 % and landscape; `talkback on`, `font-scale 2.0`, `rotate landscape` |
+| RAAM criteria | `python3 scripts/criteria.py show 5.1 --standard raam --methodology` (iOS / Android procedure), `list --standard raam --topic 9` |
 | Refresh data from upstream | `python3 scripts/refresh_data.py` |
 
 `references/automation-map.md` says, criterion by criterion, what the scanner can decide and what needs a browser,
@@ -155,6 +174,7 @@ Read only what the request needs; the references are long and each one answers o
 | C. rate + statement from a grid | `audit-method.md` section 5, `report-templates.md` sections 3-4 | everything else |
 | D. simplified audit | `sip-simplified-audit.md` | `report-templates.md` section 3 (RGAA statement) |
 | Any Luxembourg report, or "what should we fix first" | `sip-audit-corpus.md` (what the SIP finds on 228 real sites, how its reports are structured and worded) | |
+| E. mobile app | `raam-mobile.md` (standard, sample, Android workflow, what SIP finds in apps), `raam-criteria-index.md` | the web references |
 | E. questions | `criteria.py` output; `raweb-vs-rgaa.md` for differences | the rest |
 
 Look up only the criteria you are about to cite, in one call: `python3 scripts/criteria.py show 7.1 7.3 10.7 11.1 --tests`
@@ -169,4 +189,6 @@ already do (contrast, rate, lookup, scanning).
 * `references/sip-simplified-audit.md` — the SIP simplified method (53-criterion shortlist, preconditions, report structure) and how SIP auditors phrase findings.
 * `references/sip-audit-corpus.md` — numbers and patterns from 228 published SIP audits: rates and levels, statement compliance, the most frequent findings mapped to criteria, typical samples, the full-audit report outline and real "constats" wording.
 * `references/criteria-index.md` — all 136 criteria with level, EN/FR titles, test counts, difference flags.
-* `references/data/` — full criteria, tests, methodology and glossary JSON for both standards (see `NOTICE.md` for licences).
+* `references/raam-mobile.md` — RAAM 1.1 for mobile apps: numbering, sample, baseline, Android adb workflow, iOS guidance, findings from 12 SIP app audits.
+* `references/raam-criteria-index.md` — the 108 RAAM 1.1 criteria with level and EN 301 549 clause.
+* `references/data/` — full criteria, tests, methodology and glossary JSON for RAWeb, RGAA and RAAM (see `NOTICE.md` for licences).
