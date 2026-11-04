@@ -7,13 +7,15 @@ A skill (installable as a Claude Code plugin) that lets Claude audit websites, p
   remaining web requirements of EN 301 549 v3.2.1)
 
 It bundles the official criteria, tests and per-test methodology of both standards (in English and French for RAWeb,
-French for RGAA), the audit method (sample, applicability, compliance rate, statement), and three scripts:
+French for RGAA), the audit method (sample, applicability, compliance rate, statement), the SIP simplified-audit
+method, and these scripts:
 
 | Script | Purpose |
 |---|---|
 | `scripts/criteria.py` | look up criteria, tests, test procedures, glossary; diff RAWeb vs RGAA |
 | `scripts/scan_html.py` | static pre-check of an HTML page or URL, findings mapped to criteria and tests |
-| `scripts/audit_grid.py` | create a pages × criteria grid and compute the compliance rate and status with the official rules |
+| `scripts/audit_grid.py` | create a pages × criteria grid, fill statuses, compute the compliance rate and status with the official rules |
+| `scripts/contrast.py` | contrast ratios with the RGAA/RAWeb thresholds (text, components, focus), from colour pairs or a stylesheet |
 | `scripts/render_page.js` | optional: render a URL with Playwright (SPA support, tab order, zoom and mobile screenshots) |
 | `scripts/refresh_data.py` | regenerate the bundled data from the upstream GitHub repositories |
 
