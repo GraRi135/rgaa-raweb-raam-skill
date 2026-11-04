@@ -75,6 +75,18 @@ Then ask things like "audit this page against RAWeb 1.1", "calcule le taux de co
 la déclaration d'accessibilité", or "review this React component for RGAA conformity", or "audit our Android app against RAAM". The skill's scripts need
 Python 3 only; `render_page.js` additionally needs Node.js and Playwright, and `android_audit.py` needs adb (Android platform-tools).
 
+## Where it works
+
+| Environment | Scripts | Pages | Notes |
+|---|---|---|---|
+| Claude Code (terminal, desktop app, cloud, VS Code) | yes | public pages fetched and rendered with Playwright; local files | the full workflow, including the Android collector when adb is installed |
+| Desktop app or Cowork with the built-in browser | yes | any page the browser can open, including behind a login | browser reading tools and screenshots add keyboard and focus evidence; the shell runs the scripts on exported DOM |
+| Claude Code or claude.ai with Claude in Chrome | if a shell exists | any page in your Chrome, with your sign-ins | its JavaScript tool runs the probes in `references/browser-probes.md` and exports the rendered DOM for the scanner |
+| claude.ai chat with the skill only | sandbox, no network | HTML you paste or upload | lookup, grid and scanner on supplied files; no browsing |
+
+No environment gives Claude a screen reader: criteria that need NVDA, JAWS, VoiceOver or TalkBack stay "not tested"
+until a person runs them.
+
 ## Layout
 
 ```

@@ -176,6 +176,27 @@ a keyboard or a screen reader. Read it before trusting a FAIL or before telling 
   comporter des erreurs ou des omissions et ne remplace ni un audit de conformité réalisé avec les technologies
   d'assistance ni des tests avec des utilisateurs. »
 
+## Working from a browser (Claude's built-in browser or Claude in Chrome)
+
+The scripts need a shell; a browser gives what scripts cannot: pages behind a login or a cookie wall, real keyboard
+presses, screenshots of focus and zoom, form submission with errors, dialogs and hover content. When browser tools
+are present, use both when you can, and in any case:
+
+* Read structure with the browser's page-reading tool (accessible names and roles) and `get_page_text`; take
+  screenshots only for visual checks (focus indicator, contrast, 200 % zoom, reflow at a narrow width).
+* Where a JavaScript tool exists (Claude in Chrome's `javascript_tool`, or Playwright), run the probes in
+  `references/browser-probes.md`: landmarks and headings, images, link and button names, form labels, focus log,
+  low-contrast text, dialogs and live regions. Quote their output as evidence. Probe 9 returns the rendered DOM: when a
+  shell is also available, save it and run `scan_html.py` on it (this is the only way to scan authenticated pages).
+* Keyboard: with the computer tool press Tab, Shift+Tab, Enter, Space and Escape through menus, dialogs and
+  forms; screenshot after each Tab on the first pass. That is evidence for 7.3, 10.7, 12.8, 12.9 and 12.11.
+* Forms: submit empty and with wrong formats, then read the page again: 11.10 and 11.11 need the error state.
+* The built-in browser cannot open files you write or servers you start; show generated HTML as an artifact.
+* Nothing in a browser replaces a screen reader: 7.1.2, 4.13, 10.2 and the TalkBack/VoiceOver criteria stay NT.
+* Without a shell (chat with a browser extension only), the instructions and probes still apply, but test ids
+  cannot be verified against the bundled data: cite criteria, say the test numbers are from memory, and keep the
+  deliverable to findings and a to-do list rather than a grid or a rate.
+
 ## What to read, and when
 
 Read only what the request needs; the references are long and each one answers one question.
@@ -200,6 +221,7 @@ already do (contrast, rate, lookup, scanning).
 * `references/raweb-vs-rgaa.md` — the 30 RAWeb-only criteria, changed tests, legal and method differences.
 * `references/automation-map.md` — what `scan_html.py`, `render_page.js` and `contrast.py` can and cannot establish.
 * `references/sip-simplified-audit.md` — the SIP simplified method (53-criterion shortlist, preconditions, report structure) and how SIP auditors phrase findings.
+* `references/browser-probes.md` — JavaScript probes for browser sessions and Playwright: structure, images, names, labels, focus log, contrast, dialogs, DOM export.
 * `references/sip-audit-corpus.md` — numbers and patterns from 228 published SIP audits: rates and levels, statement compliance, the most frequent findings mapped to criteria, typical samples, the full-audit report outline and real "constats" wording.
 * `references/criteria-index.md` — all 136 criteria with level, EN/FR titles, test counts, difference flags.
 * `references/raam-mobile.md` — RAAM 1.1 for mobile apps: numbering, sample, baseline, Android adb workflow, iOS guidance, findings from 12 SIP app audits.
