@@ -96,6 +96,12 @@ section.rule{padding-block:2.5rem;border-top:1px solid var(--line);scroll-margin
 .btn.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
 .btn:disabled{opacity:.55;cursor:not-allowed}
 .note{color:var(--muted);font-size:.92rem;margin-top:.6rem}
+.hint{display:flex;gap:.6rem;align-items:flex-start;background:var(--accent-soft);color:var(--ink);border-left:4px solid var(--accent);border-radius:8px;padding:.7rem .9rem;margin-top:.8rem;font-size:1rem;line-height:1.45;font-weight:500}
+.hint::before{content:"";flex:none;width:1.25em;height:1.25em;margin-top:.1em;background:var(--accent);-webkit-mask:url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cpath d='M12 16v-4M12 8h.01'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cpath d='M12 16v-4M12 8h.01'/%3E%3C/svg%3E") center/contain no-repeat}
+.hint.good{background:var(--good-soft);border-color:var(--good)}.hint.good::before{background:var(--good);-webkit-mask-image:url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6L9 17l-5-5'/%3E%3C/svg%3E");mask-image:url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6L9 17l-5-5'/%3E%3C/svg%3E")}
+.hint.bad{background:var(--bad-soft);border-color:var(--bad)}.hint.bad::before{background:var(--bad);-webkit-mask-image:url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M18 6L6 18M6 6l12 12'/%3E%3C/svg%3E");mask-image:url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M18 6L6 18M6 6l12 12'/%3E%3C/svg%3E")}
+.hint:empty{padding:0;border:0;background:none;margin:0}.hint:empty::before{display:none}
+.toolbar+.hint,.hint+.toolbar{margin-top:.8rem}
 .sr-out{margin-top:.9rem;background:var(--term-bg);color:var(--term-fg);border-radius:10px;padding:.8rem 1rem;font-family:var(--font-mono);font-size:.88rem;line-height:1.5}
 .sr-out .srl{color:var(--term-accent);font-weight:700;font-family:var(--font-body);font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.3rem;display:flex;align-items:center;gap:.4rem}
 .sr-out ol{margin:0;padding-left:1.4rem}
@@ -185,7 +191,6 @@ input[type=range]{width:100%;margin-top:.4rem;accent-color:var(--accent)}
 .opt[data-state="ko"]{border-color:var(--bad);background:var(--bad-soft)}
 .opt:disabled{cursor:default}
 .stage{margin-top:.8rem;border:1.5px dashed var(--line);border-radius:10px;padding:.8rem;min-height:7rem;background:var(--bg)}
-.stage .hint{color:var(--muted);font-size:.92rem;display:flex;gap:.4rem;align-items:center}
 .stage .pv-title{font:700 .75rem var(--font-body);letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:.4rem}
 .confirm{display:flex;gap:.6rem;align-items:center;flex-wrap:wrap;margin-top:.7rem}
 .feedback{margin-top:.7rem;padding:.7rem .9rem;border-radius:10px;font-size:.95rem;display:none;gap:.5rem;align-items:flex-start}
@@ -214,6 +219,8 @@ input[type=range]{width:100%;margin-top:.4rem;accent-color:var(--accent)}
 .mnav.bad .sub{display:none}
 .mnav.bad li:hover .sub{display:grid}
 .mnav.good button[aria-expanded="true"]{background:rgba(255,255,255,.2)}
+.mnav.good .sub{position:static;margin:.3rem 0 .2rem;box-shadow:none}
+.mnav.good ul{display:block}.mnav.good ul>li{display:inline-block;vertical-align:top}.mnav.good ul>li:has(.sub:not([hidden])){display:block}
 .mnav .chev{display:inline-block;width:.5em;height:.5em;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg);margin-left:.2em;margin-top:-.2em}
 .menu-wrap{min-height:4rem;position:relative}
 /* zoom demo */
@@ -304,7 +311,7 @@ footer .warn{background:var(--warn-soft);color:var(--warn);border-radius:10px;pa
   </div>
   <div class="card">
     <h2 class="card-h"><span class="tag"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-play"/></svg><span data-t="tag.try">Essayez</span></span><span data-t="hero.demo.h">Mettez les lunettes de quelqu'un d'autre</span></h2>
-    <p class="note" data-t="hero.demo.p">Voici la page d'accueil (inventée) de la commune. Regardez-la comme Marc, Anne ou Lena, puis corrigez-la.</p>
+    <p class="hint" data-t="hero.demo.p">Voici la page d'accueil (inventée) de la commune. Regardez-la comme Marc, Anne ou Lena, puis corrigez-la.</p>
     <div class="toolbar" role="group" aria-label="Point de vue" data-t-aria="hero.group">
       <button type="button" class="btn vis" data-vis="" aria-pressed="true"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-eye"/></svg><span data-t="vis.normal">Vue habituelle</span></button>
       <button type="button" class="btn vis" data-vis="vision-deuter" aria-pressed="false"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-palette"/></svg><span data-t="vis.marc">Marc, daltonien</span></button>
@@ -326,7 +333,7 @@ footer .warn{background:var(--warn-soft);color:var(--warn);border-radius:10px;pa
       <div class="srl"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-sound"/></svg><span data-t="sr.label">Ce que Lena entend</span></div>
       <ol id="hero-sr-list"><li>graphique, DSC_0042.jpg</li><li>Nouveau parc de jeux au quartier Nord</li><li>Le parc est ouvert depuis samedi. Pour le règlement et les horaires, lien, cliquez ici.</li><li>Les jours en rouge dans le calendrier sont fermés.</li><li>cliquable, Toutes les démarches (inaccessible au clavier)</li></ol>
     </div>
-    <p class="note" id="hero-note" data-t="hero.note.normal">Tout semble normal ? Essayez les autres boutons.</p>
+    <p class="hint" id="hero-note" data-t="hero.note.normal">Tout semble normal ? Essayez les autres boutons.</p>
   </div>
 </section>
 
@@ -374,11 +381,11 @@ footer .warn{background:var(--warn-soft);color:var(--warn);border-radius:10px;pa
           <span><i style="background:#b98b5a"></i><span data-t="cal.orga">Organique</span></span>
         </div>
       </div>
-      <p class="note" id="cal-note" data-t="cal.note.bad">Quatre couleurs, aucun texte dans les cases. Cliquez sur « Deutéranopie » : le vert et le brun se ressemblent, le gris et le bleu aussi.</p>
+      <p class="hint" id="cal-note" data-t="cal.note.bad">Quatre couleurs, aucun texte dans les cases. Cliquez sur « Deutéranopie » : le vert et le brun se ressemblent, le gris et le bleu aussi.</p>
     </div>
     <div class="card">
       <h3><span class="tag"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-target"/></svg><span data-t="tag.fix">À vous</span></span><span data-t="r1.fix.h">Le formulaire affiche en rouge les champs mal remplis. Que faire ?</span></h3>
-      <p class="note" data-t="st.howto">Cliquez sur chaque réponse pour voir à quoi elle ressemble, puis validez la meilleure.</p>
+      <p class="hint" data-t="st.howto">Cliquez sur chaque réponse pour voir à quoi elle ressemble, puis validez la meilleure.</p>
       <div class="challenge" data-challenge="r1">
         <ul class="quiz-opts">
           <li><button type="button" class="opt" aria-pressed="false" data-pv="0"><span class="k">A</span><span data-t="r1.o1">Mettre un rouge plus vif.</span></button></li>
@@ -416,7 +423,7 @@ footer .warn{background:var(--warn-soft);color:var(--warn);border-radius:10px;pa
     </div>
     <div class="card">
       <h3><span class="tag"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-target"/></svg><span data-t="tag.fix">À vous</span></span><span data-t="r2.fix.h">Laquelle de ces trois affiches passe le test ?</span></h3>
-      <p class="note" data-t="st.howto">Cliquez sur chaque réponse pour voir à quoi elle ressemble, puis validez la meilleure.</p>
+      <p class="hint" data-t="st.howto">Cliquez sur chaque réponse pour voir à quoi elle ressemble, puis validez la meilleure.</p>
       <div class="challenge" data-challenge="r2">
         <ul class="quiz-opts">
           <li><button type="button" class="opt" aria-pressed="false" data-pv="0"><span class="k">A</span><span data-t="r2.o1">Gris clair sur blanc</span></button></li>
@@ -463,7 +470,7 @@ footer .warn{background:var(--warn-soft);color:var(--warn);border-radius:10px;pa
     </div>
     <div class="card">
       <h3><span class="tag"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-target"/></svg><span data-t="tag.fix">À vous</span></span><span data-t="r3.fix.h">Quel texte alternatif pour la photo qui illustre « Rénovation de l'hôtel de ville » ?</span></h3>
-      <p class="note" data-t="st.howto">Cliquez sur chaque réponse pour voir à quoi elle ressemble, puis validez la meilleure.</p>
+      <p class="hint" data-t="st.howto">Cliquez sur chaque réponse pour voir à quoi elle ressemble, puis validez la meilleure.</p>
       <div class="challenge" data-challenge="r3">
         <ul class="quiz-opts">
           <li><button type="button" class="opt" aria-pressed="false" data-pv="0"><span class="k">A</span><span data-t="r3.o1">« image »</span></button></li>
@@ -515,7 +522,7 @@ footer .warn{background:var(--warn-soft);color:var(--warn);border-radius:10px;pa
     </div>
     <div class="card">
       <h3><span class="tag"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-target"/></svg><span data-t="tag.fix">À vous</span></span><span data-t="r4.fix.h">Quelle structure de titres est correcte ?</span></h3>
-      <p class="note" data-t="st.howto">Cliquez sur chaque réponse pour voir à quoi elle ressemble, puis validez la meilleure.</p>
+      <p class="hint" data-t="st.howto">Cliquez sur chaque réponse pour voir à quoi elle ressemble, puis validez la meilleure.</p>
       <div class="challenge" data-challenge="r4">
         <ul class="quiz-opts">
           <li><button type="button" class="opt" aria-pressed="false" data-pv="0"><span class="k">A</span><span data-t="r4.o1">Titre 1 › Titre 3 › Titre 2</span></button></li>
@@ -559,7 +566,7 @@ footer .warn{background:var(--warn-soft);color:var(--warn);border-radius:10px;pa
     </div>
     <div class="card">
       <h3><span class="tag"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-target"/></svg><span data-t="tag.fix">À vous</span></span><span data-t="r5.fix.h">Quel texte pour le lien vers le calendrier des collectes ?</span></h3>
-      <p class="note" data-t="st.howto">Cliquez sur chaque réponse pour voir à quoi elle ressemble, puis validez la meilleure.</p>
+      <p class="hint" data-t="st.howto">Cliquez sur chaque réponse pour voir à quoi elle ressemble, puis validez la meilleure.</p>
       <div class="challenge" data-challenge="r5">
         <ul class="quiz-opts">
           <li><button type="button" class="opt" aria-pressed="false" data-pv="0"><span class="k">A</span><span data-t="r5.o1">cliquez ici</span></button></li>
@@ -587,7 +594,7 @@ footer .warn{background:var(--warn-soft);color:var(--warn);border-radius:10px;pa
   <div class="grid2">
     <div class="card">
       <h3><span class="tag"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-play"/></svg><span data-t="tag.try">Essayez</span></span><span data-t="r6.demo.h">Posez la souris et appuyez sur Tab</span></h3>
-      <p class="note" data-t="kb.intro">Cliquez dans le champ, puis avancez avec Tab jusqu'au bouton « Envoyer ». Comptez.</p>
+      <p class="hint" data-t="kb.intro">Cliquez dans le champ, puis avancez avec Tab jusqu'au bouton « Envoyer ». Comptez.</p>
       <div class="toolbar"><button type="button" class="btn fix" id="kb-fix" aria-pressed="false"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-check"/></svg><span data-t="btn.fix2">Corriger</span></button></div>
       <div class="kb-zone" id="kb-zone">
         <label for="kb-name"><span data-t="kb.name">Votre nom</span><input type="text" id="kb-name" autocomplete="off"></label>
@@ -598,12 +605,12 @@ footer .warn{background:var(--warn-soft);color:var(--warn);border-radius:10px;pa
           <button type="button" class="btn" id="kb-cancel" data-t="kb.cancel">Annuler</button>
         </div>
       </div>
-      <p class="note"><span data-t="kb.count">Tabulations depuis le champ « Votre nom » :</span> <span class="kb-count" id="kb-count">0</span></p>
-      <p class="note" id="kb-msg" role="status"></p>
+      <p class="hint"><span data-t="kb.count">Tabulations depuis le champ « Votre nom » :</span> <span class="kb-count" id="kb-count">0</span></p>
+      <p class="hint" id="kb-msg" role="status"></p>
     </div>
     <div class="card">
       <h3><span class="tag"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-target"/></svg><span data-t="tag.fix">À vous</span></span><span data-t="r6.fix.h">Lequel ne sera jamais atteint au clavier ?</span></h3>
-      <p class="note" data-t="st.howto">Cliquez sur chaque réponse pour voir à quoi elle ressemble, puis validez la meilleure.</p>
+      <p class="hint" data-t="st.howto">Cliquez sur chaque réponse pour voir à quoi elle ressemble, puis validez la meilleure.</p>
       <div class="challenge" data-challenge="r6">
         <ul class="quiz-opts">
           <li><button type="button" class="opt" aria-pressed="false" data-pv="0"><span class="k">A</span><span data-t="r6.o1">Un vrai bouton (élément « bouton » de la page).</span></button></li>
@@ -632,7 +639,7 @@ footer .warn{background:var(--warn-soft);color:var(--warn);border-radius:10px;pa
   <div class="grid2">
     <div class="card">
       <h3><span class="tag"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-play"/></svg><span data-t="tag.try">Essayez</span></span><span data-t="r7.demo.h">Le même menu, deux fois</span></h3>
-      <p class="note" data-t="mn.intro">Passez la souris sur « Les règles », puis posez-la et avancez avec Tab. Corrigez, et recommencez.</p>
+      <p class="hint" data-t="mn.intro">Passez la souris sur « Les règles », puis posez-la et avancez avec Tab. Corrigez, et recommencez.</p>
       <div class="toolbar"><button type="button" class="btn fix" id="mn-fix" aria-pressed="false"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-check"/></svg><span data-t="btn.fix2">Corriger</span></button></div>
       <div class="menu-wrap">
         <div class="mnav bad" id="mn-bad" aria-hidden="true">
@@ -652,11 +659,11 @@ footer .warn{background:var(--warn-soft);color:var(--warn);border-radius:10px;pa
           </ul>
         </nav>
       </div>
-      <p class="note" id="mn-note" data-t="mn.note.bad">Version courante : les entrées sont de simples textes, le sous-menu n'apparaît qu'au survol. Avec Tab, le menu entier est sauté.</p>
+      <p class="hint" id="mn-note" data-t="mn.note.bad">Version courante : les entrées sont de simples textes, le sous-menu n'apparaît qu'au survol. Avec Tab, le menu entier est sauté.</p>
     </div>
     <div class="card">
       <h3><span class="tag"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-target"/></svg><span data-t="tag.fix">À vous</span></span><span data-t="r7.fix.h">Comment un sous-menu doit-il s'ouvrir ?</span></h3>
-      <p class="note" data-t="st.howto">Cliquez sur chaque réponse pour voir à quoi elle ressemble, puis validez la meilleure.</p>
+      <p class="hint" data-t="st.howto">Cliquez sur chaque réponse pour voir à quoi elle ressemble, puis validez la meilleure.</p>
       <div class="challenge" data-challenge="r7">
         <ul class="quiz-opts">
           <li><button type="button" class="opt" aria-pressed="false" data-pv="0"><span class="k">A</span><span data-t="r7.o1">Au survol de la souris, c'est plus fluide.</span></button></li>
@@ -704,7 +711,7 @@ footer .warn{background:var(--warn-soft);color:var(--warn);border-radius:10px;pa
     </div>
     <div class="card">
       <h3><span class="tag"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-target"/></svg><span data-t="tag.fix">À vous</span></span><span data-t="r8.fix.h">L'adresse e-mail est mal saisie. Quel message afficher ?</span></h3>
-      <p class="note" data-t="st.howto">Cliquez sur chaque réponse pour voir à quoi elle ressemble, puis validez la meilleure.</p>
+      <p class="hint" data-t="st.howto">Cliquez sur chaque réponse pour voir à quoi elle ressemble, puis validez la meilleure.</p>
       <div class="challenge" data-challenge="r8">
         <ul class="quiz-opts">
           <li><button type="button" class="opt" aria-pressed="false" data-pv="0"><span class="k">A</span><span data-t="r8.o1">« Erreur »</span></button></li>
@@ -744,7 +751,7 @@ footer .warn{background:var(--warn-soft);color:var(--warn);border-radius:10px;pa
     </div>
     <div class="card">
       <h3><span class="tag"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-target"/></svg><span data-t="tag.fix">À vous</span></span><span data-t="r9.fix.h">Anne passe le texte à 200 %. Que doit-il se passer ?</span></h3>
-      <p class="note" data-t="st.howto">Cliquez sur chaque réponse pour voir à quoi elle ressemble, puis validez la meilleure.</p>
+      <p class="hint" data-t="st.howto">Cliquez sur chaque réponse pour voir à quoi elle ressemble, puis validez la meilleure.</p>
       <div class="challenge" data-challenge="r9">
         <ul class="quiz-opts">
           <li><button type="button" class="opt" aria-pressed="false" data-pv="0"><span class="k">A</span><span data-t="r9.o1">Rien ne doit bouger : la mise en page est validée par la direction.</span></button></li>
@@ -785,11 +792,11 @@ footer .warn{background:var(--warn-soft);color:var(--warn);border-radius:10px;pa
           <div class="pb"><p class="bold" data-t="vp.t3">Contact</p><p data-t="vp.p3">Place de la Mairie 1, L-0000 Fiktivbuerg</p></div>
         </div>
       </div></div>
-      <p class="note" id="vp-note" data-t="vp.note.tiny">Sans le réglage « largeur de l'écran », le téléphone affiche la page de bureau en miniature. Il faut pincer pour lire.</p>
+      <p class="hint" id="vp-note" data-t="vp.note.tiny">Sans le réglage « largeur de l'écran », le téléphone affiche la page de bureau en miniature. Il faut pincer pour lire.</p>
     </div>
     <div class="card">
       <h3><span class="tag"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-target"/></svg><span data-t="tag.fix">À vous</span></span><span data-t="r10.fix.h">Laquelle de ces trois pages est correcte sur un téléphone ?</span></h3>
-      <p class="note" data-t="st.howto">Cliquez sur chaque réponse pour voir à quoi elle ressemble, puis validez la meilleure.</p>
+      <p class="hint" data-t="st.howto">Cliquez sur chaque réponse pour voir à quoi elle ressemble, puis validez la meilleure.</p>
       <div class="challenge" data-challenge="r10">
         <ul class="quiz-opts">
           <li><button type="button" class="opt" aria-pressed="false" data-pv="0"><span class="k">A</span><span data-t="r10.o1">La page de bureau en miniature, à pincer pour lire.</span></button></li>
@@ -828,11 +835,11 @@ footer .warn{background:var(--warn-soft);color:var(--warn);border-radius:10px;pa
         <div class="scene"><div style="font-weight:800;font-family:var(--font-display)">Conseil communal · 12 mai</div><div class="sound">♪ « …le budget 2027 est adopté à l'unanimité… »</div></div>
         <div class="cap" id="vd-cap" hidden><span>Le budget 2027 est adopté à l'unanimité.</span></div>
       </div>
-      <p class="note" id="vd-note" data-t="vd.note.0">Avec le son, tout va bien. Coupez-le : que reste-t-il de la décision du conseil ?</p>
+      <p class="hint" id="vd-note" data-t="vd.note.0">Avec le son, tout va bien. Coupez-le : que reste-t-il de la décision du conseil ?</p>
     </div>
     <div class="card">
       <h3><span class="tag"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-target"/></svg><span data-t="tag.fix">À vous</span></span><span data-t="r11.fix.h">Que faut-il publier avec la vidéo du conseil communal ?</span></h3>
-      <p class="note" data-t="st.howto">Cliquez sur chaque réponse pour voir à quoi elle ressemble, puis validez la meilleure.</p>
+      <p class="hint" data-t="st.howto">Cliquez sur chaque réponse pour voir à quoi elle ressemble, puis validez la meilleure.</p>
       <div class="challenge" data-challenge="r11">
         <ul class="quiz-opts">
           <li><button type="button" class="opt" aria-pressed="false" data-pv="0"><span class="k">A</span><span data-t="r11.o1">Rien, c'est une vidéo.</span></button></li>
@@ -872,7 +879,7 @@ footer .warn{background:var(--warn-soft);color:var(--warn);border-radius:10px;pa
     </div>
     <div class="card">
       <h3><span class="tag"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-target"/></svg><span data-t="tag.fix">À vous</span></span><span data-t="r12.fix.h">Le règlement est prêt dans Word. Comment le publier ?</span></h3>
-      <p class="note" data-t="st.howto">Cliquez sur chaque réponse pour voir à quoi elle ressemble, puis validez la meilleure.</p>
+      <p class="hint" data-t="st.howto">Cliquez sur chaque réponse pour voir à quoi elle ressemble, puis validez la meilleure.</p>
       <div class="challenge" data-challenge="r12">
         <ul class="quiz-opts">
           <li><button type="button" class="opt" aria-pressed="false" data-pv="0"><span class="k">A</span><span data-t="r12.o1">L'imprimer, le signer, le scanner et mettre le scan en ligne.</span></button></li>
@@ -1280,7 +1287,7 @@ function renderHero(){
   $('[data-t="mini.link"]',mini).textContent = heroFixed ? t('hero.fix.link') : t('mini.link');
   $('[data-t="mini.err"]',mini).textContent = heroFixed ? t('hero.fix.err') : t('mini.err');
   var key={ '':heroFixed?'hero.note.fixed':'hero.note.normal','vision-deuter':'hero.note.marc','vision-blur':'hero.note.anne','sr':heroFixed?'hero.note.sr.good':'hero.note.sr.bad' }[heroVis];
-  $('#hero-note').textContent=t(key);
+  var hn=$('#hero-note'); hn.textContent=t(key); hn.classList.toggle('good',heroFixed&&(heroVis===''||heroVis==='sr'));
 }
 $$('.btn.vis').forEach(function(b){ b.addEventListener('click',function(){ heroVis=b.getAttribute('data-vis'); pressGroup($$('.btn.vis'),b); renderHero(); }); });
 $('#hero-fix').addEventListener('click',function(){ heroFixed=!heroFixed; this.setAttribute('aria-pressed',heroFixed); renderHero(); });
@@ -1288,7 +1295,7 @@ $('#hero-fix').addEventListener('click',function(){ heroFixed=!heroFixed; this.s
 /* ---------- rule 1: calendar ---------- */
 var calLetters={menage:'M',papier:'P',verre:'V',orga:'O'}, calFixed=false, calVis='';
 var calPlan=['menage','','papier','','verre','','','menage','','orga','','','verre','','menage','','papier','','orga','',''];
-function buildCal(){ var cal=$('#cal'); cal.innerHTML=''; calPlan.forEach(function(tp,i){ var d=document.createElement('div'); d.className='d '+tp+(calFixed&&tp?' fx':''); d.textContent=(i+1); if(tp){ var k=document.createElement('span'); k.className='k'; k.textContent=calLetters[tp]; d.appendChild(k);} cal.appendChild(d); }); cal.className='cal'+(calFixed?' fixed':''); $('#cal-wrap').className=calVis; $('#cal-note').textContent=t(calFixed?'cal.note.fixed':'cal.note.bad'); }
+function buildCal(){ var cal=$('#cal'); cal.innerHTML=''; calPlan.forEach(function(tp,i){ var d=document.createElement('div'); d.className='d '+tp+(calFixed&&tp?' fx':''); d.textContent=(i+1); if(tp){ var k=document.createElement('span'); k.className='k'; k.textContent=calLetters[tp]; d.appendChild(k);} cal.appendChild(d); }); cal.className='cal'+(calFixed?' fixed':''); $('#cal-wrap').className=calVis; var cn=$('#cal-note'); cn.textContent=t(calFixed?'cal.note.fixed':'cal.note.bad'); cn.classList.toggle('good',calFixed); }
 $$('.btn.cv').forEach(function(b){ b.addEventListener('click',function(){ calVis=b.getAttribute('data-cv'); pressGroup($$('.btn.cv'),b); buildCal(); }); });
 $('#cal-fix').addEventListener('click',function(){ calFixed=!calFixed; this.setAttribute('aria-pressed',calFixed); buildCal(); });
 
@@ -1321,15 +1328,16 @@ $('#lk-fix').addEventListener('click',function(){ lkFixed=!lkFixed; this.setAttr
 
 /* ---------- rule 6: keyboard ---------- */
 var kbFixed=false, kbCount=0, kbCounting=false;
-function renderKb(){ $('#kb-fake').hidden=kbFixed; $('#kb-real').hidden=!kbFixed; kbCount=0; kbCounting=false; $('#kb-count').textContent='0'; $('#kb-msg').textContent=''; }
+function kbMsg(txt,cls){ var m=$('#kb-msg'); m.textContent=txt; m.classList.remove('good','bad'); if(cls) m.classList.add(cls); }
+function renderKb(){ $('#kb-fake').hidden=kbFixed; $('#kb-real').hidden=!kbFixed; kbCount=0; kbCounting=false; $('#kb-count').textContent='0'; kbMsg(''); }
 $('#kb-fix').addEventListener('click',function(){ kbFixed=!kbFixed; this.setAttribute('aria-pressed',kbFixed); renderKb(); });
-$('#kb-zone').addEventListener('focusin',function(e){ if(e.target.id==='kb-name'){ kbCount=0; kbCounting=true; $('#kb-count').textContent='0'; $('#kb-msg').textContent=''; return; } if(!kbCounting) return; kbCount++; $('#kb-count').textContent=kbCount; if(e.target.id==='kb-real'){ $('#kb-msg').textContent=t('kb.reached',{n:kbCount}); kbCounting=false; } else if(e.target.id==='kb-cancel' && !kbFixed){ $('#kb-msg').textContent=t('kb.skipped'); kbCounting=false; } });
-$('#kb-real').addEventListener('click',function(){ $('#kb-msg').textContent=t('kb.reached',{n:kbCount}); });
+$('#kb-zone').addEventListener('focusin',function(e){ if(e.target.id==='kb-name'){ kbCount=0; kbCounting=true; $('#kb-count').textContent='0'; kbMsg(''); return; } if(!kbCounting) return; kbCount++; $('#kb-count').textContent=kbCount; if(e.target.id==='kb-real'){ kbMsg(t('kb.reached',{n:kbCount}),'good'); kbCounting=false; } else if(e.target.id==='kb-cancel' && !kbFixed){ kbMsg(t('kb.skipped'),'bad'); kbCounting=false; } });
+$('#kb-real').addEventListener('click',function(){ kbMsg(t('kb.reached',{n:kbCount}),'good'); });
 $('#kb-cancel').addEventListener('click',function(){ $('#kb-name').value=''; $('#kb-mail').value=''; });
 
 /* ---------- rule 7: menu ---------- */
 var mnFixed=false;
-function renderMn(){ $('#mn-bad').hidden=mnFixed; $('#mn-good').hidden=!mnFixed; $('#mn-note').textContent=t(mnFixed?'mn.note.good':'mn.note.bad'); if(!mnFixed) setSub(false); }
+function renderMn(){ $('#mn-bad').hidden=mnFixed; $('#mn-good').hidden=!mnFixed; var mn=$('#mn-note'); mn.textContent=t(mnFixed?'mn.note.good':'mn.note.bad'); mn.classList.toggle('good',mnFixed); if(!mnFixed) setSub(false); }
 function setSub(open){ $('#mn-btn').setAttribute('aria-expanded',open?'true':'false'); $('#mn-sub').hidden=!open; }
 $('#mn-fix').addEventListener('click',function(){ mnFixed=!mnFixed; this.setAttribute('aria-pressed',mnFixed); renderMn(); });
 $('#mn-btn').addEventListener('click',function(){ var open=this.getAttribute('aria-expanded')!=='true'; setSub(open); if(open){ var f=$('#mn-sub a'); if(f) f.focus(); } });
@@ -1350,14 +1358,14 @@ $('#zm-fix').addEventListener('click',function(){ zmFixed=!zmFixed; this.setAttr
 
 /* ---------- rule 10: phone ---------- */
 var vpMode='tiny';
-function renderVp(){ $('#vp-page').className='page '+vpMode; $('#vp-screen').classList.toggle('scroll',vpMode==='wide'); $('#vp-note').textContent=t('vp.note.'+vpMode); }
+function renderVp(){ $('#vp-page').className='page '+vpMode; $('#vp-screen').classList.toggle('scroll',vpMode==='wide'); var pn=$('#vp-note'); pn.textContent=t('vp.note.'+vpMode); pn.classList.toggle('good',vpMode==='fluid'); }
 $$('.btn.vp').forEach(function(b){ b.addEventListener('click',function(){ vpMode=b.getAttribute('data-vp'); pressGroup($$('.btn.vp'),b); renderVp(); }); });
 
 /* ---------- rule 11: ticker + video ---------- */
 var reduced=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches, tkPaused=reduced, vdMuted=false, vdCc=false;
 function renderTk(){ $('#ticker').classList.toggle('paused',tkPaused); var b=$('#tk-pause'); b.setAttribute('aria-pressed',tkPaused); b.innerHTML=ico(tkPaused?'play':'x')+' '+esc(t(tkPaused?'tk.play':'tk.pause')); }
 $('#tk-pause').addEventListener('click',function(){ tkPaused=!tkPaused; renderTk(); });
-function renderVd(){ $('#video').classList.toggle('muted',vdMuted); $('#vd-cap').hidden=!vdCc; var m=$('#vd-mute'); m.setAttribute('aria-pressed',vdMuted); m.innerHTML=ico('sound')+' '+esc(t(vdMuted?'vd.unmute':'vd.mute')); var c=$('#vd-cc'); c.setAttribute('aria-pressed',vdCc); c.innerHTML=ico('check')+' '+esc(t(vdCc?'vd.cc.off':'vd.cc')); $('#vd-note').textContent=t(vdCc?'vd.note.2':(vdMuted?'vd.note.1':'vd.note.0')); }
+function renderVd(){ $('#video').classList.toggle('muted',vdMuted); $('#vd-cap').hidden=!vdCc; var m=$('#vd-mute'); m.setAttribute('aria-pressed',vdMuted); m.innerHTML=ico('sound')+' '+esc(t(vdMuted?'vd.unmute':'vd.mute')); var c=$('#vd-cc'); c.setAttribute('aria-pressed',vdCc); c.innerHTML=ico('check')+' '+esc(t(vdCc?'vd.cc.off':'vd.cc')); var vn=$('#vd-note'); vn.textContent=t(vdCc?'vd.note.2':(vdMuted?'vd.note.1':'vd.note.0')); vn.classList.toggle('good',vdCc); vn.classList.toggle('bad',vdMuted&&!vdCc); }
 $('#vd-mute').addEventListener('click',function(){ vdMuted=!vdMuted; renderVd(); });
 $('#vd-cc').addEventListener('click',function(){ vdCc=!vdCc; renderVd(); });
 
@@ -1421,7 +1429,7 @@ PV.q7=function(i){ var ctrl=i===1?'<p style="margin:.4rem 0 0"><span class="fb">
 
 /* ---------- challenges: preview, then confirm ---------- */
 var quizAnswers=[], quizIndex=0, quizQs=$$('#qz-questions .q');
-function renderStage(ch){ var st=$('.stage',ch); if(ch._pv==null){ st.innerHTML='<p class="hint">'+ico('eye')+'<span>'+esc(t('st.hint'))+'</span></p>'; return; } var id=ch.getAttribute('data-challenge'); st.innerHTML='<div class="pv-title">'+esc(t('st.pv',{k:String.fromCharCode(65+ch._pv)}))+'</div>'+(PV[id]?PV[id](ch._pv):''); }
+function renderStage(ch){ var st=$('.stage',ch); if(ch._pv==null){ st.innerHTML='<p class="hint"><span>'+esc(t('st.hint'))+'</span></p>'; return; } var id=ch.getAttribute('data-challenge'); st.innerHTML='<div class="pv-title">'+esc(t('st.pv',{k:String.fromCharCode(65+ch._pv)}))+'</div>'+(PV[id]?PV[id](ch._pv):''); }
 function renderFeedback(ch){ var fb=$('.feedback',ch); if(!ch._done){ fb.className='feedback'; fb.innerHTML=''; return; } var ok=ch._ok; fb.className='feedback show '+(ok?'ok':'ko'); fb.innerHTML=ico(ok?'check':'x')+'<span>'+t(fb.getAttribute(ok?'data-ok-t':'data-ko-t'))+'</span>'; }
 function resetChallenge(ch){ ch._pv=null; ch._done=false; ch._ok=false; $$('.opt',ch).forEach(function(o){ o.removeAttribute('data-state'); o.setAttribute('aria-pressed','false'); }); $('.choose',ch).disabled=true; renderStage(ch); renderFeedback(ch); }
 $$('[data-challenge]').forEach(function(ch){
