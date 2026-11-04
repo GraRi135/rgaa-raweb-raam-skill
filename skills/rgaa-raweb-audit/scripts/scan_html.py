@@ -561,14 +561,16 @@ class Scanner:
                     lvl = "2"
                 hs.append((int(lvl), n))
         self.inventory["headings"] = {f"h{l}": sum(1 for x, _ in hs if x == l) for l in range(1, 7) if any(x == l for x, _ in hs)}
-        if not any(l == 1 for l, _ in hs):
-            self.add("fail", "9.1", "9.1.1", "No level-1 heading: the page must have at least one h1 (test 9.1.1).")
+        if not hs:
+            self.add("review", "9.1", "9.1.3", "No heading at all: if the page has visually distinct section titles, they must be <hx> or role=heading (9.1.3); a page with no title structure is NC 9.1.")
+        elif not any(l == 1 for l, _ in hs):
+            self.add("review", "9.1", "9.1.1", "No level-1 heading. The RGAA/RAWeb glossary does not require an h1 and tolerates level jumps as long as the looser hierarchy stays consistent: check consistency rather than counting it as NC.")
         prev = 0
         for l, n in hs:
             if not norm(text_of(n, self.byid)):
                 self.add("fail", "9.1", "9.1.2", "Empty heading.", n)
             if prev and l > prev + 1:
-                self.add("fail", "9.1", "9.1.1", f"Heading level skipped (h{prev} → h{l}).", n)
+                self.add("review", "9.1", "9.1.1", f"Heading level jump (h{prev} → h{l}): tolerated by the glossary if the hierarchy stays consistent; NC only if sibling sections get different levels or the outline misleads.", n)
             prev = l
         for n in self.body.elements():
             cls = (n.get("class") or "").lower()
