@@ -92,6 +92,12 @@ Node.js et Playwright, et `android_audit.py` demande adb (Android platform-tools
 | Claude Code ou claude.ai avec Claude dans Chrome | si un shell existe | toute page de votre Chrome, avec vos sessions | son outil JavaScript exécute les sondes de `references/browser-probes.md` et exporte le DOM rendu pour le scanner |
 | claude.ai seul avec la compétence | bac à sable, sans réseau | HTML collé ou téléversé | consultation, grille et scanner sur les fichiers fournis ; pas de navigation |
 
+Le terminal n'est pas obligatoire : l'application de bureau Claude Code, la version web et les extensions pour IDE
+installent le plugin de la même façon. Pour les audits (captures Playwright, rapports PDF, adb), utilisez Claude Code
+sur la machine qui a les fichiers et l'émulateur ; la version cloud n'atteint pas vos appareils. Pour les questions, la
+relecture de code collé, les grilles et les déclarations, la compétence téléversée dans l'application Claude
+habituelle suffit. La page de sensibilisation n'a besoin de rien.
+
 Aucun environnement ne donne un lecteur d'écran à Claude : les critères qui exigent NVDA, JAWS, VoiceOver ou TalkBack
 restent « non testés » tant qu'une personne ne les a pas passés.
 

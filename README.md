@@ -88,6 +88,11 @@ Python 3 only; `render_page.js` additionally needs Node.js and Playwright, and `
 | Claude Code or claude.ai with Claude in Chrome | if a shell exists | any page in your Chrome, with your sign-ins | its JavaScript tool runs the probes in `references/browser-probes.md` and exports the rendered DOM for the scanner |
 | claude.ai chat with the skill only | sandbox, no network | HTML you paste or upload | lookup, grid and scanner on supplied files; no browsing |
 
+The terminal is not required: the Claude Code desktop app, the web app and the IDE extensions install the plugin the
+same way. For audits (Playwright screenshots, PDF reports, adb) use Claude Code on the machine that has the files and
+the emulator; the cloud version cannot reach your devices. For questions, reviews of pasted code, grids and statements,
+the skill uploaded to the normal Claude app is enough. The explainer page needs nothing at all.
+
 No environment gives Claude a screen reader: criteria that need NVDA, JAWS, VoiceOver or TalkBack stay "not tested"
 until a person runs them.
 
