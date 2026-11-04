@@ -1,16 +1,16 @@
 ---
 name: rgaa-raweb-audit
 description: >-
-  Audit websites, pages, HTML and front-end code (React, Vue, templates) against RGAA 4.1.2 (France) and
-  RAWeb 1.1 (Luxembourg), the public-sector web accessibility standards built on WCAG 2.1 and EN 301 549, and
-  mobile apps against RAAM 1.1 (Luxembourg) with an adb-based Android collector. Looks up criteria, tests and
-  procedures; runs static pre-checks mapped to criterion numbers; computes the compliance rate and status from
-  an audit grid with the official rules; writes audit reports and accessibility statements (déclaration
-  d'accessibilité). Use it whenever a request mentions RGAA, RAWeb, RAAM, SIP, DINUM, Ara, EN 301 549, "audit
-  d'accessibilité", "taux de conformité", "déclaration d'accessibilité", "non-conformité", criterion numbers
-  like "critère 1.1", an accessibility audit or statement for a .lu / .gouv.fr / .fr public site, an Android or
-  iOS app (TalkBack, VoiceOver, adb, emulator), or a review of pages or components for accessibility in a French
-  or Luxembourg context, even if the user only says "accessibilité", "a11y audit" or "is this WCAG compliant".
+  Audit websites, pages, HTML and front-end code against RGAA 4.1.2 (France) and RAWeb 1.1 (Luxembourg), the
+  public-sector web accessibility standards built on WCAG 2.1 and EN 301 549, and mobile apps against RAAM 1.1
+  (Luxembourg) with an adb Android collector. Looks up criteria, tests and procedures; runs static pre-checks
+  mapped to criterion numbers; computes the compliance rate and status from an audit grid with the official
+  rules; writes audit reports and accessibility statements (déclaration d'accessibilité). Use it whenever a
+  request mentions RGAA, RAWeb, RAAM, SIP, EN 301 549, "audit d'accessibilité", "taux de conformité",
+  "déclaration d'accessibilité", "non-conformité", criterion numbers like "critère 1.1", an accessibility audit
+  or statement for a .lu / .gouv.fr / .fr public site, an Android or iOS app (TalkBack, VoiceOver, adb,
+  emulator), or a review of pages or components for accessibility in France or Luxembourg, even if the user
+  only says "accessibilité", "a11y audit" or "is this WCAG compliant".
 ---
 
 # RGAA / RAWeb accessibility audit
