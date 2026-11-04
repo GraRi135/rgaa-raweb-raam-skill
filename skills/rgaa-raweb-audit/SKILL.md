@@ -60,7 +60,12 @@ data set: `references/raweb-vs-rgaa.md` explains the differences.
 4. Fill the grid with C / NC / NA per page. Use NT for anything you could not test (screen reader, keyboard, contrast,
    zoom when you have no browser) and say so. Leaving NT in the final grid makes the rate provisional.
 5. Compute: `python3 scripts/audit_grid.py compute grid.csv [--process "Name=Page A,Page B"]`. Never hand-count.
-6. Write the report with `references/report-templates.md`, then the statement if asked.
+6. Write the report with `references/report-templates.md`, then the statement if asked. When the client wants a
+   document to circulate (web agency, management, publication), produce the illustrated version: build
+   `findings.json` (`build_report.py bootstrap` from the scan files, then your own findings and texts), annotate
+   (`render_page.js --annotate`: each finding gets a clipped screenshot with the element outlined and its markup),
+   and `build_report.py build ... --pdf` for a single HTML file and an A4 PDF in the SIP's order
+   (`references/report-builder.md`).
 
 ### B. Review one page, a component or a code snippet (deliverable: findings list)
 
@@ -157,6 +162,10 @@ RGAA: accessibilite.numerique.gouv.fr/methode/criteres-et-tests/).
 | Contrast ratio (3.2, 3.3, 10.7) | `python3 scripts/contrast.py "#9aa0a6" "#fff" --size 14`, `--css styles.css` to list declared pairs; thresholds applied for you |
 | Android app screen (RAAM) | `python3 scripts/android_audit.py capture --screen "Accueil" --out android-audit/`, then `analyse android-audit/accueil/`; `walk` for 200 % and landscape; `talkback on`, `font-scale 2.0`, `rotate landscape` |
 | RAAM criteria | `python3 scripts/criteria.py show 5.1 --standard raam --methodology` (iOS / Android procedure), `list --standard raam --topic 9` |
+| Findings file from a scan | `python3 scripts/build_report.py bootstrap p01.scan.json --url URL --page P01 --title Accueil > findings.json` (`--append` to add pages) |
+| Annotated screenshots (web) | `node scripts/render_page.js --annotate findings.json --out shots/` → `findings.annotated.json` |
+| Annotated screenshots (Android) | `python3 scripts/android_audit.py annotate android-audit/accueil/ --out shots/` → `shots/findings.json` |
+| Illustrated report, HTML + PDF | `python3 scripts/build_report.py build findings.annotated.json --grid grille.csv --out rapport.html --pdf rapport.pdf --lang fr` |
 | Refresh data from upstream | `python3 scripts/refresh_data.py` |
 
 `references/automation-map.md` says, criterion by criterion, what the scanner can decide and what needs a browser,
@@ -204,7 +213,7 @@ Read only what the request needs; the references are long and each one answers o
 
 | Request | Read | Skip |
 |---|---|---|
-| A. site audit, grid, rate | `audit-method.md` (sample, statuses, rate), then `report-templates.md` when writing | `sip-simplified-audit.md` unless Luxembourg monitoring |
+| A. site audit, grid, rate | `audit-method.md` (sample, statuses, rate), then `report-templates.md` when writing; `report-builder.md` for the illustrated HTML / PDF | `sip-simplified-audit.md` unless Luxembourg monitoring |
 | B. page or component review | `automation-map.md` (what the scanner proves); `raweb-vs-rgaa.md` only if RAWeb and you will cite tests that differ (1.2, 6.1, 9.2, 13.5...) | `audit-method.md` (no sample, no rate) |
 | C. rate + statement from a grid | `audit-method.md` section 5, `report-templates.md` sections 3-4 | everything else |
 | D. simplified audit | `sip-simplified-audit.md` | `report-templates.md` section 3 (RGAA statement) |
@@ -223,6 +232,7 @@ already do (contrast, rate, lookup, scanning).
 * `references/automation-map.md` — what `scan_html.py`, `render_page.js` and `contrast.py` can and cannot establish.
 * `references/sip-simplified-audit.md` — the SIP simplified method (53-criterion shortlist, preconditions, report structure) and how SIP auditors phrase findings.
 * `references/browser-probes.md` — JavaScript probes for browser sessions and Playwright: structure, images, names, labels, focus log, contrast, dialogs, DOM export.
+* `references/report-builder.md` — the findings.json schema and the scan → annotate → build workflow for illustrated HTML / PDF reports.
 * `references/sip-audit-corpus.md` — numbers and patterns from 228 published SIP audits: rates and levels, statement compliance, the most frequent findings mapped to criteria, typical samples, the full-audit report outline and real "constats" wording.
 * `references/criteria-index.md` — all 136 criteria with level, EN/FR titles, test counts, difference flags.
 * `references/raam-mobile.md` — RAAM 1.1 for mobile apps: numbering, sample, baseline, Android adb workflow, iOS guidance, findings from 12 SIP app audits.

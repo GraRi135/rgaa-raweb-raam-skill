@@ -23,7 +23,8 @@ et formulation des rapports), et les outils suivants :
 | `scripts/audit_grid.py` | créer une grille pages × critères, remplir les statuts, calculer le taux et l'état de conformité selon les règles officielles |
 | `scripts/contrast.py` | rapports de contraste avec les seuils RGAA/RAWeb (textes, composants, focus), à partir de couleurs ou d'une feuille de style |
 | `scripts/android_audit.py` | écrans d'applications Android via adb (appareil ou émulateur) : hiérarchie de vues, capture d'écran, texte à 200 %, orientation, TalkBack ; constats rattachés au RAAM 1.1 |
-| `scripts/render_page.js` | optionnel : rendu d'une URL avec Playwright (applications monopage, ordre de tabulation, zoom, captures mobiles) |
+| `scripts/build_report.py` | fichier de constats → un rapport HTML accessible en un seul fichier avec captures annotées intégrées, et un PDF A4, dans l'ordre des rapports du SIP |
+| `scripts/render_page.js` | optionnel : rendu d'une URL avec Playwright (applications monopage, ordre de tabulation, zoom, captures mobiles) ; `--annotate` entoure l'élément de chaque constat et découpe une capture ; `--print` produit le PDF |
 | `scripts/refresh_data.py` | régénérer les données embarquées depuis les dépôts GitHub officiels |
 
 ## Important : une aide, pas un audit

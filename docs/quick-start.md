@@ -46,8 +46,9 @@ python3 scripts/audit_grid.py compute grid.csv                         # rate an
 
 * Findings with a criterion and test id, the element, the problem, who it affects and a fix, grouped by criterion.
 * A grid (CSV) of criteria × pages with C / NC / NA / NT, and the compliance rate computed as the standards require.
-* A report in the structure the Luxembourg SIP uses for its own audits, and, on request, an accessibility statement
-  draft in the mandatory French format.
+* A report in the structure the Luxembourg SIP uses for its own audits, as Markdown or as an illustrated HTML and PDF
+  report with annotated screenshots (`build_report.py`, see `skills/rgaa-raweb-audit/references/report-builder.md`),
+  and, on request, an accessibility statement draft in the mandatory French format.
 * A list of what still needs a person with a screen reader and a keyboard. That list is never empty.
 
 ## 5. Keep the data current

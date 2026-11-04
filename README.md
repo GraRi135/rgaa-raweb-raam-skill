@@ -22,7 +22,8 @@ method, what 228 published SIP audits show (most frequent findings, report struc
 | `scripts/audit_grid.py` | create a pages × criteria grid, fill statuses, compute the compliance rate and status with the official rules |
 | `scripts/contrast.py` | contrast ratios with the RGAA/RAWeb thresholds (text, components, focus), from colour pairs or a stylesheet |
 | `scripts/android_audit.py` | Android app screens through adb (device or emulator): view hierarchy, screenshot, 200 % text, orientation, TalkBack toggle; findings mapped to RAAM 1.1 |
-| `scripts/render_page.js` | optional: render a URL with Playwright (SPA support, tab order, zoom and mobile screenshots) |
+| `scripts/build_report.py` | findings file → one accessible HTML report with annotated screenshots embedded, and an A4 PDF, in the SIP's report order |
+| `scripts/render_page.js` | optional: render a URL with Playwright (SPA support, tab order, zoom and mobile screenshots); `--annotate` outlines each finding's element and clips a screenshot; `--print` makes the PDF |
 | `scripts/refresh_data.py` | regenerate the bundled data from the upstream GitHub repositories |
 
 ## Important: an aid, not an audit

@@ -9,6 +9,7 @@
   android_audit.py rotate landscape | portrait | auto       # force orientation (criterion 11.9)
   android_audit.py talkback on | off                        # toggle TalkBack (needs it installed)
   android_audit.py compare audit/accueil/ audit/accueil-x2/ # texts truncated or lost between two captures (font scale, orientation)
+  android_audit.py annotate audit/accueil/ [--out shots/]   # one cropped PNG per FAIL/REVIEW finding, element outlined in red, plus findings.json
   android_audit.py walk --screen "Accueil" --out audit/     # capture at scale 1.0, 2.0 and in landscape, then compare and analyse
 
 What it proves: the view hierarchy exposed to assistive technologies (uiautomator dump): elements without a
@@ -327,6 +328,78 @@ def analyse(capture_dir):
     return {"capture": capture_dir, "meta": meta, "inventory": dict(inv), "findings": F}
 
 
+# -- PNG writing and drawing (stdlib) ------------------------------------------
+def write_png(path, w, h, ch, rows):
+    def chunk(t, d):
+        return struct.pack(">I", len(d)) + t + d + struct.pack(">I", zlib.crc32(t + d) & 0xffffffff)
+    raw = b"".join(b"\x00" + r for r in rows)
+    ct = 2 if ch == 3 else 6
+    open(path, "wb").write(b"\x89PNG\r\n\x1a\n" + chunk(b"IHDR", struct.pack(">IIBBBBB", w, h, 8, ct, 0, 0, 0)) + chunk(b"IDAT", zlib.compress(raw, 6)) + chunk(b"IEND", b""))
+
+
+DIGITS = {"0": ["111", "101", "101", "101", "111"], "1": ["010", "110", "010", "010", "111"], "2": ["111", "001", "111", "100", "111"], "3": ["111", "001", "111", "001", "111"], "4": ["101", "101", "111", "001", "001"],
+          "5": ["111", "100", "111", "001", "111"], "6": ["111", "100", "111", "101", "111"], "7": ["111", "001", "001", "001", "001"], "8": ["111", "101", "111", "101", "111"], "9": ["111", "101", "111", "001", "111"]}
+
+
+def crop_annotate(img, bounds, label, margin=80, colour=(208, 2, 27)):
+    """Crop the screenshot around bounds (with margin), draw a red rectangle on the element and a numbered label."""
+    x1, y1, x2, y2 = bounds; ch = img["ch"]
+    cx1, cy1 = max(0, x1 - margin), max(0, y1 - margin); cx2, cy2 = min(img["w"], x2 + margin), min(img["h"], y2 + margin)
+    W, H = cx2 - cx1, cy2 - cy1
+    rows = [bytearray(img["rows"][y][cx1 * ch:cx2 * ch]) for y in range(cy1, cy2)]
+    def put(x, y, c):
+        if 0 <= x < W and 0 <= y < H:
+            o = x * ch; rows[y][o:o + 3] = bytes(c)
+    t = 4
+    for d in range(t):
+        for x in range(x1 - cx1 - d, x2 - cx1 + d):
+            put(x, y1 - cy1 - d, colour); put(x, y2 - cy1 + d, colour)
+        for y in range(y1 - cy1 - d, y2 - cy1 + d):
+            put(x1 - cx1 - d, y, colour); put(x2 - cx1 + d, y, colour)
+    # label: white digits on a red box, scale 4
+    sc = 4; lx = max(0, x1 - cx1 - t); ly = max(0, y1 - cy1 - t - 5 * sc - 10)
+    bw = len(label) * 4 * sc + 8
+    for y in range(ly, ly + 5 * sc + 8):
+        for x in range(lx, lx + bw):
+            put(x, y, colour)
+    for i, chr_ in enumerate(label):
+        pat = DIGITS.get(chr_)
+        if not pat:
+            continue
+        for r, line in enumerate(pat):
+            for c, bit in enumerate(line):
+                if bit == "1":
+                    for dy in range(sc):
+                        for dx in range(sc):
+                            put(lx + 4 + i * 4 * sc + c * sc + dx, ly + 4 + r * sc + dy, (255, 255, 255))
+    return W, H, [bytes(r) for r in rows]
+
+
+def cmd_annotate(a):
+    res = analyse(a.capture_dir)
+    png = os.path.join(a.capture_dir, "screen.png")
+    img = read_png(png) if os.path.exists(png) else None
+    out = a.out or os.path.join(a.capture_dir, "shots")
+    os.makedirs(out, exist_ok=True)
+    tree = load_tree(os.path.join(a.capture_dir, "window_dump.xml"))
+    by_idx = {n.idx: n for n in tree.iter()}
+    n = 0; findings = []
+    for i, f in enumerate([x for x in res["findings"] if x["status"] in ("fail", "review")], 1):
+        f = dict(f); f["id"] = f"A{i:02d}"; f["url"] = res["meta"].get("screen"); f["standard"] = "raam"
+        node = by_idx.get(f.get("index"))
+        if img and node is not None and node.bounds != (0, 0, 0, 0):
+            W, H, rows = crop_annotate(img, node.bounds, str(i))
+            path = os.path.join(out, f"{f['id']}.png"); write_png(path, W, H, img["ch"], rows); f["screenshot"] = path; n += 1
+        findings.append(f)
+    meta = res["meta"]
+    doc = {"site": meta.get("package", ""), "standard": "raam", "lang": "en", "title": f"Écran « {meta.get('screen', a.capture_dir)} »",
+           "sample": [{"id": "E01", "title": meta.get("screen", ""), "url": f"{meta.get('package', '')}/{meta.get('activity', '')}"}],
+           "environment": [f"Android {(meta.get('settings') or {}).get('android_version', '?')}, {(meta.get('settings') or {}).get('model', '')}, font scale {(meta.get('settings') or {}).get('font_scale', '?')}; static view-hierarchy analysis, no TalkBack"],
+           "findings": findings}
+    fp = os.path.join(out, "findings.json"); json.dump(doc, open(fp, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+    print(f"{n} annotated screenshot(s) in {out}; findings written to {fp} (edit problem/impact/fix, then build_report.py)")
+
+
 def cmd_analyse(a):
     res = analyse(a.capture_dir)
     if a.json:
@@ -396,9 +469,10 @@ def main():
     ro = sub.add_parser("rotate"); ro.add_argument("mode", choices=["landscape", "portrait", "auto"])
     tb = sub.add_parser("talkback"); tb.add_argument("mode", choices=["on", "off"])
     cp = sub.add_parser("compare"); cp.add_argument("before"); cp.add_argument("after")
+    ann = sub.add_parser("annotate"); ann.add_argument("capture_dir"); ann.add_argument("--out")
     w = sub.add_parser("walk"); w.add_argument("--screen", required=True); w.add_argument("--out", default="android-audit")
     a = ap.parse_args()
-    {"devices": cmd_devices, "capture": cmd_capture, "analyse": cmd_analyse, "font-scale": cmd_font_scale, "rotate": cmd_rotate, "talkback": cmd_talkback, "compare": cmd_compare, "walk": cmd_walk}[a.cmd](a)
+    {"devices": cmd_devices, "capture": cmd_capture, "analyse": cmd_analyse, "font-scale": cmd_font_scale, "rotate": cmd_rotate, "talkback": cmd_talkback, "compare": cmd_compare, "walk": cmd_walk, "annotate": cmd_annotate}[a.cmd](a)
 
 
 if __name__ == "__main__":

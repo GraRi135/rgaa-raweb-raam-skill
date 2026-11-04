@@ -93,6 +93,20 @@ class Node:
                 return True
         return False
 
+    def css_path(self):
+        """A CSS selector that finds this element again in a browser (id if unique, else nth-of-type chain)."""
+        parts = []
+        n = self
+        while n is not None and n.tag not in (None, "#document", "html"):
+            if n.get("id") and re.match(r"^[A-Za-z][\w-]*$", n.get("id")):
+                parts.append("#" + n.get("id"))
+                break
+            same = [c for c in (n.parent.children if n.parent else []) if c.tag == n.tag]
+            idx = same.index(n) + 1 if n in same else 1
+            parts.append(f"{n.tag}:nth-of-type({idx})" if len(same) > 1 else n.tag)
+            n = n.parent
+        return " > ".join(reversed(parts))
+
     def snippet(self, limit=110):
         if self.tag is None:
             return (self.text or "")[:limit]
@@ -327,7 +341,8 @@ class Scanner:
 
     def add(self, status, crit, test, msg, node=None):
         self.findings.append({"status": status, "criterion": crit, "test": test, "message": msg,
-                              "line": node.line if node is not None else None, "element": node.snippet() if node is not None else None})
+                              "line": node.line if node is not None else None, "element": node.snippet() if node is not None else None,
+                              "selector": node.css_path() if node is not None and node.tag not in (None, "#document", "html") else None})
 
     # ---------------- checks ----------------
     def check_page(self):

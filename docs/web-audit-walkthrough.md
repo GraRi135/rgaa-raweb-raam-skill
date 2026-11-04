@@ -69,4 +69,6 @@ of every report exists because of this. Read the report as a colleague's draft, 
 * `rapport-audit-<site>.md`: SIP full-audit outline (introduction, sample with statement check, test environment,
   results with per-page and per-topic tables, opinion, technical annex by topic).
 * `grille-audit-<site>.csv` and the `compute` output.
+* On request, the illustrated version: `rapport.html` (single file, screenshots of each finding with the element
+  outlined and its markup) and `rapport.pdf`, built from a findings file you can review and edit before building.
 * On request, the accessibility statement draft: see [statements.md](statements.md).
