@@ -4,4 +4,4 @@ focus: trace
 weight: 1
 ---
 
-The report uses RAWeb 1.1 criterion numbering and names RAWeb 1.1 as the standard; it does not cite RGAA-only test ids such as 8.1.3 nor RGAA 9.2 wording as if it were RAWeb.
+The report names RAWeb 1.1 as the standard and describes it correctly (136 criteria / 17 topics, or at least does not present it as a 106-criterion, 13-topic standard), uses RAWeb 1.1 test ids, and does not cite RGAA-only test ids such as 8.1.3.

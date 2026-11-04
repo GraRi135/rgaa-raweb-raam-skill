@@ -50,13 +50,16 @@ data set: `references/raweb-vs-rgaa.md` explains the differences.
 
 ### B. Review one page, a component or a code snippet (deliverable: findings list)
 
-Read the code, run `scan_html.py` on HTML when there is HTML (write JSX/templates to a temporary HTML file if a
-rendered sample is easy to produce, otherwise review by hand), then go criterion by criterion through the topics the
-code touches: images (1), frames (2), colours (3), media (4), tables (5), links (6), scripts and widgets (7),
+Read the code, run `scan_html.py` on HTML when there is HTML (for JSX, Vue or templates, write the rendered markup of
+the relevant state, e.g. the open dialog with an error shown, to a temporary HTML file and scan that), run
+`contrast.py --css` on stylesheets, then go criterion by criterion through the topics the code touches: images (1), frames (2), colours (3), media (4), tables (5), links (6), scripts and widgets (7),
 mandatory elements (8), structure (9), presentation (10), forms (11), navigation (12), consultation (13). For each
 problem give criterion, test, element, why it fails, impact, fix (code), auditor priority. Say which criteria could
-not be assessed from code alone (contrast, keyboard behaviour, screen-reader rendering) and how to test them. Do not
-compute a compliance rate for a single page or component: the rate is a site-level figure over a sample.
+not be assessed from code alone (keyboard behaviour, screen-reader rendering, rendered contrast) and how to test them.
+Do not compute a compliance rate for a single page or component: the rate is a site-level figure over a sample. Size
+the deliverable to the request: a ticket list wants one block per issue and a short corrected snippet per issue, not a
+full rewrite of the component unless asked; a one-page report for a web agency wants the findings and fixes first and
+the method and sample requirements after.
 
 ### C. Compute a rate or write a statement from an existing grid
 
@@ -118,7 +121,9 @@ RGAA: accessibilite.numerique.gouv.fr/methode/criteres-et-tests/).
 | Static pre-check of a page | `python3 scripts/scan_html.py page.html` or a URL; `--render` for client-rendered apps; `--json` to keep evidence |
 | Rendered DOM, tab order, zoom, mobile | `node scripts/render_page.js URL [--tab-order] [--zoom 200 --screenshot z.png] [--mobile]` (needs Playwright) |
 | New grid | `python3 scripts/audit_grid.py new --standard rgaa --pages "Accueil=URL,Contact=URL" --out grille.csv` |
+| Fill a page's statuses | `python3 scripts/audit_grid.py set grille.csv --page Accueil 1.1=NC 1.2=C 8.3=NC --default NA` |
 | Rate and status | `python3 scripts/audit_grid.py compute grille.csv --process "Parcours=Étape 1,Étape 2"` (`--json`, `--lang fr`) |
+| Contrast ratio (3.2, 3.3, 10.7) | `python3 scripts/contrast.py "#9aa0a6" "#fff" --size 14`, `--css styles.css` to list declared pairs; thresholds applied for you |
 | Refresh data from upstream | `python3 scripts/refresh_data.py` |
 
 `references/automation-map.md` says, criterion by criterion, what the scanner can decide and what needs a browser,
@@ -134,12 +139,27 @@ a keyboard or a screen reader. Read it before trusting a FAIL or before telling 
 * Put long deliverables in a file (`rapport-audit-<site>.md`, `declaration-accessibilite.md`, `grille.csv`) and
   summarise in the answer: status, rate, top blocking issues, what remains to be tested.
 
-## References in this skill
+## What to read, and when
 
-* `references/audit-method.md` — sample, exemptions, test environment, statuses, rate, deliverables, common auditor errors. Read for any audit, grid or statement.
+Read only what the request needs; the references are long and each one answers one question.
+
+| Request | Read | Skip |
+|---|---|---|
+| A. site audit, grid, rate | `audit-method.md` (sample, statuses, rate), then `report-templates.md` when writing | `sip-simplified-audit.md` unless Luxembourg monitoring |
+| B. page or component review | `automation-map.md` (what the scanner proves); `raweb-vs-rgaa.md` only if RAWeb and you will cite tests that differ (1.2, 6.1, 9.2, 13.5...) | `audit-method.md` (no sample, no rate) |
+| C. rate + statement from a grid | `audit-method.md` section 5, `report-templates.md` sections 3-4 | everything else |
+| D. simplified audit | `sip-simplified-audit.md` | `report-templates.md` section 3 (RGAA statement) |
+| E. questions | `criteria.py` output; `raweb-vs-rgaa.md` for differences | the rest |
+
+Look up only the criteria you are about to cite, in one call: `python3 scripts/criteria.py show 7.1 7.3 10.7 11.1 --tests`
+(add `--methodology` for the few you are unsure how to test). Trust that output over memory for test numbers and wording;
+copy the test id exactly as printed. Do not re-derive thresholds or write helper scripts for things the bundled scripts
+already do (contrast, rate, lookup, scanning).
+
+* `references/audit-method.md` — sample, exemptions, test environment, statuses, rate, deliverables, common auditor errors.
 * `references/report-templates.md` — finding format, report outline, RGAA and RAWeb statement templates.
 * `references/raweb-vs-rgaa.md` — the 30 RAWeb-only criteria, changed tests, legal and method differences.
-* `references/automation-map.md` — what `scan_html.py` and `render_page.js` can and cannot establish.
+* `references/automation-map.md` — what `scan_html.py`, `render_page.js` and `contrast.py` can and cannot establish.
 * `references/sip-simplified-audit.md` — the SIP simplified method (53-criterion shortlist, preconditions, report structure) and how SIP auditors phrase findings.
 * `references/criteria-index.md` — all 136 criteria with level, EN/FR titles, test counts, difference flags.
 * `references/data/` — full criteria, tests, methodology and glossary JSON for both standards (see `NOTICE.md` for licences).

@@ -11,6 +11,7 @@ NA (not applicable / non applicable) or NT (not tested / non testé).
   audit_grid.py compute grille.csv --json              # machine-readable
   audit_grid.py compute grille.csv --lang fr           # French vocabulary
   audit_grid.py compute grille.csv --process "Demande=Étape 1,Étape 2,Étape 3"   # pages forming one process
+  audit_grid.py set grille.csv --page Accueil 1.1=NC 1.2=C 8.3=NC --default NA   # fill statuses from the CLI
 
 Rules implemented (RGAA "Évaluation de la conformité" / RAWeb "Test methodology"):
   * a criterion is compliant for the site only if it is C on every page where it applies;
@@ -75,6 +76,43 @@ def cmd_new(a):
     with open(a.out + ".pages.json", "w", encoding="utf-8") as f:
         json.dump({"standard": std["standard"], "version": std["version"], "pages": urls}, f, ensure_ascii=False, indent=1)
     print(f"wrote {a.out}: {len(rows)} criteria x {len(names)} pages (all NT). Page URLs kept in {a.out}.pages.json")
+
+
+def cmd_set(a):
+    """Set statuses in an existing grid: audit_grid.py set grid.csv --page Home 1.1=NC 1.2=C 4.1=NA ..."""
+    with open(a.grid, newline="", encoding="utf-8-sig") as f:
+        sample = f.read(4096); f.seek(0)
+        dialect = csv.Sniffer().sniff(sample, delimiters=",;\t") if sample else csv.excel
+        rows = list(csv.reader(f, dialect))
+    head = [h.strip() for h in rows[0]]
+    if a.page not in head:
+        sys.exit(f"page '{a.page}' not found; columns are: {', '.join(head)}")
+    col = head.index(a.page)
+    wanted = {}
+    for item in a.assignments:
+        if "=" not in item:
+            sys.exit(f"expected criterion=STATUS, got '{item}'")
+        cid, st = item.split("=", 1)
+        wanted[cid.strip()] = norm_status(st)
+    if a.default:
+        default = norm_status(a.default)
+    done = set()
+    for r in rows[1:]:
+        if not r or not r[0].strip():
+            continue
+        cid = r[0].strip()
+        while len(r) <= col:
+            r.append("")
+        if cid in wanted:
+            r[col] = wanted[cid]; done.add(cid)
+        elif a.default and (not r[col].strip() or r[col].strip().upper() == "NT"):
+            r[col] = default
+    missing = set(wanted) - done
+    if missing:
+        sys.exit(f"criteria not in grid: {', '.join(sorted(missing))}")
+    with open(a.grid, "w", newline="", encoding="utf-8") as f:
+        csv.writer(f, dialect).writerows(rows)
+    print(f"{a.grid}: {len(done)} statuses set on '{a.page}'" + (f", other NT cells set to {default}" if a.default else ""))
 
 
 def norm_status(v):
@@ -242,8 +280,13 @@ def main():
     n.add_argument("--pages"); n.add_argument("--pages-file"); n.add_argument("--out", default="audit-grid.csv")
     c = sub.add_parser("compute"); c.add_argument("grid"); c.add_argument("--standard", choices=["raweb", "rgaa"]); c.add_argument("--lang", choices=["en", "fr"])
     c.add_argument("--process", action="append", help='"Name=Page A,Page B" (repeatable)'); c.add_argument("--json", action="store_true")
+    st = sub.add_parser("set", help="set statuses for one page: set grid.csv --page Home 1.1=NC 1.2=C [--default NA]")
+    st.add_argument("grid"); st.add_argument("--page", required=True); st.add_argument("assignments", nargs="*")
+    st.add_argument("--default", help="status for every remaining empty/NT cell of that page (e.g. NA after you have listed all C and NC)")
     a = ap.parse_args()
-    if a.cmd == "new":
+    if a.cmd == "set":
+        cmd_set(a)
+    elif a.cmd == "new":
         a.lang = a.lang or ("fr" if a.standard == "rgaa" else "en")
         if a.standard == "rgaa":
             a.lang = "fr"

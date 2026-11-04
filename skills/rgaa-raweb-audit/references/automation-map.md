@@ -45,5 +45,6 @@ Status vocabulary used by the scanner:
 * `--tab-order` prints the sequence of focused elements and their outline style: evidence for 12.8 (order), 12.9 (loops)
   and 10.7 (outline removed), and a list of what is reachable by keyboard for 7.3.
 * `--zoom 200 --screenshot zoom.png` and `--mobile --screenshot m.png`: evidence for 10.4, 10.11 and 13.9.
-* Contrast: with the rendered page, read computed `color` / `background-color` pairs through Playwright or the devtools
-  and compute WCAG contrast ratios; the scanner itself does not do it.
+* Contrast: `python3 scripts/contrast.py FG BG [--size px --bold]` gives the ratio and the 3.2 / 3.3 / 10.7 verdicts;
+  `--css file.css` lists the pairs a stylesheet declares (a pair with only one colour declared depends on inheritance:
+  read the computed colours in the browser or through Playwright before deciding). The scanner itself does not measure contrast.
