@@ -1,8 +1,8 @@
-# Project memory: rgaa-raweb-claude
+# Project memory: rgaa-raweb-raam-skill (formerly rgaa-raweb-claude)
 
 Read this first when resuming development. It records what exists, why it is the way it is, and what is still open.
 Everything below was built in one long Claude Code session on branch `claude/vigilant-ritchie-xmvt2a` (GitHub:
-GraRi135/rgaa-raweb-claude). Merge or rebase that branch as you see fit; nothing is on `main` yet unless you merged it.
+GraRi135/rgaa-raweb-raam-skill). Merge or rebase that branch as you see fit; nothing is on `main` yet unless you merged it.
 
 ## What this repository is
 

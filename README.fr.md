@@ -48,27 +48,27 @@ Considérez ses rapports comme des éléments à vérifier et une liste de tâch
 Depuis votre terminal (Claude Code 2.1.292 ou plus récent), en une commande :
 
 ```bash
-claude plugin install rgaa-raweb-audit --marketplace GraRi135/rgaa-raweb-claude
+claude plugin install rgaa-raweb-audit --marketplace GraRi135/rgaa-raweb-raam-skill
 ```
 
 Ou en deux étapes (ce dépôt est sa propre place de marché à un plugin) :
 
 ```bash
-claude plugin marketplace add GraRi135/rgaa-raweb-claude
+claude plugin marketplace add GraRi135/rgaa-raweb-raam-skill
 ```
 
 ```bash
-claude plugin install rgaa-raweb-audit@rgaa-raweb-claude
+claude plugin install rgaa-raweb-audit@rgaa-raweb-raam-skill
 ```
 
-Dans une session, les commandes `/plugin marketplace add GraRi135/rgaa-raweb-claude` puis
-`/plugin install rgaa-raweb-audit@rgaa-raweb-claude` font la même chose. Ajoutez `--scope project` pour l'activer pour
+Dans une session, les commandes `/plugin marketplace add GraRi135/rgaa-raweb-raam-skill` puis
+`/plugin install rgaa-raweb-audit@rgaa-raweb-raam-skill` font la même chose. Ajoutez `--scope project` pour l'activer pour
 toute l'équipe d'un dépôt.
 
 Pour l'essayer sans l'installer, lancez Claude Code avec le clone comme répertoire de plugin :
 
 ```bash
-claude --plugin-dir /chemin/vers/rgaa-raweb-claude
+claude --plugin-dir /chemin/vers/rgaa-raweb-raam-skill
 ```
 
 Ou copiez le dossier de la compétence dans un répertoire de compétences lu par Claude Code (`~/.claude/skills/` pour

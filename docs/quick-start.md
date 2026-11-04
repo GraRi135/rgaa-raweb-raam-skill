@@ -7,7 +7,7 @@ Ten minutes from install to a first finding list. For the method behind the tool
 ## 1. Install
 
 ```bash
-claude plugin install rgaa-raweb-audit --marketplace GraRi135/rgaa-raweb-claude
+claude plugin install rgaa-raweb-audit --marketplace GraRi135/rgaa-raweb-raam-skill
 ```
 
 Other routes (local clone, `--plugin-dir`, copying the skill folder) are in the [README](../README.md#install).

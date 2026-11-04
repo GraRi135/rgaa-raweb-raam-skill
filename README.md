@@ -47,26 +47,26 @@ Treat its reports as evidence to verify and as a to-do list, never as the audit 
 From your shell (Claude Code v2.1.292 or later), in one command:
 
 ```bash
-claude plugin install rgaa-raweb-audit --marketplace GraRi135/rgaa-raweb-claude
+claude plugin install rgaa-raweb-audit --marketplace GraRi135/rgaa-raweb-raam-skill
 ```
 
 Or in two steps (this repository is its own one-plugin marketplace):
 
 ```bash
-claude plugin marketplace add GraRi135/rgaa-raweb-claude
+claude plugin marketplace add GraRi135/rgaa-raweb-raam-skill
 ```
 
 ```bash
-claude plugin install rgaa-raweb-audit@rgaa-raweb-claude
+claude plugin install rgaa-raweb-audit@rgaa-raweb-raam-skill
 ```
 
-Inside a session the same works with `/plugin marketplace add GraRi135/rgaa-raweb-claude` then `/plugin install rgaa-raweb-audit@rgaa-raweb-claude`.
+Inside a session the same works with `/plugin marketplace add GraRi135/rgaa-raweb-raam-skill` then `/plugin install rgaa-raweb-audit@rgaa-raweb-raam-skill`.
 Add `--scope project` to enable it for everyone working in a repository.
 
 To try it without installing, start Claude Code with the clone as a plugin directory:
 
 ```bash
-claude --plugin-dir /path/to/rgaa-raweb-claude
+claude --plugin-dir /path/to/rgaa-raweb-raam-skill
 ```
 
 Or copy the skill folder into a skills directory Claude Code reads (`~/.claude/skills/` for every project, `.claude/skills/` inside one project):
