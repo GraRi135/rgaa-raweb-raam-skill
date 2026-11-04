@@ -19,17 +19,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
----
-
-The reference data bundled under skills/rgaa-raweb-audit/references/data/ is
-not covered by the MIT licence above. It is redistributed under its original
-terms, with attribution:
-
-* RAWeb 1.1 (criteria, tests, methodology, glossary): Service information et
-  presse du gouvernement luxembourgeois, licence CC-BY 3.0 LU,
-  https://github.com/accessibility-luxembourg/ReferentielAccessibiliteWeb
-* RGAA 4.1.2 (criteria, tests, methodology, glossary): DINUM, Licence Ouverte 2.0,
-  https://github.com/DISIC/accessibilite.numerique.gouv.fr
-
-See skills/rgaa-raweb-audit/references/data/NOTICE.md.

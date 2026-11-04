@@ -2,6 +2,21 @@
   "name": "rgaa-raweb-audit",
   "description": "Audit websites, pages and components against RGAA 4.1.2 (France) and RAWeb 1.1 (Luxembourg), and mobile apps against RAAM 1.1 (Android via adb): criteria lookup, static pre-checks, audit grid and compliance-rate calculation, audit reports and accessibility statements.",
   "version": "0.1.0",
-  "author": { "name": "GraRi135" },
-  "keywords": ["accessibility", "a11y", "RGAA", "RAWeb", "RAAM", "WCAG", "EN 301 549", "audit", "android", "talkback"]
+  "author": {
+    "name": "GraRi135"
+  },
+  "keywords": [
+    "accessibility",
+    "a11y",
+    "RGAA",
+    "RAWeb",
+    "RAAM",
+    "WCAG",
+    "EN 301 549",
+    "audit",
+    "android",
+    "talkback"
+  ],
+  "license": "MIT",
+  "repository": "https://github.com/GraRi135/rgaa-raweb-claude"
 }

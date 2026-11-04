@@ -88,6 +88,9 @@ skills/rgaa-raweb-audit/
 
 ## Licence
 
-Code and documentation: MIT (see `LICENSE`). The bundled RAWeb and RGAA reference data stays under its original
-licences, CC-BY 3.0 LU (SIP, Luxembourg) and Licence Ouverte 2.0 (DINUM, France); see
-`skills/rgaa-raweb-audit/references/data/NOTICE.md`.
+The scripts, skill instructions and documentation are under the MIT licence (`LICENSE`). The bundled reference data
+is third-party content kept under its own terms: RAWeb 1.1 and RAAM 1.1 under CC-BY 3.0 LU (Service information et
+presse, Luxembourg), RGAA 4.1.2 under Licence Ouverte 2.0 (DINUM, France), the SIP report wording under MIT, and the
+audit statistics come from CC0 datasets. `NOTICE.md` lists each component with its copyright holder, version, licence
+and what was changed; the same information ships inside the skill (`references/data/NOTICE.md`). If you redistribute
+the data, keep those attributions.

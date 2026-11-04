@@ -1,5 +1,6 @@
 ---
 name: rgaa-raweb-audit
+license: MIT for scripts and instructions; bundled reference data under CC-BY 3.0 LU (RAWeb, RAAM, SIP) and Licence Ouverte 2.0 (RGAA), see references/data/NOTICE.md
 description: >-
   Audit websites, pages, HTML and front-end code against RGAA 4.1.2 (France) and RAWeb 1.1 (Luxembourg), the
   public-sector web accessibility standards built on WCAG 2.1 and EN 301 549, and mobile apps against RAAM 1.1
