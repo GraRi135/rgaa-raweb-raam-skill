@@ -22,7 +22,7 @@ L = {
            "counts": "Critères", "C": "conformes", "NC": "non conformes", "NA": "non applicables", "NT": "non testés", "statuses": {"full": "totalement conforme", "partial": "partiellement conforme", "none": "non conforme"},
            "blocking": "Les non-conformités les plus bloquantes pour les utilisateurs concernent :", "finding": "Constat", "criterion": "Critère", "test": "Test", "pages": "Pages", "element": "Élément",
            "problem": "Problème", "impact": "Impact", "fix": "Correction", "priority": "Priorité (appréciation de l'auditeur)", "per_page": "Résultats par page", "applicable": "Applicables", "rate_col": "Taux",
-           "figure": "Capture d'écran annotée : l'élément concerné est entouré en rouge", "no_shot": "Aucune capture pour ce constat", "toc": "Sommaire", "skip": "Aller au contenu", "generated": "Rapport généré le",
+           "figure": "Capture d'écran annotée : l'élément concerné est entouré en rouge", "shot_alt": "Capture d'écran du constat", "no_shot": "Aucune capture pour ce constat", "toc": "Sommaire", "skip": "Aller au contenu", "generated": "Rapport généré le",
            "notice": "Ce rapport a été produit avec une aide automatisée (analyse du code et du DOM rendu). Il peut comporter des erreurs ou des omissions. Il ne remplace ni un audit de conformité réalisé par un auditeur sur l'échantillon complet avec les technologies d'assistance de l'environnement de test, ni des tests avec des utilisateurs en situation de handicap. Les taux indiqués sont provisoires tant que chaque critère applicable n'a pas été testé par une personne ; l'absence de constat sur un critère signifie « non testé », pas « conforme ».",
            "stmt": "Déclaration d'accessibilité", "topic": "Thématique", "how": "Comment tester", "no_findings": "Aucun constat dans cette thématique."},
     "en": {"report": "Accessibility audit report", "notice_h": "Notice", "summary": "Summary", "scope": "Scope and method", "sample": "Sample", "env": "Test environment",
@@ -31,7 +31,7 @@ L = {
            "counts": "Criteria", "C": "compliant", "NC": "non-compliant", "NA": "not applicable", "NT": "not tested", "statuses": {"full": "fully compliant", "partial": "partially compliant", "none": "non-compliant"},
            "blocking": "The most blocking non-conformities for users concern:", "finding": "Finding", "criterion": "Criterion", "test": "Test", "pages": "Pages", "element": "Element",
            "problem": "Problem", "impact": "Impact", "fix": "Fix", "priority": "Priority (auditor's judgement)", "per_page": "Results per page", "applicable": "Applicable", "rate_col": "Rate",
-           "figure": "Annotated screenshot: the element concerned is outlined in red", "no_shot": "No screenshot for this finding", "toc": "Contents", "skip": "Skip to content", "generated": "Report generated on",
+           "figure": "Annotated screenshot: the element concerned is outlined in red", "shot_alt": "Screenshot of finding", "no_shot": "No screenshot for this finding", "toc": "Contents", "skip": "Skip to content", "generated": "Report generated on",
            "notice": "This report was produced with an automated aid (analysis of the code and of the rendered DOM). It may contain errors or omissions. It does not replace a conformity audit carried out by an auditor on the full sample with the assistive technologies of the test environment, nor testing with disabled users. Rates are provisional until every applicable criterion has been tested by a person; the absence of a finding on a criterion means not tested, not compliant.",
            "stmt": "Accessibility statement", "topic": "Topic", "how": "How to test", "no_findings": "No finding in this topic."},
 }
@@ -67,10 +67,21 @@ def data_uri(path):
 
 
 def md_inline(s):
-    """Minimal inline formatting: backticks to <code>, line breaks kept."""
-    s = esc(s)
-    s = re.sub(r"`([^`]+)`", r"<code>\1</code>", s)
-    return s.replace("\n", "<br>")
+    """Minimal inline formatting: backticks to <code>, line breaks kept; a line starting with {lang=xx} is wrapped
+    in <span lang="xx"> so a language change (an English summary in a French report) is marked (criterion 8.7)."""
+    out = []
+    for line in str(s).split("\n"):
+        m = re.match(r"^\{lang=([A-Za-z]{2,3}(?:-[A-Za-z0-9]{2,8})?)\}\s*(.*)$", line)
+        body = esc(m.group(2) if m else line)
+        body = re.sub(r"`([^`]+)`", r"<code>\1</code>", body)
+        out.append(f'<span lang="{esc(m.group(1))}">{body}</span>' if m else body)
+    return "<br>".join(out)
+
+
+def fmt_rate(x, lang):
+    """Rates are printed with a decimal comma in French reports."""
+    s = str(x)
+    return s.replace(".", ",") if str(lang).lower().startswith("fr") else s
 
 
 # ---------------------------------------------------------------- bootstrap
@@ -99,7 +110,7 @@ def per_page_table(grid_path, standard, lang, T):
         res = audit_grid.compute(pages, grid, {})
     except Exception as e:
         return f"<p>{esc(T['per_page'])}: {esc(str(e))}</p>", None
-    rows = "".join(f"<tr><th scope=\"row\">{esc(p)}</th><td>{r['applicable']}</td><td>{r['compliant']}</td><td>{r['not_tested']}</td><td>{esc(r['rate']) if r['rate'] is not None else '-'} %</td></tr>" for p, r in res["pages"].items())
+    rows = "".join(f"<tr><th scope=\"row\">{esc(p)}</th><td>{r['applicable']}</td><td>{r['compliant']}</td><td>{r['not_tested']}</td><td>{esc(fmt_rate(r['rate'], lang)) if r['rate'] is not None else '-'} %</td></tr>" for p, r in res["pages"].items())
     table = f"<table><caption>{esc(T['per_page'])}</caption><thead><tr><th scope=\"col\">{esc(T['page'])}</th><th scope=\"col\">{esc(T['applicable'])}</th><th scope=\"col\">{esc(T['C'])}</th><th scope=\"col\">{esc(T['NT'])}</th><th scope=\"col\">{esc(T['rate_col'])}</th></tr></thead><tbody>{rows}</tbody></table>"
     return table, res["site"]
 
@@ -140,7 +151,7 @@ def cmd_build(a):
         parts.append(f"<p>{esc(T['level'])} : <strong>{esc(summary['level'])}</strong>.</p>")
     if summary.get("rate") is not None:
         st = T["statuses"].get(summary.get("status"), summary.get("status", ""))
-        parts.append(f"<p>{esc(T['rate'])}{' (' + esc(T['provisional']) + ')' if summary.get('provisional') else ''} : <strong>{esc(summary['rate'])} %</strong>. {esc(T['status'])} : <strong>{esc(st)}</strong>.</p>")
+        parts.append(f"<p>{esc(T['rate'])}{' (' + esc(T['provisional']) + ')' if summary.get('provisional') else ''} : <strong>{esc(fmt_rate(summary['rate'], lang))} %</strong>. {esc(T['status'])} : <strong>{esc(st)}</strong>.</p>")
     c = summary.get("counts")
     if c:
         parts.append("<table><caption>" + esc(T["counts"]) + "</caption><thead><tr>" + "".join(f"<th scope=\"col\">{esc(T[k])}</th>" for k in ("C", "NC", "NA", "NT")) + "</tr></thead><tbody><tr>" + "".join(f"<td>{esc(c.get(k, 0))}</td>" for k in ("C", "NC", "NA", "NT")) + "</tr></tbody></table>")
@@ -196,8 +207,9 @@ def cmd_build(a):
                 if shot:
                     sp = shot if os.path.isabs(shot) else os.path.join(base_dir, shot)
                     if os.path.exists(sp):
-                        alt = f.get("screenshot_alt") or f"{T['figure']} : {f.get('element') or f.get('selector') or ''}"
-                        parts.append(f"<figure><img src=\"{data_uri(sp)}\" alt=\"{esc(alt)}\"><figcaption>{esc(f.get('caption') or T['figure'])}</figcaption></figure>")
+                        cap = f.get("caption") or T["figure"]
+                        alt = f.get("screenshot_alt") or f"{T['shot_alt']} {f.get('id', '')}".strip()
+                        parts.append(f"<figure role=\"figure\" aria-label=\"{esc(cap)}\"><img src=\"{data_uri(sp)}\" alt=\"{esc(alt)}\"><figcaption>{esc(cap)}</figcaption></figure>")
                 elif f.get("screenshot_note"):
                     parts.append(f"<p class=\"note\">{esc(T['no_shot'])} ({esc(f['screenshot_note'])}).</p>")
                 parts.append("</article>")
@@ -209,7 +221,7 @@ def cmd_build(a):
     if doc.get("not_tested"):
         parts.append(f"<table><caption>{esc(T['nt'])}</caption><thead><tr><th scope=\"col\">{esc(T['criterion'])}</th><th scope=\"col\">{esc(T['how'])}</th></tr></thead><tbody>" + "".join(f"<tr><td>{md_inline(n.get('criteria', ''))}</td><td>{md_inline(n.get('how', ''))}</td></tr>" for n in doc["not_tested"]) + "</tbody></table>")
     parts.append("</section>")
-    parts.append(f"<footer><p>{esc(T['generated'])} {datetime.date.today().isoformat()} · rgaa-raweb-audit</p></footer></main></body></html>")
+    parts.append(f"</main><footer><p>{esc(T['generated'])} {datetime.date.today().isoformat()} · rgaa-raweb-audit</p></footer></body></html>")
     out = a.out or os.path.splitext(a.findings)[0] + ".html"
     open(out, "w", encoding="utf-8").write("".join(parts))
     print(f"wrote {out} ({os.path.getsize(out) // 1024} KB, {len(findings)} findings)")
@@ -226,11 +238,11 @@ body{margin:0;padding:0 16px}main,header,footer{max-width:900px;margin:0 auto}
 h1{font-size:1.7rem;line-height:1.25}h2{font-size:1.35rem;margin-top:2.2em;border-bottom:2px solid var(--accent);padding-bottom:.2em}h3{font-size:1.15rem;margin-top:1.8em}h4{font-size:1.02rem;margin-top:1.4em;color:var(--accent)}h5{font-size:.98rem;margin:.9em 0 .3em}
 .meta{color:var(--muted)}.notice{background:#fff8e1;border:2px solid #e0a800;border-radius:4px;padding:8px 16px;margin:16px 0}.notice h2{margin-top:.4em;border:0;font-size:1.1rem}
 nav ol{columns:2;gap:24px}table{border-collapse:collapse;width:100%;margin:1em 0;font-size:.95rem}caption{text-align:left;font-weight:600;margin-bottom:.3em}th,td{border:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}th{background:#f3f3f3}
-.finding{border:1px solid var(--line);border-left:4px solid var(--accent);padding:4px 14px 10px;margin:1em 0;page-break-inside:avoid}dl{display:grid;grid-template-columns:max-content 1fr;gap:.3em 1em}dt{font-weight:600}dd{margin:0}
+.finding{border:1px solid var(--line);border-left:4px solid var(--accent);padding:4px 14px 10px;margin:1em 0}dl{display:grid;grid-template-columns:max-content 1fr;gap:.3em 1em}dt{font-weight:600}dd{margin:0}
 code{font:.9em Menlo,Consolas,monospace;background:#f4f4f4;padding:0 .2em;word-break:break-all}.tag{font-size:.75rem;font-weight:400;color:#fff;background:var(--accent);padding:1px 6px;border-radius:3px;margin-left:.5em;vertical-align:middle}
 figure{margin:.8em 0}figure img{max-width:100%;height:auto;border:1px solid var(--line)}figcaption{font-size:.85rem;color:var(--muted)}.note{font-size:.9rem;color:var(--muted)}
 footer{margin:3em auto 2em;color:var(--muted);font-size:.85rem}a{color:#0b4f9c}a:focus,button:focus{outline:3px solid #0b4f9c;outline-offset:2px}
-@media print{html{font-size:11pt}body{padding:0}.skip,nav{display:none}h2{page-break-after:avoid}figure img{max-height:120mm;width:auto}a{color:inherit;text-decoration:none}}
+@media print{html{font-size:11pt}body{padding:0}.skip,nav{display:none}h2,h3,h4,h5{page-break-after:avoid;break-after:avoid}figure{break-inside:avoid;page-break-inside:avoid}figure img{max-height:95mm;width:auto}.finding h5{break-after:avoid;page-break-after:avoid}dt,dd{break-inside:avoid}a{color:inherit;text-decoration:none}}
 """
 
 

@@ -62,14 +62,22 @@ async function annotate(pw) {
     if (!f.url || !f.selector) { skipped++; continue; }
     try {
       if (current !== f.url) { await page.goto(f.url, {waitUntil: 'networkidle', timeout: 60000}).catch(() => {}); await page.waitForTimeout(+opt('--wait', 800)); current = f.url; }
+      // Optional per-finding preparation: "click" (a selector, or a list of them) opens a menu, tab or accordion panel
+      // before the element is outlined; the page is reloaded for the next finding so the click does not leak.
+      if (f.click) {
+        for (const c of (Array.isArray(f.click) ? f.click : [f.click])) { await page.click(c, {timeout: 5000}).catch(e => { f.screenshot_note = 'click failed on ' + c + ': ' + e.message.split('\n')[0]; }); await page.waitForTimeout(400); }
+        current = null;
+      }
+      const m = f.margin != null ? +f.margin : margin;
       const badge = f.badge || (f.element ? String(f.element).slice(0, 160) : f.selector);
       const box = await page.evaluate(OVERLAY, {sel: f.selector, badgeText: badge});
       if (!box || box.hidden) { f.screenshot_note = box ? 'element not visible (hidden or zero size)' : 'selector not found on the rendered page'; skipped++; continue; }
-      const x = Math.max(0, box.x - margin), y = Math.max(0, box.y - margin);
-      const w = Math.min(box.pageW - x, box.w + 2 * margin), h = Math.min(box.pageH - y, box.h + 2 * margin);
+      const x = Math.max(0, box.x - m), y = Math.max(0, box.y - m);
+      const w = Math.min(box.pageW - x, box.w + 2 * m), h = Math.min(box.pageH - y, box.h + 2 * m);
       const name = (f.id || ('finding-' + (done + 1))).replace(/[^A-Za-z0-9_-]+/g, '-') + '.png';
-      await page.screenshot({path: path.join(outDir, name), fullPage: true, clip: {x, y, width: Math.max(w, 40), height: Math.max(h, 40)}});
-      f.screenshot = path.join(outDir, name); done++;
+      const target = path.resolve(outDir, name);
+      await page.screenshot({path: target, fullPage: true, clip: {x, y, width: Math.max(w, 40), height: Math.max(h, 40)}});
+      f.screenshot = path.relative(path.dirname(path.resolve(file)), target); delete f.screenshot_note; done++;
       await page.evaluate(() => document.querySelectorAll('.__a11y_overlay').forEach(n => n.remove()));
     } catch (e) { f.screenshot_note = 'screenshot failed: ' + e.message.split('\n')[0]; skipped++; }
   }
@@ -84,7 +92,7 @@ async function printPdf(pw) {
   const html = path.resolve(opt('--print')); const pdf = opt('--pdf', html.replace(/\.html?$/, '') + '.pdf');
   const browser = await launch(pw); const page = await browser.newPage();
   await page.goto('file://' + html, {waitUntil: 'load'}); await page.emulateMedia({media: 'print'});
-  await page.pdf({path: pdf, format: 'A4', printBackground: true, margin: {top: '18mm', bottom: '18mm', left: '16mm', right: '16mm'},
+  await page.pdf({path: pdf, format: 'A4', printBackground: true, tagged: true, outline: true, margin: {top: '18mm', bottom: '18mm', left: '16mm', right: '16mm'},
     displayHeaderFooter: true, headerTemplate: '<span></span>', footerTemplate: '<div style="font:9px sans-serif;width:100%;text-align:center;color:#555"><span class="pageNumber"></span> / <span class="totalPages"></span></div>'});
   await browser.close(); console.log('wrote ' + pdf);
 }

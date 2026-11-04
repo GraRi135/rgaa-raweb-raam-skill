@@ -50,7 +50,9 @@ added by hand with a selector so they can be illustrated too.
      "problem": "Le champ n'a qu'un placeholder…", "impact": "Les utilisateurs de lecteur d'écran…", "fix": "<label for=…>…",
      "priority": "majeur",
      "badge": "optional text for the markup badge (defaults to element)",
-     "caption": "optional figure caption", "screenshot_alt": "optional alt text"}
+     "caption": "optional figure caption (also the figure's aria-label)", "screenshot_alt": "optional short alt (default: 'Capture d'écran du constat F001')",
+     "click": "optional selector (or list) clicked before the screenshot, to open a menu, tab or accordion panel",
+     "margin": 120}
   ],
   "not_tested": [{"criteria": "7.1.2, 4.13, 10.2", "how": "Lecteur d'écran NVDA + Firefox, VoiceOver + Safari sur chaque page"}]
 }
@@ -58,7 +60,10 @@ added by hand with a selector so they can be illustrated too.
 
 `summary.rate`, `status` and `counts` are filled from `--grid` when omitted. `status` is `full`, `partial` or `none`.
 Findings are grouped by topic and criterion in the annex; criterion titles and levels come from the bundled data of
-`standard`, so only the id is needed. Screenshot paths are relative to the findings file.
+`standard`, so only the id is needed. Screenshot paths are relative to the findings file. In any text field, backticks
+become `<code>` and a line that starts with `{lang=en}` is wrapped in `<span lang="en">`: use it for the English
+executive summary of a French report so the language change is marked (criterion 8.7). `margin` (pixels of context
+around the element, default 60 or `--margin`) can be set per finding.
 
 ## What the report contains
 
@@ -72,6 +77,8 @@ print stylesheet are built in: the report itself passes the structural criteria 
 ## Limits
 
 Screenshots show the rendered page at the time of the run in a 1280 px window; hidden elements (collapsed menus,
-dialogs not open) are reported as not visible and get no image unless you add a `badge`/`selector` for the trigger
-instead. The badge shows the start tag as captured by the scanner, not the live DOM. PDF printing needs Node with
+dialogs not open) are reported as not visible and get no image unless you add a `click` on the trigger, or a
+`badge`/`selector` for the trigger instead. The badge is placed outside the outlined element but can cover a
+neighbour; that is cosmetic. The PDF is tagged (Playwright `tagged: true`) and carries an outline, but its tags are
+the browser's: check it in Acrobat or PAC before publishing it as an accessible PDF. The badge shows the start tag as captured by the scanner, not the live DOM. PDF printing needs Node with
 Playwright; without it, open the HTML and print to PDF from the browser.
