@@ -72,6 +72,8 @@ Findings file schema and per-finding options (`selector`, `badge`, `caption`, `s
   statuses C/NC/NA/NT, non-interference criteria, provisional rate while NT remain, aid-not-audit notice on top.
   Illustrated reports: single self-contained HTML + PDF, cropped element screenshot with a devtools-style markup badge,
   neutral, no cover page.
+- Sources: the first mention of a standard, law, body or dataset in each documentation file is a link, and the main
+  files end with a "Sources" section (English URLs in English files, French in README.fr.md). Keep both in sync.
 - Commit messages: plain, descriptive; the branch is pushed with `git push -u origin <branch>`.
 - Validate before committing: `claude plugin validate .` (one harmless warning: no icon file).
 

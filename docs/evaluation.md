@@ -22,13 +22,13 @@ skill, grade the outputs on written assertions, improve, repeat. Everything belo
 | Android case (12 assertions) | 12 / 12 | 5 / 12 |
 
 The model already knows the criteria well; the skill's measurable value is where memory fails: the exact scope of
-RAWeb 1.1 (136 criteria, not 106), test numbers matching the official wording, RAAM's 15-topic numbering (the baseline
+[RAWeb 1.1](https://accessibilite.public.lu/en/raweb1.1/criteres.html) (136 criteria, not 106), test numbers matching the official wording, RAAM's 15-topic numbering (the baseline
 cited a remembered 12-topic structure), refusing a rate from one page, and not inventing facts in a statement. Round 2
 also cut the skill's token cost by 15 to 35 % by telling Claude which reference to read for which request.
 
 ## Calibration against real audits
 
-The Luxembourg SIP publishes its monitoring reports on data.public.lu (CC0). 228 of them (42 full audits, 186
+The Luxembourg SIP publishes its monitoring reports on [data.public.lu](https://data.public.lu/en/) (CC0). 228 of them (42 full audits, 186
 simplified) were mined for the structure and wording of reports and for the most frequent findings; the results are in
 `skills/rgaa-raweb-audit/references/sip-audit-corpus.md` and `skills/rgaa-raweb-audit/references/raam-mobile.md` and drive the "test first what fails most" guidance.
 
@@ -42,3 +42,16 @@ third-party sites and were produced without assistive technologies.
 * Contrast is computed from declared or dominant colours; text over images and gradients needs a manual measure.
 * The scanner's REVIEW heuristics (generic link text, visual headings, suspicious alt) over-report on large pages.
 * A full site audit with the skill costs 200k tokens or more per run.
+
+## Sources
+
+* RAWeb 1.1, Luxembourg web accessibility standard: https://accessibilite.public.lu/en/raweb1.1/criteres.html (source files: https://github.com/accessibility-luxembourg/ReferentielAccessibiliteWeb, CC-BY 3.0 LU)
+* RAAM 1.1, Luxembourg mobile-app accessibility standard: https://accessibilite.public.lu/en/raam1.1/criteres.html (source files: https://github.com/accessibility-luxembourg/ReferentielAccessibiliteMobile, CC-BY 3.0 LU)
+* RGAA 4.1.2, French standard: https://accessibilite.numerique.gouv.fr/methode/criteres-et-tests/ (source files: https://github.com/DISIC/accessibilite.numerique.gouv.fr, Licence Ouverte 2.0, DINUM)
+* WCAG 2.1: https://www.w3.org/TR/WCAG21/ ; EN 301 549 v3.2.1: https://www.etsi.org/deliver/etsi_en/301500_301599/301549/03.02.01_60/en_301549v030201p.pdf
+* Law of 28 May 2019 on the accessibility of the websites and mobile applications of public sector bodies (Luxembourg): https://legilux.public.lu/eli/etat/leg/loi/2019/05/28/a373/jo
+* Service information et presse (SIP), monitoring body, guides, statement generator and complaint form: https://accessibilite.public.lu/en/ ; published monitoring reports: https://accessibilite.public.lu/fr/rapports/
+* SIP monitoring datasets on data.public.lu (CC0): full audits 2023 https://data.public.lu/en/datasets/audits-complets-de-laccessibilite-numerique-2023/ ; full audits 2024 https://data.public.lu/en/datasets/audits-complets-de-laccessibilite-numerique-2024-1/ ; simplified audits 2024 https://data.public.lu/en/datasets/audits-simplifies-de-laccessibilite-numerique-2024/ ; simplified audits 2025 https://data.public.lu/en/datasets/audits-simplifies-de-laccessibilite-numerique-2025/
+* SIP report wording (simplA11yGenReport, MIT): https://github.com/accessibility-luxembourg/simplA11yGenReport
+* Ombudsman (Luxembourg): https://www.ombudsman.lu/ ; Défenseur des droits (France): https://www.defenseurdesdroits.fr/
+* France, legal basis of the RGAA: article 47 of law 2005-102 https://www.legifrance.gouv.fr/loda/id/JORFTEXT000000809647 and decree 2019-768 https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000038811937

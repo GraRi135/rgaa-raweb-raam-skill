@@ -1,6 +1,6 @@
 # Android app audit walkthrough (RAAM 1.1)
 
-RAAM 1.1 is the Luxembourg standard for mobile applications (108 criteria, 15 topics, its own numbering; do not
+[RAAM 1.1](https://accessibilite.public.lu/en/raam1.1/criteres.html) is the Luxembourg standard for mobile applications (108 criteria, 15 topics, its own numbering; do not
 reuse RAWeb numbers). The skill ships an evidence collector for Android that works through adb on a physical device or
 an emulator. iOS has no collector: use Accessibility Inspector and VoiceOver on macOS with the per-criterion iOS
 procedure (`criteria.py show <id> --standard raam --methodology`).
@@ -42,7 +42,7 @@ The SIP's samples have 6 to 10 screens.
 
 ## Reading the SIP's app audits
 
-Twelve published RAAM audits (2023-2024) had rates between 26 % and 66 %; nine were rated "faible". The cases found
+[Twelve published RAAM audits (2023-2024)](https://data.public.lu/en/datasets/audits-complets-de-laccessibilite-numerique-2024-1/) had rates between 26 % and 66 %; nine were rated "faible". The cases found
 in every app: roles missing on interactive components (5.1) and no heading semantics (7.1); then text and component
 contrast (2.2, 2.3), missing names (5.1), text that does not scale (8.2), status messages (5.4), lists (7.2), field
 labels (9.1 to 9.3), orientation (11.9), keyboard operability (5.2). The skill's `references/raam-mobile.md` has the

@@ -2,13 +2,13 @@
 
 Read this for any native or hybrid mobile app (Android, iOS, Flutter, React Native, Ionic...). Web sites viewed on a
 phone are still RAWeb / RGAA, with the mobile test environment. France has no app-specific standard; the SIP's RAAM is
-the only operational transcription of EN 301 549 for apps in the region, so use it for French apps too, saying so.
+the only operational transcription of [EN 301 549](https://www.etsi.org/deliver/etsi_en/301500_301599/301549/03.02.01_60/en_301549v030201p.pdf) for apps in the region, so use it for French apps too, saying so.
 
 ## The standard
 
-* **RAAM 1.1** (référentiel d'évaluation de l'accessibilité des applications mobiles), SIP Luxembourg, published
+* **[RAAM 1.1](https://accessibilite.public.lu/en/raam1.1/criteres.html)** (référentiel d'évaluation de l'accessibilité des applications mobiles), SIP Luxembourg, published
   24 February 2025, replaces RAAM 1 (used in the 2023-2024 SIP app audits). CC-BY 3.0 LU, sources on GitHub
-  (accessibility-luxembourg/ReferentielAccessibiliteMobile). Official page: accessibilite.public.lu/en/raam1.1/.
+  ([accessibility-luxembourg/ReferentielAccessibiliteMobile](https://github.com/accessibility-luxembourg/ReferentielAccessibiliteMobile)). Official page: accessibilite.public.lu/en/raam1.1/.
 * 108 criteria in 15 topics, covering EN 301 549 v3.2.1 chapters 5 (generic), 6 (two-way voice), 7 (video), 10
   (non-web documents), 11 (software), 12 (documentation and support). Levels A and AA as for the web; both mandatory.
 * **Numbering is not the RAWeb numbering.** Topics: 1 graphic elements, 2 colours, 3 multimedia, 4 tables,
@@ -124,3 +124,16 @@ equivalent that works from Linux or Windows, so this skill gives no iOS collecto
 VoiceOver and Accessibility Inspector, using the per-criterion iOS methodology from `criteria.py`, and reuse the
 Android findings as hypotheses (the same design usually fails the same way on both platforms, which the SIP reports
 confirm).
+
+## Sources
+
+* RAWeb 1.1, Luxembourg web accessibility standard: https://accessibilite.public.lu/en/raweb1.1/criteres.html (source files: https://github.com/accessibility-luxembourg/ReferentielAccessibiliteWeb, CC-BY 3.0 LU)
+* RAAM 1.1, Luxembourg mobile-app accessibility standard: https://accessibilite.public.lu/en/raam1.1/criteres.html (source files: https://github.com/accessibility-luxembourg/ReferentielAccessibiliteMobile, CC-BY 3.0 LU)
+* RGAA 4.1.2, French standard: https://accessibilite.numerique.gouv.fr/methode/criteres-et-tests/ (source files: https://github.com/DISIC/accessibilite.numerique.gouv.fr, Licence Ouverte 2.0, DINUM)
+* WCAG 2.1: https://www.w3.org/TR/WCAG21/ ; EN 301 549 v3.2.1: https://www.etsi.org/deliver/etsi_en/301500_301599/301549/03.02.01_60/en_301549v030201p.pdf
+* Law of 28 May 2019 on the accessibility of the websites and mobile applications of public sector bodies (Luxembourg): https://legilux.public.lu/eli/etat/leg/loi/2019/05/28/a373/jo
+* Service information et presse (SIP), monitoring body, guides, statement generator and complaint form: https://accessibilite.public.lu/en/ ; published monitoring reports: https://accessibilite.public.lu/fr/rapports/
+* SIP monitoring datasets on data.public.lu (CC0): full audits 2023 https://data.public.lu/en/datasets/audits-complets-de-laccessibilite-numerique-2023/ ; full audits 2024 https://data.public.lu/en/datasets/audits-complets-de-laccessibilite-numerique-2024-1/ ; simplified audits 2024 https://data.public.lu/en/datasets/audits-simplifies-de-laccessibilite-numerique-2024/ ; simplified audits 2025 https://data.public.lu/en/datasets/audits-simplifies-de-laccessibilite-numerique-2025/
+* SIP report wording (simplA11yGenReport, MIT): https://github.com/accessibility-luxembourg/simplA11yGenReport
+* Ombudsman (Luxembourg): https://www.ombudsman.lu/ ; Défenseur des droits (France): https://www.defenseurdesdroits.fr/
+* France, legal basis of the RGAA: article 47 of law 2005-102 https://www.legifrance.gouv.fr/loda/id/JORFTEXT000000809647 and decree 2019-768 https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000038811937

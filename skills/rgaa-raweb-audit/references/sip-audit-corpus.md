@@ -1,11 +1,11 @@
 # What the SIP's published audits teach (corpus of 228 reports, 2023-2025)
 
-The Service information et presse publishes every monitoring report on data.public.lu (licence CC0). This file
+The [Service information et presse](https://accessibilite.public.lu/en/) publishes every monitoring report on [data.public.lu](https://data.public.lu/en/) (licence CC0). This file
 distils 228 of them: 42 full audits ("audits complets", 2023 and 2024: 30 websites under RGAA 4.1 / 4.1.2 / RAWeb 1,
 12 mobile apps under RAAM 1) and 186 simplified audits ("audits simplifiés", 2024 and 2025, RAWeb). Use it to
 prioritise an audit, to write a Luxembourg report that reads like the SIP's, and to predict what the SIP will find.
-Datasets: data.public.lu/fr/datasets/audits-complets-de-laccessibilite-numerique-2023 (and -2024-1),
-audits-simplifies-de-laccessibilite-numerique-2024 (and -2025); each report also exists as an accessible HTML page
+Datasets: data.public.lu/fr/datasets/[audits-complets-de-laccessibilite-numerique-2023](https://data.public.lu/en/datasets/audits-complets-de-laccessibilite-numerique-2023/) (and -2024-1),
+[audits-simplifies-de-laccessibilite-numerique-2024](https://data.public.lu/en/datasets/audits-simplifies-de-laccessibilite-numerique-2024/) (and -2025); each report also exists as an accessible HTML page
 under accessibilite.public.lu/fr/rapports/.
 
 ## Headline numbers
@@ -124,7 +124,7 @@ every sample.
 1. **Introduction**: "Ce rapport accompagne le relevé d'audit effectué sur le site « X »"; referential and its URL;
    method: browsers, specialised tools, rendering tests in the referential's test environment.
 2. **Échantillon**: table "Nº page | Titre de la page | URL" with P01, P02... then the statement check (missing /
-   incomplete / present, with the legal reminder: article 5 of the law of 28 May 2019, generator on
+   incomplete / present, with the legal reminder: article 5 of the [law of 28 May 2019](https://legilux.public.lu/eli/etat/leg/loi/2019/05/28/a373/jo), generator on
    accessibilite.public.lu, 30 days to notify accessibilite@sip.etat.lu).
 3. **Environnement de test**: the paragraph on rendering tests, then two tables, desktop (assistive technology +
    browser, with versions: "NVDA 2022.4 | Firefox 116", "JAWS 2022 | Firefox 116", "VoiceOver (macOS 13.4) | Safari 16.5")
@@ -188,3 +188,16 @@ insuffisant (3.11:1 au lieu de 4.5:1)."
 `python3 - <<'EOF'` style scripts are not bundled; the datasets are CC0 and each report has an HTML version, so a
 fresh corpus can be rebuilt with the dataset API (`https://data.public.lu/api/1/datasets/<slug>/`, field
 `resources[].url`), which is how the numbers above were produced (November 2026 snapshot).
+
+## Sources
+
+* RAWeb 1.1, Luxembourg web accessibility standard: https://accessibilite.public.lu/en/raweb1.1/criteres.html (source files: https://github.com/accessibility-luxembourg/ReferentielAccessibiliteWeb, CC-BY 3.0 LU)
+* RAAM 1.1, Luxembourg mobile-app accessibility standard: https://accessibilite.public.lu/en/raam1.1/criteres.html (source files: https://github.com/accessibility-luxembourg/ReferentielAccessibiliteMobile, CC-BY 3.0 LU)
+* RGAA 4.1.2, French standard: https://accessibilite.numerique.gouv.fr/methode/criteres-et-tests/ (source files: https://github.com/DISIC/accessibilite.numerique.gouv.fr, Licence Ouverte 2.0, DINUM)
+* WCAG 2.1: https://www.w3.org/TR/WCAG21/ ; EN 301 549 v3.2.1: https://www.etsi.org/deliver/etsi_en/301500_301599/301549/03.02.01_60/en_301549v030201p.pdf
+* Law of 28 May 2019 on the accessibility of the websites and mobile applications of public sector bodies (Luxembourg): https://legilux.public.lu/eli/etat/leg/loi/2019/05/28/a373/jo
+* Service information et presse (SIP), monitoring body, guides, statement generator and complaint form: https://accessibilite.public.lu/en/ ; published monitoring reports: https://accessibilite.public.lu/fr/rapports/
+* SIP monitoring datasets on data.public.lu (CC0): full audits 2023 https://data.public.lu/en/datasets/audits-complets-de-laccessibilite-numerique-2023/ ; full audits 2024 https://data.public.lu/en/datasets/audits-complets-de-laccessibilite-numerique-2024-1/ ; simplified audits 2024 https://data.public.lu/en/datasets/audits-simplifies-de-laccessibilite-numerique-2024/ ; simplified audits 2025 https://data.public.lu/en/datasets/audits-simplifies-de-laccessibilite-numerique-2025/
+* SIP report wording (simplA11yGenReport, MIT): https://github.com/accessibility-luxembourg/simplA11yGenReport
+* Ombudsman (Luxembourg): https://www.ombudsman.lu/ ; Défenseur des droits (France): https://www.defenseurdesdroits.fr/
+* France, legal basis of the RGAA: article 47 of law 2005-102 https://www.legifrance.gouv.fr/loda/id/JORFTEXT000000809647 and decree 2019-768 https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000038811937

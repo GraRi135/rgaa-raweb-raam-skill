@@ -5,10 +5,10 @@
 A skill (installable as a Claude Code plugin) that lets Claude audit websites, pages, front-end code and mobile
 applications against:
 
-* **RGAA 4.1.2** — Référentiel général d'amélioration de l'accessibilité (France, DINUM), 106 criteria
-* **RAWeb 1.1** — Référentiel d'évaluation de l'accessibilité web (Luxembourg, SIP), 136 criteria (RGAA 4.1.2 + the
-  remaining web requirements of EN 301 549 v3.2.1)
-* **RAAM 1.1** — Référentiel d'évaluation de l'accessibilité des applications mobiles (Luxembourg, SIP), 108
+* **[RGAA 4.1.2](https://accessibilite.numerique.gouv.fr/methode/criteres-et-tests/)** — Référentiel général d'amélioration de l'accessibilité (France, DINUM), 106 criteria
+* **[RAWeb 1.1](https://accessibilite.public.lu/en/raweb1.1/criteres.html)** — Référentiel d'évaluation de l'accessibilité web (Luxembourg, SIP), 136 criteria (RGAA 4.1.2 + the
+  remaining web requirements of [EN 301 549 v3.2.1](https://www.etsi.org/deliver/etsi_en/301500_301599/301549/03.02.01_60/en_301549v030201p.pdf))
+* **[RAAM 1.1](https://accessibilite.public.lu/en/raam1.1/criteres.html)** — Référentiel d'évaluation de l'accessibilité des applications mobiles (Luxembourg, SIP), 108
   criteria for Android and iOS apps, with an adb-based Android evidence collector
 
 It bundles the official criteria, tests and methodology of the three standards (English and French for RAWeb and
@@ -134,3 +134,16 @@ presse, Luxembourg), RGAA 4.1.2 under Licence Ouverte 2.0 (DINUM, France), the S
 audit statistics come from CC0 datasets. `NOTICE.md` lists each component with its copyright holder, version, licence
 and what was changed; the same information ships inside the skill (`references/data/NOTICE.md`). If you redistribute
 the data, keep those attributions.
+
+## Sources
+
+* RAWeb 1.1, Luxembourg web accessibility standard: https://accessibilite.public.lu/en/raweb1.1/criteres.html (source files: https://github.com/accessibility-luxembourg/ReferentielAccessibiliteWeb, CC-BY 3.0 LU)
+* RAAM 1.1, Luxembourg mobile-app accessibility standard: https://accessibilite.public.lu/en/raam1.1/criteres.html (source files: https://github.com/accessibility-luxembourg/ReferentielAccessibiliteMobile, CC-BY 3.0 LU)
+* RGAA 4.1.2, French standard: https://accessibilite.numerique.gouv.fr/methode/criteres-et-tests/ (source files: https://github.com/DISIC/accessibilite.numerique.gouv.fr, Licence Ouverte 2.0, DINUM)
+* WCAG 2.1: https://www.w3.org/TR/WCAG21/ ; EN 301 549 v3.2.1: https://www.etsi.org/deliver/etsi_en/301500_301599/301549/03.02.01_60/en_301549v030201p.pdf
+* Law of 28 May 2019 on the accessibility of the websites and mobile applications of public sector bodies (Luxembourg): https://legilux.public.lu/eli/etat/leg/loi/2019/05/28/a373/jo
+* Service information et presse (SIP), monitoring body, guides, statement generator and complaint form: https://accessibilite.public.lu/en/ ; published monitoring reports: https://accessibilite.public.lu/fr/rapports/
+* SIP monitoring datasets on data.public.lu (CC0): full audits 2023 https://data.public.lu/en/datasets/audits-complets-de-laccessibilite-numerique-2023/ ; full audits 2024 https://data.public.lu/en/datasets/audits-complets-de-laccessibilite-numerique-2024-1/ ; simplified audits 2024 https://data.public.lu/en/datasets/audits-simplifies-de-laccessibilite-numerique-2024/ ; simplified audits 2025 https://data.public.lu/en/datasets/audits-simplifies-de-laccessibilite-numerique-2025/
+* SIP report wording (simplA11yGenReport, MIT): https://github.com/accessibility-luxembourg/simplA11yGenReport
+* Ombudsman (Luxembourg): https://www.ombudsman.lu/ ; Défenseur des droits (France): https://www.defenseurdesdroits.fr/
+* France, legal basis of the RGAA: article 47 of law 2005-102 https://www.legifrance.gouv.fr/loda/id/JORFTEXT000000809647 and decree 2019-768 https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000038811937

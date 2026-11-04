@@ -5,10 +5,10 @@
 Une compétence (« skill », installable comme plugin Claude Code) qui permet à Claude d'auditer des sites, des pages, du
 code front-end et des applications mobiles au regard de :
 
-* **RGAA 4.1.2** — Référentiel général d'amélioration de l'accessibilité (France, DINUM), 106 critères ;
-* **RAWeb 1.1** — Référentiel d'évaluation de l'accessibilité web (Luxembourg, SIP), 136 critères (RGAA 4.1.2 plus les
-  exigences web restantes de la norme EN 301 549 v3.2.1) ;
-* **RAAM 1.1** — Référentiel d'évaluation de l'accessibilité des applications mobiles (Luxembourg, SIP), 108 critères
+* **[RGAA 4.1.2](https://accessibilite.numerique.gouv.fr/methode/criteres-et-tests/)** — Référentiel général d'amélioration de l'accessibilité (France, DINUM), 106 critères ;
+* **[RAWeb 1.1](https://accessibilite.public.lu/fr/raweb1.1/criteres.html)** — Référentiel d'évaluation de l'accessibilité web (Luxembourg, SIP), 136 critères (RGAA 4.1.2 plus les
+  exigences web restantes de la norme [EN 301 549 v3.2.1](https://www.etsi.org/deliver/etsi_en/301500_301599/301549/03.02.01_60/en_301549v030201p.pdf)) ;
+* **[RAAM 1.1](https://accessibilite.public.lu/fr/raam1.1/criteres.html)** — Référentiel d'évaluation de l'accessibilité des applications mobiles (Luxembourg, SIP), 108 critères
   pour les applications Android et iOS, avec un collecteur de preuves Android fondé sur adb.
 
 Elle embarque les critères, tests et méthodologies officiels des trois référentiels (anglais et français pour RAWeb et
@@ -135,7 +135,20 @@ skills/rgaa-raweb-audit/
 
 Les scripts, les instructions de la compétence et la documentation sont sous licence MIT (`LICENSE`). Les données de
 référence embarquées sont des contenus tiers conservés sous leurs propres conditions : RAWeb 1.1 et RAAM 1.1 sous
-CC-BY 3.0 LU (Service information et presse, Luxembourg), RGAA 4.1.2 sous Licence Ouverte 2.0 (DINUM, France), les
+CC-BY 3.0 LU ([Service information et presse](https://accessibilite.public.lu/fr/), Luxembourg), RGAA 4.1.2 sous Licence Ouverte 2.0 (DINUM, France), les
 formulations de rapport du SIP sous MIT, et les statistiques d'audit proviennent de jeux de données CC0. `NOTICE.md`
 liste chaque composant avec son titulaire, sa version, sa licence et ce qui a été modifié ; la même information est
 livrée dans la compétence (`references/data/NOTICE.md`). Si vous redistribuez les données, conservez ces attributions.
+
+## Sources
+
+* RAWeb 1.1, référentiel luxembourgeois d'accessibilité web : https://accessibilite.public.lu/fr/raweb1.1/criteres.html (fichiers sources : https://github.com/accessibility-luxembourg/ReferentielAccessibiliteWeb, CC-BY 3.0 LU)
+* RAAM 1.1, référentiel luxembourgeois d'accessibilité des applications mobiles : https://accessibilite.public.lu/fr/raam1.1/criteres.html (fichiers sources : https://github.com/accessibility-luxembourg/ReferentielAccessibiliteMobile, CC-BY 3.0 LU)
+* RGAA 4.1.2, référentiel français : https://accessibilite.numerique.gouv.fr/methode/criteres-et-tests/ (fichiers sources : https://github.com/DISIC/accessibilite.numerique.gouv.fr, Licence Ouverte 2.0, DINUM)
+* WCAG 2.1 (traduction française) : https://www.w3.org/Translations/WCAG21-fr/ ; EN 301 549 v3.2.1 : https://www.etsi.org/deliver/etsi_en/301500_301599/301549/03.02.01_60/en_301549v030201p.pdf
+* Loi du 28 mai 2019 relative à l'accessibilité des sites internet et des applications mobiles des organismes du secteur public : https://legilux.public.lu/eli/etat/leg/loi/2019/05/28/a373/jo
+* Service information et presse (SIP), organisme de contrôle, guides, générateur de déclaration et formulaire de réclamation : https://accessibilite.public.lu/fr/ ; rapports de contrôle publiés : https://accessibilite.public.lu/fr/rapports/
+* Jeux de données du SIP sur data.public.lu (CC0) : audits complets 2023 https://data.public.lu/fr/datasets/audits-complets-de-laccessibilite-numerique-2023/ ; audits complets 2024 https://data.public.lu/fr/datasets/audits-complets-de-laccessibilite-numerique-2024-1/ ; audits simplifiés 2024 https://data.public.lu/fr/datasets/audits-simplifies-de-laccessibilite-numerique-2024/ ; audits simplifiés 2025 https://data.public.lu/fr/datasets/audits-simplifies-de-laccessibilite-numerique-2025/
+* Formulations des rapports du SIP (simplA11yGenReport, MIT) : https://github.com/accessibility-luxembourg/simplA11yGenReport
+* Ombudsman (Luxembourg) : https://www.ombudsman.lu/ ; Défenseur des droits (France) : https://www.defenseurdesdroits.fr/
+* France, base légale du RGAA : article 47 de la loi n° 2005-102 https://www.legifrance.gouv.fr/loda/id/JORFTEXT000000809647 et décret n° 2019-768 https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000038811937

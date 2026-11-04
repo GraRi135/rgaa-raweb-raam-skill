@@ -5,12 +5,12 @@ Read this when the audit targets Luxembourg (RAWeb) or when a client, grid or to
 
 ## Family tree
 
-* **RGAA 4.1.2** (France, DINUM, published 18 April 2023): 13 topics, 106 criteria, 258 tests. Legal basis: article 47 of
-  law 2005-102, decree 2019-768. Covers WCAG 2.1 A and AA for web pages.
+* **[RGAA 4.1.2](https://accessibilite.numerique.gouv.fr/methode/criteres-et-tests/)** (France, DINUM, published 18 April 2023): 13 topics, 106 criteria, 258 tests. Legal basis: article 47 of
+  [law 2005-102](https://www.legifrance.gouv.fr/loda/id/JORFTEXT000000809647), [decree 2019-768](https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000038811937). Covers [WCAG 2.1](https://www.w3.org/TR/WCAG21/) A and AA for web pages.
 * **RAWeb 1.0** (Luxembourg, SIP, 2023): an adapted copy of RGAA 4.1.2 referencing Luxembourg law.
-* **RAWeb 1.1** (Luxembourg, SIP, published 6 February 2026): 17 topics, 136 criteria, 304 tests. Adds the web-relevant
-  requirements of **EN 301 549 v3.2.1** that go beyond WCAG (chapters 6, 7, 11, 12), so that a RAWeb audit covers the whole
-  harmonised standard. Legal basis: law of 28 May 2019 (public sector) and law of 8 March 2023 (products and services,
+* **[RAWeb 1.1](https://accessibilite.public.lu/en/raweb1.1/criteres.html)** (Luxembourg, SIP, published 6 February 2026): 17 topics, 136 criteria, 304 tests. Adds the web-relevant
+  requirements of **[EN 301 549 v3.2.1](https://www.etsi.org/deliver/etsi_en/301500_301599/301549/03.02.01_60/en_301549v030201p.pdf)** that go beyond WCAG (chapters 6, 7, 11, 12), so that a RAWeb audit covers the whole
+  harmonised standard. Legal basis: [law of 28 May 2019](https://legilux.public.lu/eli/etat/leg/loi/2019/05/28/a373/jo) (public sector) and law of 8 March 2023 (products and services,
   monitored by OSAPS).
 
 Criteria **1.1 to 13.12 keep the same numbers and the same intent** in both standards. A finding you would report under
@@ -71,7 +71,7 @@ Read the RAWeb wording with `criteria.py show <id> --tests` before citing a test
 | Compliance status thresholds | fully = 100 %, partially ≥ 50 %, non-compliant < 50 % or no valid audit | identical |
 | Statement validity | update on substantial change, after 3 years, or 18 months after a new RGAA version | update regularly, on substantial change; link sent to the SIP (accessibilite@sip.etat.lu) within 30 days of publication |
 | Complaint handling | answer within one week (code des relations entre le public et l'administration) | answer within one month |
-| Escalation route named in the statement | Défenseur des droits | Service information et presse (SIP) or the Ombudsman (Médiateur) |
+| Escalation route named in the statement | [Défenseur des droits](https://www.defenseurdesdroits.fr/) | [Service information et presse (SIP)](https://accessibilite.public.lu/en/) or the [Ombudsman](https://www.ombudsman.lu/) (Médiateur) |
 | Average page rate | optional figure in the statement | not mentioned |
 | Audit tool | Ara (ara.numerique.gouv.fr) | SIP audit kit; statement generator at accessibilite.public.lu/en/tools/decla.html |
 | Language of the deliverable | French | French, German or Luxembourgish; English common for international audiences |

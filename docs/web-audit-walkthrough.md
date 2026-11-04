@@ -1,6 +1,6 @@
 # Web audit walkthrough (for accessibility auditors)
 
-How an RGAA 4.1.2 or RAWeb 1.1 audit runs with this skill, step by step, and what you as the auditor must do yourself.
+How an [RGAA 4.1.2](https://accessibilite.numerique.gouv.fr/methode/criteres-et-tests/) or [RAWeb 1.1](https://accessibilite.public.lu/en/raweb1.1/criteres.html) audit runs with this skill, step by step, and what you as the auditor must do yourself.
 The skill applies the method published by DINUM and the SIP; it does not change it. Vocabulary is given in English
 with the French term auditors use.
 

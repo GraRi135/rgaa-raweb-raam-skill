@@ -6,10 +6,10 @@ Vocabulary is given as English / French because grids and statements are usually
 
 ## 1. Scope the audit
 
-1. **Standard and version.** France: RGAA 4.1.2 ("référentiel général d'amélioration de l'accessibilité"). Luxembourg:
-   RAWeb 1.1 ("référentiel d'évaluation de l'accessibilité web"). Always write the version in the report; a client
+1. **Standard and version.** France: [RGAA 4.1.2](https://accessibilite.numerique.gouv.fr/methode/criteres-et-tests/) ("référentiel général d'amélioration de l'accessibilité"). Luxembourg:
+   [RAWeb 1.1](https://accessibilite.public.lu/en/raweb1.1/criteres.html) ("référentiel d'évaluation de l'accessibilité web"). Always write the version in the report; a client
    grid with 106 criteria is RGAA, one with 136 is RAWeb 1.1 (see raweb-vs-rgaa.md).
-2. **Perimeter.** One website (a coherent set of pages under one responsibility). Native mobile apps use RAAM 1.1
+2. **Perimeter.** One website (a coherent set of pages under one responsibility). Native mobile apps use [RAAM 1.1](https://accessibilite.public.lu/en/raam1.1/criteres.html)
    (Luxembourg) or the RGAA mobile guidance, not these criteria. PDF documents use RAPDF (Luxembourg) / are evaluated
    under 13.3 and 13.4.
 3. **Exempt content** (outside the legal obligation, so its criteria are NA, but the non-interference rules still
@@ -124,8 +124,8 @@ Compliance status ("état de conformité") for the statement:
 3. **Accessibility statement** ("déclaration d'accessibilité"): mandatory structure, see report-templates.md.
    France: also the multi-year plan ("schéma pluriannuel") and yearly action plan links; the statement is updated on
    substantial change, after 3 years, or 18 months after a new RGAA version; complaints answered within one week;
-   escalation to the Défenseur des droits. Luxembourg: the statement link is sent to the SIP (accessibilite@sip.etat.lu)
-   within 30 days of publication; complaints answered within one month; escalation to the SIP or the Ombudsman; the
+   escalation to the [Défenseur des droits](https://www.defenseurdesdroits.fr/). Luxembourg: the statement link is sent to the SIP (accessibilite@sip.etat.lu)
+   within 30 days of publication; complaints answered within one month; escalation to the SIP or the [Ombudsman](https://www.ombudsman.lu/); the
    SIP's online generator can produce it in several languages.
 
 ## 7. Tools the standards cite
@@ -147,3 +147,16 @@ non-conformities and can never validate a criterion on their own.
   `title` on a decorative image (RAWeb 1.2), `<abbr title>` for cryptic content (RAWeb 13.5).
 * Forgetting that `<svg>` icons must be either `role="img"` with a name or `aria-hidden="true"`.
 * Treating AA as optional, or weighting the rate by level.
+
+## Sources
+
+* RAWeb 1.1, Luxembourg web accessibility standard: https://accessibilite.public.lu/en/raweb1.1/criteres.html (source files: https://github.com/accessibility-luxembourg/ReferentielAccessibiliteWeb, CC-BY 3.0 LU)
+* RAAM 1.1, Luxembourg mobile-app accessibility standard: https://accessibilite.public.lu/en/raam1.1/criteres.html (source files: https://github.com/accessibility-luxembourg/ReferentielAccessibiliteMobile, CC-BY 3.0 LU)
+* RGAA 4.1.2, French standard: https://accessibilite.numerique.gouv.fr/methode/criteres-et-tests/ (source files: https://github.com/DISIC/accessibilite.numerique.gouv.fr, Licence Ouverte 2.0, DINUM)
+* WCAG 2.1: https://www.w3.org/TR/WCAG21/ ; EN 301 549 v3.2.1: https://www.etsi.org/deliver/etsi_en/301500_301599/301549/03.02.01_60/en_301549v030201p.pdf
+* Law of 28 May 2019 on the accessibility of the websites and mobile applications of public sector bodies (Luxembourg): https://legilux.public.lu/eli/etat/leg/loi/2019/05/28/a373/jo
+* Service information et presse (SIP), monitoring body, guides, statement generator and complaint form: https://accessibilite.public.lu/en/ ; published monitoring reports: https://accessibilite.public.lu/fr/rapports/
+* SIP monitoring datasets on data.public.lu (CC0): full audits 2023 https://data.public.lu/en/datasets/audits-complets-de-laccessibilite-numerique-2023/ ; full audits 2024 https://data.public.lu/en/datasets/audits-complets-de-laccessibilite-numerique-2024-1/ ; simplified audits 2024 https://data.public.lu/en/datasets/audits-simplifies-de-laccessibilite-numerique-2024/ ; simplified audits 2025 https://data.public.lu/en/datasets/audits-simplifies-de-laccessibilite-numerique-2025/
+* SIP report wording (simplA11yGenReport, MIT): https://github.com/accessibility-luxembourg/simplA11yGenReport
+* Ombudsman (Luxembourg): https://www.ombudsman.lu/ ; Défenseur des droits (France): https://www.defenseurdesdroits.fr/
+* France, legal basis of the RGAA: article 47 of law 2005-102 https://www.legifrance.gouv.fr/loda/id/JORFTEXT000000809647 and decree 2019-768 https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000038811937

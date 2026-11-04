@@ -130,7 +130,7 @@ Si vous constatez un défaut d'accessibilité vous empêchant d'accéder à un c
 
 ## 4. Accessibility statement, RAWeb (Luxembourg)
 
-The law of 28 May 2019 prescribes the content, not the exact wording; the SIP provides a multilingual generator
+The [law of 28 May 2019](https://legilux.public.lu/eli/etat/leg/loi/2019/05/28/a373/jo) prescribes the content, not the exact wording; the SIP provides a multilingual generator
 (accessibilite.public.lu/en/tools/decla.html) and public bodies are expected to use its structure. Produce this content:
 
 ```

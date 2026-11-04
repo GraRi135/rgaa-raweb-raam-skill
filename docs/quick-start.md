@@ -23,7 +23,7 @@ In a Claude Code session, requests like these load the skill:
 * `Audit our Android app against RAAM 1.1; the emulator is running.`
 * `Which RAWeb tests differ from RGAA for criterion 9.2?`
 
-Claude picks the standard from the context (France → RGAA 4.1.2, Luxembourg → RAWeb 1.1, mobile app → RAAM 1.1) and
+Claude picks the standard from the context (France → [RGAA 4.1.2](https://accessibilite.numerique.gouv.fr/methode/criteres-et-tests/), Luxembourg → [RAWeb 1.1](https://accessibilite.public.lu/en/raweb1.1/criteres.html), mobile app → [RAAM 1.1](https://accessibilite.public.lu/en/raam1.1/criteres.html)) and
 says which one it used.
 
 ## 3. Or run the tools yourself
