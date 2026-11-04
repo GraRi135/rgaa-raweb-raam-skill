@@ -76,9 +76,10 @@ are not resolved, so confirm low ratios with a contrast tool.
 ```js
 (() => { const lum = c => { const [r,g,b] = c.match(/\d+(\.\d+)?/g).slice(0,3).map(v => v/255).map(v => v <= 0.03928 ? v/12.92 : ((v+0.055)/1.055)**2.4); return 0.2126*r+0.7152*g+0.0722*b; };
 const bg = e => { for (let n = e; n; n = n.parentElement) { const c = getComputedStyle(n).backgroundColor; if (c && !/rgba\(\d+, \d+, \d+, 0\)/.test(c) && c !== 'transparent') return c; } return 'rgb(255, 255, 255)'; };
+const hiddenUp = e => { for (let n = e; n; n = n.parentElement) { const c = getComputedStyle(n); if (c.opacity === '0' || c.visibility === 'hidden' || c.display === 'none' || (c.overflow !== 'visible' && n.offsetHeight === 0) || (c.clipPath && c.clipPath !== 'none' && /inset\(\s*(50|100)%/.test(c.clipPath))) return true; } return false; };
 const out = []; const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
 while (walker.nextNode()) { const t = walker.currentNode; if (!t.textContent.trim() || !t.parentElement || !t.parentElement.offsetWidth) continue; const e = t.parentElement; const cs = getComputedStyle(e);
-  if (cs.visibility === 'hidden' || cs.display === 'none' || cs.opacity === '0') continue; const rb = e.getBoundingClientRect(); if (rb.right < 0 || rb.bottom < 0) continue; const fg = cs.color, b = bg(e); const L1 = lum(fg), L2 = lum(b); const ratio = (Math.max(L1,L2)+0.05)/(Math.min(L1,L2)+0.05);
+  if (hiddenUp(e)) continue; const rb = e.getBoundingClientRect(); if (rb.right < 0 || rb.bottom < 0 || rb.width === 0) continue; const fg = cs.color, b = bg(e); const L1 = lum(fg), L2 = lum(b); const ratio = (Math.max(L1,L2)+0.05)/(Math.min(L1,L2)+0.05);
   const size = parseFloat(cs.fontSize), bold = parseInt(cs.fontWeight) >= 700; const large = size >= 24 || (bold && size >= 18.5); if (ratio < (large ? 3 : 4.5)) out.push({text: t.textContent.trim().slice(0, 40), fg, bg: b, ratio: +ratio.toFixed(2), size, bold}); }
 return out.slice(0, 60); })()
 ```
