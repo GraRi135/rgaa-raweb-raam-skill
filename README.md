@@ -101,12 +101,14 @@ until a person runs them.
 * [Updating the bundled data](docs/updating-data.md) when a standard changes.
 * [Contributing](docs/contributing.md).
 * [Examples](examples/README.md): fictional inputs and the reports Claude produced from them.
+* [Explainer](explainer/README.md): a single hostable page, in French and English, that teaches ten accessibility rules with simulations, challenges and a quiz, for people who do not know the rules.
 
 ## Layout
 
 ```
 docs/                         guides (quick start, walkthroughs, statements, evaluation, updating, contributing)
 examples/                     fictional inputs and example outputs
+explainer/                    the hostable awareness page (index.html) and its notes
 skills/rgaa-raweb-audit/
 ├── SKILL.md                  instructions Claude follows
 ├── references/               audit method, report templates, RAWeb vs RGAA, RAAM and Android workflow, SIP methods

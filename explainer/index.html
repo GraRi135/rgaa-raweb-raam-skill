@@ -1,0 +1,1100 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Dix règles d'accessibilité web expliquées avec des exemples fictifs, des simulations et un quiz. Pour les rédacteurs de sites publics et pour tout le monde.">
+<title>Dix règles d'accessibilité</title>
+<style>
+/* Layout: one guided tour. Sticky bar (language + progress), a hero with the "glasses" simulator, ten rule
+   chapters that share one card pattern (why / try it / fix it / takeaway), rights, quiz, further reading.
+   Fonts are system faces on purpose: a public-sector page should not call Google Fonts (GDPR). */
+:root{
+  --bg:#f2f6f9; --surface:#ffffff; --ink:#172033; --muted:#4f5b73; --line:#d3dbe6;
+  --accent:#0b6b70; --accent-ink:#ffffff; --accent-soft:#d7efee;
+  --good:#1a6f36; --good-soft:#def3e4; --bad:#b3261e; --bad-soft:#fbe4e2; --warn:#7a4e00; --warn-soft:#fff0d3;
+  --good-ink:#ffffff; --term-bg:#172033; --term-fg:#f2f6f9; --term-accent:#7fe0dc;
+  --focus:#b45309; --shadow:0 10px 30px rgba(23,32,51,.08);
+  --font-display:"Avenir Next","Segoe UI Variable Display","Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --font-body:"Segoe UI Variable Text","Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --font-mono:ui-monospace,"Cascadia Code",Menlo,Consolas,monospace;
+  --radius:14px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0f1521; --surface:#171f30; --ink:#e9eef6; --muted:#aab5c8; --line:#2c3749;
+    --accent:#62d2cf; --accent-ink:#06282a; --accent-soft:#17393b;
+    --good:#7bd38f; --good-soft:#173321; --bad:#ff948b; --bad-soft:#3b1f1d; --warn:#ffcc66; --warn-soft:#3a2d12;
+    --good-ink:#06240f; --term-bg:#0b111c; --term-fg:#e9eef6; --term-accent:#62d2cf;
+    --focus:#ffb454; --shadow:0 10px 30px rgba(0,0,0,.35); color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0f1521; --surface:#171f30; --ink:#e9eef6; --muted:#aab5c8; --line:#2c3749;
+  --accent:#62d2cf; --accent-ink:#06282a; --accent-soft:#17393b;
+  --good:#7bd38f; --good-soft:#173321; --bad:#ff948b; --bad-soft:#3b1f1d; --warn:#ffcc66; --warn-soft:#3a2d12;
+  --good-ink:#06240f; --term-bg:#0b111c; --term-fg:#e9eef6; --term-accent:#62d2cf;
+  --focus:#ffb454; --shadow:0 10px 30px rgba(0,0,0,.35); color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1.05rem/1.55 var(--font-body);
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+h1,h2,h3,h4{font-family:var(--font-display);line-height:1.15;text-wrap:balance;margin:0}
+h1{font-size:clamp(2rem,5.5vw,3.4rem);font-weight:800;letter-spacing:-.02em}
+h2{font-size:clamp(1.5rem,3.4vw,2.1rem);font-weight:800;letter-spacing:-.015em}
+h3{font-size:1.2rem;font-weight:700}
+p{margin:0}
+a{color:var(--accent);text-decoration:underline;text-underline-offset:.15em}
+a:hover{text-decoration-thickness:2px}
+:focus-visible{outline:3px solid var(--focus);outline-offset:3px;border-radius:4px}
+code{font-family:var(--font-mono);font-size:.9em;background:var(--accent-soft);padding:.05em .35em;border-radius:4px}
+.skip{position:absolute;left:-9999px;top:8px;background:var(--accent);color:var(--accent-ink);padding:.6em 1em;border-radius:8px;z-index:30;font-weight:700}
+.skip:focus{left:16px}
+.wrap{max-width:62rem;margin:0 auto}
+.prose{max-width:38rem}
+/* top bar */
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);border-bottom:1px solid var(--line);padding-block:.6rem;margin-inline:calc(-1 * max(16px,env(safe-area-inset-left,0px))) calc(-1 * max(16px,env(safe-area-inset-right,0px)));padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.bar .wrap{display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+.brand{font-family:var(--font-display);font-weight:800;letter-spacing:-.01em;text-decoration:none;color:var(--ink);display:flex;align-items:center;gap:.5rem}
+.brand .dot{width:.9rem;height:.9rem;border-radius:50%;background:var(--accent);display:inline-block}
+.progress{margin-left:auto;display:flex;align-items:center;gap:.6rem;color:var(--muted);font-size:.95rem;font-variant-numeric:tabular-nums}
+.progress .track{width:7rem;height:.5rem;background:var(--line);border-radius:999px;overflow:hidden}
+.progress .fill{height:100%;width:0;background:var(--accent);transition:width .4s}
+.lang{display:flex;gap:.25rem;border:1px solid var(--line);border-radius:999px;padding:.2rem}
+.lang button{border:0;background:transparent;color:var(--muted);font:700 .9rem var(--font-body);padding:.35em .8em;border-radius:999px;cursor:pointer}
+.lang button[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink)}
+/* hero */
+.hero{padding-block:3rem 2rem;display:grid;gap:2rem}
+.hero .lead{font-size:1.2rem;color:var(--muted);max-width:36rem;margin-top:1rem}
+.eyebrow{font:700 .8rem/1 var(--font-body);letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+.cta{display:inline-flex;align-items:center;gap:.5rem;margin-top:1.4rem;background:var(--accent);color:var(--accent-ink);text-decoration:none;font-weight:700;padding:.8em 1.3em;border-radius:999px}
+/* sections */
+section.rule{padding-block:2.5rem;border-top:1px solid var(--line);scroll-margin-top:4.5rem}
+#main{scroll-margin-top:4.5rem}
+.rule-head{display:grid;gap:.6rem;max-width:40rem;margin-bottom:1.4rem}
+.rule-head .why{color:var(--muted)}
+.grid2{display:grid;gap:1.2rem;grid-template-columns:repeat(auto-fit,minmax(min(100%,19rem),1fr));align-items:start}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:1.1rem 1.2rem;min-width:0}
+.card h3,.card .card-h{display:flex;align-items:center;gap:.5rem;margin-bottom:.8rem;font-size:1.2rem;font-weight:700;letter-spacing:0}
+.card h3 .tag,.card .card-h .tag{font:700 .72rem/1 var(--font-body);letter-spacing:.1em;text-transform:uppercase;background:var(--accent-soft);color:var(--accent);padding:.35em .6em;border-radius:999px}
+.takeaway{margin-top:1.2rem;background:var(--accent-soft);border-left:5px solid var(--accent);border-radius:10px;padding:.9rem 1.1rem;max-width:42rem}
+.takeaway strong{font-family:var(--font-display)}
+.ref{margin-top:.6rem;color:var(--muted);font-size:.85rem}
+/* controls */
+.toolbar{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:.9rem}
+.btn{border:1.5px solid var(--line);background:var(--surface);color:var(--ink);font:600 .92rem var(--font-body);padding:.45em .9em;border-radius:999px;cursor:pointer;display:inline-flex;align-items:center;gap:.4rem}
+.btn:hover{border-color:var(--accent)}
+.btn[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.btn.fix[aria-pressed="true"]{background:var(--good);color:var(--good-ink);border-color:var(--good)}
+.btn.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.note{color:var(--muted);font-size:.92rem;margin-top:.6rem}
+.sr-out{margin-top:.9rem;background:var(--term-bg);color:var(--term-fg);border-radius:10px;padding:.8rem 1rem;font-family:var(--font-mono);font-size:.88rem;line-height:1.5}
+.sr-out .srl{color:var(--term-accent);font-weight:700;font-family:var(--font-body);font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.3rem}
+.sr-out ol{margin:0;padding-left:1.4rem}
+/* mini pages used inside demos (inert: nothing inside is a real control) */
+.mini{background:#fff;color:#1c2433;border:1px solid #c9d2de;border-radius:10px;overflow:hidden;font-size:.9rem;line-height:1.4}
+.mini .mh{background:#1d3f73;color:#fff;padding:.6rem .9rem;display:flex;gap:1rem;align-items:center;flex-wrap:wrap}
+.mini .mh b{font-family:var(--font-display)}
+.mini .mh span{opacity:.9}
+.mini .mb{padding:.9rem}
+.mini .ph{display:block;height:5.5rem;border-radius:6px;background:linear-gradient(135deg,#9bb8d3,#dbe6f1);position:relative}
+.mini .ph::after{content:"";position:absolute;inset:auto 10% 12%;height:38%;border-radius:4px 4px 0 0;background:#f4e6c3}
+.mini .lnk{color:#1d3f73;text-decoration:underline}
+.mini .fb{display:inline-block;background:#2a7f62;color:#fff;padding:.35em .8em;border-radius:6px;font-weight:600}
+.mini .err{color:#c62828}
+.mini p{margin:.4rem 0}
+.mini .bold{font-weight:700;font-size:1.05em}
+.mini h4,.mini .hx{font-family:var(--font-display);margin:.5rem 0 .2rem;font-size:1.05em;font-weight:800}
+.mini .legend{display:flex;gap:.8rem;flex-wrap:wrap;margin-top:.5rem;font-size:.85em}
+.mini .sw{display:inline-block;width:.9em;height:.9em;border-radius:3px;vertical-align:-.1em;margin-right:.3em}
+/* colour-vision filters */
+.vision-deuter{filter:url(#f-deuter)}
+.vision-protan{filter:url(#f-protan)}
+.vision-achrom{filter:url(#f-achrom)}
+.vision-blur{filter:blur(2.2px) contrast(.8)}
+/* calendar demo */
+.cal{display:grid;grid-template-columns:repeat(7,1fr);gap:.35rem;margin-top:.6rem}
+.cal .d{aspect-ratio:1;border-radius:8px;display:grid;place-items:center;font-weight:700;font-size:.85rem;color:#111;background:#eef1f5;position:relative}
+.cal .d.menage{background:#8f9aa6}.cal .d.papier{background:#6fa8dc}.cal .d.verre{background:#7ac47f}.cal .d.orga{background:#b98b5a}
+.cal .d .k{display:none;position:absolute;inset:auto .25rem .2rem auto;font-size:.7rem;background:#fff;color:#111;border-radius:4px;padding:0 .3em;border:1px solid #333}
+.cal.fixed .d .k{display:block}
+.cal .d.menage.fx{background:repeating-linear-gradient(45deg,#8f9aa6 0 4px,#b8c0c9 4px 8px)}
+.cal .d.papier.fx{background:repeating-linear-gradient(0deg,#6fa8dc 0 4px,#b7d3ee 4px 8px)}
+.cal .d.verre.fx{background:radial-gradient(circle,#2f7a35 1.5px,#9bd59e 2px)}
+.cal .d.orga.fx{background:#b98b5a}
+.legend{display:flex;flex-wrap:wrap;gap:.6rem 1rem;margin-top:.7rem;font-size:.9rem}
+.legend span{display:inline-flex;align-items:center;gap:.35rem}
+.legend i{width:1rem;height:1rem;border-radius:4px;display:inline-block}
+/* contrast demo */
+.notice{background:#fff;border:1px solid #c9d2de;border-radius:10px;padding:1rem;color:#1c2433}
+.notice .t{font-family:var(--font-display);font-weight:800;font-size:1.15rem}
+.ratio{display:flex;gap:.8rem;align-items:center;flex-wrap:wrap;margin-top:.8rem;font-variant-numeric:tabular-nums}
+.ratio output{font:800 1.6rem var(--font-display)}
+.verdict{font-weight:700;padding:.3em .7em;border-radius:999px}
+.verdict.ok{background:var(--good-soft);color:var(--good)}
+.verdict.ko{background:var(--bad-soft);color:var(--bad)}
+label.slider{display:block;margin-top:.9rem;font-weight:600}
+input[type=range]{width:100%;margin-top:.4rem;accent-color:var(--accent)}
+.swatches{display:grid;gap:.6rem;grid-template-columns:repeat(auto-fit,minmax(8rem,1fr));margin:.6rem 0}
+.swatch{border-radius:8px;padding:.8rem;font-weight:700;border:1px solid #c9d2de;text-align:center}
+/* challenge */
+.quiz-opts{display:grid;gap:.5rem;margin:.6rem 0 0;padding:0;list-style:none}
+.opt{width:100%;text-align:left;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);font:500 .98rem/1.4 var(--font-body);padding:.7em .9em;border-radius:10px;cursor:pointer;display:flex;gap:.6rem;align-items:flex-start}
+.opt:hover{border-color:var(--accent)}
+.opt .k{font:700 .8rem var(--font-mono);background:var(--accent-soft);color:var(--accent);border-radius:6px;padding:.2em .5em;flex:none}
+.opt[data-state="ok"]{border-color:var(--good);background:var(--good-soft)}
+.opt[data-state="ko"]{border-color:var(--bad);background:var(--bad-soft)}
+.feedback{margin-top:.7rem;padding:.7rem .9rem;border-radius:10px;font-size:.95rem;display:none}
+.feedback.show{display:block}
+.feedback.ok{background:var(--good-soft);color:var(--good)}
+.feedback.ko{background:var(--bad-soft);color:var(--bad)}
+.feedback b{font-family:var(--font-display)}
+/* keyboard demo */
+.kb-zone{border:2px dashed var(--line);border-radius:10px;padding:1rem;display:grid;gap:.7rem}
+.kb-zone label{font-weight:600;display:grid;gap:.3rem}
+.kb-zone input[type=text]{font:inherit;padding:.5em .7em;border:1.5px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);max-width:20rem}
+.kb-row{display:flex;gap:.7rem;flex-wrap:wrap;align-items:center}
+.kb-zone .fakebtn{display:inline-block;background:#2a7f62;color:#fff;padding:.5em 1em;border-radius:8px;font-weight:700}
+.kb-zone .realbtn{background:var(--accent);color:var(--accent-ink);border:0;padding:.55em 1.1em;border-radius:8px;font:700 1rem var(--font-body);cursor:pointer}
+.kb-count{font-variant-numeric:tabular-nums;font-weight:700}
+/* zoom demo */
+.zoom-stage{overflow:hidden;border:1px solid #c9d2de;border-radius:10px;background:#fff;color:#1c2433}
+.zoom-stage .zp{padding:.8rem;font-size:calc(.9rem * var(--z,1));line-height:1.4;display:grid;gap:.5rem;grid-template-columns:1fr 1fr}
+.zoom-stage .zp.bad .box{height:5.2rem;width:9.5rem;overflow:hidden;border:1px solid #c9d2de;border-radius:6px;padding:.4em;white-space:nowrap}
+.zoom-stage .zp.good{grid-template-columns:repeat(auto-fit,minmax(9rem,1fr))}
+.zoom-stage .zp.good .box{border:1px solid #c9d2de;border-radius:6px;padding:.4em;min-width:0}
+.zoom-stage .hx{font-weight:800;font-family:var(--font-display)}
+/* ticker + video */
+.ticker{overflow:hidden;background:#1d3f73;color:#fff;border-radius:8px;padding:.5rem 0;white-space:nowrap}
+.ticker span{display:inline-block;padding-left:100%;animation:tick 14s linear infinite}
+.ticker.paused span{animation-play-state:paused}
+@keyframes tick{to{transform:translateX(-100%)}}
+@media (prefers-reduced-motion: reduce){.ticker span{animation:none;padding-left:1rem}}
+.video{background:#0b111c;color:#fff;border-radius:10px;aspect-ratio:16/9;max-width:100%;position:relative;display:grid;place-items:center;overflow:hidden}
+.video .scene{text-align:center;padding:1rem}
+.video .cap{position:absolute;left:0;right:0;bottom:8%;text-align:center}
+.video .cap span{background:rgba(0,0,0,.8);padding:.2em .6em;border-radius:4px;font-size:.95rem}
+.video.muted .sound{display:none}
+.video .sound{color:#ffcc66;font-weight:700}
+/* documents */
+.docs{display:grid;gap:.8rem;grid-template-columns:repeat(auto-fit,minmax(12rem,1fr))}
+.doc{border:1px solid #c9d2de;background:#fff;color:#1c2433;border-radius:8px;padding:.8rem;min-height:9rem;font-size:.85rem}
+.doc .dn{font-family:var(--font-mono);font-size:.78rem;color:#4f5b73;margin-bottom:.4rem}
+.doc.scan .txt{filter:blur(.6px) contrast(.9);transform:rotate(-1.2deg);user-select:none;color:#333}
+.doc .h{font-weight:800;font-family:var(--font-display)}
+/* personas */
+.personas{display:grid;gap:.8rem;grid-template-columns:repeat(auto-fit,minmax(min(100%,17rem),1fr));margin-top:1rem}
+.persona{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:1rem}
+.persona b{font-family:var(--font-display);display:block;margin-bottom:.3rem}
+.persona p{color:var(--muted);font-size:.95rem}
+/* rights */
+.steps{display:grid;gap:.8rem;margin-top:1rem;padding:0;list-style:none;counter-reset:s}
+.steps li{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:1rem 1.1rem 1rem 3.4rem;position:relative}
+.steps li::before{counter-increment:s;content:counter(s);position:absolute;left:1rem;top:.9rem;width:1.7rem;height:1.7rem;border-radius:50%;background:var(--accent);color:var(--accent-ink);display:grid;place-items:center;font:800 .95rem var(--font-display)}
+/* final quiz */
+.quiz{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:1.3rem;box-shadow:var(--shadow);max-width:44rem}
+.quiz .qn{color:var(--muted);font-weight:700;font-variant-numeric:tabular-nums;margin-bottom:.4rem}
+.quiz .q{display:none}
+.quiz .q.on{display:block}
+.quiz .qh{font-size:1.15rem;font-weight:700;font-family:var(--font-display)}
+.quiz .nav{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:1rem}
+.result{display:none;text-align:left}
+.result.on{display:block}
+.score{font:800 clamp(2.4rem,8vw,4rem)/1 var(--font-display);color:var(--accent);margin:.5rem 0}
+footer{border-top:1px solid var(--line);padding-block:2rem 3rem;color:var(--muted);font-size:.9rem}
+footer .warn{background:var(--warn-soft);color:var(--warn);border-radius:10px;padding:.9rem 1rem;margin-bottom:1rem}
+.visually-hidden{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+@media (max-width:40rem){.progress{order:3;flex-basis:100%;margin-left:0}.progress .track{flex:1;width:auto}.lang{margin-left:auto}.cal .d{font-size:.75rem}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main" data-t="skip">Aller au contenu</a>
+<header class="bar">
+  <div class="wrap">
+    <a class="brand" href="#top"><span class="dot" aria-hidden="true"></span><span data-t="brand">Fiktivbuerg accessible</span></a>
+    <div class="progress"><span id="prog-text">Règles vues : 0 / 10</span><span class="track" aria-hidden="true"><span class="fill" id="prog-fill"></span></span></div>
+    <div class="lang" role="group" aria-label="Langue" data-t-aria="lang.group">
+      <button type="button" id="lang-fr" aria-pressed="true" lang="fr">Français</button>
+      <button type="button" id="lang-en" aria-pressed="false" lang="en">English</button>
+    </div>
+  </div>
+</header>
+
+<main id="main" class="wrap">
+<section class="hero" id="top">
+  <div>
+    <p class="eyebrow" data-t="hero.eyebrow">Commune de Fiktivbuerg (fictive) · accessibilité numérique</p>
+    <h1 data-t="hero.h1">Un site public, c'est pour tout le monde.</h1>
+    <p class="lead" data-t="hero.lead">Dix règles simples, des exemples inventés, des simulations à essayer et un quiz. Pas besoin de savoir coder : si vous publiez des pages, des images ou des PDF, c'est pour vous. Si vous utilisez des sites publics, aussi.</p>
+    <a class="cta" href="#r1" data-t="hero.cta">Commencer par la règle 1</a>
+  </div>
+  <div class="card">
+    <h2 class="card-h"><span class="tag" data-t="tag.try">Essayez</span><span data-t="hero.demo.h">Mettez les lunettes de quelqu'un d'autre</span></h2>
+    <p class="note" data-t="hero.demo.p">Voici la page d'accueil (inventée) de la commune. Regardez-la comme Marc, Anne ou Lena, puis corrigez-la.</p>
+    <div class="toolbar" role="group" aria-label="Point de vue" data-t-aria="hero.group">
+      <button type="button" class="btn vis" data-vis="" aria-pressed="true" data-t="vis.normal">Vue habituelle</button>
+      <button type="button" class="btn vis" data-vis="vision-deuter" aria-pressed="false" data-t="vis.marc">Marc, daltonien</button>
+      <button type="button" class="btn vis" data-vis="vision-blur" aria-pressed="false" data-t="vis.anne">Anne, malvoyante</button>
+      <button type="button" class="btn vis" data-vis="sr" aria-pressed="false" data-t="vis.lena">Lena, lecteur d'écran</button>
+      <button type="button" class="btn fix" id="hero-fix" aria-pressed="false" data-t="btn.fix">Corriger la page</button>
+    </div>
+    <div class="mini" id="hero-mini">
+      <div class="mh"><b>Fiktivbuerg</b><span>Accueil</span><span>Démarches</span><span>Actualités</span></div>
+      <div class="mb">
+        <span class="ph" aria-hidden="true"></span>
+        <p class="bold" data-t="mini.title">Nouveau parc de jeux au quartier Nord</p>
+        <p data-t="mini.text">Le parc est ouvert depuis samedi. Pour le règlement et les horaires, <span class="lnk" data-t="mini.link">cliquez ici</span>.</p>
+        <p><span class="err" data-t="mini.err">Les jours en rouge dans le calendrier sont fermés.</span></p>
+        <p><span class="fb" data-t="mini.btn">Toutes les démarches</span></p>
+      </div>
+    </div>
+    <div class="sr-out" id="hero-sr" hidden>
+      <div class="srl" data-t="sr.label">Ce que Lena entend</div>
+      <ol id="hero-sr-list"><li>graphique, DSC_0042.jpg</li><li>Nouveau parc de jeux au quartier Nord</li><li>Le parc est ouvert depuis samedi. Pour le règlement et les horaires, lien, cliquez ici.</li><li>Les jours en rouge dans le calendrier sont fermés.</li><li>cliquable, Toutes les démarches (inaccessible au clavier)</li></ol>
+    </div>
+    <p class="note" id="hero-note" data-t="hero.note.normal">Tout semble normal ? Essayez les autres boutons.</p>
+  </div>
+</section>
+
+<section class="rule" id="why">
+  <div class="rule-head">
+    <p class="eyebrow" data-t="why.eyebrow">Pourquoi ça compte</p>
+    <h2 data-t="why.h">Accessible, ça veut dire : utilisable par tout le monde, quelles que soient ses capacités.</h2>
+    <p class="why" data-t="why.p">Au Luxembourg, la loi du 28 mai 2019 oblige les organismes du secteur public à rendre leurs sites et applications accessibles. Le référentiel qui dit comment s'appelle le RAWeb (136 critères). Vous n'avez pas besoin de les connaître : les dix règles ci-dessous couvrent l'essentiel de ce qu'un rédacteur ou une rédactrice peut faire au quotidien.</p>
+  </div>
+  <div class="personas" id="personas">
+    <div class="persona"><b data-t="p.lena.n">Lena, 34 ans</b><p data-t="p.lena.p">Aveugle. Son lecteur d'écran lit la page à voix haute et saute de titre en titre, de lien en lien.</p></div>
+    <div class="persona"><b data-t="p.marc.n">Marc, 41 ans</b><p data-t="p.marc.p">Daltonien (il confond rouge et vert, comme environ un homme sur douze). Les codes couleur sans texte le laissent deviner.</p></div>
+    <div class="persona"><b data-t="p.anne.n">Anne, 72 ans</b><p data-t="p.anne.p">Malvoyante. Elle zoome à 200 % et a besoin de contrastes nets.</p></div>
+    <div class="persona"><b data-t="p.tom.n">Tom, 29 ans</b><p data-t="p.tom.p">Poignet cassé pour deux mois : il navigue au clavier seulement, avec la touche Tab.</p></div>
+    <div class="persona"><b data-t="p.sara.n">Sara, 50 ans</b><p data-t="p.sara.p">Sourde. Sans sous-titres, une vidéo du conseil communal ne lui dit rien.</p></div>
+    <div class="persona"><b data-t="p.jo.n">Jo, 19 ans</b><p data-t="p.jo.p">Dyslexique et vite distrait. Les textes animés et les pavés sans titres lui font abandonner.</p></div>
+  </div>
+  <p class="note" data-t="why.note">Tous ces personnages sont inventés. Les situations, elles, sont réelles : et chacun d'entre nous les vit un jour, avec un bras dans le plâtre, du soleil sur l'écran ou un train bruyant.</p>
+</section>
+
+<!-- RULE 1 : colour -->
+<section class="rule" id="r1" data-rule>
+  <div class="rule-head">
+    <p class="eyebrow" data-t="r1.eyebrow">Règle 1 · Couleurs</p>
+    <h2 data-t="r1.h">La couleur ne doit jamais être le seul indice.</h2>
+    <p class="why" data-t="r1.why">« Les jours en rouge sont fermés », « les champs en rouge sont à corriger », une courbe verte et une courbe rouge sur un graphique : pour Marc, c'est une devinette. Pour Lena, la couleur n'existe pas du tout. Ajoutez toujours un deuxième indice : un mot, un symbole, un motif.</p>
+  </div>
+  <div class="grid2">
+    <div class="card">
+      <h3><span class="tag" data-t="tag.try">Essayez</span><span data-t="r1.demo.h">Le calendrier des collectes</span></h3>
+      <div class="toolbar" role="group" aria-label="Vision des couleurs" data-t-aria="r1.group">
+        <button type="button" class="btn cv" data-cv="" aria-pressed="true" data-t="cv.normal">Vision courante</button>
+        <button type="button" class="btn cv" data-cv="vision-deuter" aria-pressed="false" data-t="cv.deuter">Deutéranopie (rouge-vert)</button>
+        <button type="button" class="btn cv" data-cv="vision-protan" aria-pressed="false" data-t="cv.protan">Protanopie</button>
+        <button type="button" class="btn cv" data-cv="vision-achrom" aria-pressed="false" data-t="cv.achrom">Sans couleurs</button>
+        <button type="button" class="btn fix" id="cal-fix" aria-pressed="false" data-t="btn.fix">Corriger</button>
+      </div>
+      <div id="cal-wrap">
+        <div class="cal" id="cal" aria-hidden="true"></div>
+        <div class="legend" id="cal-legend" aria-hidden="true">
+          <span><i style="background:#8f9aa6"></i><span data-t="cal.menage">Déchets ménagers</span></span>
+          <span><i style="background:#6fa8dc"></i><span data-t="cal.papier">Papier</span></span>
+          <span><i style="background:#7ac47f"></i><span data-t="cal.verre">Verre</span></span>
+          <span><i style="background:#b98b5a"></i><span data-t="cal.orga">Organique</span></span>
+        </div>
+      </div>
+      <p class="note" id="cal-note" data-t="cal.note.bad">Quatre couleurs, aucun texte dans les cases. Cliquez sur « Deutéranopie » : le vert et le brun se ressemblent, le gris et le bleu aussi.</p>
+    </div>
+    <div class="card">
+      <h3><span class="tag" data-t="tag.fix">À vous</span><span data-t="r1.fix.h">Le formulaire affiche en rouge les champs mal remplis. Que faire ?</span></h3>
+      <ul class="quiz-opts" data-challenge>
+        <li><button type="button" class="opt"><span class="k">A</span><span data-t="r1.o1">Mettre un rouge plus vif.</span></button></li>
+        <li><button type="button" class="opt" data-ok><span class="k">B</span><span data-t="r1.o2">Ajouter, à côté du champ, un message qui dit ce qui ne va pas, avec un symbole.</span></button></li>
+        <li><button type="button" class="opt"><span class="k">C</span><span data-t="r1.o3">Faire clignoter le champ.</span></button></li>
+        <li><button type="button" class="opt"><span class="k">D</span><span data-t="r1.o4">Rien : tout le monde voit le rouge.</span></button></li>
+      </ul>
+      <div class="feedback" role="status" data-ok-t="r1.fb.ok" data-ko-t="r1.fb.ko"></div>
+    </div>
+  </div>
+  <div class="takeaway"><strong data-t="r1.tk.b">À retenir :</strong> <span data-t="r1.tk">chaque information donnée par une couleur est aussi donnée par un texte ou un symbole.</span></div>
+  <p class="ref" data-t="r1.ref">RAWeb 1.1 : critères 3.1 (information par la couleur) et 3.2 (contraste).</p>
+</section>
+
+<!-- RULE 2 : contrast -->
+<section class="rule" id="r2" data-rule>
+  <div class="rule-head">
+    <p class="eyebrow" data-t="r2.eyebrow">Règle 2 · Contraste</p>
+    <h2 data-t="r2.h">Du texte gris clair sur fond blanc, c'est joli et illisible.</h2>
+    <p class="why" data-t="r2.why">Anne, le soleil sur l'écran, un vieux projecteur en réunion : un contraste faible exclut beaucoup de monde. Le minimum pour un texte courant est un rapport de 4,5 pour 1 entre la couleur du texte et celle du fond (3 pour 1 pour les gros titres).</p>
+  </div>
+  <div class="grid2">
+    <div class="card">
+      <h3><span class="tag" data-t="tag.try">Essayez</span><span data-t="r2.demo.h">Éclaircissez le texte jusqu'à ce qu'il disparaisse</span></h3>
+      <div class="notice" id="ctr-card">
+        <p class="t" data-t="ctr.t">Piscine communale fermée le 14 juillet</p>
+        <p data-t="ctr.p">Pour cause de maintenance annuelle. Réouverture le 15 juillet à 8 h.</p>
+      </div>
+      <label class="slider" for="ctr-range"><span data-t="ctr.label">Clarté du texte</span></label>
+      <input type="range" id="ctr-range" min="10" max="85" value="25">
+      <div class="ratio"><span data-t="ctr.ratio">Rapport de contraste :</span> <output id="ctr-out" for="ctr-range">12,6 : 1</output> <span class="verdict ok" id="ctr-verdict" data-t="ctr.ok">Lisible (≥ 4,5 : 1)</span></div>
+    </div>
+    <div class="card">
+      <h3><span class="tag" data-t="tag.fix">À vous</span><span data-t="r2.fix.h">Laquelle de ces trois affiches passe le test ?</span></h3>
+      <div class="swatches" aria-hidden="true">
+        <div class="swatch" style="background:#fff;color:#9aa3ad">Horaires</div>
+        <div class="swatch" style="background:#fff;color:#1d3f73">Horaires</div>
+        <div class="swatch" style="background:#fff;color:#e3c21a">Horaires</div>
+      </div>
+      <ul class="quiz-opts" data-challenge>
+        <li><button type="button" class="opt"><span class="k">A</span><span data-t="r2.o1">Gris clair sur blanc (rapport <span data-ratio="#9aa3ad,#ffffff"></span>)</span></button></li>
+        <li><button type="button" class="opt" data-ok><span class="k">B</span><span data-t="r2.o2">Bleu foncé sur blanc (rapport <span data-ratio="#1d3f73,#ffffff"></span>)</span></button></li>
+        <li><button type="button" class="opt"><span class="k">C</span><span data-t="r2.o3">Jaune sur blanc (rapport <span data-ratio="#e3c21a,#ffffff"></span>)</span></button></li>
+      </ul>
+      <div class="feedback" role="status" data-ok-t="r2.fb.ok" data-ko-t="r2.fb.ko"></div>
+    </div>
+  </div>
+  <div class="takeaway"><strong data-t="r2.tk.b">À retenir :</strong> <span data-t="r2.tk">texte sur fond : au moins 4,5 : 1. Un outil gratuit de mesure de contraste vous le dit en deux secondes ; demandez-le à votre prestataire pour la charte.</span></div>
+  <p class="ref" data-t="r2.ref">RAWeb 1.1 : critères 3.2 (texte) et 3.3 (composants et graphiques).</p>
+</section>
+
+<!-- RULE 3 : images -->
+<section class="rule" id="r3" data-rule>
+  <div class="rule-head">
+    <p class="eyebrow" data-t="r3.eyebrow">Règle 3 · Images</p>
+    <h2 data-t="r3.h">Chaque image qui dit quelque chose a besoin d'un texte de remplacement.</h2>
+    <p class="why" data-t="r3.why">Lena n'a pas d'image. Son lecteur d'écran lit le « texte alternatif » que vous saisissez dans le champ prévu par votre outil de publication. S'il est vide, elle entend le nom du fichier. Et une image purement décorative doit avoir un texte alternatif vide, pour être sautée.</p>
+  </div>
+  <div class="grid2">
+    <div class="card">
+      <h3><span class="tag" data-t="tag.try">Essayez</span><span data-t="r3.demo.h">Trois images, deux versions</span></h3>
+      <div class="toolbar">
+        <button type="button" class="btn" id="img-sr" aria-pressed="false" data-t="btn.sr">Mode lecteur d'écran</button>
+        <button type="button" class="btn fix" id="img-fix" aria-pressed="false" data-t="btn.fix">Corriger</button>
+      </div>
+      <div class="mini">
+        <div class="mb">
+          <span class="ph" aria-hidden="true"></span>
+          <p class="hx" data-t="img.a.t">Rénovation de l'hôtel de ville</p>
+          <p data-t="img.a.p">Les travaux de façade commencent lundi.</p>
+          <p class="bold" data-t="img.b.t">[Infographie] Piscine : lundi au vendredi 8 h – 20 h, samedi 9 h – 18 h</p>
+          <p aria-hidden="true">〰〰〰〰〰〰〰〰</p>
+        </div>
+      </div>
+      <div class="sr-out" id="img-out" hidden>
+        <div class="srl" data-t="sr.label">Ce que Lena entend</div>
+        <ol id="img-out-list"><li>graphique, IMG_2041.jpg</li><li>Rénovation de l'hôtel de ville</li><li>Les travaux de façade commencent lundi.</li><li>graphique, infographie.png</li><li>graphique, vague-bleue.svg</li></ol>
+      </div>
+    </div>
+    <div class="card">
+      <h3><span class="tag" data-t="tag.fix">À vous</span><span data-t="r3.fix.h">Quel texte alternatif pour la photo qui illustre « Rénovation de l'hôtel de ville » ?</span></h3>
+      <ul class="quiz-opts" data-challenge>
+        <li><button type="button" class="opt"><span class="k">A</span><span data-t="r3.o1">« image »</span></button></li>
+        <li><button type="button" class="opt"><span class="k">B</span><span data-t="r3.o2">« IMG_2041.jpg »</span></button></li>
+        <li><button type="button" class="opt" data-ok><span class="k">C</span><span data-t="r3.o3">« Façade de l'hôtel de ville couverte d'échafaudages »</span></button></li>
+        <li><button type="button" class="opt"><span class="k">D</span><span data-t="r3.o4">« Photo de l'hôtel de ville de Fiktivbuerg prise le 12 mai 2026 à 14 h 32 par le service communication avec un appareil reflex, format paysage, ciel nuageux… »</span></button></li>
+      </ul>
+      <div class="feedback" role="status" data-ok-t="r3.fb.ok" data-ko-t="r3.fb.ko"></div>
+    </div>
+  </div>
+  <div class="takeaway"><strong data-t="r3.tk.b">À retenir :</strong> <span data-t="r3.tk">décrivez ce que l'image apporte, en une phrase. Image décorative : texte vide. Image qui contient du texte (affiche, infographie) : tout le texte, sinon publiez-le à côté.</span></div>
+  <p class="ref" data-t="r3.ref">RAWeb 1.1 : critères 1.1, 1.2, 1.3 (alternatives) et 1.8 (images-textes).</p>
+</section>
+
+<!-- RULE 4 : headings -->
+<section class="rule" id="r4" data-rule>
+  <div class="rule-head">
+    <p class="eyebrow" data-t="r4.eyebrow">Règle 4 · Titres</p>
+    <h2 data-t="r4.h">Un texte en gras n'est pas un titre.</h2>
+    <p class="why" data-t="r4.why">Lena et Jo ne lisent pas une page de haut en bas : ils sautent de titre en titre, comme vous parcourez un journal. Cela ne marche que si les titres sont de vrais titres (Titre 1, Titre 2, Titre 3 dans votre éditeur), dans l'ordre, sans sauter de niveau.</p>
+  </div>
+  <div class="grid2">
+    <div class="card">
+      <h3><span class="tag" data-t="tag.try">Essayez</span><span data-t="r4.demo.h">Le plan de la page, vu par un lecteur d'écran</span></h3>
+      <div class="toolbar">
+        <button type="button" class="btn fix" id="hd-fix" aria-pressed="false" data-t="btn.fix">Corriger</button>
+        <button type="button" class="btn" id="hd-jump" data-t="hd.jump">Sauter au titre suivant</button>
+      </div>
+      <div class="mini" id="hd-mini">
+        <div class="mb">
+          <p class="bold" data-hl="1" data-t="hd.1">Inscription à la crèche communale</p>
+          <p data-t="hd.p1">Les inscriptions pour la rentrée sont ouvertes jusqu'au 30 avril.</p>
+          <p class="bold" data-hl="2" data-t="hd.2">Qui peut s'inscrire</p>
+          <p data-t="hd.p2">Les enfants de 3 mois à 4 ans domiciliés dans la commune.</p>
+          <p class="bold" data-hl="2" data-t="hd.3">Documents à fournir</p>
+          <p class="bold" data-hl="3" data-t="hd.4">Pour les parents</p>
+          <p data-t="hd.p3">Pièce d'identité, certificat de résidence.</p>
+          <p class="bold" data-hl="3" data-t="hd.5">Pour l'enfant</p>
+          <p data-t="hd.p4">Carnet de vaccination.</p>
+        </div>
+      </div>
+      <div class="sr-out">
+        <div class="srl" data-t="hd.outline">Plan de la page</div>
+        <ol id="hd-list"><li>Aucun titre trouvé. Lena doit tout lire depuis le début.</li></ol>
+      </div>
+    </div>
+    <div class="card">
+      <h3><span class="tag" data-t="tag.fix">À vous</span><span data-t="r4.fix.h">Quelle structure de titres est correcte ?</span></h3>
+      <ul class="quiz-opts" data-challenge>
+        <li><button type="button" class="opt"><span class="k">A</span><span data-t="r4.o1">Titre 1 › Titre 3 › Titre 2</span></button></li>
+        <li><button type="button" class="opt" data-ok><span class="k">B</span><span data-t="r4.o2">Titre 1 › Titre 2 › Titre 3 › Titre 2</span></button></li>
+        <li><button type="button" class="opt"><span class="k">C</span><span data-t="r4.o3">Tout en gras, taille 18, c'est plus simple</span></button></li>
+        <li><button type="button" class="opt"><span class="k">D</span><span data-t="r4.o4">Titre 2 › Titre 2 › Titre 1</span></button></li>
+      </ul>
+      <div class="feedback" role="status" data-ok-t="r4.fb.ok" data-ko-t="r4.fb.ko"></div>
+    </div>
+  </div>
+  <div class="takeaway"><strong data-t="r4.tk.b">À retenir :</strong> <span data-t="r4.tk">un seul Titre 1 (le titre de la page), puis des Titre 2, puis des Titre 3 à l'intérieur. Utilisez les styles de titre de l'éditeur, jamais le gras.</span></div>
+  <p class="ref" data-t="r4.ref">RAWeb 1.1 : critère 9.1 (titres) et 9.3 (listes).</p>
+</section>
+
+<!-- RULE 5 : links -->
+<section class="rule" id="r5" data-rule>
+  <div class="rule-head">
+    <p class="eyebrow" data-t="r5.eyebrow">Règle 5 · Liens</p>
+    <h2 data-t="r5.h">« Cliquez ici » ne dit rien à personne.</h2>
+    <p class="why" data-t="r5.why">Lena peut afficher la liste de tous les liens d'une page pour aller droit au but. Si la liste dit « cliquez ici, ici, en savoir plus, PDF », elle est perdue. Un bon lien dit où il mène, même lu tout seul.</p>
+  </div>
+  <div class="grid2">
+    <div class="card">
+      <h3><span class="tag" data-t="tag.try">Essayez</span><span data-t="r5.demo.h">La liste des liens</span></h3>
+      <div class="toolbar"><button type="button" class="btn fix" id="lk-fix" aria-pressed="false" data-t="btn.fix">Corriger</button></div>
+      <div class="mini">
+        <div class="mb">
+          <p data-t="lk.p1">Les horaires de la piscine ont changé : <span class="lnk" data-lk="1">cliquez ici</span>.</p>
+          <p data-t="lk.p2">Pour inscrire votre enfant à la crèche, <span class="lnk" data-lk="2">cliquez ici</span>.</p>
+          <p data-t="lk.p3">Le règlement des déchets est disponible (<span class="lnk" data-lk="3">PDF</span>).</p>
+          <p data-t="lk.p4">Le conseil communal s'est réuni jeudi. <span class="lnk" data-lk="4">En savoir plus</span></p>
+        </div>
+      </div>
+      <div class="sr-out">
+        <div class="srl" data-t="lk.listlabel">Liste des liens (lecteur d'écran)</div>
+        <ol id="lk-list"><li>cliquez ici</li><li>cliquez ici</li><li>PDF</li><li>En savoir plus</li></ol>
+      </div>
+    </div>
+    <div class="card">
+      <h3><span class="tag" data-t="tag.fix">À vous</span><span data-t="r5.fix.h">Quel texte pour le lien vers le calendrier des collectes ?</span></h3>
+      <ul class="quiz-opts" data-challenge>
+        <li><button type="button" class="opt"><span class="k">A</span><span data-t="r5.o1">cliquez ici</span></button></li>
+        <li><button type="button" class="opt"><span class="k">B</span><span data-t="r5.o2">PDF</span></button></li>
+        <li><button type="button" class="opt" data-ok><span class="k">C</span><span data-t="r5.o3">Calendrier des collectes 2026 (PDF, 1 Mo)</span></button></li>
+        <li><button type="button" class="opt"><span class="k">D</span><span data-t="r5.o4">https://fiktivbuerg.lu/docs/cal2026.pdf</span></button></li>
+      </ul>
+      <div class="feedback" role="status" data-ok-t="r5.fb.ok" data-ko-t="r5.fb.ko"></div>
+    </div>
+  </div>
+  <div class="takeaway"><strong data-t="r5.tk.b">À retenir :</strong> <span data-t="r5.tk">le texte du lien = la destination. Pour un document, ajoutez le format et le poids. Deux liens différents ne portent pas le même texte.</span></div>
+  <p class="ref" data-t="r5.ref">RAWeb 1.1 : critères 6.1 (intitulés explicites) et 6.2 (liens nommés).</p>
+</section>
+
+<!-- RULE 6 : keyboard -->
+<section class="rule" id="r6" data-rule>
+  <div class="rule-head">
+    <p class="eyebrow" data-t="r6.eyebrow">Règle 6 · Clavier</p>
+    <h2 data-t="r6.h">Tout doit marcher sans souris.</h2>
+    <p class="why" data-t="r6.why">Tom avance avec la touche Tab et valide avec Entrée. Lena aussi. Si un bouton n'est qu'un bloc coloré sur lequel on peut cliquer, le clavier passe à côté : impossible d'envoyer le formulaire. Et il faut voir où l'on est : le contour de l'élément actif ne doit jamais être supprimé.</p>
+  </div>
+  <div class="grid2">
+    <div class="card">
+      <h3><span class="tag" data-t="tag.try">Essayez</span><span data-t="r6.demo.h">Posez la souris et appuyez sur Tab</span></h3>
+      <p class="note" data-t="kb.intro">Cliquez dans le champ, puis avancez avec Tab jusqu'au bouton « Envoyer ». Comptez.</p>
+      <div class="toolbar"><button type="button" class="btn fix" id="kb-fix" aria-pressed="false" data-t="btn.fix">Corriger</button></div>
+      <div class="kb-zone" id="kb-zone">
+        <label for="kb-name"><span data-t="kb.name">Votre nom</span><input type="text" id="kb-name" autocomplete="off"></label>
+        <label for="kb-mail"><span data-t="kb.mail">Votre e-mail</span><input type="text" id="kb-mail" autocomplete="off"></label>
+        <div class="kb-row">
+          <span class="fakebtn" id="kb-fake" data-t="kb.send">Envoyer</span>
+          <button type="button" class="realbtn" id="kb-real" hidden data-t="kb.send2">Envoyer</button>
+          <button type="button" class="btn" id="kb-cancel" data-t="kb.cancel">Annuler</button>
+        </div>
+      </div>
+      <p class="note"><span data-t="kb.count">Tabulations depuis le champ « Votre nom » :</span> <span class="kb-count" id="kb-count">0</span></p>
+      <p class="note" id="kb-msg" role="status"></p>
+    </div>
+    <div class="card">
+      <h3><span class="tag" data-t="tag.fix">À vous</span><span data-t="r6.fix.h">Lequel ne sera jamais atteint au clavier ?</span></h3>
+      <ul class="quiz-opts" data-challenge>
+        <li><button type="button" class="opt"><span class="k">A</span><span data-t="r6.o1">Un vrai bouton (élément « bouton » de la page).</span></button></li>
+        <li><button type="button" class="opt"><span class="k">B</span><span data-t="r6.o2">Un lien.</span></button></li>
+        <li><button type="button" class="opt" data-ok><span class="k">C</span><span data-t="r6.o3">Un bloc de texte coloré rendu cliquable par un script, sans rôle de bouton.</span></button></li>
+        <li><button type="button" class="opt"><span class="k">D</span><span data-t="r6.o4">Un champ de formulaire.</span></button></li>
+      </ul>
+      <div class="feedback" role="status" data-ok-t="r6.fb.ok" data-ko-t="r6.fb.ko"></div>
+    </div>
+  </div>
+  <div class="takeaway"><strong data-t="r6.tk.b">À retenir :</strong> <span data-t="r6.tk">avant de valider une page ou un composant, posez la souris et faites tout au clavier : Tab, Maj+Tab, Entrée, Échap. Si vous êtes bloqué, Tom aussi.</span></div>
+  <p class="ref" data-t="r6.ref">RAWeb 1.1 : critères 7.3 (scripts au clavier), 10.7 (focus visible), 12.8 (ordre de tabulation).</p>
+</section>
+
+<!-- RULE 7 : forms -->
+<section class="rule" id="r7" data-rule>
+  <div class="rule-head">
+    <p class="eyebrow" data-t="r7.eyebrow">Règle 7 · Formulaires</p>
+    <h2 data-t="r7.h">Chaque champ a une étiquette, chaque erreur une explication.</h2>
+    <p class="why" data-t="r7.why">Un texte grisé dans le champ (« Votre nom ») disparaît dès qu'on tape et n'est pas toujours lu. Lena entend alors « champ de saisie » et doit deviner. Et quand ça bloque, « Erreur » ne l'aide pas plus que vous.</p>
+  </div>
+  <div class="grid2">
+    <div class="card">
+      <h3><span class="tag" data-t="tag.try">Essayez</span><span data-t="r7.demo.h">La lettre d'information</span></h3>
+      <div class="toolbar">
+        <button type="button" class="btn" id="fm-sr" aria-pressed="false" data-t="btn.sr">Mode lecteur d'écran</button>
+        <button type="button" class="btn fix" id="fm-fix" aria-pressed="false" data-t="btn.fix">Corriger</button>
+      </div>
+      <div class="mini" id="fm-mini">
+        <div class="mb">
+          <p class="hx" data-t="fm.t">Recevoir la lettre d'information</p>
+          <p><span class="fld" data-t="fm.f1">Votre nom</span></p>
+          <p><span class="fld" data-t="fm.f2">Votre e-mail</span></p>
+          <p><span class="fb" data-t="fm.btn">OK</span></p>
+          <p class="err" data-t="fm.err">Erreur.</p>
+        </div>
+      </div>
+      <div class="sr-out" id="fm-out" hidden>
+        <div class="srl" data-t="sr.label">Ce que Lena entend</div>
+        <ol id="fm-out-list"><li>Recevoir la lettre d'information</li><li>champ de saisie</li><li>champ de saisie</li><li>cliquable, OK</li><li>Erreur.</li></ol>
+      </div>
+    </div>
+    <div class="card">
+      <h3><span class="tag" data-t="tag.fix">À vous</span><span data-t="r7.fix.h">L'adresse e-mail est mal saisie. Quel message afficher ?</span></h3>
+      <ul class="quiz-opts" data-challenge>
+        <li><button type="button" class="opt"><span class="k">A</span><span data-t="r7.o1">« Erreur »</span></button></li>
+        <li><button type="button" class="opt"><span class="k">B</span><span data-t="r7.o2">« Champ invalide »</span></button></li>
+        <li><button type="button" class="opt" data-ok><span class="k">C</span><span data-t="r7.o3">« L'adresse e-mail doit contenir un @, par exemple prenom.nom@exemple.lu »</span></button></li>
+        <li><button type="button" class="opt"><span class="k">D</span><span data-t="r7.o4">Un contour rouge sur le champ, sans texte.</span></button></li>
+      </ul>
+      <div class="feedback" role="status" data-ok-t="r7.fb.ok" data-ko-t="r7.fb.ko"></div>
+    </div>
+  </div>
+  <div class="takeaway"><strong data-t="r7.tk.b">À retenir :</strong> <span data-t="r7.tk">une étiquette visible au-dessus de chaque champ, les champs obligatoires annoncés, et des messages d'erreur qui disent quoi corriger et comment.</span></div>
+  <p class="ref" data-t="r7.ref">RAWeb 1.1 : critères 11.1, 11.2 (étiquettes), 11.10, 11.11 (erreurs) et 11.13 (saisie automatique).</p>
+</section>
+
+<!-- RULE 8 : zoom -->
+<section class="rule" id="r8" data-rule>
+  <div class="rule-head">
+    <p class="eyebrow" data-t="r8.eyebrow">Règle 8 · Zoom</p>
+    <h2 data-t="r8.h">À 200 %, la page se réorganise, elle ne se casse pas.</h2>
+    <p class="why" data-t="r8.why">Anne agrandit le texte. Sur une page bien faite, les colonnes passent les unes sous les autres et rien n'est coupé. Sur une page figée, les textes se chevauchent ou disparaissent, et il faut faire défiler à droite pour lire chaque ligne.</p>
+  </div>
+  <div class="grid2">
+    <div class="card">
+      <h3><span class="tag" data-t="tag.try">Essayez</span><span data-t="r8.demo.h">Agrandissez le texte</span></h3>
+      <div class="toolbar"><button type="button" class="btn fix" id="zm-fix" aria-pressed="false" data-t="btn.fix">Corriger</button></div>
+      <div class="zoom-stage">
+        <div class="zp bad" id="zm-page">
+          <div class="box"><span class="hx" data-t="zm.b1">Horaires d'ouverture</span><br><span data-t="zm.b1p">Lundi – vendredi : 8 h – 12 h et 13 h – 17 h</span></div>
+          <div class="box"><span class="hx" data-t="zm.b2">Nous contacter</span><br><span data-t="zm.b2p">Place de la Mairie 1, L-0000 Fiktivbuerg</span></div>
+        </div>
+      </div>
+      <label class="slider" for="zm-range"><span data-t="zm.label">Taille du texte</span> : <output id="zm-out" for="zm-range">100 %</output></label>
+      <input type="range" id="zm-range" min="100" max="200" step="10" value="100">
+    </div>
+    <div class="card">
+      <h3><span class="tag" data-t="tag.fix">À vous</span><span data-t="r8.fix.h">Anne passe le texte à 200 %. Que doit-il se passer ?</span></h3>
+      <ul class="quiz-opts" data-challenge>
+        <li><button type="button" class="opt"><span class="k">A</span><span data-t="r8.o1">Rien ne doit bouger : la mise en page est validée par la direction.</span></button></li>
+        <li><button type="button" class="opt" data-ok><span class="k">B</span><span data-t="r8.o2">Le texte reste lisible en entier, les blocs se réorganisent, sans défilement horizontal.</span></button></li>
+        <li><button type="button" class="opt"><span class="k">C</span><span data-t="r8.o3">Un message « zoom non pris en charge » s'affiche.</span></button></li>
+        <li><button type="button" class="opt"><span class="k">D</span><span data-t="r8.o4">La page passe en version mobile, sans les menus.</span></button></li>
+      </ul>
+      <div class="feedback" role="status" data-ok-t="r8.fb.ok" data-ko-t="r8.fb.ko"></div>
+    </div>
+  </div>
+  <div class="takeaway"><strong data-t="r8.tk.b">À retenir :</strong> <span data-t="r8.tk">testez vos pages à 200 % (Ctrl et +) et sur un téléphone : tout doit rester lisible sans faire défiler horizontalement. Le zoom ne doit jamais être bloqué.</span></div>
+  <p class="ref" data-t="r8.ref">RAWeb 1.1 : critères 10.4 (texte à 200 %), 10.11 (réorganisation à 320 px) et 10.12 (espacement du texte).</p>
+</section>
+
+<!-- RULE 9 : movement and media -->
+<section class="rule" id="r9" data-rule>
+  <div class="rule-head">
+    <p class="eyebrow" data-t="r9.eyebrow">Règle 9 · Vidéos et animations</p>
+    <h2 data-t="r9.h">Ce qui bouge se met en pause ; ce qui parle s'écrit.</h2>
+    <p class="why" data-t="r9.why">Un bandeau qui défile, un carrousel qui tourne tout seul, une vidéo lancée avec le son : Jo décroche, Lena n'entend plus son lecteur d'écran, Sara ne reçoit rien. Chaque vidéo a besoin de sous-titres et d'une transcription écrite ; chaque animation, d'un bouton pause.</p>
+  </div>
+  <div class="grid2">
+    <div class="card">
+      <h3><span class="tag" data-t="tag.try">Essayez</span><span data-t="r9.demo.h">Le bandeau et la vidéo du conseil</span></h3>
+      <div class="toolbar">
+        <button type="button" class="btn" id="tk-pause" aria-pressed="false" data-t="tk.pause">Mettre le bandeau en pause</button>
+      </div>
+      <div class="ticker" id="ticker" aria-hidden="true"><span>Fermeture exceptionnelle de la mairie le 15 août · Inscriptions à la crèche jusqu'au 30 avril · Piscine fermée le 14 juillet · </span></div>
+      <div class="toolbar" style="margin-top:.9rem">
+        <button type="button" class="btn" id="vd-mute" aria-pressed="false" data-t="vd.mute">Couper le son (comme Sara)</button>
+        <button type="button" class="btn fix" id="vd-cc" aria-pressed="false" data-t="vd.cc">Activer les sous-titres</button>
+      </div>
+      <div class="video" id="video" aria-hidden="true">
+        <div class="scene"><div style="font-weight:800;font-family:var(--font-display)">Conseil communal · 12 mai</div><div class="sound">♪ « …le budget 2027 est adopté à l'unanimité… »</div></div>
+        <div class="cap" id="vd-cap" hidden><span>Le budget 2027 est adopté à l'unanimité.</span></div>
+      </div>
+      <p class="note" id="vd-note" data-t="vd.note.0">Avec le son, tout va bien. Coupez-le : que reste-t-il de la décision du conseil ?</p>
+    </div>
+    <div class="card">
+      <h3><span class="tag" data-t="tag.fix">À vous</span><span data-t="r9.fix.h">Que faut-il publier avec la vidéo du conseil communal ?</span></h3>
+      <ul class="quiz-opts" data-challenge>
+        <li><button type="button" class="opt"><span class="k">A</span><span data-t="r9.o1">Rien, c'est une vidéo.</span></button></li>
+        <li><button type="button" class="opt" data-ok><span class="k">B</span><span data-t="r9.o2">Des sous-titres et une transcription écrite des échanges.</span></button></li>
+        <li><button type="button" class="opt"><span class="k">C</span><span data-t="r9.o3">Une lecture automatique dès l'arrivée sur la page, pour qu'on ne la rate pas.</span></button></li>
+        <li><button type="button" class="opt"><span class="k">D</span><span data-t="r9.o4">Une musique de fond pour la rendre plus vivante.</span></button></li>
+      </ul>
+      <div class="feedback" role="status" data-ok-t="r9.fb.ok" data-ko-t="r9.fb.ko"></div>
+    </div>
+  </div>
+  <div class="takeaway"><strong data-t="r9.tk.b">À retenir :</strong> <span data-t="r9.tk">pas de lecture automatique avec le son ; sous-titres et transcription pour chaque vidéo ; un bouton pause pour tout ce qui bouge plus de cinq secondes.</span></div>
+  <p class="ref" data-t="r9.ref">RAWeb 1.1 : critères 4.1 (transcription), 4.3 (sous-titres), 4.10 (sons automatiques), 13.8 (contenus en mouvement).</p>
+</section>
+
+<!-- RULE 10 : documents -->
+<section class="rule" id="r10" data-rule>
+  <div class="rule-head">
+    <p class="eyebrow" data-t="r10.eyebrow">Règle 10 · Documents</p>
+    <h2 data-t="r10.h">Un PDF scanné est une photo de texte : personne ne peut le lire à voix haute.</h2>
+    <p class="why" data-t="r10.why">Les règlements, formulaires et rapports finissent souvent en PDF. Un document scanné ou exporté « en image » n'a ni texte, ni titres, ni langue : pour Lena, c'est une page blanche. La meilleure version d'un document reste une page web ; à défaut, un PDF exporté avec ses titres, sa langue et des alternatives d'images.</p>
+  </div>
+  <div class="grid2">
+    <div class="card">
+      <h3><span class="tag" data-t="tag.try">Essayez</span><span data-t="r10.demo.h">Deux fois le même règlement</span></h3>
+      <div class="toolbar"><button type="button" class="btn" id="dc-sr" aria-pressed="false" data-t="btn.sr">Mode lecteur d'écran</button></div>
+      <div class="docs">
+        <div class="doc scan" aria-hidden="true"><div class="dn">reglement_scan.pdf · 23 pages</div><div class="txt"><div class="h">Règlement communal</div><div>Article 1. Le présent règlement s'applique…</div></div><p class="note" style="margin-top:.5rem;color:#4f5b73" data-t="dc.try">(Essayez de sélectionner ce texte.)</p></div>
+        <div class="doc" aria-hidden="true"><div class="dn">reglement.pdf · 23 pages · balisé</div><div class="h">Règlement communal</div><div>Article 1. Le présent règlement s'applique…</div><p class="note" style="margin-top:.5rem;color:#4f5b73" data-t="dc.try2">(Ici, le texte se sélectionne et se lit.)</p></div>
+      </div>
+      <div class="sr-out" id="dc-out" hidden>
+        <div class="srl" data-t="sr.label">Ce que Lena entend</div>
+        <ol id="dc-out-list"><li>reglement_scan.pdf : document, 1 graphique, page 1 sur 23. (Rien d'autre.)</li><li>reglement.pdf : document, Règlement communal, titre de niveau 1, Règlement communal, titre de niveau 2, Article 1, Le présent règlement s'applique…</li></ol>
+      </div>
+    </div>
+    <div class="card">
+      <h3><span class="tag" data-t="tag.fix">À vous</span><span data-t="r10.fix.h">Le règlement est prêt dans Word. Comment le publier ?</span></h3>
+      <ul class="quiz-opts" data-challenge>
+        <li><button type="button" class="opt"><span class="k">A</span><span data-t="r10.o1">L'imprimer, le signer, le scanner et mettre le scan en ligne.</span></button></li>
+        <li><button type="button" class="opt" data-ok><span class="k">B</span><span data-t="r10.o2">En page web et, si un PDF est nécessaire, l'exporter depuis Word avec les styles de titre, la langue et les textes alternatifs.</span></button></li>
+        <li><button type="button" class="opt"><span class="k">C</span><span data-t="r10.o3">En image PNG, pour que la mise en page ne bouge pas.</span></button></li>
+        <li><button type="button" class="opt"><span class="k">D</span><span data-t="r10.o4">En PDF protégé contre la copie, pour éviter les modifications.</span></button></li>
+      </ul>
+      <div class="feedback" role="status" data-ok-t="r10.fb.ok" data-ko-t="r10.fb.ko"></div>
+    </div>
+  </div>
+  <div class="takeaway"><strong data-t="r10.tk.b">À retenir :</strong> <span data-t="r10.tk">publiez d'abord en page web. Pour un PDF : styles de titre dans Word, langue du document, alternatives des images, export « PDF balisé », et jamais de scan sans texte.</span></div>
+  <p class="ref" data-t="r10.ref">RAWeb 1.1 : critère 13.3 (documents bureautiques).</p>
+</section>
+
+<!-- RIGHTS -->
+<section class="rule" id="rights">
+  <div class="rule-head">
+    <p class="eyebrow" data-t="rg.eyebrow">Et pour vous, usager</p>
+    <h2 data-t="rg.h">Un site public inaccessible, ça se signale.</h2>
+    <p class="why" data-t="rg.why">La loi vous donne des recours. Voici le parcours, en trois étapes.</p>
+  </div>
+  <ol class="steps">
+    <li><b data-t="rg.1b">Cherchez la déclaration d'accessibilité.</b> <span data-t="rg.1">Chaque site public doit en publier une, en général via un lien « Accessibilité » en bas de page. Elle dit ce qui n'est pas accessible et comment obtenir le contenu autrement.</span></li>
+    <li><b data-t="rg.2b">Écrivez à l'organisme.</b> <span data-t="rg.2">La déclaration indique un contact. Décrivez ce que vous n'avez pas pu faire et demandez l'information sous une autre forme.</span></li>
+    <li><b data-t="rg.3b">Faites remonter.</b> <span data-t="rg.3">Sans réponse satisfaisante, vous pouvez saisir le Service information et presse (SIP), chargé du contrôle au Luxembourg, puis l'Ombudsman. En France, le même rôle est joué par l'Arcom, avec le référentiel RGAA.</span></li>
+  </ol>
+</section>
+
+<!-- QUIZ -->
+<section class="rule" id="quiz">
+  <div class="rule-head">
+    <p class="eyebrow" data-t="qz.eyebrow">Le quiz</p>
+    <h2 data-t="qz.h">Huit questions pour voir ce qui est resté.</h2>
+  </div>
+  <div class="quiz" id="quizbox">
+    <div class="qn" id="qz-n">Question 1 / 8</div>
+    <div id="qz-questions">
+      <div class="q on"><p class="qh" data-t="q1.h">Un graphique distingue trois courbes uniquement par leur couleur. C'est…</p>
+        <ul class="quiz-opts" data-challenge data-quiz>
+          <li><button type="button" class="opt"><span class="k">A</span><span data-t="q1.o1">très bien, les couleurs sont vives</span></button></li>
+          <li><button type="button" class="opt" data-ok><span class="k">B</span><span data-t="q1.o2">à compléter : des étiquettes ou des motifs différents sur chaque courbe</span></button></li>
+          <li><button type="button" class="opt"><span class="k">C</span><span data-t="q1.o3">à remplacer par un tableau de 400 lignes</span></button></li>
+        </ul><div class="feedback" role="status" data-ok-t="q1.fb.ok" data-ko-t="q1.fb.ko"></div></div>
+      <div class="q"><p class="qh" data-t="q2.h">Le contraste minimum entre un texte courant et son fond est de…</p>
+        <ul class="quiz-opts" data-challenge data-quiz>
+          <li><button type="button" class="opt"><span class="k">A</span><span data-t="q2.o1">2 : 1</span></button></li>
+          <li><button type="button" class="opt" data-ok><span class="k">B</span><span data-t="q2.o2">4,5 : 1</span></button></li>
+          <li><button type="button" class="opt"><span class="k">C</span><span data-t="q2.o3">21 : 1, noir sur blanc obligatoire</span></button></li>
+        </ul><div class="feedback" role="status" data-ok-t="q2.fb.ok" data-ko-t="q2.fb.ko"></div></div>
+      <div class="q"><p class="qh" data-t="q3.h">Une image purement décorative (une vague sous un titre). Son texte alternatif ?</p>
+        <ul class="quiz-opts" data-challenge data-quiz>
+          <li><button type="button" class="opt"><span class="k">A</span><span data-t="q3.o1">« vague décorative bleue »</span></button></li>
+          <li><button type="button" class="opt" data-ok><span class="k">B</span><span data-t="q3.o2">vide, pour qu'elle soit sautée</span></button></li>
+          <li><button type="button" class="opt"><span class="k">C</span><span data-t="q3.o3">le nom du fichier</span></button></li>
+        </ul><div class="feedback" role="status" data-ok-t="q3.fb.ok" data-ko-t="q3.fb.ko"></div></div>
+      <div class="q"><p class="qh" data-t="q4.h">« Cliquez ici », c'est…</p>
+        <ul class="quiz-opts" data-challenge data-quiz>
+          <li><button type="button" class="opt"><span class="k">A</span><span data-t="q4.o1">pratique : tout le monde comprend</span></button></li>
+          <li><button type="button" class="opt" data-ok><span class="k">B</span><span data-t="q4.o2">à remplacer par la destination du lien (« Horaires de la piscine »)</span></button></li>
+          <li><button type="button" class="opt"><span class="k">C</span><span data-t="q4.o3">obligatoire sur les sites publics</span></button></li>
+        </ul><div class="feedback" role="status" data-ok-t="q4.fb.ok" data-ko-t="q4.fb.ko"></div></div>
+      <div class="q"><p class="qh" data-t="q5.h">Pour qu'un lecteur d'écran navigue de titre en titre, les titres doivent être…</p>
+        <ul class="quiz-opts" data-challenge data-quiz>
+          <li><button type="button" class="opt"><span class="k">A</span><span data-t="q5.o1">en gras et en grand</span></button></li>
+          <li><button type="button" class="opt"><span class="k">B</span><span data-t="q5.o2">en majuscules</span></button></li>
+          <li><button type="button" class="opt" data-ok><span class="k">C</span><span data-t="q5.o3">de vrais styles Titre 1, Titre 2, Titre 3, dans l'ordre</span></button></li>
+        </ul><div class="feedback" role="status" data-ok-t="q5.fb.ok" data-ko-t="q5.fb.ko"></div></div>
+      <div class="q"><p class="qh" data-t="q6.h">Un formulaire scanné en PDF, c'est pour un lecteur d'écran…</p>
+        <ul class="quiz-opts" data-challenge data-quiz>
+          <li><button type="button" class="opt" data-ok><span class="k">A</span><span data-t="q6.o1">une image sans texte : illisible</span></button></li>
+          <li><button type="button" class="opt"><span class="k">B</span><span data-t="q6.o2">parfait, le PDF est un format universel</span></button></li>
+          <li><button type="button" class="opt"><span class="k">C</span><span data-t="q6.o3">lisible si le scan est en haute résolution</span></button></li>
+        </ul><div class="feedback" role="status" data-ok-t="q6.fb.ok" data-ko-t="q6.fb.ko"></div></div>
+      <div class="q"><p class="qh" data-t="q7.h">Un carrousel d'actualités défile tout seul en page d'accueil. Il faut…</p>
+        <ul class="quiz-opts" data-challenge data-quiz>
+          <li><button type="button" class="opt"><span class="k">A</span><span data-t="q7.o1">l'accélérer pour montrer plus d'actualités</span></button></li>
+          <li><button type="button" class="opt" data-ok><span class="k">B</span><span data-t="q7.o2">un bouton pour le mettre en pause, et qu'il marche au clavier</span></button></li>
+          <li><button type="button" class="opt"><span class="k">C</span><span data-t="q7.o3">rien : c'est le prestataire qui l'a fait</span></button></li>
+        </ul><div class="feedback" role="status" data-ok-t="q7.fb.ok" data-ko-t="q7.fb.ko"></div></div>
+      <div class="q"><p class="qh" data-t="q8.h">Qui peut réclamer quand un site public n'est pas accessible ?</p>
+        <ul class="quiz-opts" data-challenge data-quiz>
+          <li><button type="button" class="opt"><span class="k">A</span><span data-t="q8.o1">uniquement les associations de personnes handicapées</span></button></li>
+          <li><button type="button" class="opt"><span class="k">B</span><span data-t="q8.o2">personne : l'accessibilité est une recommandation</span></button></li>
+          <li><button type="button" class="opt" data-ok><span class="k">C</span><span data-t="q8.o3">tout le monde, via le contact de la déclaration d'accessibilité, puis le SIP</span></button></li>
+        </ul><div class="feedback" role="status" data-ok-t="q8.fb.ok" data-ko-t="q8.fb.ko"></div></div>
+    </div>
+    <div class="nav">
+      <button type="button" class="btn primary" id="qz-next" disabled data-t="qz.next">Question suivante</button>
+    </div>
+    <div class="result" id="qz-result" role="status">
+      <p class="eyebrow" data-t="qz.res.eyebrow">Votre résultat</p>
+      <div class="score" id="qz-score">0 / 8</div>
+      <p id="qz-msg"></p>
+      <div class="nav">
+        <button type="button" class="btn" id="qz-copy" data-t="qz.copy">Copier mon résultat</button>
+        <button type="button" class="btn" id="qz-again" data-t="qz.again">Recommencer</button>
+      </div>
+      <p class="note" id="qz-copied"></p>
+    </div>
+  </div>
+</section>
+
+<section class="rule" id="more">
+  <div class="rule-head">
+    <p class="eyebrow" data-t="mo.eyebrow">Pour aller plus loin</p>
+    <h2 data-t="mo.h">Les règles complètes, pour ceux qui veulent.</h2>
+  </div>
+  <ul class="prose">
+    <li><a href="https://accessibilite.public.lu/fr/raweb1.1/criteres.html" data-t="mo.l1">RAWeb 1.1, le référentiel luxembourgeois (136 critères)</a></li>
+    <li><a href="https://accessibilite.public.lu/" data-t="mo.l2">accessibilite.public.lu : guides, générateur de déclaration, formulaire de réclamation</a></li>
+    <li><a href="https://accessibilite.numerique.gouv.fr/methode/criteres-et-tests/" data-t="mo.l3">RGAA 4.1.2, le référentiel français (106 critères)</a></li>
+    <li><a href="https://github.com/GraRi135/rgaa-raweb-claude" data-t="mo.l4">rgaa-raweb-claude : l'outil d'aide à l'audit dont cette page fait partie</a></li>
+  </ul>
+</section>
+</main>
+
+<footer class="wrap">
+  <div class="warn" data-t="ft.warn">Cette page est un support de sensibilisation. Les exemples, la commune de Fiktivbuerg et les personnages sont inventés. Elle simplifie les règles et ne remplace ni le référentiel, ni un audit, ni des tests avec des personnes en situation de handicap.</div>
+  <p data-t="ft.p">Page produite avec le projet rgaa-raweb-claude (licence MIT). Textes des référentiels : RAWeb 1.1 (CC BY 3.0 LU, Service information et presse) et RGAA 4.1.2 (Licence Ouverte 2.0).</p>
+</footer>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <filter id="f-deuter"><feColorMatrix type="matrix" values="0.625 0.375 0 0 0  0.7 0.3 0 0 0  0 0.3 0.7 0 0  0 0 0 1 0"/></filter>
+  <filter id="f-protan"><feColorMatrix type="matrix" values="0.567 0.433 0 0 0  0.558 0.442 0 0 0  0 0.242 0.758 0 0  0 0 0 1 0"/></filter>
+  <filter id="f-achrom"><feColorMatrix type="matrix" values="0.299 0.587 0.114 0 0  0.299 0.587 0.114 0 0  0.299 0.587 0.114 0 0  0 0 0 1 0"/></filter>
+</svg>
+
+<script>
+(function(){
+'use strict';
+var $=function(s,r){return (r||document).querySelector(s)}, $$=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
+
+/* ---------- translations: French lives in the HTML, English here ---------- */
+var EN={
+ "skip":"Skip to content","brand":"Accessible Fiktivbuerg","lang.group":"Language",
+ "hero.eyebrow":"Commune of Fiktivbuerg (fictional) · digital accessibility","hero.h1":"A public website is for everyone.",
+ "hero.lead":"Ten simple rules, made-up examples, simulations to try and a quiz. No coding needed: if you publish pages, images or PDFs, this is for you. If you use public websites, it is too.",
+ "hero.cta":"Start with rule 1","tag.try":"Try it","tag.fix":"Your turn","hero.demo.h":"Put on someone else's glasses",
+ "hero.demo.p":"Here is the (invented) home page of the commune. Look at it as Marc, Anne or Lena would, then fix it.","hero.group":"Point of view",
+ "vis.normal":"Usual view","vis.marc":"Marc, colour-blind","vis.anne":"Anne, low vision","vis.lena":"Lena, screen reader","btn.fix":"Fix it","btn.sr":"Screen reader mode",
+ "mini.title":"New playground in the North district","mini.text":"The park has been open since Saturday. For the rules and opening hours, <span class=\"lnk\" data-t=\"mini.link\">click here</span>.","mini.link":"click here",
+ "mini.err":"Days shown in red in the calendar are closed.","mini.btn":"All services","sr.label":"What Lena hears","hero.note.normal":"Everything looks fine? Try the other buttons.",
+ "why.eyebrow":"Why it matters","why.h":"Accessible means: usable by everyone, whatever their abilities.",
+ "why.p":"In Luxembourg, the law of 28 May 2019 requires public sector bodies to make their websites and apps accessible. The standard that says how is called RAWeb (136 criteria). You do not need to know them: the ten rules below cover most of what an editor can do day to day.",
+ "p.lena.n":"Lena, 34","p.lena.p":"Blind. Her screen reader reads the page aloud and jumps from heading to heading, link to link.",
+ "p.marc.n":"Marc, 41","p.marc.p":"Colour-blind (he confuses red and green, like about one man in twelve). Colour codes without text leave him guessing.",
+ "p.anne.n":"Anne, 72","p.anne.p":"Low vision. She zooms to 200 % and needs crisp contrast.",
+ "p.tom.n":"Tom, 29","p.tom.p":"Broken wrist for two months: he uses the keyboard only, with the Tab key.",
+ "p.sara.n":"Sara, 50","p.sara.p":"Deaf. Without captions, a video of the council meeting tells her nothing.",
+ "p.jo.n":"Jo, 19","p.jo.p":"Dyslexic and easily distracted. Moving text and walls of text without headings make him give up.",
+ "why.note":"All these characters are invented. The situations are real, and every one of us meets them one day: an arm in a cast, sun on the screen, a noisy train.",
+ "r1.eyebrow":"Rule 1 · Colour","r1.h":"Colour must never be the only clue.",
+ "r1.why":"\"Days in red are closed\", \"fields in red need fixing\", a green line and a red line on a chart: for Marc it is a guessing game. For Lena, colour does not exist at all. Always add a second clue: a word, a symbol, a pattern.",
+ "r1.demo.h":"The waste collection calendar","r1.group":"Colour vision","cv.normal":"Typical vision","cv.deuter":"Deuteranopia (red-green)","cv.protan":"Protanopia","cv.achrom":"No colour",
+ "cal.menage":"Household waste","cal.papier":"Paper","cal.verre":"Glass","cal.orga":"Organic",
+ "cal.note.bad":"Four colours, no text in the cells. Click \"Deuteranopia\": green and brown look alike, so do grey and blue.",
+ "cal.note.fixed":"Fixed: a letter in each cell and a pattern per type. The colours stay, they are just no longer alone.",
+ "r1.fix.h":"The form shows badly filled fields in red. What should you do?",
+ "r1.o1":"Use a brighter red.","r1.o2":"Add, next to the field, a message saying what is wrong, with a symbol.","r1.o3":"Make the field blink.","r1.o4":"Nothing: everyone can see red.",
+ "r1.fb.ok":"<b>Right.</b> A message in words (and a symbol) works for Marc, for Lena, and for everyone in a hurry.","r1.fb.ko":"<b>Not quite.</b> Red, brighter or blinking, is still only colour. Say in words what is wrong, next to the field.",
+ "r1.tk.b":"Takeaway:","r1.tk":"every piece of information given by a colour is also given by a text or a symbol.","r1.ref":"RAWeb 1.1: criteria 3.1 (information by colour) and 3.2 (contrast).",
+ "r2.eyebrow":"Rule 2 · Contrast","r2.h":"Light grey text on a white background looks nice and is unreadable.",
+ "r2.why":"Anne, sun on the screen, an old projector in a meeting: weak contrast excludes many people. The minimum for body text is a ratio of 4.5 to 1 between the text colour and the background (3 to 1 for large headings).",
+ "r2.demo.h":"Lighten the text until it disappears","ctr.t":"Municipal pool closed on 14 July","ctr.p":"For annual maintenance. Reopens on 15 July at 8 am.","ctr.label":"Text lightness","ctr.ratio":"Contrast ratio:","ctr.ok":"Readable (≥ 4.5 : 1)","ctr.ko":"Too weak (< 4.5 : 1)",
+ "r2.fix.h":"Which of these three posters passes the test?",
+ "r2.o1":"Light grey on white (ratio <span data-ratio=\"#9aa3ad,#ffffff\"></span>)","r2.o2":"Dark blue on white (ratio <span data-ratio=\"#1d3f73,#ffffff\"></span>)","r2.o3":"Yellow on white (ratio <span data-ratio=\"#e3c21a,#ffffff\"></span>)",
+ "r2.fb.ok":"<b>Right.</b> Dark blue on white is well above 4.5 : 1. The other two look elegant and fail.","r2.fb.ko":"<b>Not quite.</b> That one is below 4.5 : 1. Only dark blue on white passes.",
+ "r2.tk.b":"Takeaway:","r2.tk":"text on background: at least 4.5 : 1. A free contrast checker tells you in two seconds; ask your supplier for it in the style guide.","r2.ref":"RAWeb 1.1: criteria 3.2 (text) and 3.3 (components and graphics).",
+ "r3.eyebrow":"Rule 3 · Images","r3.h":"Every image that says something needs a text alternative.",
+ "r3.why":"Lena has no image. Her screen reader reads the \"alternative text\" you type in the field your publishing tool provides. If it is empty, she hears the file name. And a purely decorative image needs an empty alternative text, so it is skipped.",
+ "r3.demo.h":"Three images, two versions","img.a.t":"Town hall renovation","img.a.p":"Facade works start on Monday.","img.b.t":"[Infographic] Pool: Monday to Friday 8 am – 8 pm, Saturday 9 am – 6 pm",
+ "r3.fix.h":"Which alternative text for the photo illustrating \"Town hall renovation\"?",
+ "r3.o1":"\"image\"","r3.o2":"\"IMG_2041.jpg\"","r3.o3":"\"Town hall facade covered in scaffolding\"","r3.o4":"\"Photo of Fiktivbuerg town hall taken on 12 May 2026 at 2:32 pm by the communication department with a DSLR camera, landscape, cloudy sky…\"",
+ "r3.fb.ok":"<b>Right.</b> One sentence that says what the picture brings. Short, specific, no file name, no essay.","r3.fb.ko":"<b>Not quite.</b> \"image\" and a file name say nothing; the long version drowns Lena in details. Describe what the picture brings, in one sentence.",
+ "r3.tk.b":"Takeaway:","r3.tk":"describe what the image brings, in one sentence. Decorative image: empty text. Image containing text (poster, infographic): all of the text, or publish it next to the image.","r3.ref":"RAWeb 1.1: criteria 1.1, 1.2, 1.3 (alternatives) and 1.8 (images of text).",
+ "r4.eyebrow":"Rule 4 · Headings","r4.h":"Bold text is not a heading.",
+ "r4.why":"Lena and Jo do not read a page from top to bottom: they jump from heading to heading, the way you skim a newspaper. That only works if headings are real headings (Heading 1, Heading 2, Heading 3 in your editor), in order, without skipping a level.",
+ "r4.demo.h":"The page outline, as a screen reader sees it","hd.jump":"Jump to next heading","hd.outline":"Page outline",
+ "hd.1":"Registering for the municipal nursery","hd.p1":"Registrations for the new school year are open until 30 April.","hd.2":"Who can register","hd.p2":"Children aged 3 months to 4 years living in the commune.","hd.3":"Documents to provide","hd.4":"For the parents","hd.p3":"ID card, certificate of residence.","hd.5":"For the child","hd.p4":"Vaccination record.",
+ "hd.empty":"No heading found. Lena has to read everything from the beginning.","hd.jumpnone":"Nothing to jump to: there are no headings. Lena reads the whole text.",
+ "r4.fix.h":"Which heading structure is correct?","r4.o1":"Heading 1 › Heading 3 › Heading 2","r4.o2":"Heading 1 › Heading 2 › Heading 3 › Heading 2","r4.o3":"All bold, size 18, it is simpler","r4.o4":"Heading 2 › Heading 2 › Heading 1",
+ "r4.fb.ok":"<b>Right.</b> One Heading 1, Heading 2 sections, Heading 3 inside them, and back to Heading 2 for the next section.","r4.fb.ko":"<b>Not quite.</b> Levels must go in order without skipping, and bold is invisible to a screen reader's outline.",
+ "r4.tk.b":"Takeaway:","r4.tk":"one Heading 1 (the page title), then Heading 2s, then Heading 3s inside. Use the editor's heading styles, never bold.","r4.ref":"RAWeb 1.1: criterion 9.1 (headings) and 9.3 (lists).",
+ "r5.eyebrow":"Rule 5 · Links","r5.h":"\"Click here\" tells nobody anything.",
+ "r5.why":"Lena can list all the links of a page to go straight to what she needs. If the list says \"click here, here, read more, PDF\", she is lost. A good link says where it goes, even read on its own.",
+ "r5.demo.h":"The list of links","lk.listlabel":"List of links (screen reader)",
+ "lk.p1":"Pool opening hours have changed: <span class=\"lnk\" data-lk=\"1\">click here</span>.","lk.p2":"To register your child at the nursery, <span class=\"lnk\" data-lk=\"2\">click here</span>.","lk.p3":"The waste regulations are available (<span class=\"lnk\" data-lk=\"3\">PDF</span>).","lk.p4":"The municipal council met on Thursday. <span class=\"lnk\" data-lk=\"4\">Read more</span>",
+ "r5.fix.h":"Which text for the link to the collection calendar?","r5.o1":"click here","r5.o2":"PDF","r5.o3":"Collection calendar 2026 (PDF, 1 MB)","r5.o4":"https://fiktivbuerg.lu/docs/cal2026.pdf",
+ "r5.fb.ok":"<b>Right.</b> Destination, format and size: Lena knows what she will get before opening it.","r5.fb.ko":"<b>Not quite.</b> Read on its own, that text does not say where the link goes. Name the destination, and for a document add format and size.",
+ "r5.tk.b":"Takeaway:","r5.tk":"link text = destination. For a document, add the format and size. Two different links never share the same text.","r5.ref":"RAWeb 1.1: criteria 6.1 (explicit link text) and 6.2 (named links).",
+ "r6.eyebrow":"Rule 6 · Keyboard","r6.h":"Everything must work without a mouse.",
+ "r6.why":"Tom moves with the Tab key and confirms with Enter. So does Lena. If a button is just a coloured block you can click, the keyboard skips it: the form cannot be sent. And you must see where you are: the outline of the active element must never be removed.",
+ "r6.demo.h":"Put the mouse down and press Tab","kb.intro":"Click in the field, then move forward with Tab until the \"Send\" button. Count.",
+ "kb.name":"Your name","kb.mail":"Your e-mail","kb.send":"Send","kb.send2":"Send","kb.cancel":"Cancel","kb.count":"Tabs since the \"Your name\" field:",
+ "kb.skipped":"You went past \"Send\": it is not reachable with the keyboard. Tom cannot send this form.","kb.reached":"You reached \"Send\" in {n} tab(s). That is how it should be.",
+ "r6.fix.h":"Which one will never be reached with the keyboard?","r6.o1":"A real button (a \"button\" element of the page).","r6.o2":"A link.","r6.o3":"A coloured block of text made clickable by a script, without a button role.","r6.o4":"A form field.",
+ "r6.fb.ok":"<b>Right.</b> Buttons, links and fields are reachable by nature. A clickable block is invisible to the keyboard unless the developer adds a role and keyboard support.","r6.fb.ko":"<b>Not quite.</b> Buttons, links and fields are reachable by nature. The trap is the block of text made clickable by a script.",
+ "r6.tk.b":"Takeaway:","r6.tk":"before approving a page or a component, put the mouse down and do everything with the keyboard: Tab, Shift+Tab, Enter, Escape. If you get stuck, so does Tom.","r6.ref":"RAWeb 1.1: criteria 7.3 (keyboard scripts), 10.7 (visible focus), 12.8 (tab order).",
+ "r7.eyebrow":"Rule 7 · Forms","r7.h":"Every field has a label, every error an explanation.",
+ "r7.why":"A greyed-out hint inside the field (\"Your name\") disappears as soon as you type and is not always read out. Lena then hears \"edit text\" and has to guess. And when it fails, \"Error\" helps her no more than it helps you.",
+ "r7.demo.h":"The newsletter","fm.t":"Receive the newsletter","fm.f1":"Your name","fm.f2":"Your e-mail","fm.btn":"OK","fm.err":"Error.",
+ "r7.fix.h":"The e-mail address is mistyped. Which message should appear?","r7.o1":"\"Error\"","r7.o2":"\"Invalid field\"","r7.o3":"\"The e-mail address must contain an @, for example firstname.name@example.lu\"","r7.o4":"A red outline on the field, with no text.",
+ "r7.fb.ok":"<b>Right.</b> It says which field, what is wrong and what a correct value looks like.","r7.fb.ko":"<b>Not quite.</b> The message must say which field is wrong, why, and give an example of a correct value.",
+ "r7.tk.b":"Takeaway:","r7.tk":"a visible label above every field, required fields announced, and error messages that say what to fix and how.","r7.ref":"RAWeb 1.1: criteria 11.1, 11.2 (labels), 11.10, 11.11 (errors) and 11.13 (autocomplete).",
+ "r8.eyebrow":"Rule 8 · Zoom","r8.h":"At 200 %, the page reflows, it does not break.",
+ "r8.why":"Anne enlarges the text. On a well-built page, columns stack under one another and nothing is cut off. On a frozen page, texts overlap or vanish, and you have to scroll sideways to read each line.",
+ "r8.demo.h":"Enlarge the text","zm.b1":"Opening hours","zm.b1p":"Monday – Friday: 8 am – 12 pm and 1 pm – 5 pm","zm.b2":"Contact us","zm.b2p":"Place de la Mairie 1, L-0000 Fiktivbuerg","zm.label":"Text size",
+ "r8.fix.h":"Anne sets the text to 200 %. What should happen?","r8.o1":"Nothing should move: the layout was approved by management.","r8.o2":"The text stays fully readable, blocks reflow, no horizontal scrolling.","r8.o3":"A message \"zoom not supported\" appears.","r8.o4":"The page switches to the mobile version, without the menus.",
+ "r8.fb.ok":"<b>Right.</b> Reflow is the whole point: same content, same features, in one column if needed.","r8.fb.ko":"<b>Not quite.</b> Zoom must stay possible and the page must reflow: everything readable, nothing lost, no sideways scrolling.",
+ "r8.tk.b":"Takeaway:","r8.tk":"test your pages at 200 % (Ctrl and +) and on a phone: everything must stay readable without horizontal scrolling. Zoom must never be blocked.","r8.ref":"RAWeb 1.1: criteria 10.4 (text at 200 %), 10.11 (reflow at 320 px) and 10.12 (text spacing).",
+ "r9.eyebrow":"Rule 9 · Video and motion","r9.h":"What moves can be paused; what is spoken is written down.",
+ "r9.why":"A scrolling banner, a carousel that turns on its own, a video that starts with sound: Jo loses the thread, Lena can no longer hear her screen reader, Sara receives nothing. Every video needs captions and a written transcript; every animation, a pause button.",
+ "r9.demo.h":"The banner and the council video","tk.pause":"Pause the banner","tk.play":"Resume the banner","vd.mute":"Mute the sound (like Sara)","vd.unmute":"Sound back on","vd.cc":"Turn captions on","vd.cc.off":"Turn captions off",
+ "vd.note.0":"With sound, all is well. Mute it: what is left of the council's decision?","vd.note.1":"Nothing. Sara sees a meeting room and lips moving.","vd.note.2":"With captions, the decision is there for everyone, sound or not.",
+ "r9.fix.h":"What must be published with the council meeting video?","r9.o1":"Nothing, it is a video.","r9.o2":"Captions and a written transcript of the discussion.","r9.o3":"Autoplay on arrival, so nobody misses it.","r9.o4":"Background music to make it livelier.",
+ "r9.fb.ok":"<b>Right.</b> Captions for Sara, a transcript for Lena and for anyone searching the text later.","r9.fb.ko":"<b>Not quite.</b> Autoplay and music get in the way. What helps is captions and a written transcript.",
+ "r9.tk.b":"Takeaway:","r9.tk":"no autoplay with sound; captions and a transcript for every video; a pause button for anything that moves for more than five seconds.","r9.ref":"RAWeb 1.1: criteria 4.1 (transcript), 4.3 (captions), 4.10 (automatic sound), 13.8 (moving content).",
+ "r10.eyebrow":"Rule 10 · Documents","r10.h":"A scanned PDF is a photo of text: nobody can read it aloud.",
+ "r10.why":"Regulations, forms and reports often end up as PDFs. A document that is scanned or exported \"as an image\" has no text, no headings, no language: for Lena it is a blank page. The best version of a document is still a web page; failing that, a PDF exported with its headings, its language and image alternatives.",
+ "r10.demo.h":"The same regulation, twice","dc.try":"(Try to select this text.)","dc.try2":"(Here the text can be selected and read.)",
+ "r10.fix.h":"The regulation is ready in Word. How do you publish it?","r10.o1":"Print it, sign it, scan it and put the scan online.","r10.o2":"As a web page and, if a PDF is needed, export it from Word with heading styles, the language and alternative texts.","r10.o3":"As a PNG image, so the layout does not move.","r10.o4":"As a copy-protected PDF, to prevent changes.",
+ "r10.fb.ok":"<b>Right.</b> A web page first; a tagged PDF exported from a well-structured Word file if a PDF is really needed.","r10.fb.ko":"<b>Not quite.</b> A scan, an image or a locked PDF all hide the text from Lena. Publish a web page, or a tagged PDF exported from Word.",
+ "r10.tk.b":"Takeaway:","r10.tk":"publish as a web page first. For a PDF: heading styles in Word, document language, image alternatives, \"tagged PDF\" export, and never a scan without text.","r10.ref":"RAWeb 1.1: criterion 13.3 (office documents).",
+ "rg.eyebrow":"And for you, as a user","rg.h":"An inaccessible public website can be reported.","rg.why":"The law gives you remedies. Here is the path, in three steps.",
+ "rg.1b":"Look for the accessibility statement.","rg.1":"Every public website must publish one, usually through an \"Accessibility\" link at the bottom of the page. It says what is not accessible and how to get the content another way.",
+ "rg.2b":"Write to the organisation.","rg.2":"The statement gives a contact. Describe what you could not do and ask for the information in another form.",
+ "rg.3b":"Escalate.","rg.3":"Without a satisfactory answer, you can turn to the Service information et presse (SIP), in charge of monitoring in Luxembourg, then to the Ombudsman. In France the same role is played by Arcom, with the RGAA standard.",
+ "qz.eyebrow":"The quiz","qz.h":"Eight questions to see what stuck.","qz.next":"Next question","qz.finish":"See my result","qz.res.eyebrow":"Your result","qz.copy":"Copy my result","qz.again":"Start again",
+ "qz.n":"Question {i} / {n}","qz.copied":"Copied. Paste it wherever you like.","qz.copyfail":"Copying is blocked here: select the text above to copy it.",
+ "qz.msg.0":"The ten rules are right above: one more pass and the quiz will be a formality.","qz.msg.1":"Good start. Go back to the rules you missed, the demos are there for that.","qz.msg.2":"Well done. You already see what most people do not notice.","qz.msg.3":"Perfect score. Send this page to the colleague who writes \"click here\".",
+ "qz.share":"Accessibility quiz (Fiktivbuerg): {s} / {n} correct answers.",
+ "q1.h":"A chart distinguishes three lines by colour only. That is…","q1.o1":"fine, the colours are bright","q1.o2":"incomplete: add labels or a different pattern on each line","q1.o3":"to be replaced by a 400-row table","q1.fb.ok":"<b>Right.</b> Labels or patterns work for Marc and in black and white.","q1.fb.ko":"<b>Not quite.</b> Colour alone leaves Marc guessing. Add labels or patterns.",
+ "q2.h":"The minimum contrast between body text and its background is…","q2.o1":"2 : 1","q2.o2":"4.5 : 1","q2.o3":"21 : 1, black on white only","q2.fb.ok":"<b>Right.</b> 4.5 : 1 for body text, 3 : 1 for large headings.","q2.fb.ko":"<b>Not quite.</b> The threshold is 4.5 : 1 (3 : 1 for large headings). Black on white is not required.",
+ "q3.h":"A purely decorative image (a wave under a heading). Its alternative text?","q3.o1":"\"blue decorative wave\"","q3.o2":"empty, so it is skipped","q3.o3":"the file name","q3.fb.ok":"<b>Right.</b> Empty text: the screen reader skips it without a word.","q3.fb.ko":"<b>Not quite.</b> A decorative image gets an empty alternative text, so Lena is not interrupted.",
+ "q4.h":"\"Click here\" is…","q4.o1":"handy: everyone understands","q4.o2":"to be replaced by the link's destination (\"Pool opening hours\")","q4.o3":"required on public websites","q4.fb.ok":"<b>Right.</b> The link text names the destination.","q4.fb.ko":"<b>Not quite.</b> Read on its own, \"click here\" says nothing. Name the destination.",
+ "q5.h":"For a screen reader to jump from heading to heading, headings must be…","q5.o1":"bold and large","q5.o2":"in capitals","q5.o3":"real Heading 1, Heading 2, Heading 3 styles, in order","q5.fb.ok":"<b>Right.</b> Only real heading styles appear in the outline.","q5.fb.ko":"<b>Not quite.</b> Bold or capitals are invisible to the outline. Use the heading styles.",
+ "q6.h":"A form scanned to PDF is, for a screen reader…","q6.o1":"an image without text: unreadable","q6.o2":"perfect, PDF is a universal format","q6.o3":"readable if the scan is high resolution","q6.fb.ok":"<b>Right.</b> A scan is a picture. Publish the text (web page or tagged PDF).","q6.fb.ko":"<b>Not quite.</b> However sharp the scan, it is a picture with no text to read.",
+ "q7.h":"A news carousel scrolls on its own on the home page. It needs…","q7.o1":"to go faster, to show more news","q7.o2":"a pause button, and to work with the keyboard","q7.o3":"nothing: the supplier built it","q7.fb.ok":"<b>Right.</b> Pause, and keyboard operation, for Jo, Lena and Tom.","q7.fb.ko":"<b>Not quite.</b> Anything that moves on its own needs a pause button and keyboard access, whoever built it.",
+ "q8.h":"Who can complain when a public website is not accessible?","q8.o1":"only disability organisations","q8.o2":"nobody: accessibility is a recommendation","q8.o3":"anyone, through the contact in the accessibility statement, then the SIP","q8.fb.ok":"<b>Right.</b> Anyone. The statement gives the contact; the SIP and the Ombudsman come next.","q8.fb.ko":"<b>Not quite.</b> It is a legal duty and anyone can report a problem, starting with the contact in the accessibility statement.",
+ "mo.eyebrow":"Going further","mo.h":"The full rules, for those who want them.",
+ "mo.l1":"RAWeb 1.1, the Luxembourg standard (136 criteria)","mo.l2":"accessibilite.public.lu: guides, statement generator, complaint form","mo.l3":"RGAA 4.1.2, the French standard (106 criteria)","mo.l4":"rgaa-raweb-claude: the audit aid this page belongs to",
+ "ft.warn":"This page is an awareness aid. The examples, the commune of Fiktivbuerg and the characters are invented. It simplifies the rules and replaces neither the standard, nor an audit, nor tests with disabled people.",
+ "ft.p":"Page produced with the rgaa-raweb-claude project (MIT licence). Standard texts: RAWeb 1.1 (CC BY 3.0 LU, Service information et presse) and RGAA 4.1.2 (Licence Ouverte 2.0).",
+ "title":"Ten accessibility rules","progress":"Rules seen: {n} / 10",
+ /* screen-reader simulations */
+ "sr.hero.bad":["graphic, DSC_0042.jpg","New playground in the North district","The park has been open since Saturday. For the rules and opening hours, link, click here.","Days shown in red in the calendar are closed.","clickable, All services (not reachable with the keyboard)"],
+ "sr.hero.good":["graphic, Children on the slides of the new playground","heading level 2, New playground in the North district","The park has been open since Saturday. Link, Rules and opening hours of the playground.","Days marked \"closed\" in the calendar are closed.","button, All services"],
+ "sr.img.bad":["graphic, IMG_2041.jpg","Town hall renovation","Facade works start on Monday.","graphic, infographic.png","graphic, wave-blue.svg"],
+ "sr.img.good":["graphic, Town hall facade covered in scaffolding","heading level 2, Town hall renovation","Facade works start on Monday.","graphic, Pool opening hours: Monday to Friday 8 am – 8 pm, Saturday 9 am – 6 pm","(decorative wave skipped)"],
+ "sr.fm.bad":["Receive the newsletter","edit text","edit text","clickable, OK","Error."],
+ "sr.fm.good":["heading level 2, Receive the newsletter","Your name, required, edit text","Your e-mail, required, edit text, example: firstname.name@example.lu","button, Subscribe","Error: the e-mail address must contain an @."],
+ "sr.dc":["reglement_scan.pdf: document, 1 graphic, page 1 of 23. (Nothing else.)","reglement.pdf: document, Municipal regulations, heading level 1, Municipal regulations, heading level 2, Article 1, The present regulations apply…"],
+ "hd.h":"heading level {l}, {t}"
+};
+var FR={
+ "sr.hero.bad":["graphique, DSC_0042.jpg","Nouveau parc de jeux au quartier Nord","Le parc est ouvert depuis samedi. Pour le règlement et les horaires, lien, cliquez ici.","Les jours en rouge dans le calendrier sont fermés.","cliquable, Toutes les démarches (inaccessible au clavier)"],
+ "sr.hero.good":["graphique, Des enfants sur les toboggans du nouveau parc de jeux","titre de niveau 2, Nouveau parc de jeux au quartier Nord","Le parc est ouvert depuis samedi. Lien, Règlement et horaires du parc de jeux.","Les jours marqués « fermé » dans le calendrier sont fermés.","bouton, Toutes les démarches"],
+ "sr.img.bad":["graphique, IMG_2041.jpg","Rénovation de l'hôtel de ville","Les travaux de façade commencent lundi.","graphique, infographie.png","graphique, vague-bleue.svg"],
+ "sr.img.good":["graphique, Façade de l'hôtel de ville couverte d'échafaudages","titre de niveau 2, Rénovation de l'hôtel de ville","Les travaux de façade commencent lundi.","graphique, Horaires de la piscine : lundi au vendredi 8 h – 20 h, samedi 9 h – 18 h","(vague décorative ignorée)"],
+ "sr.fm.bad":["Recevoir la lettre d'information","champ de saisie","champ de saisie","cliquable, OK","Erreur."],
+ "sr.fm.good":["titre de niveau 2, Recevoir la lettre d'information","Votre nom, obligatoire, champ de saisie","Votre e-mail, obligatoire, champ de saisie, exemple : prenom.nom@exemple.lu","bouton, S'abonner","Erreur : l'adresse e-mail doit contenir un @."],
+ "sr.dc":["reglement_scan.pdf : document, 1 graphique, page 1 sur 23. (Rien d'autre.)","reglement.pdf : document, Règlement communal, titre de niveau 1, Règlement communal, titre de niveau 2, Article 1, Le présent règlement s'applique…"],
+ "hd.h":"titre de niveau {l}, {t}","hd.empty":"Aucun titre trouvé. Lena doit tout lire depuis le début.","hd.jumpnone":"Rien où sauter : il n'y a pas de titres. Lena lit tout le texte.",
+ "cal.note.fixed":"Corrigé : une lettre dans chaque case et un motif par type. Les couleurs restent, elles ne sont simplement plus seules.",
+ "ctr.ko":"Trop faible (< 4,5 : 1)","ctr.ok":"Lisible (≥ 4,5 : 1)",
+ "kb.skipped":"Vous avez dépassé « Envoyer » : il n'est pas atteignable au clavier. Tom ne peut pas envoyer ce formulaire.","kb.reached":"Vous avez atteint « Envoyer » en {n} tabulation(s). C'est ce qu'il faut.",
+ "tk.pause":"Mettre le bandeau en pause","tk.play":"Relancer le bandeau","vd.mute":"Couper le son (comme Sara)","vd.unmute":"Remettre le son","vd.cc":"Activer les sous-titres","vd.cc.off":"Désactiver les sous-titres",
+ "vd.note.0":"Avec le son, tout va bien. Coupez-le : que reste-t-il de la décision du conseil ?","vd.note.1":"Rien. Sara voit une salle de réunion et des lèvres qui bougent.","vd.note.2":"Avec les sous-titres, la décision est là pour tout le monde, son ou pas.",
+ "qz.next":"Question suivante","qz.finish":"Voir mon résultat","qz.n":"Question {i} / {n}","qz.copied":"Copié. Collez-le où vous voulez.","qz.copyfail":"La copie est bloquée ici : sélectionnez le texte ci-dessus pour le copier.",
+ "qz.msg.0":"Les dix règles sont juste au-dessus : un deuxième passage et le quiz sera une formalité.","qz.msg.1":"Bon début. Retournez voir les règles manquées, les démos sont là pour ça.","qz.msg.2":"Bien joué. Vous voyez déjà ce que la plupart des gens ne remarquent pas.","qz.msg.3":"Sans faute. Envoyez cette page au collègue qui écrit « cliquez ici ».",
+ "qz.share":"Quiz accessibilité (Fiktivbuerg) : {s} / {n} bonnes réponses.",
+ "title":"Dix règles d'accessibilité","progress":"Règles vues : {n} / 10",
+ "r1.fb.ok":"<b>Exact.</b> Un message en toutes lettres (et un symbole) marche pour Marc, pour Lena, et pour tous ceux qui sont pressés.","r1.fb.ko":"<b>Pas tout à fait.</b> Du rouge, plus vif ou clignotant, reste de la couleur seule. Dites en mots ce qui ne va pas, à côté du champ.",
+ "r2.fb.ok":"<b>Exact.</b> Le bleu foncé sur blanc est largement au-dessus de 4,5 : 1. Les deux autres sont élégantes et recalées.","r2.fb.ko":"<b>Pas tout à fait.</b> Celle-ci est sous 4,5 : 1. Seul le bleu foncé sur blanc passe.",
+ "r3.fb.ok":"<b>Exact.</b> Une phrase qui dit ce que l'image apporte. Courte, précise, sans nom de fichier ni roman.","r3.fb.ko":"<b>Pas tout à fait.</b> « image » et un nom de fichier ne disent rien ; la version longue noie Lena sous les détails. Décrivez ce que l'image apporte, en une phrase.",
+ "r4.fb.ok":"<b>Exact.</b> Un Titre 1, des sections en Titre 2, des Titre 3 à l'intérieur, puis retour au Titre 2 pour la section suivante.","r4.fb.ko":"<b>Pas tout à fait.</b> Les niveaux se suivent sans saut, et le gras est invisible dans le plan d'un lecteur d'écran.",
+ "r5.fb.ok":"<b>Exact.</b> Destination, format et poids : Lena sait ce qu'elle va obtenir avant d'ouvrir.","r5.fb.ko":"<b>Pas tout à fait.</b> Lu tout seul, ce texte ne dit pas où mène le lien. Nommez la destination et, pour un document, ajoutez format et poids.",
+ "r6.fb.ok":"<b>Exact.</b> Boutons, liens et champs sont atteignables par nature. Un bloc cliquable est invisible pour le clavier tant que le développeur n'ajoute pas un rôle et la gestion du clavier.","r6.fb.ko":"<b>Pas tout à fait.</b> Boutons, liens et champs sont atteignables par nature. Le piège, c'est le bloc de texte rendu cliquable par un script.",
+ "r7.fb.ok":"<b>Exact.</b> Il dit quel champ, ce qui ne va pas et à quoi ressemble une valeur correcte.","r7.fb.ko":"<b>Pas tout à fait.</b> Le message doit dire quel champ est en erreur, pourquoi, et donner un exemple de valeur correcte.",
+ "r8.fb.ok":"<b>Exact.</b> La réorganisation est tout l'enjeu : même contenu, mêmes fonctions, sur une colonne s'il le faut.","r8.fb.ko":"<b>Pas tout à fait.</b> Le zoom doit rester possible et la page doit se réorganiser : tout lisible, rien de perdu, pas de défilement latéral.",
+ "r9.fb.ok":"<b>Exact.</b> Des sous-titres pour Sara, une transcription pour Lena et pour tous ceux qui chercheront le texte plus tard.","r9.fb.ko":"<b>Pas tout à fait.</b> Lecture automatique et musique gênent. Ce qui aide, ce sont les sous-titres et une transcription écrite.",
+ "r10.fb.ok":"<b>Exact.</b> Une page web d'abord ; un PDF balisé exporté d'un Word bien structuré si un PDF est vraiment nécessaire.","r10.fb.ko":"<b>Pas tout à fait.</b> Scan, image ou PDF verrouillé cachent tous le texte à Lena. Publiez une page web, ou un PDF balisé exporté depuis Word.",
+ "q1.fb.ok":"<b>Exact.</b> Étiquettes ou motifs fonctionnent pour Marc et en noir et blanc.","q1.fb.ko":"<b>Pas tout à fait.</b> La couleur seule laisse Marc deviner. Ajoutez des étiquettes ou des motifs.",
+ "q2.fb.ok":"<b>Exact.</b> 4,5 : 1 pour le texte courant, 3 : 1 pour les gros titres.","q2.fb.ko":"<b>Pas tout à fait.</b> Le seuil est 4,5 : 1 (3 : 1 pour les gros titres). Le noir sur blanc n'est pas obligatoire.",
+ "q3.fb.ok":"<b>Exact.</b> Texte vide : le lecteur d'écran la saute sans un mot.","q3.fb.ko":"<b>Pas tout à fait.</b> Une image décorative reçoit un texte alternatif vide, pour ne pas interrompre Lena.",
+ "q4.fb.ok":"<b>Exact.</b> Le texte du lien nomme la destination.","q4.fb.ko":"<b>Pas tout à fait.</b> Lu tout seul, « cliquez ici » ne dit rien. Nommez la destination.",
+ "q5.fb.ok":"<b>Exact.</b> Seuls les vrais styles de titre apparaissent dans le plan.","q5.fb.ko":"<b>Pas tout à fait.</b> Gras ou majuscules sont invisibles dans le plan. Utilisez les styles de titre.",
+ "q6.fb.ok":"<b>Exact.</b> Un scan est une image. Publiez le texte (page web ou PDF balisé).","q6.fb.ko":"<b>Pas tout à fait.</b> Aussi net soit-il, un scan est une image sans texte à lire.",
+ "q7.fb.ok":"<b>Exact.</b> Pause, et fonctionnement au clavier, pour Jo, Lena et Tom.","q7.fb.ko":"<b>Pas tout à fait.</b> Tout ce qui bouge seul a besoin d'un bouton pause et d'un accès clavier, quel que soit son auteur.",
+ "q8.fb.ok":"<b>Exact.</b> Tout le monde. La déclaration donne le contact ; le SIP et l'Ombudsman viennent ensuite.","q8.fb.ko":"<b>Pas tout à fait.</b> C'est une obligation légale et chacun peut signaler un problème, en commençant par le contact de la déclaration d'accessibilité."
+};
+var lang='fr';
+/* capture the French HTML strings once so the toggle can go back */
+$$('[data-t]').forEach(function(el){ var k=el.getAttribute('data-t'); if(!(k in FR)) FR[k]=el.innerHTML; });
+$$('[data-t-aria]').forEach(function(el){ var k=el.getAttribute('data-t-aria'); if(!(k in FR)) FR[k]=el.getAttribute('aria-label'); });
+function t(k,vars){ var d=(lang==='en'?EN:FR); var s=(k in d)?d[k]:(FR[k]||EN[k]||k); if(typeof s==='string'&&vars){ Object.keys(vars).forEach(function(v){ s=s.split('{'+v+'}').join(vars[v]); }); } return s; }
+function applyLang(l){
+  lang=l; document.documentElement.lang=l; document.title=t('title');
+  $('#lang-fr').setAttribute('aria-pressed',l==='fr'); $('#lang-en').setAttribute('aria-pressed',l==='en');
+  $$('[data-t]').forEach(function(el){ el.innerHTML=t(el.getAttribute('data-t')); });
+  $$('[data-t-aria]').forEach(function(el){ el.setAttribute('aria-label',t(el.getAttribute('data-t-aria'))); });
+  fillRatios(); updateProgress(); renderAll();
+  try{ localStorage.setItem('a11y-lang',l); }catch(e){}
+}
+$('#lang-fr').addEventListener('click',function(){applyLang('fr')});
+$('#lang-en').addEventListener('click',function(){applyLang('en')});
+
+/* ---------- helpers ---------- */
+function lum(hex){ var c=hex.replace('#',''); if(c.length===3) c=c.split('').map(function(x){return x+x}).join(''); var r=parseInt(c.substr(0,2),16)/255,g=parseInt(c.substr(2,2),16)/255,b=parseInt(c.substr(4,2),16)/255; function f(v){return v<=0.03928?v/12.92:Math.pow((v+0.055)/1.055,2.4)} return 0.2126*f(r)+0.7152*f(g)+0.0722*f(b); }
+function ratio(fg,bg){ var a=lum(fg),b=lum(bg); var hi=Math.max(a,b),lo=Math.min(a,b); return (hi+0.05)/(lo+0.05); }
+function fmt(n){ var s=(Math.round(n*10)/10).toFixed(1); return (lang==='fr'?s.replace('.',','):s)+' : 1'; }
+function fillRatios(){ $$('[data-ratio]').forEach(function(el){ var p=el.getAttribute('data-ratio').split(','); el.textContent=fmt(ratio(p[0],p[1])); }); }
+function hslToHex(h,s,l){ s/=100;l/=100; var k=function(n){return (n+h/30)%12}, a=s*Math.min(l,1-l), f=function(n){ var c=l-a*Math.max(-1,Math.min(k(n)-3,Math.min(9-k(n),1))); return Math.round(255*c).toString(16).padStart(2,'0'); }; return '#'+f(0)+f(8)+f(4); }
+function setList(ol,items){ ol.innerHTML=''; items.forEach(function(s){ var li=document.createElement('li'); li.textContent=s; ol.appendChild(li); }); }
+function pressGroup(btns,active){ btns.forEach(function(b){ b.setAttribute('aria-pressed', b===active ? 'true':'false'); }); }
+
+/* ---------- hero: glasses ---------- */
+var heroFixed=false, heroVis='';
+function renderHero(){
+  var mini=$('#hero-mini'); mini.className='mini '+(heroVis==='sr'?'':heroVis);
+  mini.hidden=(heroVis==='sr'); $('#hero-sr').hidden=(heroVis!=='sr');
+  setList($('#hero-sr-list'), t(heroFixed?'sr.hero.good':'sr.hero.bad'));
+  $('[data-t="mini.link"]',mini).textContent = heroFixed ? (lang==='fr'?'Règlement et horaires du parc de jeux':'Rules and opening hours of the playground') : t('mini.link');
+  $('[data-t="mini.err"]',mini).textContent = heroFixed ? (lang==='fr'?'Les jours marqués « fermé » dans le calendrier sont fermés.':'Days marked "closed" in the calendar are closed.') : t('mini.err');
+  var notes={ '':heroFixed?(lang==='fr'?'Page corrigée : textes de lien explicites, information écrite, vrai bouton, image décrite.':'Fixed page: explicit link text, information in words, a real button, a described image.'):t('hero.note.normal'),
+    'vision-deuter':(lang==='fr'?'Marc ne voit pas quels jours sont « en rouge » : le texte seul porte l\'information.':'Marc cannot tell which days are "in red": only text carries the information.'),
+    'vision-blur':(lang==='fr'?'Anne lit le gros titre ; le reste demande du contraste et du zoom.':'Anne reads the big heading; the rest needs contrast and zoom.'),
+    'sr':heroFixed?(lang==='fr'?'Avec la page corrigée, Lena comprend tout, dans l\'ordre.':'With the fixed page, Lena understands everything, in order.'):(lang==='fr'?'Lena entend un nom de fichier, un « cliquez ici » sans destination et un bouton qu\'elle ne peut pas actionner.':'Lena hears a file name, a "click here" with no destination and a button she cannot operate.') };
+  $('#hero-note').textContent=notes[heroVis];
+}
+$$('.btn.vis').forEach(function(b){ b.addEventListener('click',function(){ heroVis=b.getAttribute('data-vis'); pressGroup($$('.btn.vis'),b); renderHero(); }); });
+$('#hero-fix').addEventListener('click',function(){ heroFixed=!heroFixed; this.setAttribute('aria-pressed',heroFixed); renderHero(); });
+
+/* ---------- rule 1: calendar ---------- */
+var calTypes=['menage','papier','verre','orga'], calLetters={menage:'M',papier:'P',verre:'V',orga:'O'}, calFixed=false, calVis='';
+var calPlan=['menage','','papier','','verre','','','menage','','orga','','','verre','', 'menage','','papier','','orga','',''];
+function buildCal(){ var cal=$('#cal'); cal.innerHTML=''; calPlan.forEach(function(tp,i){ var d=document.createElement('div'); d.className='d '+tp+(calFixed&&tp?' fx':''); d.textContent=(i+1); if(tp){ var k=document.createElement('span'); k.className='k'; k.textContent=calLetters[tp]; d.appendChild(k);} cal.appendChild(d); }); cal.className='cal'+(calFixed?' fixed':''); $('#cal-wrap').className=calVis; $('#cal-note').textContent=t(calFixed?'cal.note.fixed':'cal.note.bad'); }
+$$('.btn.cv').forEach(function(b){ b.addEventListener('click',function(){ calVis=b.getAttribute('data-cv'); pressGroup($$('.btn.cv'),b); buildCal(); }); });
+$('#cal-fix').addEventListener('click',function(){ calFixed=!calFixed; this.setAttribute('aria-pressed',calFixed); buildCal(); });
+
+/* ---------- rule 2: contrast slider ---------- */
+var ctr=$('#ctr-range');
+function renderCtr(){ var L=+ctr.value; var hex=hslToHex(215,18,L); $('#ctr-card').style.color=hex; var r=ratio(hex,'#ffffff'); $('#ctr-out').textContent=fmt(r); var v=$('#ctr-verdict'); var ok=r>=4.5; v.className='verdict '+(ok?'ok':'ko'); v.textContent=t(ok?'ctr.ok':'ctr.ko'); ctr.setAttribute('aria-valuetext', L+' %, '+fmt(r)); }
+ctr.addEventListener('input',renderCtr);
+
+/* ---------- rule 3: images ---------- */
+var imgFixed=false, imgSr=false;
+function renderImg(){ $('#img-out').hidden=!imgSr; setList($('#img-out-list'), t(imgFixed?'sr.img.good':'sr.img.bad')); }
+$('#img-sr').addEventListener('click',function(){ imgSr=!imgSr; this.setAttribute('aria-pressed',imgSr); renderImg(); });
+$('#img-fix').addEventListener('click',function(){ imgFixed=!imgFixed; this.setAttribute('aria-pressed',imgFixed); renderImg(); });
+
+/* ---------- rule 4: headings ---------- */
+var hdFixed=false, hdPos=-1;
+function renderHd(){ var items=$$('#hd-mini [data-hl]'); var list=$('#hd-list');
+  items.forEach(function(p){ p.classList.toggle('hx',hdFixed); p.classList.toggle('bold',!hdFixed); p.style.outline=''; });
+  if(!hdFixed){ list.innerHTML='<li>'+t('hd.empty')+'</li>'; return; }
+  list.innerHTML=''; items.forEach(function(p,i){ var li=document.createElement('li'); li.textContent=t('hd.h',{l:p.getAttribute('data-hl'),t:p.textContent}); li.style.paddingLeft=((+p.getAttribute('data-hl'))-1)*1+'em'; if(i===hdPos) li.style.fontWeight='700'; list.appendChild(li); });
+  if(hdPos>=0) items[hdPos].style.outline='3px solid #b45309';
+}
+$('#hd-fix').addEventListener('click',function(){ hdFixed=!hdFixed; hdPos=-1; this.setAttribute('aria-pressed',hdFixed); renderHd(); });
+$('#hd-jump').addEventListener('click',function(){ if(!hdFixed){ var l=$('#hd-list'); l.innerHTML='<li>'+t('hd.jumpnone')+'</li>'; return; } var n=$$('#hd-mini [data-hl]').length; hdPos=(hdPos+1)%n; renderHd(); });
+
+/* ---------- rule 5: links ---------- */
+var lkFixed=false, lkGood={fr:['Horaires de la piscine','Inscrire mon enfant à la crèche','Règlement des déchets (PDF, 2 Mo)','Compte rendu du conseil communal du jeudi'],en:['Pool opening hours','Register my child at the nursery','Waste regulations (PDF, 2 MB)','Minutes of Thursday\'s council meeting']};
+function renderLk(){ var spans=$$('[data-lk]'); var out=[]; spans.forEach(function(s,i){ if(lkFixed){ s.textContent=lkGood[lang][i]; } out.push(s.textContent); }); setList($('#lk-list'),out); }
+$('#lk-fix').addEventListener('click',function(){ lkFixed=!lkFixed; this.setAttribute('aria-pressed',lkFixed); if(!lkFixed){ $$('[data-t^="lk.p"]').forEach(function(p){ p.innerHTML=t(p.getAttribute('data-t')); }); } renderLk(); });
+
+/* ---------- rule 6: keyboard ---------- */
+var kbFixed=false, kbCount=0, kbCounting=false;
+function renderKb(){ $('#kb-fake').hidden=kbFixed; $('#kb-real').hidden=!kbFixed; kbCount=0; kbCounting=false; $('#kb-count').textContent='0'; $('#kb-msg').textContent=''; }
+$('#kb-fix').addEventListener('click',function(){ kbFixed=!kbFixed; this.setAttribute('aria-pressed',kbFixed); renderKb(); });
+var zone=$('#kb-zone');
+zone.addEventListener('focusin',function(e){ if(e.target.id==='kb-name'){ kbCount=0; kbCounting=true; $('#kb-count').textContent='0'; $('#kb-msg').textContent=''; return; } if(!kbCounting) return; kbCount++; $('#kb-count').textContent=kbCount; if(e.target.id==='kb-real'){ $('#kb-msg').textContent=t('kb.reached',{n:kbCount}); kbCounting=false; } else if(e.target.id==='kb-cancel' && !kbFixed){ $('#kb-msg').textContent=t('kb.skipped'); kbCounting=false; } });
+$('#kb-real').addEventListener('click',function(){ $('#kb-msg').textContent=t('kb.reached',{n:kbCount}); });
+$('#kb-cancel').addEventListener('click',function(){ $('#kb-name').value=''; $('#kb-mail').value=''; });
+
+/* ---------- rule 7: forms ---------- */
+var fmFixed=false, fmSr=false;
+function renderFm(){ $('#fm-out').hidden=!fmSr; setList($('#fm-out-list'), t(fmFixed?'sr.fm.good':'sr.fm.bad')); var m=$('#fm-mini'); $('[data-t="fm.btn"]',m).textContent=fmFixed?(lang==='fr'?"S'abonner":'Subscribe'):t('fm.btn'); $('[data-t="fm.err"]',m).textContent=fmFixed?(lang==='fr'?"Erreur : l'adresse e-mail doit contenir un @.":'Error: the e-mail address must contain an @.'):t('fm.err'); $$('.fld',m).forEach(function(f){ f.style.cssText=fmFixed?'display:block;border:1px solid #777;border-radius:4px;padding:.2em .5em;color:#333;background:#fff':'display:block;border:1px solid #bbb;border-radius:4px;padding:.2em .5em;color:#9a9a9a;background:#fff'; }); }
+$('#fm-sr').addEventListener('click',function(){ fmSr=!fmSr; this.setAttribute('aria-pressed',fmSr); renderFm(); });
+$('#fm-fix').addEventListener('click',function(){ fmFixed=!fmFixed; this.setAttribute('aria-pressed',fmFixed); renderFm(); });
+
+/* ---------- rule 8: zoom ---------- */
+var zmFixed=false, zm=$('#zm-range');
+function renderZm(){ var p=$('#zm-page'); p.className='zp '+(zmFixed?'good':'bad'); p.style.setProperty('--z',(+zm.value)/100); $('#zm-out').textContent=zm.value+' %'; zm.setAttribute('aria-valuetext',zm.value+' %'); }
+zm.addEventListener('input',renderZm);
+$('#zm-fix').addEventListener('click',function(){ zmFixed=!zmFixed; this.setAttribute('aria-pressed',zmFixed); renderZm(); });
+
+/* ---------- rule 9: ticker + video ---------- */
+var reduced=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches, tkPaused=reduced, vdMuted=false, vdCc=false;
+function renderTk(){ $('#ticker').classList.toggle('paused',tkPaused); var b=$('#tk-pause'); b.setAttribute('aria-pressed',tkPaused); b.textContent=t(tkPaused?'tk.play':'tk.pause'); }
+$('#tk-pause').addEventListener('click',function(){ tkPaused=!tkPaused; renderTk(); });
+function renderVd(){ $('#video').classList.toggle('muted',vdMuted); $('#vd-cap').hidden=!vdCc; var m=$('#vd-mute'); m.setAttribute('aria-pressed',vdMuted); m.textContent=t(vdMuted?'vd.unmute':'vd.mute'); var c=$('#vd-cc'); c.setAttribute('aria-pressed',vdCc); c.textContent=t(vdCc?'vd.cc.off':'vd.cc'); $('#vd-note').textContent=t(vdCc?'vd.note.2':(vdMuted?'vd.note.1':'vd.note.0')); }
+$('#vd-mute').addEventListener('click',function(){ vdMuted=!vdMuted; renderVd(); });
+$('#vd-cc').addEventListener('click',function(){ vdCc=!vdCc; renderVd(); });
+
+/* ---------- rule 10: documents ---------- */
+var dcSr=false;
+function renderDc(){ $('#dc-out').hidden=!dcSr; setList($('#dc-out-list'), t('sr.dc')); }
+$('#dc-sr').addEventListener('click',function(){ dcSr=!dcSr; this.setAttribute('aria-pressed',dcSr); renderDc(); });
+
+/* ---------- challenges (shared) ---------- */
+var quizAnswers=[]; var quizIndex=0; var quizQs=$$('#qz-questions .q');
+$$('[data-challenge]').forEach(function(ul){
+  var fb=ul.parentNode.querySelector('.feedback'); var isQuiz=ul.hasAttribute('data-quiz');
+  $$('.opt',ul).forEach(function(btn){ btn.addEventListener('click',function(){
+    var ok=btn.hasAttribute('data-ok');
+    $$('.opt',ul).forEach(function(b){ b.removeAttribute('data-state'); if(isQuiz) b.disabled=true; });
+    btn.setAttribute('data-state',ok?'ok':'ko'); if(!ok){ var good=$('.opt[data-ok]',ul); if(isQuiz&&good) good.setAttribute('data-state','ok'); }
+    fb.className='feedback show '+(ok?'ok':'ko'); fb.innerHTML=t(fb.getAttribute(ok?'data-ok-t':'data-ko-t'));
+    if(isQuiz){ quizAnswers[quizIndex]=ok?1:0; $('#qz-next').disabled=false; }
+  }); });
+});
+function renderQuizNav(){ $('#qz-n').textContent=t('qz.n',{i:quizIndex+1,n:quizQs.length}); $('#qz-next').textContent=t(quizIndex===quizQs.length-1?'qz.finish':'qz.next'); }
+$('#qz-next').addEventListener('click',function(){
+  if(quizIndex<quizQs.length-1){ quizQs[quizIndex].classList.remove('on'); quizIndex++; quizQs[quizIndex].classList.add('on'); this.disabled=true; renderQuizNav(); quizQs[quizIndex].querySelector('.opt').focus(); return; }
+  var s=quizAnswers.reduce(function(a,b){return a+(b||0)},0); $('#qz-questions').hidden=true; $('#qz-n').hidden=true; this.hidden=true;
+  $('#qz-score').textContent=s+' / '+quizQs.length; $('#qz-msg').textContent=t(s<=3?'qz.msg.0':(s<=5?'qz.msg.1':(s<8?'qz.msg.2':'qz.msg.3'))); $('#qz-result').classList.add('on'); $('#qz-score').setAttribute('tabindex','-1'); $('#qz-score').focus();
+  try{ localStorage.setItem('a11y-quiz',s+'/'+quizQs.length); }catch(e){}
+});
+$('#qz-copy').addEventListener('click',function(){ var txt=t('qz.share',{s:$('#qz-score').textContent.split(' / ')[0],n:quizQs.length})+' '+location.href.split('#')[0]; var done=function(){ $('#qz-copied').textContent=t('qz.copied'); }; var fail=function(){ $('#qz-copied').textContent=t('qz.copyfail')+' '+txt; };
+  if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(txt).then(done,fail); } else { fail(); } });
+$('#qz-again').addEventListener('click',function(){ quizAnswers=[]; quizIndex=0; quizQs.forEach(function(q,i){ q.classList.toggle('on',i===0); $$('.opt',q).forEach(function(b){ b.disabled=false; b.removeAttribute('data-state'); }); var fb=q.querySelector('.feedback'); fb.className='feedback'; fb.innerHTML=''; }); $('#qz-questions').hidden=false; $('#qz-n').hidden=false; $('#qz-next').hidden=false; $('#qz-next').disabled=true; $('#qz-result').classList.remove('on'); $('#qz-copied').textContent=''; renderQuizNav(); quizQs[0].querySelector('.opt').focus(); });
+
+/* ---------- progress ---------- */
+var seen={}; var rules=$$('[data-rule]');
+function updateProgress(){ var n=Object.keys(seen).length; $('#prog-text').textContent=t('progress',{n:n}); $('#prog-fill').style.width=(n*10)+'%'; }
+if('IntersectionObserver' in window){ var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ seen[e.target.closest('[data-rule]').id]=1; updateProgress(); } }); },{threshold:0.5}); rules.forEach(function(r){ io.observe(r.querySelector('.rule-head')); }); }
+
+function renderAll(){ renderHero(); buildCal(); renderCtr(); renderImg(); renderHd(); renderLk(); renderKb(); renderFm(); renderZm(); renderTk(); renderVd(); renderDc(); renderQuizNav(); }
+var saved=null; try{ saved=localStorage.getItem('a11y-lang'); }catch(e){}
+applyLang(saved==='en'||saved==='fr' ? saved : ((navigator.language||'fr').toLowerCase().indexOf('en')===0?'en':'fr'));
+})();
+</script>
+</body>
+</html>
