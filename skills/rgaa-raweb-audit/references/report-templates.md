@@ -32,8 +32,18 @@ Example:
 
 ## 2. Audit report structure
 
+Every report starts with the notice below (translate it when the report is not in French), placed before the
+summary so that no reader takes a provisional result for an audit:
+
+> Avertissement : ce rapport a été produit avec une aide automatisée (analyse du code et du DOM rendu). Il peut
+> comporter des erreurs ou des omissions. Il ne remplace ni un audit de conformité réalisé par un auditeur sur
+> l'échantillon complet avec les technologies d'assistance de l'environnement de test, ni des tests avec des
+> utilisateurs en situation de handicap. Les taux indiqués sont provisoires tant que chaque critère applicable n'a
+> pas été testé par une personne ; l'absence de constat sur un critère signifie « non testé », pas « conforme ».
+
 ```
 # Rapport d'audit d'accessibilité — <site> — <RGAA 4.1.2 | RAWeb 1.1>
+## 0. Avertissement (see above)
 ## 1. Synthèse
    - état de conformité et taux (or "audit partiel: taux provisoire" / "pas de taux: audit statique d'une page")
    - nombre de critères conformes / non conformes / non applicables (/ non testés)
@@ -66,7 +76,9 @@ aucun taux de conformité ne peut être établi sans audit de l'échantillon com
 
 ## 3. Accessibility statement, RGAA (France) — mandatory format
 
-The headings and the order are prescribed. Fill the brackets; delete nothing.
+The headings and the order are prescribed. Fill the brackets; delete nothing. A statement is a legal document
+of the publishing body: hand over a draft, clearly marked as such, and say that it must only be published once a
+conformity audit has been completed with assistive technologies and its figures confirmed by the body.
 
 ```
 # Déclaration d'accessibilité

@@ -22,6 +22,15 @@ transcriptions of WCAG 2.1 (and, for RAWeb, of EN 301 549 v3.2.1) into numbered 
 agencies and the supervising bodies (DINUM / Ara in France, the Service information et presse in Luxembourg) communicate
 in those numbers, so every finding you report must carry a criterion id, and ideally a test id, from the right standard.
 
+## What this skill is not
+
+It is an aid. Its scripts see only the delivered HTML or an Android view hierarchy, its heuristics can be wrong
+in both directions, and your judgement on a criterion can be mistaken even with the test wording in front of
+you. It does not replace a conformity audit by a trained auditor on the full sample with the assistive
+technologies of the baseline, nor testing with real users. Say this in every deliverable: rates are
+provisional until each applicable criterion has been tested by a person, statements must rest on such an audit,
+and "no finding" means untested, not compliant.
+
 ## Pick the standard first
 
 * French public body, French client, `.gouv.fr`, "RGAA" in the request → **RGAA 4.1.2** (106 criteria, French only).
@@ -162,6 +171,11 @@ a keyboard or a screen reader. Read it before trusting a FAIL or before telling 
   `references/report-templates.md`. Use them as they are; the RGAA statement headings are prescribed by decree.
 * Put long deliverables in a file (`rapport-audit-<site>.md`, `declaration-accessibilite.md`, `grille.csv`) and
   summarise in the answer: status, rate, top blocking issues, what remains to be tested.
+* Every report and statement draft carries a visible notice (in its language) that it was produced with an
+  automated aid, may contain errors or omissions, and is not a substitute for a conformity audit with assistive
+  technologies and real-user testing. In French: « Ce document a été produit avec une aide automatisée ; il peut
+  comporter des erreurs ou des omissions et ne remplace ni un audit de conformité réalisé avec les technologies
+  d'assistance ni des tests avec des utilisateurs. »
 
 ## What to read, and when
 

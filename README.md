@@ -22,6 +22,22 @@ method, what 228 published SIP audits show (most frequent findings, report struc
 | `scripts/render_page.js` | optional: render a URL with Playwright (SPA support, tab order, zoom and mobile screenshots) |
 | `scripts/refresh_data.py` | regenerate the bundled data from the upstream GitHub repositories |
 
+## Important: an aid, not an audit
+
+This skill is a working aid for auditors and developers. It can miss problems and it can be wrong: the static
+checks only see what is in the delivered HTML or in an Android view hierarchy, the "review" items are
+heuristics, and Claude's own judgement on a criterion can be mistaken even with the official test wording in
+front of it. Nothing it produces replaces a conformity audit carried out by a trained auditor on the full
+sample, with the assistive technologies of the test environment (NVDA, JAWS, VoiceOver, TalkBack), a
+keyboard, and real users where possible. In particular:
+
+* a compliance rate or status computed from its output is provisional until every applicable criterion has
+  been tested by a person;
+* an accessibility statement must rest on such an audit, and the body publishing it remains responsible for it;
+* a page or app with no reported finding is untested, not compliant.
+
+Treat its reports as evidence to verify and as a to-do list, never as the audit itself.
+
 ## Install
 
 From your shell (Claude Code v2.1.292 or later), in one command:

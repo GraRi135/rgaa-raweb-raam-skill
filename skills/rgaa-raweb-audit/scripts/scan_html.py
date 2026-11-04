@@ -205,9 +205,13 @@ def norm(s):
     return re.sub(r"\s+", " ", s or "").strip()
 
 
-def text_of(node, byid=None, include_hidden=False):
-    """Text alternative computation (simplified accessible name from content)."""
+def text_of(node, byid=None, include_hidden=False, _seen=None):
+    """Text alternative computation (simplified accessible name from content).
+    _seen guards against aria-labelledby loops (an element naming itself or an ancestor)."""
     out = []
+    _seen = set(_seen or ())
+    if node.tag is not None and node.get("id"):
+        _seen.add(node.get("id"))
     def walk(n):
         if n.tag is None:
             if n.parent is None or n.parent.tag not in ("script", "style", "template", "noscript"):
@@ -218,8 +222,10 @@ def text_of(node, byid=None, include_hidden=False):
         if n.tag in ("script", "style", "template"):
             return
         if n.get("aria-labelledby") and byid is not None and n is not node:
-            out.append(" ".join(text_of(byid[i], byid) for i in n.get("aria-labelledby").split() if i in byid))
-            return
+            ids = [i for i in n.get("aria-labelledby").split() if i in byid and i not in _seen]
+            if ids:
+                out.append(" ".join(text_of(byid[i], byid, include_hidden, _seen | {i}) for i in ids))
+                return
         if n.get("aria-label") and n is not node:
             out.append(n.get("aria-label")); return
         if n.tag in ("img", "area"):
@@ -240,7 +246,8 @@ def accessible_name(node, byid, labels_for):
     """Return (name, source). Placeholder is deliberately not a valid source (RGAA/RAWeb 11.1)."""
     lb = node.get("aria-labelledby")
     if lb:
-        parts = [text_of(byid[i], byid, include_hidden=True) for i in lb.split() if i in byid]
+        own = {node.get("id")} if node.get("id") else set()
+        parts = [text_of(byid[i], byid, include_hidden=True, _seen=own | {i}) for i in lb.split() if i in byid and i not in own]
         name = norm(" ".join(parts))
         if name:
             return name, "aria-labelledby"
