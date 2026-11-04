@@ -30,7 +30,7 @@ GENERIC_LINK_TEXT = {"click here", "cliquez ici", "cliquer ici", "here", "ici", 
 GENERIC_TITLES = {"", "home", "accueil", "untitled", "document", "new page", "index", "page", "site", "startseite", "title", "titre", "welcome", "bienvenue"}
 GENERIC_FRAME_TITLES = {"iframe", "frame", "video", "widget", "embed", "content", "contenu", "map", "carte"}
 LANG_RE = re.compile(r"^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$")
-PERSONAL_FIELD_RE = re.compile(r"(e-?mail|courriel|tel|phone|gsm|mobile|fax|firstname|first-name|first_name|prenom|prénom|lastname|last-name|last_name|surname|nom|name|address|adresse|street|rue|postal|zip|cp|city|ville|country|pays|birth|naissance|dob|password|passwd|mot-de-passe|username|login|identifiant|organization|organisation|company|societe|société|iban|cc-|card)", re.I)
+PERSONAL_FIELD_RE = re.compile(r"(e-?mail|courriel|phone|gsm|mobile|fax|firstname|first-?name|first_name|pr[eé]nom|lastname|last-?name|last_name|surname|address|adresse|street|postal|zip|birth|naissance|password|passwd|mot-de-passe|username|login|identifiant|organi[sz]ation|company|soci[eé]t[eé]|iban|cc-|card|(?:^|[^a-z])(?:tel|nom|name|rue|cp|city|ville|country|pays|dob)(?:$|[^a-z]))", re.I)
 AUTOCOMPLETE_TOKENS = {"on", "off", "name", "honorific-prefix", "given-name", "additional-name", "family-name", "honorific-suffix", "nickname", "username", "new-password", "current-password", "one-time-code", "organization-title", "organization", "street-address", "address-line1", "address-line2", "address-line3", "address-level4", "address-level3", "address-level2", "address-level1", "country", "country-name", "postal-code", "cc-name", "cc-given-name", "cc-additional-name", "cc-family-name", "cc-number", "cc-exp", "cc-exp-month", "cc-exp-year", "cc-csc", "cc-type", "transaction-currency", "transaction-amount", "language", "bday", "bday-day", "bday-month", "bday-year", "sex", "url", "photo", "tel", "tel-country-code", "tel-national", "tel-area-code", "tel-local", "tel-local-prefix", "tel-local-suffix", "tel-extension", "email", "impp", "webauthn", "shipping", "billing", "home", "work", "mobile", "fax", "pager"}
 ARIA_ROLES = {"alert", "alertdialog", "application", "article", "banner", "button", "cell", "checkbox", "columnheader", "combobox", "complementary", "contentinfo", "definition", "dialog", "directory", "document", "feed", "figure", "form", "grid", "gridcell", "group", "heading", "img", "link", "list", "listbox", "listitem", "log", "main", "marquee", "math", "menu", "menubar", "menuitem", "menuitemcheckbox", "menuitemradio", "navigation", "none", "note", "option", "presentation", "progressbar", "radio", "radiogroup", "region", "row", "rowgroup", "rowheader", "scrollbar", "search", "searchbox", "separator", "slider", "spinbutton", "status", "switch", "tab", "table", "tablist", "tabpanel", "term", "textbox", "timer", "toolbar", "tooltip", "tree", "treegrid", "treeitem", "generic", "meter", "blockquote", "caption", "code", "deletion", "emphasis", "insertion", "paragraph", "strong", "subscript", "superscript", "time", "mark", "suggestion", "comment"}
 WIDGET_ROLES = {"button", "link", "checkbox", "radio", "switch", "tab", "menuitem", "menuitemcheckbox", "menuitemradio", "option", "slider", "spinbutton", "textbox", "combobox", "searchbox", "treeitem", "gridcell"}
@@ -255,6 +255,25 @@ def text_of(node, byid=None, include_hidden=False, _seen=None):
             t = [c for c in n.children if c.tag == "title"]
             out.append(norm(text_of(t[0])) if t else "")
             return
+        for c in n.children:
+            walk(c)
+    walk(node)
+    return norm(" ".join(out))
+
+
+def visible_text(node, byid=None):
+    """Text a sighted user sees: like text_of but without alt texts, svg titles and aria-labels (6.1.5 / 11.9.2 compare
+    the accessible name with the visible label, not with hidden alternatives)."""
+    out = []
+    def walk(n):
+        if n.tag is None:
+            if n.parent is None or n.parent.tag not in ("script", "style", "template", "noscript"):
+                out.append(n.text or "")
+            return
+        if n.tag in ("script", "style", "template", "img", "area", "svg") or n.get("hidden") is not None:
+            return
+        if n.tag == "input" and (n.get("type") or "").lower() in ("submit", "button", "reset") and n.get("value"):
+            out.append(n.get("value")); return
         for c in n.children:
             walk(c)
     walk(node)
@@ -555,7 +574,7 @@ class Scanner:
                 self.add("review", "6.1", "6.1.2", f'Image link named "{name[:60]}" (from {src}): the name must describe the destination/function, not the image.', n)
             if src == "title" and only_images is False:
                 self.add("review", "6.2", "6.2.1", f'Link name comes only from the title attribute ("{name[:60]}"): title is not reliably rendered; prefer visible text or aria-label.', n)
-            vis = text_of(n, self.byid)
+            vis = visible_text(n, self.byid)
             if n.get("aria-label") and vis and vis.lower() not in name.lower():
                 self.add("fail", "6.1", "6.1.5", f'aria-label "{name[:50]}" does not contain the visible label "{vis[:50]}".', n)
             key = low
@@ -709,7 +728,7 @@ class Scanner:
         for f in fields:
             name, src = accessible_name(f, self.byid, self.labels_for)
             fid = f.get("id")
-            if fid and fid in self.labels_for and not norm(" ".join(text_of(l, self.byid) for l in self.labels_for[fid])):
+            if fid and fid in self.labels_for and not norm(" ".join(text_of(l, self.byid) for l in self.labels_for[fid])) and not (f.get("aria-label") or f.get("aria-labelledby")):
                 self.add("fail", "11.2", "11.2.1", "Associated <label> is empty.", f)
             if not name:
                 ph = norm(f.get("placeholder"))
@@ -777,7 +796,7 @@ class Scanner:
             if not name:
                 self.add("fail", crit, "7.1.1" if scripted else "11.9.1", "Button without accessible name (icon-only button needs aria-label, visually hidden text or svg title).", b)
             else:
-                vis = text_of(b, self.byid)
+                vis = visible_text(b, self.byid)
                 if b.get("aria-label") and vis and vis.lower() not in name.lower():
                     self.add("fail", crit, "7.1.3" if scripted else "11.9.2", f'Button aria-label "{name[:40]}" does not contain its visible label "{vis[:40]}".', b)
                 elif src == "browser default":
@@ -886,7 +905,7 @@ class Scanner:
 
     def check_misc(self):
         body_text = text_of(self.body, self.byid)
-        if re.search(r"(en rouge|in red|en vert|in green|en gras|in bold|à droite|on the right|à gauche|on the left|ci-dessus|above|ci-dessous|below|rond|round button|carré|square)", body_text, re.I):
+        if re.search(r"\b(en rouge|in red|en vert|in green|en orange|in orange|en bleu|in blue|en gras|in bold|en couleur|in colou?r|bouton rond|round button|bouton carré|square button|(?:à|sur la|dans la colonne de) (?:droite|gauche)|on the (?:right|left)(?:-hand)?)\b", body_text, re.I):
             self.add("review", "3.1", "3.1.1", "Text refers to colour, shape or position (e.g. 'in red', 'on the right'): check the information is also given otherwise (3.1 / 10.9).")
         for n in self.body.elements():
             if n.tag in ("input", "button", "a", "select", "textarea") and n.has("title") and not n.get("aria-label"):

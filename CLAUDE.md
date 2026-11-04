@@ -124,8 +124,12 @@ report structure and the "test first what fails most" guidance; headline figures
 
 ## Open items at the time of writing
 
-- A review of the scripts by an independent reviewer was in progress; apply its findings (see the session summary the
-  owner received) if they are not yet in the commit history after 6e0f9c8.
+- Independent reviews of the explainer content, the documentation and the scripts were applied (commits 6e0f9c8,
+  8b9a4b6 and later). Known scanner limits that remain by design: an audit grid must not carry extra columns after
+  the page columns; pass `--standard` for partial grids; inline `<svg>` without `aria-hidden` is reported under 1.1.5
+  even inside a named control; the 9.2.1 "menu not in nav" check fires on any list of three links outside `<main>`;
+  `contrast.py --css` does not parse `hsl()`, `var()` or `url(...) #fff`; the Android 5.2 focusable check relies on
+  uiautomator's `focusable` flag and the 2.2 contrast estimate is approximate.
 - Android test on a real APK: the cloud session cannot run adb or an emulator. Plan: run the audit from the owner's
   PC (Claude Code locally, or Remote Control from the Claude desktop app), with the emulator running and adb on PATH;
   `android_audit.py capture` per screen, then `analyse`, `font-scale`, `rotate`, `talkback`, `annotate`,

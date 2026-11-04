@@ -396,7 +396,7 @@ def cmd_annotate(a):
             f["screenshot"] = f"{f['id']}.png"   # relative to findings.json, which build_report.py resolves against the findings file's folder
         findings.append(f)
     meta = res["meta"]
-    doc = {"site": meta.get("package", ""), "standard": "raam", "lang": "en", "title": f"Écran « {meta.get('screen', a.capture_dir)} »",
+    doc = {"site": meta.get("package", ""), "standard": "raam", "lang": "en", "title": f"Screen \"{meta.get('screen', a.capture_dir)}\" (RAAM 1.1)",
            "sample": [{"id": "E01", "title": meta.get("screen", ""), "url": f"{meta.get('package', '')}/{meta.get('activity', '')}"}],
            "environment": [f"Android {(meta.get('settings') or {}).get('android_version', '?')}, {(meta.get('settings') or {}).get('model', '')}, font scale {(meta.get('settings') or {}).get('font_scale', '?')}; static view-hierarchy analysis, no TalkBack"],
            "findings": findings}

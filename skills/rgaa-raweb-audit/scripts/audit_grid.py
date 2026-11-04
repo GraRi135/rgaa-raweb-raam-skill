@@ -26,6 +26,8 @@ Rules implemented (RGAA "Évaluation de la conformité" / RAWeb "Test methodolog
   * NT cells (not tested) make the result provisional: they are listed and excluded from "applicable"
     for the provisional rate, and the summary says the audit is incomplete.
 Columns before the first page column are metadata (criterion, level, topic, title) and are preserved.
+Every column after them is a page: keep comments in a separate file, not in an extra column, and pass --standard
+when the grid is a subset (the standard is otherwise guessed from the criterion ids and titles).
 """
 import argparse, csv, json, os, signal, sys
 

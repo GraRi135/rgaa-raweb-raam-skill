@@ -20,6 +20,7 @@ const opt = (name, def) => { const i = args.indexOf(name); return i >= 0 ? args[
 const flag = name => args.includes(name);
 const optValues = new Set(['--wait', '--width', '--height', '--zoom', '--screenshot', '--annotate', '--out', '--print', '--pdf', '--margin']);
 const url = args.find((a, i) => !a.startsWith('--') && !(i > 0 && optValues.has(args[i - 1])));
+for (const k of ['--wait', '--width', '--height', '--zoom', '--margin']) { const v = opt(k, null); if (v !== null && (v === true || isNaN(+v))) { console.error(k + ' expects a number, got ' + JSON.stringify(v)); process.exit(2); } }
 if (!url && !opt('--annotate') && !opt('--print')) { console.error('usage: render_page.js <url> [--wait ms] [--width px] [--mobile] [--zoom pct] [--screenshot file] [--tab-order] | --annotate findings.json --out dir | --print report.html --pdf report.pdf'); process.exit(2); }
 
 async function launch(pw) {
@@ -88,7 +89,7 @@ async function annotate(pw) {
     } catch (e) { f.screenshot_note = 'screenshot failed: ' + e.message.split('\n')[0]; skipped++; }
   }
   await browser.close();
-  const outFile = file.replace(/\.json$/, '') + '.annotated.json';
+  const outFile = /\.annotated\.json$/.test(file) ? file : file.replace(/\.json$/, '') + '.annotated.json';
   fs.writeFileSync(outFile, JSON.stringify(data, null, 1));
   console.log(`annotated ${done} finding(s), skipped ${skipped}; wrote ${outFile}`);
 }

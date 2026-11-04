@@ -1,12 +1,13 @@
-# Static pre-check — index.html
+# Static pre-check — input-index.html
 
-Standard: RAWeb 1.1. Findings: **33 likely non-conformities** on 20 criteria (1.1, 2.1, 4.10, 6.2, 7.1, 7.3, 8.2, 8.3, 8.8, 9.1, 9.2, 9.3, 10.1, 10.4, 11.1, 11.5, 11.6, 11.9, 13.1, 13.8), 36 points to review, 12 informational.
+Standard: RAWeb 1.1. Findings: **32 likely non-conformities** on 19 criteria (1.1, 2.1, 4.10, 6.2, 7.1, 7.3, 8.2, 8.3, 8.8, 9.2, 9.3, 10.1, 10.4, 11.1, 11.5, 11.6, 11.9, 13.1, 13.8), 37 points to review, 12 informational.
 
 Limits: static analysis of the delivered HTML only (no rendering, no contrast, no screen reader, no keyboard, no JavaScript behaviour). A criterion without findings is not compliant by default; everything applicable still has to be tested.
 
 ## Inventory
 - title: Accueil
 - language_changes: 1
+- stylesheets_read: []
 - images: 8
 - figures_with_caption: 0
 - frames: 1
@@ -104,7 +105,7 @@ Limits: static analysis of the delivered HTML only (no rendering, no contrast, n
 - **FAIL** (test 8.8.1) line 83: `<span lang="letzebuergesch">` Invalid language code lang="letzebuergesch" on a language change.
 
 ## 9.1 [A] On each web page, is the information structured by the appropriate use of headings?
-- **FAIL** (test 9.1.1) line 45: `<h3>` Heading level skipped (h1 → h3).
+- **REVIEW** (test 9.1.1) line 45: `<h3>` Heading level jump (h1 → h3): tolerated by the glossary if the hierarchy stays consistent; NC only if sibling sections get different levels or the outline misleads.
 - **REVIEW** (test 9.1.3) line 55: `<p class="titre">` <p class="titre"> "Horaires d'ouverture" looks like a visual heading implemented without <hx>/role=heading.
 - **REVIEW** (test 9.1.3) line 63: `<div class="titre">` <div class="titre"> "Vidéo de présentation" looks like a visual heading implemented without <hx>/role=heading.
 
@@ -131,7 +132,7 @@ Limits: static analysis of the delivered HTML only (no rendering, no contrast, n
 - **FAIL** (test 10.4.1) line 5: `<meta name="viewport" content="width=device-width, initial-scale=1, max">` Viewport blocks pinch zoom (user-scalable=no / maximum-scale=1): text cannot be enlarged to 200 % on mobile.
 
 ## 10.7 [A] On each web page, for each element receiving keyboard focus, is the focus visible?
-- **REVIEW** (test 10.7.1) line 8: `<style>` A stylesheet removes the focus outline (outline: none/0 on :focus): check that a visible focus style replaces it.
+- **REVIEW** (test 10.7.1) line 8: `<style>` inline <style>: 'a:focus, button:focus' removes the focus outline without an obvious replacement in the same rule: check that a visible focus style exists (3:1 against the background).
 
 ## 11.1 [A] Does each form input field have a label?
 - **FAIL** (test 11.1.1) line 35: `<input type="search" name="q" placeholder="Rechercher sur le site">` Form field without label (no <label for>, aria-label, aria-labelledby or title); placeholder "Rechercher sur le site" alone is not a label.
