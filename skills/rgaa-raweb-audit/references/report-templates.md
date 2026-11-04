@@ -53,6 +53,14 @@ Example:
    - full grid (CSV), glossary of statuses, mapping to WCAG / EN 301 549 if requested
 ```
 
+For a Luxembourg deliverable that should read like an SIP report, use the SIP full-audit outline instead
+(`sip-audit-corpus.md`, section "Structure of a SIP full-audit report"): Introduction, Échantillon (with the
+statement check), Environnement de test (tables with versions), Accessibilité des pages auditées (overall level on
+the five-step scale, rate, status, note on the calculation, per-page and per-topic tables, impacts utilisateurs,
+contenus exemptés), Avis (what users cannot do, the 4 to 6 most blocking families), Annexe technique by topic with
+"Recommandation", cases and "Constats sur le site". RGAA-era SIP reports also give the rate at level A and at level
+AA; the legal figure is the all-criteria (AA) rate.
+
 For a single page or a code review (no sample), replace sections 1 and 4 with: "Portée: une page / un composant;
 aucun taux de conformité ne peut être établi sans audit de l'échantillon complet" and give counts of findings instead.
 

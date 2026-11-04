@@ -76,6 +76,12 @@ shortlist (France uses full audits with Ara).
   the rest.
 * The report never claims completeness and always points back to the full RAWeb audit and to the statement obligations.
 
+## Corpus numbers
+
+Over the 186 simplified reports of 2024-2025: overall level très bon 31, bon 56, moyen 91, faible 8; statement complete
+64, incomplete 36, missing 86; the case "éléments interactifs inaccessibles au clavier" (7.3) appears in 86 % of reports.
+Full frequency tables and real wording are in `sip-audit-corpus.md`.
+
 ## Using the shortlist outside the SIP method
 
 For a quick pre-audit, a design review or a triage of a large site, the 53-criterion shortlist is a reasonable

@@ -404,11 +404,21 @@ class Scanner:
         for n in self.body.elements():
             if n.tag == "select" and re.search(r"(location|submit\(\))", n.get("onchange") or ""):
                 self.add("review", "7.4", "7.4.1", "onchange on a <select> triggers navigation or submission: context change without warning or control?", n)
-        # focus outline removed
-        for s in self.root.find_all("style"):
-            css = "".join(c.text or "" for c in s.children)
-            if re.search(r":focus[^{]*\{[^}]*outline\s*:\s*(none|0)", css, re.I):
-                self.add("review", "10.7", "10.7.1", "A stylesheet removes the focus outline (outline: none/0 on :focus): check that a visible focus style replaces it.", s)
+        # focus outline removed (inline <style> and linked stylesheets)
+        sheets = [("".join(c.text or "" for c in s.children), s, "inline <style>") for s in self.root.find_all("style")]
+        for link in self.root.find_all("link"):
+            if "stylesheet" in (link.get("rel") or "").lower() and link.get("href"):
+                css = load_stylesheet(link.get("href"), self.source)
+                if css is not None:
+                    sheets.append((css, link, link.get("href")))
+        self.inventory["stylesheets_read"] = [name for _, _, name in sheets if name != "inline <style>"]
+        for css, node, name in sheets:
+            css_nc = re.sub(r"/\*.*?\*/", "", css, flags=re.S)
+            for m in re.finditer(r"([^{}]*:focus(?:-visible)?[^{]*)\{([^}]*)\}", css_nc, re.I):
+                if re.search(r"outline\s*:\s*(none|0)(px)?\s*(!important)?\s*(;|$)", m.group(2), re.I) and not re.search(r"(box-shadow|border|background|text-decoration)\s*:", m.group(2), re.I):
+                    self.add("review", "10.7", "10.7.1", f"{name}: '{m.group(1).strip()[:60]}' removes the focus outline without an obvious replacement in the same rule: check that a visible focus style exists (3:1 against the background).", node)
+            if re.search(r"\*\s*\{[^}]*outline\s*:\s*(none|0)", css_nc, re.I):
+                self.add("review", "10.7", "10.7.1", f"{name}: a universal rule removes outlines.", node)
         # accesskeys / tabindex
         for n in self.body.elements():
             ti = n.get("tabindex")
@@ -897,6 +907,31 @@ def render_markdown(sc, findings, source, standard, lang):
             out.append(f"- **{label[f['status']]}**{test}{loc}:{el} {f['message']}")
         out.append("")
     return "\n".join(out)
+
+
+def load_stylesheet(href, source, _cache={}):
+    """Return the text of a linked stylesheet, or None. URL sources are fetched (same proxy/UA as the page);
+    file sources resolve relative hrefs next to the file. Failures are silent: the check is best effort."""
+    import urllib.parse
+    key = (href, source)
+    if key in _cache:
+        return _cache[key]
+    css = None
+    try:
+        if re.match(r"^https?://", source) or href.startswith("http"):
+            url = urllib.parse.urljoin(source if re.match(r"^https?://", source) else "", href)
+            if url.startswith("http"):
+                req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0 (accessibility-audit static scanner)"})
+                with urllib.request.urlopen(req, timeout=30) as resp:
+                    css = resp.read(3_000_000).decode("utf-8", errors="replace")
+        else:
+            path = os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(source)), href.split("?")[0].lstrip("/") if href.startswith("/") else href.split("?")[0]))
+            if os.path.exists(path) and os.path.getsize(path) < 3_000_000:
+                css = open(path, encoding="utf-8", errors="replace").read()
+    except Exception:
+        css = None
+    _cache[key] = css
+    return css
 
 
 def fetch(source, render):

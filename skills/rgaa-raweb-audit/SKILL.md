@@ -107,6 +107,11 @@ RGAA: accessibilite.numerique.gouv.fr/methode/criteres-et-tests/).
   the data).
 * **Exempt and derogated content** still has to respect 4.10, 12.9, 13.1.1, 13.7 and 13.8 (non-interference).
 * **Dates and versions in every deliverable**: standard and version, audit date, auditor, test environment versions.
+* **Test first what fails most.** On real public sites the SIP finds, in order: keyboard-inoperable components (7.3),
+  language indication (8.3, 8.7), text contrast (3.2), landmarks and document structure (12.6, 9.2), input help and
+  mandatory fields (11.10), links without name (6.2), skip links (12.7), focus visibility (10.7), headings (9.1), lists
+  (9.3), image alternatives (1.1 to 1.3), labels (11.1), presentational markup (10.1) and downloadable documents (13.3).
+  Nearly half of monitored sites have no accessibility statement: check it and say so.
 
 ## Tools (all relative to this skill's folder; Python 3, no dependencies)
 
@@ -149,6 +154,7 @@ Read only what the request needs; the references are long and each one answers o
 | B. page or component review | `automation-map.md` (what the scanner proves); `raweb-vs-rgaa.md` only if RAWeb and you will cite tests that differ (1.2, 6.1, 9.2, 13.5...) | `audit-method.md` (no sample, no rate) |
 | C. rate + statement from a grid | `audit-method.md` section 5, `report-templates.md` sections 3-4 | everything else |
 | D. simplified audit | `sip-simplified-audit.md` | `report-templates.md` section 3 (RGAA statement) |
+| Any Luxembourg report, or "what should we fix first" | `sip-audit-corpus.md` (what the SIP finds on 228 real sites, how its reports are structured and worded) | |
 | E. questions | `criteria.py` output; `raweb-vs-rgaa.md` for differences | the rest |
 
 Look up only the criteria you are about to cite, in one call: `python3 scripts/criteria.py show 7.1 7.3 10.7 11.1 --tests`
@@ -161,5 +167,6 @@ already do (contrast, rate, lookup, scanning).
 * `references/raweb-vs-rgaa.md` — the 30 RAWeb-only criteria, changed tests, legal and method differences.
 * `references/automation-map.md` — what `scan_html.py`, `render_page.js` and `contrast.py` can and cannot establish.
 * `references/sip-simplified-audit.md` — the SIP simplified method (53-criterion shortlist, preconditions, report structure) and how SIP auditors phrase findings.
+* `references/sip-audit-corpus.md` — numbers and patterns from 228 published SIP audits: rates and levels, statement compliance, the most frequent findings mapped to criteria, typical samples, the full-audit report outline and real "constats" wording.
 * `references/criteria-index.md` — all 136 criteria with level, EN/FR titles, test counts, difference flags.
 * `references/data/` — full criteria, tests, methodology and glossary JSON for both standards (see `NOTICE.md` for licences).

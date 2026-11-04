@@ -8,7 +8,7 @@ A skill (installable as a Claude Code plugin) that lets Claude audit websites, p
 
 It bundles the official criteria, tests and per-test methodology of both standards (in English and French for RAWeb,
 French for RGAA), the audit method (sample, applicability, compliance rate, statement), the SIP simplified-audit
-method, and these scripts:
+method, what 228 published SIP audits show (most frequent findings, report structure and wording), and these scripts:
 
 | Script | Purpose |
 |---|---|
