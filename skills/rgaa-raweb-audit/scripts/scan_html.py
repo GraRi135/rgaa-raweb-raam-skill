@@ -13,8 +13,11 @@ What it does: parses the delivered HTML and reports, per criterion and test:
 What it cannot do: render, measure contrast, run JavaScript, use a screen reader or a keyboard. A criterion
 without findings is NOT compliant by default. Use the output as evidence and a to-do list, never as the audit.
 """
-import argparse, json, os, re, subprocess, sys, urllib.request
+import argparse, json, os, re, signal, subprocess, sys, urllib.request
 from html.parser import HTMLParser
+
+if hasattr(signal, "SIGPIPE"):
+    signal.signal(signal.SIGPIPE, signal.SIG_DFL)  # no traceback when the output is piped into head
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 DATA = os.path.join(HERE, "..", "references", "data")
@@ -81,8 +84,10 @@ class Node:
         return any(a.get("aria-hidden") == "true" for a in [self] + list(self.ancestors()))
 
     def hidden(self):
-        if self.aria_hidden():
-            return True
+        return self.aria_hidden() or self.css_hidden()
+
+    def css_hidden(self):
+        """Hidden from everyone (hidden attribute, inline display:none / visibility:hidden), as opposed to aria-hidden."""
         for a in [self] + list(self.ancestors()):
             if a.tag is None:
                 continue
@@ -554,7 +559,8 @@ class Scanner:
             if n.get("aria-label") and vis and vis.lower() not in name.lower():
                 self.add("fail", "6.1", "6.1.5", f'aria-label "{name[:50]}" does not contain the visible label "{vis[:50]}".', n)
             key = low
-            if key in seen and seen[key] != href and low not in GENERIC_LINK_TEXT:
+            # RAWeb 1.1 test 6.1.6 (identical links, same destination); RGAA 4.1.2 6.1 has no such test.
+            if key in seen and seen[key] != href and low not in GENERIC_LINK_TEXT and self.standard != "rgaa":
                 self.add("review", "6.1", "6.1.6", f'Several links named "{name[:50]}" point to different targets ({seen[key][:40]} vs {href[:40]}).', n)
             seen.setdefault(key, href)
             if href.startswith("#") and n.tag == "a" and (n.has("onclick") or n.role() == "button") or href.lower().startswith("javascript:"):
@@ -574,8 +580,9 @@ class Scanner:
             self.add("review", "12.7", "12.7.1", "No skip link to the main content detected among the first links of the page (NC unless the page has no repeated blocks before the main content).")
         else:
             target = (skip.get("href") or "")[1:]
-            if target and target not in self.byid and not self.root.find_all("main"):
-                self.add("fail", "12.7", "12.7.2", f'Skip link target "#{target}" does not exist: the link is not functional.', skip)
+            anchors = {x.get("name") for x in self.body.find_all("a") if x.get("name")}
+            if target and target.lower() != "top" and target not in self.byid and target not in anchors:
+                self.add("fail", "12.7", "12.7.2", f'Skip link target "#{target}" does not exist (no element with that id or name): the link is not functional.', skip)
             else:
                 self.add("review", "12.7", "12.7.2", f'Skip link "{text_of(skip, self.byid)[:40]}" found: check it is visible or visible on focus, functional, and at the same place on every page.', skip)
 
@@ -765,10 +772,10 @@ class Scanner:
             if b.hidden():
                 continue
             name, src = accessible_name(b, self.byid, self.labels_for)
-            scripted = b.tag != "input" and b.closest("form") is None
-            crit, test = ("7.1", "7.1.3") if scripted else ("11.9", "11.9.1")
+            scripted = b.tag != "input" and b.closest("form") is None   # a button outside a form is a scripted component: 7.1
+            crit = "7.1" if scripted else "11.9"
             if not name:
-                self.add("fail", crit, test, "Button without accessible name (icon-only button needs aria-label, visually hidden text or svg title).", b)
+                self.add("fail", crit, "7.1.1" if scripted else "11.9.1", "Button without accessible name (icon-only button needs aria-label, visually hidden text or svg title).", b)
             else:
                 vis = text_of(b, self.byid)
                 if b.get("aria-label") and vis and vis.lower() not in name.lower():
@@ -781,34 +788,39 @@ class Scanner:
 
     def check_scripts(self):
         handlers = ("onclick", "onkeydown", "onkeyup", "onkeypress", "onmousedown", "onmouseup", "ondblclick", "onmouseover", "onfocus", "onblur", "onchange", "oninput")
+        def is_focusable(e):
+            native = e.tag in FOCUSABLE_TAGS and not (e.tag == "a" and not e.has("href")) and not (e.tag == "input" and (e.get("type") or "").lower() == "hidden")
+            ti = (e.get("tabindex") or "").strip()
+            return native or (ti.lstrip("-").isdigit() and not ti.startswith("-"))
         for n in self.body.elements():
+            # aria-hidden (on the element or an ancestor) with a keyboard-reachable element: checked before hidden() skips it
+            if n.aria_hidden() and not n.css_hidden() and is_focusable(n):
+                self.add("fail", "7.1", "7.1.1", 'Focusable element with aria-hidden="true" (on it or an ancestor): reachable by keyboard but hidden from assistive technologies.', n)
             if n.hidden():
                 continue
             role = n.role()
             if role and role not in ARIA_ROLES:
-                self.add("fail", "7.1", "7.1.3", f'Unknown ARIA role "{role}".', n)
-            natively_focusable = n.tag in FOCUSABLE_TAGS and not (n.tag == "a" and not n.has("href"))
-            focusable = natively_focusable or (n.get("tabindex") or "").strip().lstrip("-").isdigit() and not (n.get("tabindex") or "").strip().startswith("-")
+                self.add("fail", "7.1", "7.1.1", f'Unknown ARIA role "{role}": no role is exposed to assistive technologies.', n)
+            focusable = is_focusable(n)
             interactive = any(n.has(h) for h in ("onclick", "onmousedown", "onmouseup", "ondblclick")) or role in WIDGET_ROLES
             if interactive and not focusable and n.tag not in ("option", "label"):
                 if role in ("option", "menuitem", "tab", "treeitem", "gridcell", "radio") and n.parent is not None and (n.parent.get("tabindex") or n.parent.has("aria-activedescendant")):
                     continue
-                self.add("fail", "7.3", "7.3.1", f'Element with {"role=" + role if role in WIDGET_ROLES else "a mouse handler"} is not keyboard focusable (no tabindex="0", not a native control): NC unless an equivalent keyboard-accessible control exists.', n)
+                what = "role=" + role if role in WIDGET_ROLES else "a mouse handler"
+                if any(c.tag and is_focusable(c) for c in n.iter() if c is not n):
+                    self.add("review", "7.3", "7.3.1", f'Element with {what} is not keyboard focusable itself but contains a focusable element (link, button, field): check that this element triggers the same action (7.3.1 second condition); NC otherwise.', n)
+                else:
+                    self.add("fail", "7.3", "7.3.1", f'Element with {what} is not keyboard focusable (no tabindex="0", not a native control): NC unless an equivalent keyboard-accessible control exists.', n)
             if role in NAMED_ROLES and role not in ("img",) and not n.hidden():
                 name, _ = accessible_name(n, self.byid, self.labels_for)
-                if not name and role not in ("form", "region", "table", "grid", "tree", "listbox", "menu", "menubar", "toolbar", "tablist", "radiogroup", "button"):
-                    self.add("fail", "7.1", "7.1.3", f'role="{role}" without accessible name.', n)
-                if role in ("dialog", "alertdialog") and not name:
-                    pass
+                # link and button are reported under 6.2 / 11.9 / 7.1 by check_links and check_forms
+                if not name and role not in ("form", "region", "table", "grid", "tree", "listbox", "menu", "menubar", "toolbar", "tablist", "radiogroup", "button", "link"):
+                    self.add("fail", "7.1", "7.1.1", f'role="{role}" without accessible name: the name is not exposed to assistive technologies.', n)
             for a in ("aria-labelledby", "aria-describedby", "aria-controls", "aria-owns", "aria-activedescendant", "aria-details", "aria-errormessage", "aria-flowto"):
                 ids = (n.get(a) or "").split()
                 missing = [i for i in ids if i not in self.byid]
                 if missing:
                     self.add("fail", "7.1", "7.1.1", f'{a} references missing id(s): {", ".join(missing)}.', n)
-            if n.get("aria-hidden") == "true" and (n.tag in FOCUSABLE_TAGS or (n.get("tabindex") or "").strip() == "0"):
-                self.add("fail", "7.1", "7.1.1", 'Focusable element with aria-hidden="true": reachable by keyboard but hidden from assistive technologies.', n)
-            if n.tag == "div" and role == "" and n.has("onclick"):
-                pass
             if n.has("onmouseover") and not n.has("onfocus"):
                 self.add("review", "7.3", "7.3.1", "onmouseover without keyboard equivalent (onfocus).", n)
             if n.tag in ("a", "button", "input", "select", "textarea") and n.has("onfocus") and re.search(r"blur\(\)", n.get("onfocus") or ""):
@@ -965,14 +977,19 @@ def fetch(source, render):
                 sys.exit(f"render failed: {r.stderr.strip()}")
             return r.stdout
         req = urllib.request.Request(source, headers={"User-Agent": "Mozilla/5.0 (accessibility-audit static scanner)", "Accept-Language": "fr,en;q=0.8,de;q=0.6"})
-        with urllib.request.urlopen(req, timeout=60) as resp:
-            raw = resp.read()
-            ct = resp.headers.get_content_charset() or "utf-8"
+        try:
+            with urllib.request.urlopen(req, timeout=60) as resp:
+                raw = resp.read()
+                ct = resp.headers.get_content_charset() or "utf-8"
+        except Exception as e:
+            sys.exit(f"cannot fetch {source}: {e}. Save the page as HTML (or use render_page.js) and scan the file.")
         try:
             return raw.decode(ct)
         except (LookupError, UnicodeDecodeError):
             return raw.decode("utf-8", errors="replace")
-    return open(source, encoding="utf-8", errors="replace").read()
+    if not os.path.isfile(source):
+        sys.exit(f"{source}: no such file (give an HTML file or an http(s) URL)")
+    return open(source, encoding="utf-8-sig", errors="replace").read()
 
 
 def main():

@@ -126,7 +126,7 @@ def cmd_build(a):
     for f in findings:
         if f.get("criterion") in crit:
             f.setdefault("level", crit[f["criterion"]]["level"]); f.setdefault("title", crit[f["criterion"]]["title"])
-    site = doc.get("site", ""); title = doc.get("title") or f"{T['report']} — {site} — {STD_NAMES.get(standard, standard)}"
+    site = doc.get("site", ""); title = doc.get("title") or " — ".join(x for x in (T["report"], site, STD_NAMES.get(standard, standard)) if x)
     summary = doc.get("summary", {}); opinion = doc.get("opinion", {})
     grid_html, site_res = (per_page_table(a.grid, standard, lang, T) if a.grid else ("", None))
     if site_res and not summary.get("rate") and site_res.get("rate") is not None:

@@ -27,7 +27,10 @@ Rules implemented (RGAA "Évaluation de la conformité" / RAWeb "Test methodolog
     for the provisional rate, and the summary says the audit is incomplete.
 Columns before the first page column are metadata (criterion, level, topic, title) and are preserved.
 """
-import argparse, csv, json, os, sys
+import argparse, csv, json, os, signal, sys
+
+if hasattr(signal, "SIGPIPE"):
+    signal.signal(signal.SIGPIPE, signal.SIG_DFL)  # no traceback when the output is piped into head
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 DATA = os.path.join(HERE, "..", "references", "data")
@@ -90,13 +93,17 @@ def cmd_set(a):
         sys.exit(f"page '{a.page}' not found; columns are: {', '.join(head)}")
     col = head.index(a.page)
     wanted = {}
-    for item in a.assignments:
-        if "=" not in item:
-            sys.exit(f"expected criterion=STATUS, got '{item}'")
-        cid, st = item.split("=", 1)
-        wanted[cid.strip()] = norm_status(st)
-    if a.default:
-        default = norm_status(a.default)
+    default = None
+    try:
+        for item in a.assignments:
+            if "=" not in item:
+                sys.exit(f"expected criterion=STATUS, got '{item}'")
+            cid, st = item.split("=", 1)
+            wanted[cid.strip()] = norm_status(st)
+        if a.default:
+            default = norm_status(a.default)
+    except ValueError as e:
+        sys.exit(str(e))
     done = set()
     for r in rows[1:]:
         if not r or not r[0].strip():
@@ -222,7 +229,11 @@ def compute(pages, grid, processes):
 
 
 def key(cid):
-    return tuple(int(x) for x in cid.split("."))
+    """Sort key for criterion ids; a non-numeric id (a 'Total' row, a note) sorts last instead of crashing."""
+    try:
+        return tuple(int(x) for x in cid.split("."))
+    except ValueError:
+        return (999, cid)
 
 
 def cmd_compute(a):
@@ -235,8 +246,14 @@ def cmd_compute(a):
     missing = [r["criterion"] for r in rows if r["criterion"] not in grid]
     processes = {}
     for spec in a.process or []:
+        if "=" not in spec:
+            sys.exit(f'--process expects "Name=Page A,Page B", got \'{spec}\'')
         name, members = spec.split("=", 1)
-        processes[name.strip()] = [m.strip() for m in members.split(",")]
+        members = [m.strip() for m in members.split(",") if m.strip()]
+        unknown_pages = [m for m in members if m not in pages]
+        if unknown_pages:
+            print(f"WARNING: process '{name.strip()}': page(s) not in the grid are ignored: {', '.join(unknown_pages)} (grid columns: {', '.join(pages)})", file=sys.stderr)
+        processes[name.strip()] = members
     res = compute(pages, grid, processes)
     res["standard"] = f"{std['standard']} {std['version']}"
     res["unknown_criteria"] = unknown

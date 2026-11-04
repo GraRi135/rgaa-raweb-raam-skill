@@ -19,7 +19,10 @@ Options
   --standard raweb|rgaa|raam   (default raweb)     --lang en|fr   (default: en for RAWeb/RAAM, fr for RGAA; RGAA is French only)
   --json                  machine-readable output
 """
-import argparse, json, os, re, sys
+import argparse, json, os, re, signal, sys
+
+if hasattr(signal, "SIGPIPE"):
+    signal.signal(signal.SIGPIPE, signal.SIG_DFL)  # no traceback when the output is piped into head
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 DATA = os.path.join(HERE, "..", "references", "data")
@@ -120,6 +123,10 @@ def cmd_show(a):
         t, c = find_criterion(std, cid)
         if not c:
             print(f"criterion {cid} not found in {header(std)}", file=sys.stderr)
+            continue
+        if tn and tn not in c["tests"]:
+            have = ", ".join(f"{cid}.{k}" for k in c["tests"]) or "none (the criterion is its own test)"
+            print(f"test {ref} not found in {header(std)}: criterion {cid} has tests {have}", file=sys.stderr)
             continue
         if a.json:
             print(json.dumps(c if not tn else c["tests"].get(tn), ensure_ascii=False, indent=1))

@@ -7,14 +7,15 @@ Sources (both publish their reference files on GitHub):
   * RAAM 1.1  -> https://github.com/accessibility-luxembourg/ReferentielAccessibiliteMobile (CC-BY 3.0 LU), mobile apps
 
 Usage:
-  python3 refresh_data.py                 # clones both repos into a temp dir, then rebuilds
+  python3 refresh_data.py                 # clones the three repos into a temp dir (needs git and network), then rebuilds
   python3 refresh_data.py --raweb-dir X --rgaa-dir Y --raam-dir Z   # use existing clones
 
 Output (in references/data/):
   raweb-1.1-en.json, raweb-1.1-fr.json, rgaa-4.1.2-fr.json   criteria + tests + per-test methodology + level + references
-  glossary-raweb-en.json, glossary-raweb-fr.json, glossary-rgaa-fr.json
+  raam-1.1-en.json, raam-1.1-fr.json                          RAAM criteria + per-criterion methodology + level + references
+  glossary-raweb-en.json, glossary-raweb-fr.json, glossary-rgaa-fr.json, glossary-raam-en.json, glossary-raam-fr.json
   SOURCES.json                                                 upstream commits and dates
-  ../criteria-index.md                                        regenerated compact index
+  ../criteria-index.md, ../raam-criteria-index.md              regenerated compact indexes
 """
 import argparse, json, os, re, subprocess, sys, tempfile, datetime
 
@@ -219,7 +220,7 @@ def write_raam_index(raam_en, raam_fr):
 
 
 def main():
-    ap = argparse.ArgumentParser()
+    ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--raweb-dir")
     ap.add_argument("--rgaa-dir")
     ap.add_argument("--raam-dir")

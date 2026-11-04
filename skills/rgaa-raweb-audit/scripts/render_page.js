@@ -61,7 +61,9 @@ async function annotate(pw) {
   for (const f of findings) {
     if (!f.url || !f.selector) { skipped++; continue; }
     try {
-      if (current !== f.url) { await page.goto(f.url, {waitUntil: 'networkidle', timeout: 60000}).catch(() => {}); await page.waitForTimeout(+opt('--wait', 800)); current = f.url; }
+      // A "url" that is not a URL (no scheme) is a local HTML file, relative to the findings file.
+      const pageUrl = /^[a-z][a-z0-9+.-]*:/i.test(f.url) ? f.url : 'file://' + path.resolve(path.dirname(path.resolve(file)), f.url);
+      if (current !== pageUrl) { await page.goto(pageUrl, {waitUntil: 'networkidle', timeout: 60000}).catch(() => {}); await page.waitForTimeout(+opt('--wait', 800)); current = pageUrl; }
       // Optional per-finding preparation: "click" (a selector, or a list of them) opens a menu, tab or accordion panel
       // before the element is outlined; the page is reloaded for the next finding so the click does not leak.
       // "hover" moves the pointer over selectors (hover-driven menus); "focus" + "press" (default "Enter") drive a
@@ -120,7 +122,7 @@ async function printPdf(pw) {
   const shot = opt('--screenshot', null);
   if (shot) await page.screenshot({ path: shot, fullPage: true });
   if (flag('--tab-order')) {
-    const order = [];
+    const order = []; let repeats = 0;
     for (let i = 0; i < 300; i++) {
       await page.keyboard.press('Tab');
       const info = await page.evaluate(() => {
@@ -132,6 +134,12 @@ async function printPdf(pw) {
       });
       if (!info) break;
       const sig = JSON.stringify(info);
+      // Composite controls (date inputs, media players, embedded editors) keep document.activeElement while Tab moves inside them.
+      if (order.length && order[order.length - 1] === sig) {
+        if (++repeats >= 8) { order.push('"(focus stayed on the same element for 8 Tab presses: keyboard trap? check 12.9 by hand)"'); break; }
+        continue;
+      }
+      repeats = 0;
       if (order.length && order[0] === sig) break; // cycled back to start
       if (order.includes(sig) && order.length > 2) { order.push('"(loop detected: possible keyboard trap or repeated focus)"'); break; }
       order.push(sig);

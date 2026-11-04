@@ -18,9 +18,12 @@ text that disappears or truncates at 200 %, orientation lock, estimated text con
 What it cannot prove: how TalkBack announces things, heading navigation, status messages, gestures, time
 limits. Those criteria stay NT until tested with TalkBack and a keyboard, as the RAAM methodology requires.
 """
-import argparse, json, os, re, struct, subprocess, sys, time, zlib
+import argparse, json, os, re, signal, struct, subprocess, sys, time, zlib
 import xml.etree.ElementTree as ET
 from collections import Counter
+
+if hasattr(signal, "SIGPIPE"):
+    signal.signal(signal.SIGPIPE, signal.SIG_DFL)  # no traceback when the output is piped into head
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
@@ -389,7 +392,8 @@ def cmd_annotate(a):
         node = by_idx.get(f.get("index"))
         if img and node is not None and node.bounds != (0, 0, 0, 0):
             W, H, rows = crop_annotate(img, node.bounds, str(i))
-            path = os.path.join(out, f"{f['id']}.png"); write_png(path, W, H, img["ch"], rows); f["screenshot"] = path; n += 1
+            path = os.path.join(out, f"{f['id']}.png"); write_png(path, W, H, img["ch"], rows); n += 1
+            f["screenshot"] = f"{f['id']}.png"   # relative to findings.json, which build_report.py resolves against the findings file's folder
         findings.append(f)
     meta = res["meta"]
     doc = {"site": meta.get("package", ""), "standard": "raam", "lang": "en", "title": f"Écran « {meta.get('screen', a.capture_dir)} »",

@@ -149,9 +149,15 @@ def main():
             if len(parts) < 2 or line.strip().startswith("#!"):
                 continue
             size = float(parts[2]) if len(parts) > 2 and re.match(r"^[\d.]+$", parts[2]) else None
-            results.append(check(parts[0], parts[1], size, "bold" in parts[2:]))
+            try:
+                results.append(check(parts[0], parts[1], size, "bold" in parts[2:]))
+            except ValueError as e:
+                results.append({"foreground": parts[0], "background": parts[1], "error": str(e)})
     elif a.foreground and a.background:
-        results.append(check(a.foreground, a.background, a.size, a.bold))
+        try:
+            results.append(check(a.foreground, a.background, a.size, a.bold))
+        except ValueError as e:
+            sys.exit(f"error: {e} (accepted: #rgb, #rrggbb, #rrggbbaa, rgb()/rgba(), CSS named colours)")
     else:
         ap.error("give two colours, --css FILE or --pairs FILE")
     if a.json:
@@ -160,7 +166,8 @@ def main():
         if "ratio" in v:
             print((f"[{v['selector']}] " if "selector" in v else "") + fmt(v))
         else:
-            print(f"[{v.get('selector', '?')}] " + (v.get("error") or f"color={v.get('color')} background={v.get('background')}: {v.get('note')}"))
+            where = f"[{v['selector']}] " if "selector" in v else (f"{v.get('foreground')} on {v.get('background')}: " if "foreground" in v else "")
+            print(where + (v.get("error") or f"color={v.get('color')} background={v.get('background')}: {v.get('note')}"))
 
 
 if __name__ == "__main__":
