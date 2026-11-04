@@ -38,9 +38,12 @@ const OVERLAY = ({sel, badgeText}) => {
   const box = document.createElement('div'); box.className = '__a11y_overlay';
   box.style.cssText = 'position:absolute;z-index:2147483646;pointer-events:none;border:3px solid #d0021b;box-shadow:0 0 0 2px #fff;border-radius:2px;left:' + (r.left + sx - 3) + 'px;top:' + (r.top + sy - 3) + 'px;width:' + (r.width + 3) + 'px;height:' + (r.height + 3) + 'px;';
   const badge = document.createElement('div'); badge.className = '__a11y_overlay'; badge.textContent = badgeText;
-  const above = (r.top + sy) > 40;
-  badge.style.cssText = 'position:absolute;z-index:2147483647;pointer-events:none;font:12px/1.4 Menlo,Consolas,monospace;color:#fff;background:#1f1f1f;border:2px solid #d0021b;padding:2px 6px;max-width:' + Math.max(260, Math.min(640, r.width + 200)) + 'px;white-space:pre-wrap;word-break:break-all;left:' + Math.max(4, r.left + sx - 3) + 'px;top:' + (above ? (r.top + sy - 34) : (r.top + sy + r.height + 8)) + 'px;';
+  badge.style.cssText = 'position:absolute;z-index:2147483647;pointer-events:none;font:12px/1.4 Menlo,Consolas,monospace;color:#fff;background:#1f1f1f;border:2px solid #d0021b;padding:2px 6px;max-width:' + Math.max(260, Math.min(640, r.width + 200)) + 'px;white-space:pre-wrap;word-break:break-all;left:' + Math.max(4, r.left + sx - 3) + 'px;top:0;';
   document.body.appendChild(box); document.body.appendChild(badge);
+  // Place the badge entirely outside the outlined element: above it when there is room, else below it.
+  const bh = badge.getBoundingClientRect().height;
+  const above = (r.top + sy) > bh + 8;
+  badge.style.top = (above ? (r.top + sy - bh - 6) : (r.top + sy + r.height + 8)) + 'px';
   const b = badge.getBoundingClientRect();
   const top = Math.min(r.top, b.top) + sy, left = Math.min(r.left, b.left) + sx, right = Math.max(r.right, b.right) + sx, bottom = Math.max(r.bottom, b.bottom) + sy;
   return {x: left, y: top, w: right - left, h: bottom - top, pageW: document.documentElement.scrollWidth, pageH: document.documentElement.scrollHeight};

@@ -71,4 +71,5 @@ of every report exists because of this. Read the report as a colleague's draft, 
 * `grille-audit-<site>.csv` and the `compute` output.
 * On request, the illustrated version: `rapport.html` (single file, screenshots of each finding with the element
   outlined and its markup) and `rapport.pdf`, built from a findings file you can review and edit before building.
+  A fictional example is in `examples/commune-homepage-raweb/` (`findings.json`, `rapport-illustre.html`, `rapport-illustre.pdf`).
 * On request, the accessibility statement draft: see [statements.md](statements.md).
