@@ -1,4 +1,4 @@
-# rgaa-raweb-audit — a Claude skill for RGAA, RAWeb and RAAM accessibility audits
+# rgaa-raweb-raam-skill — a Claude skill for RGAA, RAWeb and RAAM accessibility audits
 
 *Version française : [README.fr.md](README.fr.md)*
 
