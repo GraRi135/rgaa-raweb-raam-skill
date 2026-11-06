@@ -51,6 +51,8 @@ added by hand with a selector so they can be illustrated too.
      "priority": "majeur",
      "badge": "optional text for the markup badge (defaults to element)",
      "caption": "optional figure caption (also the figure's aria-label)", "screenshot_alt": "optional short alt (default: 'Capture d'écran du constat F001')",
+     "expect": "optional regex the NVDA pass must hear on this element (nvda_capture.js)",
+     "nvda": [{"browser": "firefox 1xx", "screenReader": "NVDA 2025.x", "onFocus": "…", "lineRead": "…", "verdict": "…"}],
      "click": "optional selector (or list) clicked before the screenshot, to open a menu, tab or accordion panel",
      "hover": "optional selector (or list) hovered first, for hover-driven menus",
      "focus": "optional selector focused, then \"press\" keys (default Enter) for keyboard-only triggers",

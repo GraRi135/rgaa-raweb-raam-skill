@@ -22,6 +22,7 @@ method, what 228 published SIP audits show (most frequent findings, report struc
 | `scripts/audit_grid.py` | create a pages × criteria grid, fill statuses, compute the compliance rate and status with the official rules |
 | `scripts/contrast.py` | contrast ratios with the RGAA/RAWeb thresholds (text, components, focus), from colour pairs or a stylesheet |
 | `scripts/android_audit.py` | Android app screens through adb (device or emulator): view hierarchy, screenshot, 200 % text, orientation, TalkBack toggle; findings mapped to RAAM 1.1 |
+| `scripts/nvda_capture.js`, `scripts/nvda_review.py` | drive the real NVDA screen reader on each page (Windows, Firefox and Chrome through Guidepup), record what it announces, turn it into evidence in the findings and the report |
 | `scripts/build_report.py` | findings file → one accessible HTML report with annotated screenshots embedded, and an A4 PDF, in the SIP's report order |
 | `scripts/render_page.js` | optional: render a URL with Playwright (SPA support, tab order, zoom and mobile screenshots); `--annotate` outlines each finding's element and clips a screenshot; `--print` makes the PDF |
 | `scripts/refresh_data.py` | regenerate the bundled data from the upstream GitHub repositories |
@@ -87,6 +88,9 @@ Python 3 only; `render_page.js` additionally needs Node.js and Playwright, and `
 | Desktop app or Cowork with the built-in browser | yes | any page the browser can open, including behind a login | browser reading tools and screenshots add keyboard and focus evidence; the shell runs the scripts on exported DOM |
 | Claude Code or claude.ai with Claude in Chrome | if a shell exists | any page in your Chrome, with your sign-ins | its JavaScript tool runs the probes in `references/browser-probes.md` and exports the rendered DOM for the scanner |
 | claude.ai chat with the skill only | sandbox, no network | HTML you paste or upload | lookup, grid and scanner on supplied files; no browsing |
+
+A real screen-reader pass exists for NVDA on Windows (`nvda_capture.js`): it records what NVDA announces page by
+page and per finding; JAWS, VoiceOver and TalkBack remain manual passes.
 
 The terminal is not required: the Claude Code desktop app, the web app and the IDE extensions install the plugin the
 same way. For audits (Playwright screenshots, PDF reports, adb) use Claude Code on the machine that has the files and

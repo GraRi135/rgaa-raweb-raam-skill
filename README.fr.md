@@ -23,6 +23,7 @@ et formulation des rapports), et les outils suivants :
 | `scripts/audit_grid.py` | créer une grille pages × critères, remplir les statuts, calculer le taux et l'état de conformité selon les règles officielles |
 | `scripts/contrast.py` | rapports de contraste avec les seuils RGAA/RAWeb (textes, composants, focus), à partir de couleurs ou d'une feuille de style |
 | `scripts/android_audit.py` | écrans d'applications Android via adb (appareil ou émulateur) : hiérarchie de vues, capture d'écran, texte à 200 %, orientation, TalkBack ; constats rattachés au RAAM 1.1 |
+| `scripts/nvda_capture.js`, `scripts/nvda_review.py` | pilotent le vrai lecteur d'écran NVDA sur chaque page (Windows, Firefox et Chrome via Guidepup), enregistrent ce qu'il annonce et en font des preuves dans les constats et le rapport |
 | `scripts/build_report.py` | fichier de constats → un rapport HTML accessible en un seul fichier avec captures annotées intégrées, et un PDF A4, dans l'ordre des rapports du SIP |
 | `scripts/render_page.js` | optionnel : rendu d'une URL avec Playwright (applications monopage, ordre de tabulation, zoom, captures mobiles) ; `--annotate` entoure l'élément de chaque constat et découpe une capture ; `--print` produit le PDF |
 | `scripts/refresh_data.py` | régénérer les données embarquées depuis les dépôts GitHub officiels |
@@ -91,6 +92,9 @@ Node.js et Playwright, et `android_audit.py` demande adb (Android platform-tools
 | Application de bureau ou Cowork avec le navigateur intégré | oui | toute page que le navigateur peut ouvrir, y compris derrière une authentification | les outils de lecture et les captures ajoutent les preuves clavier et focus ; le shell exécute les scripts sur le DOM exporté |
 | Claude Code ou claude.ai avec Claude dans Chrome | si un shell existe | toute page de votre Chrome, avec vos sessions | son outil JavaScript exécute les sondes de `references/browser-probes.md` et exporte le DOM rendu pour le scanner |
 | claude.ai seul avec la compétence | bac à sable, sans réseau | HTML collé ou téléversé | consultation, grille et scanner sur les fichiers fournis ; pas de navigation |
+
+Une passe avec le vrai lecteur d'écran NVDA existe sous Windows (`nvda_capture.js`) : elle enregistre ce que NVDA
+annonce page par page et constat par constat ; JAWS, VoiceOver et TalkBack restent des passes manuelles.
 
 Le terminal n'est pas obligatoire : l'application de bureau Claude Code, la version web et les extensions pour IDE
 installent le plugin de la même façon. Pour les audits (captures Playwright, rapports PDF, adb), utilisez Claude Code

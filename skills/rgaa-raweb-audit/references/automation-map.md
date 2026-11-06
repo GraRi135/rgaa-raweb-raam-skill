@@ -49,6 +49,17 @@ Status vocabulary used by the scanner:
   `--css file.css` lists the pairs a stylesheet declares (a pair with only one colour declared depends on inheritance:
   read the computed colours in the browser or through Playwright before deciding). The scanner itself does not measure contrast.
 
+## Screen reader (`nvda_capture.js` + `nvda_review.py`, Windows with NVDA)
+
+* Records the real NVDA reading of each page in Firefox and Chrome: linear reading, headings, links, landmarks, form
+  fields, graphics, tables, lists, and the announcement of each finding's element on focus and on line reading.
+* Evidence for 1.1 / 1.3 (what the image is announced as), 6.1 / 6.2 (link names), 7.1 (name, role, state exposed;
+  "clickable" elements), 9.1 (heading list and levels), 9.2 / 12.6 (landmarks), 11.1 / 11.9 (labels and button names),
+  8.3 / 8.7 (voice change on `lang`: listen, or look for untranslated words in the transcript).
+* Not covered: interaction scenarios (menus, dialogs, error messages after submission, 7.5, 11.10 at run time) and the
+  other assistive technologies (JAWS, VoiceOver, TalkBack): a failure under NVDA is NC, a success stays provisional.
+* `--mock` produces accessibility-tree phrases for pipeline tests and is labelled as such; it is never evidence.
+
 ## Mobile apps (`android_audit.py`, RAAM 1.1)
 
 | Fully static from the view hierarchy (FAIL) | Needs judgement (REVIEW) | Needs TalkBack / VoiceOver / keyboard |

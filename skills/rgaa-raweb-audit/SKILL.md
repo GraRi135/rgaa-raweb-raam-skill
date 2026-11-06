@@ -58,7 +58,10 @@ data set: `references/raweb-vs-rgaa.md` explains the differences.
    applicable criterion you are unsure about. The scanner's FAIL lines are non-conformities once you have checked the
    element is visible and in scope; its REVIEW lines are your to-do list; its INFO lines tell you what is applicable.
 4. Fill the grid with C / NC / NA per page. Use NT for anything you could not test (screen reader, keyboard, contrast,
-   zoom when you have no browser) and say so. Leaving NT in the final grid makes the rate provisional.
+   zoom when you have no browser) and say so. Leaving NT in the final grid makes the rate provisional. On a Windows
+   PC with NVDA, run the screen-reader pass (`nvda_capture.js` then `nvda_review.py --apply`,
+   `references/screen-reader-nvda.md`): a failure under NVDA makes the criterion NC; a success is "C under NVDA,
+   JAWS and VoiceOver to confirm" and the rate stays provisional for it.
 5. Compute: `python3 scripts/audit_grid.py compute grid.csv [--process "Name=Page A,Page B"]`. Never hand-count.
 6. Write the report with `references/report-templates.md`, then the statement if asked. When the client wants a
    document to circulate (web agency, management, publication), produce the illustrated version: build
@@ -165,6 +168,7 @@ RGAA: accessibilite.numerique.gouv.fr/methode/criteres-et-tests/).
 | Findings file from a scan | `python3 scripts/build_report.py bootstrap p01.scan.json --url URL --page P01 --title Accueil > findings.json` (`--append` to add pages) |
 | Annotated screenshots (web) | `node scripts/render_page.js --annotate findings.json --out shots/` → `findings.annotated.json` |
 | Annotated screenshots (Android) | `python3 scripts/android_audit.py annotate android-audit/accueil/ --out shots/` → `shots/findings.json` |
+| Real screen reader (NVDA, Windows) | `node scripts/nvda_capture.js check`, then `node scripts/nvda_capture.js --findings findings.json --out nvda/` (Firefox + Chrome), then `python3 scripts/nvda_review.py nvda/ --findings findings.json --apply` (`--mock` exists for pipeline tests only) |
 | Illustrated report, HTML + PDF | `python3 scripts/build_report.py build findings.annotated.json --grid grille.csv --out rapport.html --pdf rapport.pdf --lang fr` |
 | Refresh data from upstream | `python3 scripts/refresh_data.py` |
 
@@ -202,7 +206,8 @@ are present, use both when you can, and in any case:
   forms; screenshot after each Tab on the first pass. That is evidence for 7.3, 10.7, 12.8, 12.9 and 12.11.
 * Forms: submit empty and with wrong formats, then read the page again: 11.10 and 11.11 need the error state.
 * The built-in browser cannot open files you write or servers you start; show generated HTML as an artifact.
-* Nothing in a browser replaces a screen reader: 7.1.2, 4.13, 10.2 and the TalkBack/VoiceOver criteria stay NT.
+* Nothing in a browser replaces a screen reader: 7.1.2, 4.13, 10.2 and the TalkBack/VoiceOver criteria stay NT. The
+  NVDA pass (`nvda_capture.js`, Windows only) is the way to get real announcements; a browser session cannot run it.
 * Without a shell (chat with a browser extension only), the instructions and probes still apply, but test ids
   cannot be verified against the bundled data: cite criteria, say the test numbers are from memory, and keep the
   deliverable to findings and a to-do list rather than a grid or a rate.
@@ -232,6 +237,7 @@ already do (contrast, rate, lookup, scanning).
 * `references/automation-map.md` — what `scan_html.py`, `render_page.js` and `contrast.py` can and cannot establish.
 * `references/sip-simplified-audit.md` — the SIP simplified method (53-criterion shortlist, preconditions, report structure) and how SIP auditors phrase findings.
 * `references/browser-probes.md` — JavaScript probes for browser sessions and Playwright: structure, images, names, labels, focus log, contrast, dialogs, DOM export.
+* `references/screen-reader-nvda.md` — the NVDA pass: setup, what it records, how to read transcripts, counting rule.
 * `references/report-builder.md` — the findings.json schema and the scan → annotate → build workflow for illustrated HTML / PDF reports.
 * `references/sip-audit-corpus.md` — numbers and patterns from 228 published SIP audits: rates and levels, statement compliance, the most frequent findings mapped to criteria, typical samples, the full-audit report outline and real "constats" wording.
 * `references/criteria-index.md` — all 136 criteria with level, EN/FR titles, test counts, difference flags.

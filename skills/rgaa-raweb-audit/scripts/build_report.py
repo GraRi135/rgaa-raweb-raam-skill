@@ -22,7 +22,7 @@ L = {
            "counts": "Critères", "C": "conformes", "NC": "non conformes", "NA": "non applicables", "NT": "non testés", "statuses": {"full": "totalement conforme", "partial": "partiellement conforme", "none": "non conforme"},
            "blocking": "Les non-conformités les plus bloquantes pour les utilisateurs concernent :", "finding": "Constat", "criterion": "Critère", "test": "Test", "pages": "Pages", "element": "Élément",
            "problem": "Problème", "impact": "Impact", "fix": "Correction", "priority": "Priorité (appréciation de l'auditeur)", "per_page": "Résultats par page", "applicable": "Applicables", "rate_col": "Taux",
-           "figure": "Capture d'écran annotée : l'élément concerné est entouré en rouge", "shot_alt": "Capture d'écran du constat", "no_shot": "Aucune capture pour ce constat", "toc": "Sommaire", "skip": "Aller au contenu", "generated": "Rapport généré le",
+           "figure": "Capture d'écran annotée : l'élément concerné est entouré en rouge", "sr": "Lecteur d'écran", "mock": "simulation, pas une preuve", "shot_alt": "Capture d'écran du constat", "no_shot": "Aucune capture pour ce constat", "toc": "Sommaire", "skip": "Aller au contenu", "generated": "Rapport généré le",
            "notice": "Ce rapport a été produit avec une aide automatisée (analyse du code et du DOM rendu). Il peut comporter des erreurs ou des omissions. Il ne remplace ni un audit de conformité réalisé par un auditeur sur l'échantillon complet avec les technologies d'assistance de l'environnement de test, ni des tests avec des utilisateurs en situation de handicap. Les taux indiqués sont provisoires tant que chaque critère applicable n'a pas été testé par une personne ; l'absence de constat sur un critère signifie « non testé », pas « conforme ».",
            "stmt": "Déclaration d'accessibilité", "topic": "Thématique", "how": "Comment tester", "no_findings": "Aucun constat dans cette thématique."},
     "en": {"report": "Accessibility audit report", "notice_h": "Notice", "summary": "Summary", "scope": "Scope and method", "sample": "Sample", "env": "Test environment",
@@ -31,7 +31,7 @@ L = {
            "counts": "Criteria", "C": "compliant", "NC": "non-compliant", "NA": "not applicable", "NT": "not tested", "statuses": {"full": "fully compliant", "partial": "partially compliant", "none": "non-compliant"},
            "blocking": "The most blocking non-conformities for users concern:", "finding": "Finding", "criterion": "Criterion", "test": "Test", "pages": "Pages", "element": "Element",
            "problem": "Problem", "impact": "Impact", "fix": "Fix", "priority": "Priority (auditor's judgement)", "per_page": "Results per page", "applicable": "Applicable", "rate_col": "Rate",
-           "figure": "Annotated screenshot: the element concerned is outlined in red", "shot_alt": "Screenshot of finding", "no_shot": "No screenshot for this finding", "toc": "Contents", "skip": "Skip to content", "generated": "Report generated on",
+           "figure": "Annotated screenshot: the element concerned is outlined in red", "sr": "Screen reader", "mock": "mock, not evidence", "shot_alt": "Screenshot of finding", "no_shot": "No screenshot for this finding", "toc": "Contents", "skip": "Skip to content", "generated": "Report generated on",
            "notice": "This report was produced with an automated aid (analysis of the code and of the rendered DOM). It may contain errors or omissions. It does not replace a conformity audit carried out by an auditor on the full sample with the assistive technologies of the test environment, nor testing with disabled users. Rates are provisional until every applicable criterion has been tested by a person; the absence of a finding on a criterion means not tested, not compliant.",
            "stmt": "Accessibility statement", "topic": "Topic", "how": "How to test", "no_findings": "No finding in this topic."},
 }
@@ -202,6 +202,10 @@ def cmd_build(a):
                         parts.append(f"<dt>{esc(T[k])}</dt><dd>{md_inline(f[k])}</dd>")
                 if f.get("priority"):
                     parts.append(f"<dt>{esc(T['priority'])}</dt><dd>{esc(f['priority'])}</dd>")
+                for ev in f.get("nvda") or []:
+                    heard = " / ".join(f"« {esc(x)} »" for x in (ev.get("onFocus"), ev.get("lineRead")) if x)
+                    tag = f" <span class=\"tag\">{esc(T['mock'])}</span>" if ev.get("mock") else ""
+                    parts.append(f"<dt>{esc(T['sr'])} ({esc(ev.get('screenReader') or 'NVDA')}, {esc(ev.get('browser') or '')})</dt><dd>{heard or '—'}" + (f" — {esc(ev['verdict'])}" if ev.get("verdict") else "") + tag + "</dd>")
                 parts.append("</dl>")
                 shot = f.get("screenshot")
                 if shot:

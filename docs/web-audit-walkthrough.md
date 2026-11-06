@@ -32,8 +32,11 @@ with the French term auditors use.
   make "En savoir plus" explicit, is this heading hierarchy consistent, is this table a layout table. Claude proposes;
   you decide and the grid changes with your decision.
 * **Run the assistive-technology pass.** Topic 7 (scripts), 4.13, 10.2, and anything about announcements or
-  rendering stay NT until someone has used a screen reader. The report lists them with the procedure to run. Fill the
-  grid after that pass and recompute with `audit_grid.py compute`.
+  rendering stay NT until someone has used a screen reader. The report lists them with the procedure to run. On a
+  Windows PC with NVDA, `nvda_capture.js` records the real NVDA reading of every page in Firefox and Chrome and
+  `nvda_review.py` turns it into evidence (see `skills/rgaa-raweb-audit/references/screen-reader-nvda.md`); a failure
+  under NVDA makes the criterion NC, a success stays "C under NVDA, JAWS and VoiceOver to confirm". Fill the grid
+  after that pass and recompute with `audit_grid.py compute`.
 * **Check the FAIL lines against the live page.** The scanner reads markup; an element hidden by CSS, injected after
   load, or inside exempt content changes the verdict. Spot-check at least the findings you will put first.
 * **Check the contrast figures.** Computed-style measurements miss text over images and gradients; the report flags

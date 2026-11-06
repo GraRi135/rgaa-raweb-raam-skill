@@ -53,6 +53,8 @@ skills/rgaa-raweb-audit/
 | `render_page.js` (Node + Playwright) | rendered DOM, `--tab-order`, `--zoom`, `--mobile`, `--screenshot`, `--annotate findings.json --out shots` (element outlined + markup badge), `--print report.html --pdf out.pdf` (tagged A4 PDF) | |
 | `build_report.py` | `bootstrap` findings from a scan; `build findings.annotated.json --grid grille.csv --out rapport.html --pdf rapport.pdf --lang fr` → one self-contained accessible HTML (SIP outline, embedded screenshots) | |
 | `android_audit.py` | `devices`, `capture` (uiautomator dump + screenshot via adb), `analyse` (RAAM mapping), `font-scale`, `rotate`, `talkback`, `compare`, `walk`, `annotate` | needs adb and a device/emulator |
+| `nvda_capture.js` (Node, Windows, Guidepup + Playwright) | drives the real NVDA: linear reading, element lists, per-finding announcements, in Firefox and Chrome; `check` self-test; `--mock` for pipeline tests only | `node nvda_capture.js --findings findings.json --out nvda/` |
+| `nvda_review.py` | reviews the captures, flags suspicious announcements per criterion, `--apply` writes `nvda` evidence into findings.json, prints grid statuses to consider | `python3 nvda_review.py nvda/ --findings findings.json --apply` |
 | `refresh_data.py` | rebuild `references/data/*.json` from the upstream GitHub repos (network) | see docs/updating-data.md |
 
 Findings file schema and per-finding options (`selector`, `badge`, `caption`, `screenshot_alt`, `click`, `hover`,
@@ -132,6 +134,12 @@ report structure and the "test first what fails most" guidance; headline figures
   even inside a named control; the 9.2.1 "menu not in nav" check fires on any list of three links outside `<main>`;
   `contrast.py --css` does not parse `hsl()`, `var()` or `url(...) #fff`; the Android 5.2 focusable check relies on
   uiautomator's `focusable` flag and the 2.2 contrast estimate is approximate.
+- NVDA pass (`nvda_capture.js`, `nvda_review.py`, `references/screen-reader-nvda.md`): built and tested end to end in
+  `--mock` mode on Linux only; the real-NVDA path (Guidepup API: start/next/nextHeading/perform/lastSpokenPhrase/
+  itemText, keyboard commands reportCurrentFocus, readLine, moveToNextFormField…) has NOT yet run on a Windows PC.
+  First real run: `npm install @guidepup/guidepup playwright`, `npx @guidepup/setup setup`, `node nvda_capture.js check`,
+  then one page with `--browser firefox`; fix phrase parsing in nvda_review.py VOCAB against the real transcripts.
+  Counting rule decided with the owner: NC under NVDA is definitive, C stays provisional until JAWS and VoiceOver.
 - Android test on a real APK: the cloud session cannot run adb or an emulator. Plan: run the audit from the owner's
   PC (Claude Code locally, or Remote Control from the Claude desktop app), with the emulator running and adb on PATH;
   `android_audit.py capture` per screen, then `analyse`, `font-scale`, `rotate`, `talkback`, `annotate`,
