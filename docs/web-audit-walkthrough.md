@@ -33,7 +33,7 @@ with the French term auditors use.
   you decide and the grid changes with your decision.
 * **Run the assistive-technology pass.** Topic 7 (scripts), 4.13, 10.2, and anything about announcements or
   rendering stay NT until someone has used a screen reader. The report lists them with the procedure to run. On a
-  Windows PC with NVDA, `nvda_capture.js` records the real NVDA reading of every page in Firefox and Chrome and
+  Windows PC with NVDA, `nvda_capture.js` records the real NVDA reading of every page in Chrome (Firefox and Edge optional) and
   `nvda_review.py` turns it into evidence (see `skills/rgaa-raweb-audit/references/screen-reader-nvda.md`); a failure
   under NVDA makes the criterion NC, a success stays "C under NVDA, JAWS and VoiceOver to confirm". Fill the grid
   after that pass and recompute with `audit_grid.py compute`.

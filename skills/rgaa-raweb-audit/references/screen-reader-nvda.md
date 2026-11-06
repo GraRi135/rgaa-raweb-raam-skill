@@ -10,7 +10,7 @@ Read this file when the user is on Windows with NVDA, or asks how to get screen-
 ## What it does and does not do
 
 * `nvda_capture.js` starts NVDA (through Guidepup, an MIT screen-reader automation library), opens each page of the
-  sample in Firefox and Chrome (Edge optional), and records:
+  sample in Chrome (Firefox and Edge on request with `--browser`), and records:
   1. the linear reading from the top of the document ("next" item by item, like a user discovering the page);
   2. the element lists NVDA exposes: headings, links, landmarks, form fields, graphics, tables, lists;
   3. for every finding of the page that has a `selector`, what NVDA announces when the element receives the focus
@@ -28,9 +28,9 @@ Read this file when the user is on Windows with NVDA, or asks how to get screen-
 
 1. Install NVDA (free, nvaccess.org) and make it the default screen reader; set its language (the transcripts are in
    NVDA's interface language; both French and English are understood by the review script).
-2. Install Node.js, then in `skills/rgaa-raweb-audit/scripts/`:
-   `npm install @guidepup/guidepup playwright` and `npx playwright install firefox chromium`. Chrome and Edge are
-   used through their installed channels; without Chrome, pass `--browser chromium`.
+2. Install Node.js and Google Chrome, then in `skills/rgaa-raweb-audit/scripts/`:
+   `npm install @guidepup/guidepup playwright`. Chrome is used through its installed channel (no browser download);
+   `--browser firefox` needs `npx playwright install firefox`, `--browser edge` needs Edge installed.
 3. `npx @guidepup/setup setup` configures NVDA for automation (adds the Guidepup add-on and settings). Run it once,
    and again after an NVDA upgrade.
 4. `node nvda_capture.js check` must print `ready`.
@@ -43,8 +43,8 @@ NVDA started by the script replaces a running NVDA and restores it afterwards.
 ```bash
 cd skills/rgaa-raweb-audit/scripts
 node nvda_capture.js check
-node nvda_capture.js --findings ../../audit/findings.json --out ../../audit/nvda            # every page of the sample, Firefox + Chrome
-node nvda_capture.js https://x.lu/contact --page P03 --findings findings.json --browser firefox --out nvda
+node nvda_capture.js --findings ../../audit/findings.json --out ../../audit/nvda            # every page of the sample, Chrome
+node nvda_capture.js https://x.lu/contact --page P03 --findings findings.json --out nvda      # one page
 python3 nvda_review.py ../../audit/nvda --findings ../../audit/findings.json --apply --lang fr > ../../audit/nvda-review.md
 python3 build_report.py build ../../audit/findings.annotated.json --grid ../../audit/grille.csv --out rapport.html --pdf rapport.pdf --lang fr
 ```
@@ -52,7 +52,7 @@ python3 build_report.py build ../../audit/findings.annotated.json --grid ../../a
 Order: scan → bootstrap findings → annotate screenshots → NVDA capture → review `--apply` → build. If the screenshots
 were annotated before the NVDA pass, run the review on `findings.annotated.json` (the builder reads that file).
 
-Options: `--browser firefox|chrome|edge|chromium|all` (default: Firefox and Chrome), `--max-items 400`,
+Options: `--browser chrome|firefox|edge|chromium|all` (default: Chrome; `all` = Chrome, Firefox, Edge), `--max-items 400`,
 `--wait 1500` after load, `--settle 250` after each command, `--lang fr|en` for the transcript labels.
 
 ## Reading the transcripts
@@ -77,11 +77,11 @@ in the language of NVDA on that PC (for example `"expect": "Rechercher"` on a se
 
 ## Counting rule (decided for this project)
 
-* A failure under NVDA (in either browser) makes the criterion **NC** on that page; quote the announcement in the
+* A failure under NVDA makes the criterion **NC** on that page; quote the announcement in the
   finding and keep the transcript as evidence.
 * A success is recorded as **C under NVDA, JAWS and VoiceOver to confirm**; the rate stays marked provisional until a
   person runs those, because the standard requires the component to work with every assistive technology of the
-  reference environment. The review script prints statuses to consider; the auditor sets them with `audit_grid.py set`.
+  reference environment (and, for NVDA, also with Firefox; a Chrome-only pass is the project's chosen scope). The review script prints statuses to consider; the auditor sets them with `audit_grid.py set`.
 * Mock captures change nothing in the grid.
 
 ## In the report
@@ -95,7 +95,7 @@ captured, and that JAWS, VoiceOver and TalkBack were not run (unless they were, 
 
 * Guidepup reads NVDA's speech; a locked session, a browser window behind another, or a modal dialog stops the capture
   (the script then records fewer lines and a note). Run again.
-* Chrome and Edge need `--force-renderer-accessibility` (the script passes it); Firefox exposes accessibility by default.
+* Chrome needs `--force-renderer-accessibility` (the script passes it); Firefox exposes accessibility by default.
 * Non-focusable elements are given a temporary `tabindex="-1"` to receive the focus for the "on focus" line, then the
   attribute is removed; the "line read" phrase is the browse-mode reading and is the one to quote for 1.x, 9.x, 10.x.
 * Elements hidden, inside a closed menu or a dialog, are reported as not visible; open them in a manual pass.

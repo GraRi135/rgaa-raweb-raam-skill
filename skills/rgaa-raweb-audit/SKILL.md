@@ -168,7 +168,7 @@ RGAA: accessibilite.numerique.gouv.fr/methode/criteres-et-tests/).
 | Findings file from a scan | `python3 scripts/build_report.py bootstrap p01.scan.json --url URL --page P01 --title Accueil > findings.json` (`--append` to add pages) |
 | Annotated screenshots (web) | `node scripts/render_page.js --annotate findings.json --out shots/` → `findings.annotated.json` |
 | Annotated screenshots (Android) | `python3 scripts/android_audit.py annotate android-audit/accueil/ --out shots/` → `shots/findings.json` |
-| Real screen reader (NVDA, Windows) | `node scripts/nvda_capture.js check`, then `node scripts/nvda_capture.js --findings findings.json --out nvda/` (Firefox + Chrome), then `python3 scripts/nvda_review.py nvda/ --findings findings.json --apply` (`--mock` exists for pipeline tests only) |
+| Real screen reader (NVDA, Windows) | `node scripts/nvda_capture.js check`, then `node scripts/nvda_capture.js --findings findings.json --out nvda/` (Chrome; `--browser firefox,edge` optional), then `python3 scripts/nvda_review.py nvda/ --findings findings.json --apply` (`--mock` exists for pipeline tests only) |
 | Illustrated report, HTML + PDF | `python3 scripts/build_report.py build findings.annotated.json --grid grille.csv --out rapport.html --pdf rapport.pdf --lang fr` |
 | Refresh data from upstream | `python3 scripts/refresh_data.py` |
 

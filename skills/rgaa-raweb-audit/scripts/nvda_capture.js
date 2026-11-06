@@ -2,12 +2,12 @@
 // nvda_capture.js — drive the real NVDA screen reader on a page and record what it says.
 //
 // Runs on Windows only (NVDA). Uses Guidepup (https://www.guidepup.dev, MIT) to control NVDA and read its speech,
-// and Playwright to open the page in Firefox, Chrome or Edge (the NVDA pairings of the RAWeb / RGAA reference
-// environment). Nothing here replaces the auditor: the transcript is evidence to read and quote.
+// and Playwright to open the page in Chrome (default; Firefox and Edge on request: the NVDA pairings of the RAWeb /
+// RGAA reference environment). Nothing here replaces the auditor: the transcript is evidence to read and quote.
 //
 //   node nvda_capture.js check                                   # is this machine ready? (Windows, NVDA, Guidepup, browsers)
-//   node nvda_capture.js URL --page P01 [--browser firefox|chrome|edge|all] [--findings findings.json] [--out nvda/]
-//   node nvda_capture.js --findings findings.json [--browser all] [--out nvda/]   # every page of the sample
+//   node nvda_capture.js URL --page P01 [--browser chrome|firefox|edge|all] [--findings findings.json] [--out nvda/]
+//   node nvda_capture.js --findings findings.json [--out nvda/]                   # every page of the sample, Chrome
 //
 // Per page and browser it records: the linear reading (NVDA "next" from the top of the document), the lists NVDA
 // exposes (headings, links, landmarks, form fields, graphics, tables, lists), and for each finding of the page with a
@@ -19,7 +19,7 @@
 //          --mock (no NVDA: phrases derived from the accessibility tree, to test the pipeline on any OS; add --headless on a server),
 //          --browser chromium (Playwright's own Chromium, when Chrome is not installed).
 //
-// Setup on the Windows PC (once): install NVDA, Node and Playwright browsers, then in this folder
+// Setup on the Windows PC (once): install NVDA, Node and Google Chrome, then in this folder
 //   npm install @guidepup/guidepup playwright   and   npx @guidepup/setup setup
 // Keep the session unlocked and do not touch keyboard or mouse during a capture: NVDA reads the focused window.
 'use strict';
@@ -33,7 +33,7 @@ const flag = (name) => args.includes(name);
 const positional = args.filter((a, i) => !a.startsWith('--') && !(i > 0 && optValues.has(args[i - 1])));
 const mode = positional[0] === 'check' ? 'check' : 'capture';
 const url = mode === 'capture' ? positional[0] : null;
-const browsers = (opt('--browser', 'all') === 'all') ? ['firefox', 'chrome'] : opt('--browser').split(',');
+const browsers = (opt('--browser', 'chrome') === 'all') ? ['chrome', 'firefox', 'edge'] : opt('--browser', 'chrome').split(',');
 const outDir = opt('--out', 'nvda');
 const maxItems = +opt('--max-items', 400);
 const waitMs = +opt('--wait', 1500);
@@ -72,7 +72,7 @@ async function check() {
       try { const b = await launch(); lines.push(`${name}: ok (${b.version()})`); await b.close(); } catch (e) { lines.push(`${name}: not available (${e.message.split('\n')[0]})`); }
     }
   }
-  lines.push(win && g && pw ? 'ready: node nvda_capture.js URL --page P01 --findings findings.json' : 'not ready: fix the items marked MISSING / not available');
+  lines.push(win && g && pw ? 'ready: node nvda_capture.js URL --page P01 --findings findings.json   (Chrome by default; firefox / edge are optional)' : 'not ready: fix the items marked MISSING / not available (only chrome is required)');
   console.log(lines.join('\n'));
 }
 
